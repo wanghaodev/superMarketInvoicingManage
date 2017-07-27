@@ -1,4 +1,4 @@
-package com.invoicing.manage.entity.base;
+package com.invoicing.manage.comment.entity;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -32,17 +32,35 @@ public class BaseEntity implements Serializable {
 	 * 更新时间
 	 */
 	private Date updateTime;
-
+	
+	/**
+	 * 创建人
+	 */
 	private String creator;
 
+	/**
+	 * 创建人Id
+	 */
 	private Long creatorId;
 
+	/**
+	 * 修改人
+	 */
 	private String updator;
 
+	/**
+	 * 修改人Id
+	 */
 	private Long updatorId;
 
+	/**
+	 * 修改时间（字符串格式）
+	 */
 	private String updateTimeStr;
 
+	/**
+	 * 创建时间（字符串格式）
+	 */
 	private String createTimeStr;
 
 

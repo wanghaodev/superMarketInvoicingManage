@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.invoicing.manage.mapper.AreaMapper">
+
+	 <resultMap type="com.invoicing.manage.entity.AreaEntity" id="BaseResultMap">
+    	 <id column="id" property="id" /> 
+		  <id column="createTime" property="createTime" /> 
+		  <id column="creator" property="creator" /> 
+		  <id column="creatorId" property="creatorId" /> 
+		  <id column="valid" property="valid" /> 
+		  <id column="updateTime" property="updateTime" /> 
+		  <id column="updator" property="updator" /> 
+		  <id column="updatorId" property="updatorId" /> 
+		  <id column="pid" property="pid" /> 
+		  <id column="shortMapName" property="shortMapName" /> 
+		  <id column="shortName" property="shortName" /> 
+		  <id column="spelling" property="spelling" /> 
+		  <id column="state" property="state" /> 
+		  <id column="type" property="type" /> 
+		  <id column="zip" property="zip" /> 
+		  <id column="name" property="name" /> 
+  
+    </resultMap>
+    <sql id="Base_Column_List">
+    	 area.id as id ,
+ 		 area.create_time as createTime ,
+ 		 area.creator as creator ,
+ 		 area.creator_id as creatorId ,
+ 		 area.valid as valid ,
+ 		 area.update_time as updateTime ,
+ 		 area.updator as updator ,
+ 		 area.updator_id as updatorId ,
+ 		 area.pid as pid ,
+ 		 area.short_map_name as shortMapName ,
+ 		 area.short_name as shortName ,
+ 		 area.spelling as spelling ,
+ 		 area.state as state ,
+ 		 area.type as type ,
+ 		 area.zip as zip ,
+ 		 area.name as name
+    </sql>
+    
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		 select 
+ 		  <include refid="Base_Column_List" />
+ 		  from area_tb area
+ 		  where area.id = #{ id }
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		 delete 
+ 		  from area_tb
+ 		  where id = #{ id }
+	</delete>
+	
+	<insert id="insertSelective" parameterType="com.invoicing.manage.entity.AreaEntity">
+		 insert into  area_tb
+ 		  <trim prefix="(" suffix=")" suffixOverrides=","> 
+ 			 <if test="id != null">
+ 				 id,
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 create_time,
+ 			  </if>
+ 			 <if test="creator != null">
+ 				 creator,
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 creator_id,
+ 			  </if>
+ 			 <if test="valid != null">
+ 				 valid,
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 update_time,
+ 			  </if>
+ 			 <if test="updator != null">
+ 				 updator,
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 updator_id,
+ 			  </if>
+ 			 <if test="pid != null">
+ 				 pid,
+ 			  </if>
+ 			 <if test="shortMapName != null">
+ 				 short_map_name,
+ 			  </if>
+ 			 <if test="shortName != null">
+ 				 short_name,
+ 			  </if>
+ 			 <if test="spelling != null">
+ 				 spelling,
+ 			  </if>
+ 			 <if test="state != null">
+ 				 state,
+ 			  </if>
+ 			 <if test="type != null">
+ 				 type,
+ 			  </if>
+ 			 <if test="zip != null">
+ 				 zip,
+ 			  </if>
+ 			 <if test="name != null">
+ 				 name,
+ 			  </if>
+ 		  </trim>
+ 		  <trim prefix="values (" suffix=")" suffixOverrides="," >
+ 			 <if test="id != null">
+ 				 #{id},
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 #{createTime},
+ 			  </if>
+ 			 <if test="creator != null">
+ 				 #{creator},
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 #{creatorId},
+ 			  </if>
+ 			 <if test="valid != null">
+ 				 #{valid},
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 #{updateTime},
+ 			  </if>
+ 			 <if test="updator != null">
+ 				 #{updator},
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 #{updatorId},
+ 			  </if>
+ 			 <if test="pid != null">
+ 				 #{pid},
+ 			  </if>
+ 			 <if test="shortMapName != null">
+ 				 #{shortMapName},
+ 			  </if>
+ 			 <if test="shortName != null">
+ 				 #{shortName},
+ 			  </if>
+ 			 <if test="spelling != null">
+ 				 #{spelling},
+ 			  </if>
+ 			 <if test="state != null">
+ 				 #{state},
+ 			  </if>
+ 			 <if test="type != null">
+ 				 #{type},
+ 			  </if>
+ 			 <if test="zip != null">
+ 				 #{zip},
+ 			  </if>
+ 			 <if test="name != null">
+ 				 #{name},
+ 			  </if>
+ 		  </trim>
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="com.invoicing.manage.entity.AreaEntity">
+		 update   area_tb
+ 		 <set>
+ 			 <if test="createTime != null">
+ 				 create_time = #{createTime},
+ 			  </if>
+ 			 <if test="creator != null">
+ 				 creator = #{creator},
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 creator_id = #{creatorId},
+ 			  </if>
+ 			 <if test="valid != null">
+ 				 valid = #{valid},
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 update_time = #{updateTime},
+ 			  </if>
+ 			 <if test="updator != null">
+ 				 updator = #{updator},
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 updator_id = #{updatorId},
+ 			  </if>
+ 			 <if test="pid != null">
+ 				 pid = #{pid},
+ 			  </if>
+ 			 <if test="shortMapName != null">
+ 				 short_map_name = #{shortMapName},
+ 			  </if>
+ 			 <if test="shortName != null">
+ 				 short_name = #{shortName},
+ 			  </if>
+ 			 <if test="spelling != null">
+ 				 spelling = #{spelling},
+ 			  </if>
+ 			 <if test="state != null">
+ 				 state = #{state},
+ 			  </if>
+ 			 <if test="type != null">
+ 				 type = #{type},
+ 			  </if>
+ 			 <if test="zip != null">
+ 				 zip = #{zip},
+ 			  </if>
+ 			 <if test="name != null">
+ 				 name = #{name},
+ 			  </if>
+ 		 </set>
+     where id = #{id}
+	</update>
+	
+	 <select id="getList" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		 select 
+ 		  <include refid="Base_Column_List" />
+ 		  from area_tb area
+ 		  where 1=1 
+ 		 <if test="id != null">
+ 			 and area.id = #{id}
+ 		  </if>
+ 		 <if test="createTime != null">
+ 			 and area.create_time = #{createTime}
+ 		  </if>
+ 		 <if test="creator != null">
+ 			 and area.creator = #{creator}
+ 		  </if>
+ 		 <if test="creatorId != null">
+ 			 and area.creator_id = #{creatorId}
+ 		  </if>
+ 		 <if test="valid != null">
+ 			 and area.valid = #{valid}
+ 		  </if>
+ 		 <if test="updateTime != null">
+ 			 and area.update_time = #{updateTime}
+ 		  </if>
+ 		 <if test="updator != null">
+ 			 and area.updator = #{updator}
+ 		  </if>
+ 		 <if test="updatorId != null">
+ 			 and area.updator_id = #{updatorId}
+ 		  </if>
+ 		 <if test="pid != null">
+ 			 and area.pid = #{pid}
+ 		  </if>
+ 		 <if test="shortMapName != null">
+ 			 and area.short_map_name = #{shortMapName}
+ 		  </if>
+ 		 <if test="shortName != null">
+ 			 and area.short_name = #{shortName}
+ 		  </if>
+ 		 <if test="spelling != null">
+ 			 and area.spelling = #{spelling}
+ 		  </if>
+ 		 <if test="state != null">
+ 			 and area.state = #{state}
+ 		  </if>
+ 		 <if test="type != null">
+ 			 and area.type = #{type}
+ 		  </if>
+ 		 <if test="zip != null">
+ 			 and area.zip = #{zip}
+ 		  </if>
+ 		 <if test="name != null">
+ 			 and area.name = #{name}
+ 		  </if>
+	</select>
+	 <select id="getListCount" resultType="java.lang.Integer"
+		parameterType="java.util.Map">
+		 select 
+ 		  count(area.id)
+ 		  from area_tb area
+ 		  where 1=1 
+ 		 <if test="id != null">
+ 			 and area.id = #{id}
+ 		  </if>
+ 		 <if test="createTime != null">
+ 			 and area.create_time = #{createTime}
+ 		  </if>
+ 		 <if test="creator != null">
+ 			 and area.creator = #{creator}
+ 		  </if>
+ 		 <if test="creatorId != null">
+ 			 and area.creator_id = #{creatorId}
+ 		  </if>
+ 		 <if test="valid != null">
+ 			 and area.valid = #{valid}
+ 		  </if>
+ 		 <if test="updateTime != null">
+ 			 and area.update_time = #{updateTime}
+ 		  </if>
+ 		 <if test="updator != null">
+ 			 and area.updator = #{updator}
+ 		  </if>
+ 		 <if test="updatorId != null">
+ 			 and area.updator_id = #{updatorId}
+ 		  </if>
+ 		 <if test="pid != null">
+ 			 and area.pid = #{pid}
+ 		  </if>
+ 		 <if test="shortMapName != null">
+ 			 and area.short_map_name = #{shortMapName}
+ 		  </if>
+ 		 <if test="shortName != null">
+ 			 and area.short_name = #{shortName}
+ 		  </if>
+ 		 <if test="spelling != null">
+ 			 and area.spelling = #{spelling}
+ 		  </if>
+ 		 <if test="state != null">
+ 			 and area.state = #{state}
+ 		  </if>
+ 		 <if test="type != null">
+ 			 and area.type = #{type}
+ 		  </if>
+ 		 <if test="zip != null">
+ 			 and area.zip = #{zip}
+ 		  </if>
+ 		 <if test="name != null">
+ 			 and area.name = #{name}
+ 		  </if>
+	</select>
+</mapper>

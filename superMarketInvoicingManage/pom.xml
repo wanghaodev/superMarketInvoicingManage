@@ -288,5 +288,13 @@
             <artifactId>shiro-core</artifactId>
             <version>1.2.2</version>
         </dependency>
+      
+      <!-- 自动生成代码 -->
+		<dependency>
+			<groupId>com.snailf</groupId>
+			<artifactId>code-generator</artifactId>
+			<version>1.0.1</version>
+			<scope>test</scope>
+		</dependency>  
   </dependencies>
 </project>

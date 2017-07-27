@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.invoicing.manage.mapper.SystemUserMapper">
+
+	 <resultMap type="com.invoicing.manage.entity.SystemUserEntity" id="BaseResultMap">
+    	 <id column="id" property="id" /> 
+		  <id column="loginName" property="loginName" /> 
+		  <id column="userName" property="userName" /> 
+		  <id column="password" property="password" /> 
+		  <id column="phone" property="phone" /> 
+		  <id column="userType" property="userType" /> 
+		  <id column="state" property="state" /> 
+		  <id column="creatorId" property="creatorId" /> 
+		  <id column="createTime" property="createTime" /> 
+		  <id column="updatorId" property="updatorId" /> 
+		  <id column="updateTime" property="updateTime" /> 
+		  <id column="directlyOrgId" property="directlyOrgId" /> 
+		  <id column="hierarchyOrgId" property="hierarchyOrgId" /> 
+		  <id column="certificatesType" property="certificatesType" /> 
+		  <id column="certificatesNum" property="certificatesNum" /> 
+  
+    </resultMap>
+    <sql id="Base_Column_List">
+    	 systemUser.id as id ,
+ 		 systemUser.login_name as loginName ,
+ 		 systemUser.user_name as userName ,
+ 		 systemUser.password as password ,
+ 		 systemUser.phone as phone ,
+ 		 systemUser.user_type as userType ,
+ 		 systemUser.state as state ,
+ 		 systemUser.creator_id as creatorId ,
+ 		 systemUser.create_time as createTime ,
+ 		 systemUser.updator_id as updatorId ,
+ 		 systemUser.update_time as updateTime ,
+ 		 systemUser.directly_org_id as directlyOrgId ,
+ 		 systemUser.hierarchy_org_id as hierarchyOrgId ,
+ 		 systemUser.certificates_type as certificatesType ,
+ 		 systemUser.certificates_num as certificatesNum
+    </sql>
+    
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		 select 
+ 		  <include refid="Base_Column_List" />
+ 		  from system_user_tb systemUser
+ 		  where systemUser.id = #{ id }
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		 delete 
+ 		  from system_user_tb
+ 		  where id = #{ id }
+	</delete>
+	
+	<insert id="insertSelective" parameterType="com.invoicing.manage.entity.SystemUserEntity">
+		 insert into  system_user_tb
+ 		  <trim prefix="(" suffix=")" suffixOverrides=","> 
+ 			 <if test="id != null">
+ 				 id,
+ 			  </if>
+ 			 <if test="loginName != null">
+ 				 login_name,
+ 			  </if>
+ 			 <if test="userName != null">
+ 				 user_name,
+ 			  </if>
+ 			 <if test="password != null">
+ 				 password,
+ 			  </if>
+ 			 <if test="phone != null">
+ 				 phone,
+ 			  </if>
+ 			 <if test="userType != null">
+ 				 user_type,
+ 			  </if>
+ 			 <if test="state != null">
+ 				 state,
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 creator_id,
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 create_time,
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 updator_id,
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 update_time,
+ 			  </if>
+ 			 <if test="directlyOrgId != null">
+ 				 directly_org_id,
+ 			  </if>
+ 			 <if test="hierarchyOrgId != null">
+ 				 hierarchy_org_id,
+ 			  </if>
+ 			 <if test="certificatesType != null">
+ 				 certificates_type,
+ 			  </if>
+ 			 <if test="certificatesNum != null">
+ 				 certificates_num,
+ 			  </if>
+ 		  </trim>
+ 		  <trim prefix="values (" suffix=")" suffixOverrides="," >
+ 			 <if test="id != null">
+ 				 #{id},
+ 			  </if>
+ 			 <if test="loginName != null">
+ 				 #{loginName},
+ 			  </if>
+ 			 <if test="userName != null">
+ 				 #{userName},
+ 			  </if>
+ 			 <if test="password != null">
+ 				 #{password},
+ 			  </if>
+ 			 <if test="phone != null">
+ 				 #{phone},
+ 			  </if>
+ 			 <if test="userType != null">
+ 				 #{userType},
+ 			  </if>
+ 			 <if test="state != null">
+ 				 #{state},
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 #{creatorId},
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 #{createTime},
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 #{updatorId},
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 #{updateTime},
+ 			  </if>
+ 			 <if test="directlyOrgId != null">
+ 				 #{directlyOrgId},
+ 			  </if>
+ 			 <if test="hierarchyOrgId != null">
+ 				 #{hierarchyOrgId},
+ 			  </if>
+ 			 <if test="certificatesType != null">
+ 				 #{certificatesType},
+ 			  </if>
+ 			 <if test="certificatesNum != null">
+ 				 #{certificatesNum},
+ 			  </if>
+ 		  </trim>
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="com.invoicing.manage.entity.SystemUserEntity">
+		 update   system_user_tb
+ 		 <set>
+ 			 <if test="loginName != null">
+ 				 login_name = #{loginName},
+ 			  </if>
+ 			 <if test="userName != null">
+ 				 user_name = #{userName},
+ 			  </if>
+ 			 <if test="password != null">
+ 				 password = #{password},
+ 			  </if>
+ 			 <if test="phone != null">
+ 				 phone = #{phone},
+ 			  </if>
+ 			 <if test="userType != null">
+ 				 user_type = #{userType},
+ 			  </if>
+ 			 <if test="state != null">
+ 				 state = #{state},
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 creator_id = #{creatorId},
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 create_time = #{createTime},
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 updator_id = #{updatorId},
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 update_time = #{updateTime},
+ 			  </if>
+ 			 <if test="directlyOrgId != null">
+ 				 directly_org_id = #{directlyOrgId},
+ 			  </if>
+ 			 <if test="hierarchyOrgId != null">
+ 				 hierarchy_org_id = #{hierarchyOrgId},
+ 			  </if>
+ 			 <if test="certificatesType != null">
+ 				 certificates_type = #{certificatesType},
+ 			  </if>
+ 			 <if test="certificatesNum != null">
+ 				 certificates_num = #{certificatesNum},
+ 			  </if>
+ 		 </set>
+     where id = #{id}
+	</update>
+	
+	 <select id="getList" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		 select 
+ 		  <include refid="Base_Column_List" />
+ 		  from system_user_tb systemUser
+ 		  where 1=1 
+ 		 <if test="id != null">
+ 			 and systemUser.id = #{id}
+ 		  </if>
+ 		 <if test="loginName != null">
+ 			 and systemUser.login_name = #{loginName}
+ 		  </if>
+ 		 <if test="userName != null">
+ 			 and systemUser.user_name = #{userName}
+ 		  </if>
+ 		 <if test="password != null">
+ 			 and systemUser.password = #{password}
+ 		  </if>
+ 		 <if test="phone != null">
+ 			 and systemUser.phone = #{phone}
+ 		  </if>
+ 		 <if test="userType != null">
+ 			 and systemUser.user_type = #{userType}
+ 		  </if>
+ 		 <if test="state != null">
+ 			 and systemUser.state = #{state}
+ 		  </if>
+ 		 <if test="creatorId != null">
+ 			 and systemUser.creator_id = #{creatorId}
+ 		  </if>
+ 		 <if test="createTime != null">
+ 			 and systemUser.create_time = #{createTime}
+ 		  </if>
+ 		 <if test="updatorId != null">
+ 			 and systemUser.updator_id = #{updatorId}
+ 		  </if>
+ 		 <if test="updateTime != null">
+ 			 and systemUser.update_time = #{updateTime}
+ 		  </if>
+ 		 <if test="directlyOrgId != null">
+ 			 and systemUser.directly_org_id = #{directlyOrgId}
+ 		  </if>
+ 		 <if test="hierarchyOrgId != null">
+ 			 and systemUser.hierarchy_org_id = #{hierarchyOrgId}
+ 		  </if>
+ 		 <if test="certificatesType != null">
+ 			 and systemUser.certificates_type = #{certificatesType}
+ 		  </if>
+ 		 <if test="certificatesNum != null">
+ 			 and systemUser.certificates_num = #{certificatesNum}
+ 		  </if>
+	</select>
+	 <select id="getListCount" resultType="java.lang.Integer"
+		parameterType="java.util.Map">
+		 select 
+ 		  count(systemUser.id)
+ 		  from system_user_tb systemUser
+ 		  where 1=1 
+ 		 <if test="id != null">
+ 			 and systemUser.id = #{id}
+ 		  </if>
+ 		 <if test="loginName != null">
+ 			 and systemUser.login_name = #{loginName}
+ 		  </if>
+ 		 <if test="userName != null">
+ 			 and systemUser.user_name = #{userName}
+ 		  </if>
+ 		 <if test="password != null">
+ 			 and systemUser.password = #{password}
+ 		  </if>
+ 		 <if test="phone != null">
+ 			 and systemUser.phone = #{phone}
+ 		  </if>
+ 		 <if test="userType != null">
+ 			 and systemUser.user_type = #{userType}
+ 		  </if>
+ 		 <if test="state != null">
+ 			 and systemUser.state = #{state}
+ 		  </if>
+ 		 <if test="creatorId != null">
+ 			 and systemUser.creator_id = #{creatorId}
+ 		  </if>
+ 		 <if test="createTime != null">
+ 			 and systemUser.create_time = #{createTime}
+ 		  </if>
+ 		 <if test="updatorId != null">
+ 			 and systemUser.updator_id = #{updatorId}
+ 		  </if>
+ 		 <if test="updateTime != null">
+ 			 and systemUser.update_time = #{updateTime}
+ 		  </if>
+ 		 <if test="directlyOrgId != null">
+ 			 and systemUser.directly_org_id = #{directlyOrgId}
+ 		  </if>
+ 		 <if test="hierarchyOrgId != null">
+ 			 and systemUser.hierarchy_org_id = #{hierarchyOrgId}
+ 		  </if>
+ 		 <if test="certificatesType != null">
+ 			 and systemUser.certificates_type = #{certificatesType}
+ 		  </if>
+ 		 <if test="certificatesNum != null">
+ 			 and systemUser.certificates_num = #{certificatesNum}
+ 		  </if>
+	</select>
+</mapper>

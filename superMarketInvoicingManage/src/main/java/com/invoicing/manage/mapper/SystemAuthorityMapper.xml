@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.invoicing.manage.mapper.SystemAuthorityMapper">
+
+	 <resultMap type="com.invoicing.manage.entity.SystemAuthorityEntity" id="BaseResultMap">
+    	 <id column="id" property="id" /> 
+		  <id column="name" property="name" /> 
+		  <id column="url" property="url" /> 
+		  <id column="createTime" property="createTime" /> 
+		  <id column="creator" property="creator" /> 
+		  <id column="creatorId" property="creatorId" /> 
+		  <id column="hassub" property="hassub" /> 
+		  <id column="hasvalid" property="hasvalid" /> 
+		  <id column="updateTime" property="updateTime" /> 
+		  <id column="hierarchical" property="hierarchical" /> 
+		  <id column="orderbyId" property="orderbyId" /> 
+		  <id column="pid" property="pid" /> 
+		  <id column="showMenu" property="showMenu" /> 
+		  <id column="showType" property="showType" /> 
+		  <id column="iconClass" property="iconClass" /> 
+		  <id column="access" property="access" /> 
+  
+    </resultMap>
+    <sql id="Base_Column_List">
+    	 systemAuthority.id as id ,
+ 		 systemAuthority.name as name ,
+ 		 systemAuthority.url as url ,
+ 		 systemAuthority.create_time as createTime ,
+ 		 systemAuthority.creator as creator ,
+ 		 systemAuthority.creator_id as creatorId ,
+ 		 systemAuthority.hassub as hassub ,
+ 		 systemAuthority.hasvalid as hasvalid ,
+ 		 systemAuthority.update_time as updateTime ,
+ 		 systemAuthority.hierarchical as hierarchical ,
+ 		 systemAuthority.orderby_id as orderbyId ,
+ 		 systemAuthority.pid as pid ,
+ 		 systemAuthority.show_menu as showMenu ,
+ 		 systemAuthority.show_type as showType ,
+ 		 systemAuthority.icon_class as iconClass ,
+ 		 systemAuthority.access as access
+    </sql>
+    
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		 select 
+ 		  <include refid="Base_Column_List" />
+ 		  from system_authority_tb systemAuthority
+ 		  where systemAuthority.id = #{ id }
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		 delete 
+ 		  from system_authority_tb
+ 		  where id = #{ id }
+	</delete>
+	
+	<insert id="insertSelective" parameterType="com.invoicing.manage.entity.SystemAuthorityEntity">
+		 insert into  system_authority_tb
+ 		  <trim prefix="(" suffix=")" suffixOverrides=","> 
+ 			 <if test="id != null">
+ 				 id,
+ 			  </if>
+ 			 <if test="name != null">
+ 				 name,
+ 			  </if>
+ 			 <if test="url != null">
+ 				 url,
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 create_time,
+ 			  </if>
+ 			 <if test="creator != null">
+ 				 creator,
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 creator_id,
+ 			  </if>
+ 			 <if test="hassub != null">
+ 				 hassub,
+ 			  </if>
+ 			 <if test="hasvalid != null">
+ 				 hasvalid,
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 update_time,
+ 			  </if>
+ 			 <if test="hierarchical != null">
+ 				 hierarchical,
+ 			  </if>
+ 			 <if test="orderbyId != null">
+ 				 orderby_id,
+ 			  </if>
+ 			 <if test="pid != null">
+ 				 pid,
+ 			  </if>
+ 			 <if test="showMenu != null">
+ 				 show_menu,
+ 			  </if>
+ 			 <if test="showType != null">
+ 				 show_type,
+ 			  </if>
+ 			 <if test="iconClass != null">
+ 				 icon_class,
+ 			  </if>
+ 			 <if test="access != null">
+ 				 access,
+ 			  </if>
+ 		  </trim>
+ 		  <trim prefix="values (" suffix=")" suffixOverrides="," >
+ 			 <if test="id != null">
+ 				 #{id},
+ 			  </if>
+ 			 <if test="name != null">
+ 				 #{name},
+ 			  </if>
+ 			 <if test="url != null">
+ 				 #{url},
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 #{createTime},
+ 			  </if>
+ 			 <if test="creator != null">
+ 				 #{creator},
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 #{creatorId},
+ 			  </if>
+ 			 <if test="hassub != null">
+ 				 #{hassub},
+ 			  </if>
+ 			 <if test="hasvalid != null">
+ 				 #{hasvalid},
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 #{updateTime},
+ 			  </if>
+ 			 <if test="hierarchical != null">
+ 				 #{hierarchical},
+ 			  </if>
+ 			 <if test="orderbyId != null">
+ 				 #{orderbyId},
+ 			  </if>
+ 			 <if test="pid != null">
+ 				 #{pid},
+ 			  </if>
+ 			 <if test="showMenu != null">
+ 				 #{showMenu},
+ 			  </if>
+ 			 <if test="showType != null">
+ 				 #{showType},
+ 			  </if>
+ 			 <if test="iconClass != null">
+ 				 #{iconClass},
+ 			  </if>
+ 			 <if test="access != null">
+ 				 #{access},
+ 			  </if>
+ 		  </trim>
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="com.invoicing.manage.entity.SystemAuthorityEntity">
+		 update   system_authority_tb
+ 		 <set>
+ 			 <if test="name != null">
+ 				 name = #{name},
+ 			  </if>
+ 			 <if test="url != null">
+ 				 url = #{url},
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 create_time = #{createTime},
+ 			  </if>
+ 			 <if test="creator != null">
+ 				 creator = #{creator},
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 creator_id = #{creatorId},
+ 			  </if>
+ 			 <if test="hassub != null">
+ 				 hassub = #{hassub},
+ 			  </if>
+ 			 <if test="hasvalid != null">
+ 				 hasvalid = #{hasvalid},
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 update_time = #{updateTime},
+ 			  </if>
+ 			 <if test="hierarchical != null">
+ 				 hierarchical = #{hierarchical},
+ 			  </if>
+ 			 <if test="orderbyId != null">
+ 				 orderby_id = #{orderbyId},
+ 			  </if>
+ 			 <if test="pid != null">
+ 				 pid = #{pid},
+ 			  </if>
+ 			 <if test="showMenu != null">
+ 				 show_menu = #{showMenu},
+ 			  </if>
+ 			 <if test="showType != null">
+ 				 show_type = #{showType},
+ 			  </if>
+ 			 <if test="iconClass != null">
+ 				 icon_class = #{iconClass},
+ 			  </if>
+ 			 <if test="access != null">
+ 				 access = #{access},
+ 			  </if>
+ 		 </set>
+     where id = #{id}
+	</update>
+	
+	 <select id="getList" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		 select 
+ 		  <include refid="Base_Column_List" />
+ 		  from system_authority_tb systemAuthority
+ 		  where 1=1 
+ 		 <if test="id != null">
+ 			 and systemAuthority.id = #{id}
+ 		  </if>
+ 		 <if test="name != null">
+ 			 and systemAuthority.name = #{name}
+ 		  </if>
+ 		 <if test="url != null">
+ 			 and systemAuthority.url = #{url}
+ 		  </if>
+ 		 <if test="createTime != null">
+ 			 and systemAuthority.create_time = #{createTime}
+ 		  </if>
+ 		 <if test="creator != null">
+ 			 and systemAuthority.creator = #{creator}
+ 		  </if>
+ 		 <if test="creatorId != null">
+ 			 and systemAuthority.creator_id = #{creatorId}
+ 		  </if>
+ 		 <if test="hassub != null">
+ 			 and systemAuthority.hassub = #{hassub}
+ 		  </if>
+ 		 <if test="hasvalid != null">
+ 			 and systemAuthority.hasvalid = #{hasvalid}
+ 		  </if>
+ 		 <if test="updateTime != null">
+ 			 and systemAuthority.update_time = #{updateTime}
+ 		  </if>
+ 		 <if test="hierarchical != null">
+ 			 and systemAuthority.hierarchical = #{hierarchical}
+ 		  </if>
+ 		 <if test="orderbyId != null">
+ 			 and systemAuthority.orderby_id = #{orderbyId}
+ 		  </if>
+ 		 <if test="pid != null">
+ 			 and systemAuthority.pid = #{pid}
+ 		  </if>
+ 		 <if test="showMenu != null">
+ 			 and systemAuthority.show_menu = #{showMenu}
+ 		  </if>
+ 		 <if test="showType != null">
+ 			 and systemAuthority.show_type = #{showType}
+ 		  </if>
+ 		 <if test="iconClass != null">
+ 			 and systemAuthority.icon_class = #{iconClass}
+ 		  </if>
+ 		 <if test="access != null">
+ 			 and systemAuthority.access = #{access}
+ 		  </if>
+	</select>
+	 <select id="getListCount" resultType="java.lang.Integer"
+		parameterType="java.util.Map">
+		 select 
+ 		  count(systemAuthority.id)
+ 		  from system_authority_tb systemAuthority
+ 		  where 1=1 
+ 		 <if test="id != null">
+ 			 and systemAuthority.id = #{id}
+ 		  </if>
+ 		 <if test="name != null">
+ 			 and systemAuthority.name = #{name}
+ 		  </if>
+ 		 <if test="url != null">
+ 			 and systemAuthority.url = #{url}
+ 		  </if>
+ 		 <if test="createTime != null">
+ 			 and systemAuthority.create_time = #{createTime}
+ 		  </if>
+ 		 <if test="creator != null">
+ 			 and systemAuthority.creator = #{creator}
+ 		  </if>
+ 		 <if test="creatorId != null">
+ 			 and systemAuthority.creator_id = #{creatorId}
+ 		  </if>
+ 		 <if test="hassub != null">
+ 			 and systemAuthority.hassub = #{hassub}
+ 		  </if>
+ 		 <if test="hasvalid != null">
+ 			 and systemAuthority.hasvalid = #{hasvalid}
+ 		  </if>
+ 		 <if test="updateTime != null">
+ 			 and systemAuthority.update_time = #{updateTime}
+ 		  </if>
+ 		 <if test="hierarchical != null">
+ 			 and systemAuthority.hierarchical = #{hierarchical}
+ 		  </if>
+ 		 <if test="orderbyId != null">
+ 			 and systemAuthority.orderby_id = #{orderbyId}
+ 		  </if>
+ 		 <if test="pid != null">
+ 			 and systemAuthority.pid = #{pid}
+ 		  </if>
+ 		 <if test="showMenu != null">
+ 			 and systemAuthority.show_menu = #{showMenu}
+ 		  </if>
+ 		 <if test="showType != null">
+ 			 and systemAuthority.show_type = #{showType}
+ 		  </if>
+ 		 <if test="iconClass != null">
+ 			 and systemAuthority.icon_class = #{iconClass}
+ 		  </if>
+ 		 <if test="access != null">
+ 			 and systemAuthority.access = #{access}
+ 		  </if>
+	</select>
+</mapper>

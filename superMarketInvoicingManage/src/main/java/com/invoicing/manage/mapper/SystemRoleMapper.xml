@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.invoicing.manage.mapper.SystemRoleMapper">
+
+	 <resultMap type="com.invoicing.manage.entity.SystemRoleEntity" id="BaseResultMap">
+    	 <id column="id" property="id" /> 
+		  <id column="roleName" property="roleName" /> 
+		  <id column="roleDesc" property="roleDesc" /> 
+		  <id column="createTime" property="createTime" /> 
+		  <id column="creator" property="creator" /> 
+		  <id column="creatorId" property="creatorId" /> 
+		  <id column="hasvalid" property="hasvalid" /> 
+		  <id column="updateTime" property="updateTime" /> 
+		  <id column="updator" property="updator" /> 
+		  <id column="updatorId" property="updatorId" /> 
+		  <id column="directlyOrgId" property="directlyOrgId" /> 
+		  <id column="hierarchyOrgId" property="hierarchyOrgId" /> 
+  
+    </resultMap>
+    <sql id="Base_Column_List">
+    	 systemRole.id as id ,
+ 		 systemRole.role_name as roleName ,
+ 		 systemRole.role_desc as roleDesc ,
+ 		 systemRole.create_time as createTime ,
+ 		 systemRole.creator as creator ,
+ 		 systemRole.creator_id as creatorId ,
+ 		 systemRole.hasvalid as hasvalid ,
+ 		 systemRole.update_time as updateTime ,
+ 		 systemRole.updator as updator ,
+ 		 systemRole.updator_id as updatorId ,
+ 		 systemRole.directly_org_id as directlyOrgId ,
+ 		 systemRole.hierarchy_org_id as hierarchyOrgId
+    </sql>
+    
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		 select 
+ 		  <include refid="Base_Column_List" />
+ 		  from system_role_tb systemRole
+ 		  where systemRole.id = #{ id }
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		 delete 
+ 		  from system_role_tb
+ 		  where id = #{ id }
+	</delete>
+	
+	<insert id="insertSelective" parameterType="com.invoicing.manage.entity.SystemRoleEntity">
+		 insert into  system_role_tb
+ 		  <trim prefix="(" suffix=")" suffixOverrides=","> 
+ 			 <if test="id != null">
+ 				 id,
+ 			  </if>
+ 			 <if test="roleName != null">
+ 				 role_name,
+ 			  </if>
+ 			 <if test="roleDesc != null">
+ 				 role_desc,
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 create_time,
+ 			  </if>
+ 			 <if test="creator != null">
+ 				 creator,
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 creator_id,
+ 			  </if>
+ 			 <if test="hasvalid != null">
+ 				 hasvalid,
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 update_time,
+ 			  </if>
+ 			 <if test="updator != null">
+ 				 updator,
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 updator_id,
+ 			  </if>
+ 			 <if test="directlyOrgId != null">
+ 				 directly_org_id,
+ 			  </if>
+ 			 <if test="hierarchyOrgId != null">
+ 				 hierarchy_org_id,
+ 			  </if>
+ 		  </trim>
+ 		  <trim prefix="values (" suffix=")" suffixOverrides="," >
+ 			 <if test="id != null">
+ 				 #{id},
+ 			  </if>
+ 			 <if test="roleName != null">
+ 				 #{roleName},
+ 			  </if>
+ 			 <if test="roleDesc != null">
+ 				 #{roleDesc},
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 #{createTime},
+ 			  </if>
+ 			 <if test="creator != null">
+ 				 #{creator},
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 #{creatorId},
+ 			  </if>
+ 			 <if test="hasvalid != null">
+ 				 #{hasvalid},
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 #{updateTime},
+ 			  </if>
+ 			 <if test="updator != null">
+ 				 #{updator},
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 #{updatorId},
+ 			  </if>
+ 			 <if test="directlyOrgId != null">
+ 				 #{directlyOrgId},
+ 			  </if>
+ 			 <if test="hierarchyOrgId != null">
+ 				 #{hierarchyOrgId},
+ 			  </if>
+ 		  </trim>
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="com.invoicing.manage.entity.SystemRoleEntity">
+		 update   system_role_tb
+ 		 <set>
+ 			 <if test="roleName != null">
+ 				 role_name = #{roleName},
+ 			  </if>
+ 			 <if test="roleDesc != null">
+ 				 role_desc = #{roleDesc},
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 create_time = #{createTime},
+ 			  </if>
+ 			 <if test="creator != null">
+ 				 creator = #{creator},
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 creator_id = #{creatorId},
+ 			  </if>
+ 			 <if test="hasvalid != null">
+ 				 hasvalid = #{hasvalid},
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 update_time = #{updateTime},
+ 			  </if>
+ 			 <if test="updator != null">
+ 				 updator = #{updator},
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 updator_id = #{updatorId},
+ 			  </if>
+ 			 <if test="directlyOrgId != null">
+ 				 directly_org_id = #{directlyOrgId},
+ 			  </if>
+ 			 <if test="hierarchyOrgId != null">
+ 				 hierarchy_org_id = #{hierarchyOrgId},
+ 			  </if>
+ 		 </set>
+     where id = #{id}
+	</update>
+	
+	 <select id="getList" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		 select 
+ 		  <include refid="Base_Column_List" />
+ 		  from system_role_tb systemRole
+ 		  where 1=1 
+ 		 <if test="id != null">
+ 			 and systemRole.id = #{id}
+ 		  </if>
+ 		 <if test="roleName != null">
+ 			 and systemRole.role_name = #{roleName}
+ 		  </if>
+ 		 <if test="roleDesc != null">
+ 			 and systemRole.role_desc = #{roleDesc}
+ 		  </if>
+ 		 <if test="createTime != null">
+ 			 and systemRole.create_time = #{createTime}
+ 		  </if>
+ 		 <if test="creator != null">
+ 			 and systemRole.creator = #{creator}
+ 		  </if>
+ 		 <if test="creatorId != null">
+ 			 and systemRole.creator_id = #{creatorId}
+ 		  </if>
+ 		 <if test="hasvalid != null">
+ 			 and systemRole.hasvalid = #{hasvalid}
+ 		  </if>
+ 		 <if test="updateTime != null">
+ 			 and systemRole.update_time = #{updateTime}
+ 		  </if>
+ 		 <if test="updator != null">
+ 			 and systemRole.updator = #{updator}
+ 		  </if>
+ 		 <if test="updatorId != null">
+ 			 and systemRole.updator_id = #{updatorId}
+ 		  </if>
+ 		 <if test="directlyOrgId != null">
+ 			 and systemRole.directly_org_id = #{directlyOrgId}
+ 		  </if>
+ 		 <if test="hierarchyOrgId != null">
+ 			 and systemRole.hierarchy_org_id = #{hierarchyOrgId}
+ 		  </if>
+	</select>
+	 <select id="getListCount" resultType="java.lang.Integer"
+		parameterType="java.util.Map">
+		 select 
+ 		  count(systemRole.id)
+ 		  from system_role_tb systemRole
+ 		  where 1=1 
+ 		 <if test="id != null">
+ 			 and systemRole.id = #{id}
+ 		  </if>
+ 		 <if test="roleName != null">
+ 			 and systemRole.role_name = #{roleName}
+ 		  </if>
+ 		 <if test="roleDesc != null">
+ 			 and systemRole.role_desc = #{roleDesc}
+ 		  </if>
+ 		 <if test="createTime != null">
+ 			 and systemRole.create_time = #{createTime}
+ 		  </if>
+ 		 <if test="creator != null">
+ 			 and systemRole.creator = #{creator}
+ 		  </if>
+ 		 <if test="creatorId != null">
+ 			 and systemRole.creator_id = #{creatorId}
+ 		  </if>
+ 		 <if test="hasvalid != null">
+ 			 and systemRole.hasvalid = #{hasvalid}
+ 		  </if>
+ 		 <if test="updateTime != null">
+ 			 and systemRole.update_time = #{updateTime}
+ 		  </if>
+ 		 <if test="updator != null">
+ 			 and systemRole.updator = #{updator}
+ 		  </if>
+ 		 <if test="updatorId != null">
+ 			 and systemRole.updator_id = #{updatorId}
+ 		  </if>
+ 		 <if test="directlyOrgId != null">
+ 			 and systemRole.directly_org_id = #{directlyOrgId}
+ 		  </if>
+ 		 <if test="hierarchyOrgId != null">
+ 			 and systemRole.hierarchy_org_id = #{hierarchyOrgId}
+ 		  </if>
+	</select>
+</mapper>

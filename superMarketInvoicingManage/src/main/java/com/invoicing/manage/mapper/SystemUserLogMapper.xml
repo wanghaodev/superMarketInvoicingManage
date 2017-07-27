@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.invoicing.manage.mapper.SystemUserLogMapper">
+
+	 <resultMap type="com.invoicing.manage.entity.SystemUserLogEntity" id="BaseResultMap">
+    	 <id column="id" property="id" /> 
+		  <id column="mergeUserId" property="mergeUserId" /> 
+		  <id column="ip" property="ip" /> 
+		  <id column="descrption" property="descrption" /> 
+		  <id column="valid" property="valid" /> 
+		  <id column="createTime" property="createTime" /> 
+		  <id column="updateTime" property="updateTime" /> 
+		  <id column="typeId" property="typeId" /> 
+  
+    </resultMap>
+    <sql id="Base_Column_List">
+    	 systemUserLog.id as id ,
+ 		 systemUserLog.merge_user_id as mergeUserId ,
+ 		 systemUserLog.ip as ip ,
+ 		 systemUserLog.descrption as descrption ,
+ 		 systemUserLog.valid as valid ,
+ 		 systemUserLog.create_time as createTime ,
+ 		 systemUserLog.update_time as updateTime ,
+ 		 systemUserLog.type_id as typeId
+    </sql>
+    
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		 select 
+ 		  <include refid="Base_Column_List" />
+ 		  from system_user_log_tb systemUserLog
+ 		  where systemUserLog.id = #{ id }
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		 delete 
+ 		  from system_user_log_tb
+ 		  where id = #{ id }
+	</delete>
+	
+	<insert id="insertSelective" parameterType="com.invoicing.manage.entity.SystemUserLogEntity">
+		 insert into  system_user_log_tb
+ 		  <trim prefix="(" suffix=")" suffixOverrides=","> 
+ 			 <if test="id != null">
+ 				 id,
+ 			  </if>
+ 			 <if test="mergeUserId != null">
+ 				 merge_user_id,
+ 			  </if>
+ 			 <if test="ip != null">
+ 				 ip,
+ 			  </if>
+ 			 <if test="descrption != null">
+ 				 descrption,
+ 			  </if>
+ 			 <if test="valid != null">
+ 				 valid,
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 create_time,
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 update_time,
+ 			  </if>
+ 			 <if test="typeId != null">
+ 				 type_id,
+ 			  </if>
+ 		  </trim>
+ 		  <trim prefix="values (" suffix=")" suffixOverrides="," >
+ 			 <if test="id != null">
+ 				 #{id},
+ 			  </if>
+ 			 <if test="mergeUserId != null">
+ 				 #{mergeUserId},
+ 			  </if>
+ 			 <if test="ip != null">
+ 				 #{ip},
+ 			  </if>
+ 			 <if test="descrption != null">
+ 				 #{descrption},
+ 			  </if>
+ 			 <if test="valid != null">
+ 				 #{valid},
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 #{createTime},
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 #{updateTime},
+ 			  </if>
+ 			 <if test="typeId != null">
+ 				 #{typeId},
+ 			  </if>
+ 		  </trim>
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="com.invoicing.manage.entity.SystemUserLogEntity">
+		 update   system_user_log_tb
+ 		 <set>
+ 			 <if test="mergeUserId != null">
+ 				 merge_user_id = #{mergeUserId},
+ 			  </if>
+ 			 <if test="ip != null">
+ 				 ip = #{ip},
+ 			  </if>
+ 			 <if test="descrption != null">
+ 				 descrption = #{descrption},
+ 			  </if>
+ 			 <if test="valid != null">
+ 				 valid = #{valid},
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 create_time = #{createTime},
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 update_time = #{updateTime},
+ 			  </if>
+ 			 <if test="typeId != null">
+ 				 type_id = #{typeId},
+ 			  </if>
+ 		 </set>
+     where id = #{id}
+	</update>
+	
+	 <select id="getList" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		 select 
+ 		  <include refid="Base_Column_List" />
+ 		  from system_user_log_tb systemUserLog
+ 		  where 1=1 
+ 		 <if test="id != null">
+ 			 and systemUserLog.id = #{id}
+ 		  </if>
+ 		 <if test="mergeUserId != null">
+ 			 and systemUserLog.merge_user_id = #{mergeUserId}
+ 		  </if>
+ 		 <if test="ip != null">
+ 			 and systemUserLog.ip = #{ip}
+ 		  </if>
+ 		 <if test="descrption != null">
+ 			 and systemUserLog.descrption = #{descrption}
+ 		  </if>
+ 		 <if test="valid != null">
+ 			 and systemUserLog.valid = #{valid}
+ 		  </if>
+ 		 <if test="createTime != null">
+ 			 and systemUserLog.create_time = #{createTime}
+ 		  </if>
+ 		 <if test="updateTime != null">
+ 			 and systemUserLog.update_time = #{updateTime}
+ 		  </if>
+ 		 <if test="typeId != null">
+ 			 and systemUserLog.type_id = #{typeId}
+ 		  </if>
+	</select>
+	 <select id="getListCount" resultType="java.lang.Integer"
+		parameterType="java.util.Map">
+		 select 
+ 		  count(systemUserLog.id)
+ 		  from system_user_log_tb systemUserLog
+ 		  where 1=1 
+ 		 <if test="id != null">
+ 			 and systemUserLog.id = #{id}
+ 		  </if>
+ 		 <if test="mergeUserId != null">
+ 			 and systemUserLog.merge_user_id = #{mergeUserId}
+ 		  </if>
+ 		 <if test="ip != null">
+ 			 and systemUserLog.ip = #{ip}
+ 		  </if>
+ 		 <if test="descrption != null">
+ 			 and systemUserLog.descrption = #{descrption}
+ 		  </if>
+ 		 <if test="valid != null">
+ 			 and systemUserLog.valid = #{valid}
+ 		  </if>
+ 		 <if test="createTime != null">
+ 			 and systemUserLog.create_time = #{createTime}
+ 		  </if>
+ 		 <if test="updateTime != null">
+ 			 and systemUserLog.update_time = #{updateTime}
+ 		  </if>
+ 		 <if test="typeId != null">
+ 			 and systemUserLog.type_id = #{typeId}
+ 		  </if>
+	</select>
+</mapper>

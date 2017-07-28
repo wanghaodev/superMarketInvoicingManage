@@ -12,8 +12,8 @@
 	<!-- 启动注解驱动的Spring MVC功能，注册请求url和注解POJO类方法的映射 -->
 	<mvc:annotation-driven />
 	
-	<!-- 开启controller注解支持 -->
-	<context:component-scan base-package="com.invoicing.manage.controller">
+	<!-- 开启Service，Controller注解支持 -->
+	<context:component-scan base-package="com.invoicing.manage">
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>

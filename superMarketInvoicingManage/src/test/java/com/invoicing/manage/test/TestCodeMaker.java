@@ -18,7 +18,7 @@ public class TestCodeMaker {
 	// 数据库名称
 	private static String dbName = "jxc_db"; 
 	// 要生成代码的表名
-	private static String tableName = "area_tb";
+	private static String tableName = "system_authority_tb";
 	// 基础包名
 	private static String basePackage = "com.invoicing";
 	// 业务包名

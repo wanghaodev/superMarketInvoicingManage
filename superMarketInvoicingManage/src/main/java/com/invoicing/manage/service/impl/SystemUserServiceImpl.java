@@ -3,8 +3,10 @@ package com.invoicing.manage.service.impl;
 import com.invoicing.manage.entity.SystemUserEntity;
 import com.invoicing.manage.service.SystemUserService;
 import com.invoicing.manage.mapper.SystemUserMapper;
+
 import java.util.Map;
 import java.util.List;
+
 import com.snailf.platforms.common.entity.PageInfo;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +31,7 @@ public class SystemUserServiceImpl  implements SystemUserService{
 	 * @return
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = RuntimeException.class)
-	public int deleteByPrimaryKey(Long id){
+	public int deleteSystemUser(Long id){
 		return	systemUserMapper.deleteByPrimaryKey(id);
 	}
 	/**
@@ -38,7 +40,7 @@ public class SystemUserServiceImpl  implements SystemUserService{
 	 * @return
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = RuntimeException.class)
-	public int insertSelective(SystemUserEntity record){
+	public int insertSystemUser(SystemUserEntity record){
 		return systemUserMapper.insertSelective(record);
 	}
 	/**
@@ -46,7 +48,7 @@ public class SystemUserServiceImpl  implements SystemUserService{
 	 * @param id
 	 * @return
 	 */
-	public SystemUserEntity selectByPrimaryKey(Long id){
+	public SystemUserEntity getSystemUser(Long id){
 		return systemUserMapper.selectByPrimaryKey(id);
 	}
 	/**
@@ -55,7 +57,7 @@ public class SystemUserServiceImpl  implements SystemUserService{
 	 * @return 1成功  其它失败
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = RuntimeException.class)
-	public int updateByPrimaryKeySelective(SystemUserEntity record){
+	public int updateSystemUser(SystemUserEntity record){
 		return systemUserMapper.updateByPrimaryKeySelective(record);
 	}
 	/**
@@ -63,7 +65,7 @@ public class SystemUserServiceImpl  implements SystemUserService{
 	 * @param params
 	 * @return List<SystemUserEntity>
 	 */
-	public List<SystemUserEntity> getList(Map<String,Object> params){
+	public List<SystemUserEntity> getSystemUserList(Map<String,Object> params){
 		return  systemUserMapper.getList(params);
 	}
 	/**
@@ -71,21 +73,14 @@ public class SystemUserServiceImpl  implements SystemUserService{
 	 * @param params
 	 * @return PageInfo<SystemUserEntity>
 	 */
-	public PageInfo<SystemUserEntity> getList(PageInfo<SystemUserEntity> pageInfo,Map<String,Object> params){
-		List<SystemUserEntity> list = systemUserMapper.getList(params,
-				new RowBounds(pageInfo.getStart(), pageInfo.getPageSize()));
+	public PageInfo<SystemUserEntity> getSystemUserPageList(PageInfo<SystemUserEntity> pageInfo,Map<String,Object> params){
+		List<SystemUserEntity> list = systemUserMapper.getList(params,new RowBounds(pageInfo.getStart(), pageInfo.getPageSize()));
 		Integer total = systemUserMapper.getListCount(params);
 		pageInfo.setRows(list);
 		pageInfo.setTotal(total);
 		return pageInfo;
 	}
-	/**
-	 * 通过map参数获取 总数
-	 * @param params
-	 * @return int
-	 */
-	public int getListCount(Map<String,Object> params){
-		return  systemUserMapper.getListCount(params);
-	}
+
+
 
 }

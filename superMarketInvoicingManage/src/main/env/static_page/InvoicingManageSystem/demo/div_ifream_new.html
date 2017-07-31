@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src='../static/js/jquery-1.10.2.min.js'></script>
+    <script type="text/javascript">
+        $(function(){
+           /* $.get("main/main.html",function(data){
+                $("#iframeContent").html(data);//初始化加载界面
+            });*/
+
+            $('#indexMenu li').click(function(){//点击li加载界面
+                //$('#indexMenu li a').removeAttr('href');//去掉a标签中的href属性
+                var current = $(this),
+                        target = current.find('a').attr('target'); // 找到链接a中的targer的值
+                $.get(target,function(data){
+                    console.log(target);
+                    $("#iframeContent").html(data);
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+
+<div style="border: solid silver 1px; width: 15%; height: 750px;">
+    <ul class="nav navbar-nav" id="indexMenu">
+        <li><a  target="mian.html">首页</a></li>
+        <li><a  href="javascript:void (0)" target="user.html">新闻</a></li>
+        <li><a  href="javascript:void (0)" target="leave/leave.html">留言</a></li>
+        <li><a href="javascript:void (0)" target="download/download.html">资料下载</a></li>
+    </ul>
+</div>
+<div id="iframeContent" style="border: solid silver 1px; height: 750px;width: 84.5%;margin-top: -752px;; float: right;"></div>
+</body>
+</html>
+</html>

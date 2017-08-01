@@ -8,7 +8,6 @@
   
 package com.invoicing.manage.request; 
 
-import com.invoicing.manage.comment.entity.BaseEntity;
 import com.invoicing.manage.comment.entity.BaseRequestEntity;
  
 /** 
@@ -33,6 +32,11 @@ public class UserRequestEntity extends BaseRequestEntity{
 	 * 登录名
 	 */
 	private String loginName;
+	
+	/**
+	 * 登录密码
+	 */
+	private String password;
 	
 	/**
 	 * 机构名称
@@ -62,7 +66,13 @@ public class UserRequestEntity extends BaseRequestEntity{
 	public void setOrgName(String orgName) {
 		this.orgName = orgName;
 	}
-	
-	
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 }

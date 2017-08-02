@@ -13,11 +13,6 @@ import java.util.Date;
 @SuppressWarnings("serial")
 public class SystemAuthorityEntity extends BaseEntity {
   
-    
-    /**
-     * 权限id
-     */
-    private Long id;
     /**
      * 权限名称
      */
@@ -27,18 +22,6 @@ public class SystemAuthorityEntity extends BaseEntity {
      */
     private String url;
     /**
-     * 
-     */
-    private Date createTime;
-    /**
-     * 
-     */
-    private String creator;
-    /**
-     * 
-     */
-    private Long creatorId;
-    /**
      * 是否有子菜单
      */
     private String hassub;
@@ -46,10 +29,6 @@ public class SystemAuthorityEntity extends BaseEntity {
      * 是否有效
      */
     private String hasvalid;
-    /**
-     * 
-     */
-    private Date updateTime;
     /**
      * 层级id（权限，例如：app_init_cashier_001_001;app_init_cashier_001;data_dictionary ）
      */
@@ -80,18 +59,6 @@ public class SystemAuthorityEntity extends BaseEntity {
     private String access;
 
 	/**
-	 * 设置权限id
-	 */
-    public void setId(Long id) {
-        this.id = id;
-    }
-    /**
-     * 获取权限id
-     */
-    public Long getId() {
-        return this.id;
-    }
-	/**
 	 * 设置权限名称
 	 */
     public void setName(String name) {
@@ -116,42 +83,6 @@ public class SystemAuthorityEntity extends BaseEntity {
         return this.url;
     }
 	/**
-	 * 设置
-	 */
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-    /**
-     * 获取
-     */
-    public Date getCreateTime() {
-        return this.createTime;
-    }
-	/**
-	 * 设置
-	 */
-    public void setCreator(String creator) {
-        this.creator = creator;
-    }
-    /**
-     * 获取
-     */
-    public String getCreator() {
-        return this.creator;
-    }
-	/**
-	 * 设置
-	 */
-    public void setCreatorId(Long creatorId) {
-        this.creatorId = creatorId;
-    }
-    /**
-     * 获取
-     */
-    public Long getCreatorId() {
-        return this.creatorId;
-    }
-	/**
 	 * 设置是否有子菜单
 	 */
     public void setHassub(String hassub) {
@@ -174,18 +105,6 @@ public class SystemAuthorityEntity extends BaseEntity {
      */
     public String getHasvalid() {
         return this.hasvalid;
-    }
-	/**
-	 * 设置
-	 */
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
-    /**
-     * 获取
-     */
-    public Date getUpdateTime() {
-        return this.updateTime;
     }
 	/**
 	 * 设置层级id（权限，例如：app_init_cashier_001_001;app_init_cashier_001;data_dictionary ）

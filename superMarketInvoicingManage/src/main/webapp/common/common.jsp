@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="expires" content="0">
@@ -11,11 +12,11 @@
 <![endif]-->
 <!-- page specific plugin styles -->
 <!-- fonts -->
-<link rel="stylesheet" href="http//fonts.googleapis.com/css?family=Open+Sans:400,300" />
 <!-- ace styles -->
 <link rel="stylesheet" href="<%=request.getContextPath()%>/static/css/ace.min.css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/static/css/ace-rtl.min.css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/static/css/ace-skins.min.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/static/css/style.css" />
 <!--[if lte IE 8]>
   <link rel="stylesheet" href="<%=request.getContextPath()%>/static/css/ace-ie.min.css" />
 <![endif]-->
@@ -30,6 +31,7 @@
 
 <!--END GLOBAL STYLES -->
 <!-- GLOBAL SCRIPTS -->
+	<script src="<%=request.getContextPath()%>/static/plugins/jquery-1.11.3.min.js"></script>
     <script src="<%=request.getContextPath()%>/static/plugins/jquery-2.0.3.min.js"></script>
     <!-- END GLOBAL SCRIPTS -->
 
@@ -53,7 +55,13 @@ if("ontouchend" in document) document.write("<script src='<%=request.getContextP
 <script src="<%=request.getContextPath()%>/static/js/flot/jquery.flot.min.js"></script>
 <script src="<%=request.getContextPath()%>/static/js/flot/jquery.flot.pie.min.js"></script>
 <script src="<%=request.getContextPath()%>/static/js/flot/jquery.flot.resize.min.js"></script>
+<!-- table start -->
+<script src="<%=request.getContextPath()%>/static/js/jquery.dataTables.min.js"></script>
+<script src="<%=request.getContextPath()%>/static/js/jquery.dataTables.bootstrap.js"></script>
+<!-- pageTable -->
+<script src="<%=request.getContextPath()%>/static/js/public.js"></script>
 
+<!-- table end -->
 <!-- ace scripts -->
 
 <script src="<%=request.getContextPath()%>/static/js/ace-elements.min.js"></script>

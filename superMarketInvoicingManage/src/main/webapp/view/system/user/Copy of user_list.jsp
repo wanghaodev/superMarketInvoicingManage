@@ -1,12 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
-<meta charset="utf-8" />
-<title>Bootstrap表格插件</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>用户列表</title>
 </head>
-
 <body>
-	<div class="row">
+<div class="row">
 		<div class="col-xs-12">
 			<h3 class="header smaller lighter blue">jQuery dataTables</h3>
 			<div class="table-header">Results for "Latest Registered
@@ -91,26 +92,8 @@
 			</div>
 		</div>
 	</div>
-	<!-- /.main-container -->
-	<!-- basic scripts -->
-	<!--[if !IE]> -->
-	<!-- <![endif]-->
-	<!--[if IE]>
-<![endif]-->
-	<!--[if !IE]> -->
-	<script type="text/javascript">
-			window.jQuery || document.write("<script src='static/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
-		</script>
-	<!-- <![endif]-->
-
-	<script type="text/javascript">
- window.jQuery || document.write("<script src='static/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
-</script>
-	<![endif]-->
-	<script type="text/javascript">
-			if("ontouchend" in document) document.write("<script src='static/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
-		</script>
-	<script type="text/javascript">
+<!-- table 数据加载 start -->
+<script type="text/javascript">
 			jQuery(function($) {
 				var oTable1 = $('#sample-table-2').dataTable( {
 				"aoColumns": [
@@ -146,5 +129,6 @@
 				}
 			})
 		</script>
+<!-- table 数据加载 end -->
 </body>
 </html>

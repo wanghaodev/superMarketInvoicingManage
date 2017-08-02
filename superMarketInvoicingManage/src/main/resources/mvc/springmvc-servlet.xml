@@ -20,6 +20,10 @@
 
 	<!-- 对模型视图名称的解析，在请求时模型视图名称添加前后缀 -->
 	<mvc:resources mapping="/images/**" location="/images/" />
+	
+	<mvc:resources mapping="/plugins/**" location="/plugins/" />
+	<mvc:resources mapping="/font/**" location="/font/" />
+	
 	<mvc:resources mapping="/css/**" location="/css/" />
 	<mvc:resources mapping="/js/**" location="/js/" />
 	<mvc:resources mapping="/resources/**" location="/resources/" />

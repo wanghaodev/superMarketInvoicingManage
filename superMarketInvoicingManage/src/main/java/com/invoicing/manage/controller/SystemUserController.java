@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -32,7 +33,7 @@ import com.snailf.platforms.common.entity.PageInfo;
  * @see       
  */
 @Controller
-@RequestMapping("/invoicing/manager/user")
+@RequestMapping("/invoicing/system/user")
 public class SystemUserController {
 	private static Logger logger=LoggerFactory.getLogger(SystemUserController.class);
 	
@@ -62,7 +63,7 @@ public class SystemUserController {
 	
 	@RequestMapping(value = "/list", method = RequestMethod.POST)
 	@ResponseBody
-	 public ResponseEntity getSystemUserList(UserRequestEntity userRequestEntity){
+	 public ResponseEntity getSystemUserList(UserRequestEntity userRequestEntity,ModelMap modelMap){
 		logger.debug("method [getSystemUserEntityList] 查询用户列表，请求参数："+JSON.toJSONString(userRequestEntity));
 		PageInfo<SystemUserEntity> pageInfo=new PageInfo<SystemUserEntity>();
 		pageInfo.setPageNo(userRequestEntity.getPageNo());
@@ -70,7 +71,9 @@ public class SystemUserController {
 		Map<String,Object> params=new HashMap<String,Object>();
 		PageInfo<SystemUserEntity> userList = systemUserService.getSystemUserPageList(pageInfo, params);
 		logger.debug("method [getSystemUserEntityList] 查询用户列表，返回结果为："+JSON.toJSONString(userList));
-		return new SuccessResponseEntity(userList);
+		ResponseEntity res=new ResponseEntity();
+		res.setData(userList);
+		return res;
 		
 	}
 	

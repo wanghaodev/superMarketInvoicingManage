@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="../common/common.jsp"%>
 <html lang="en">
 <head>
@@ -34,8 +33,8 @@
 				<ul class="nav ace-nav">
 					<li class="light-blue"><a data-toggle="dropdown" href="#"
 						class="dropdown-toggle"> <img class="nav-user-photo"
-							src="static/avatars/user.jpg" alt="Jason's Photo" /> <span
-							class="user-info"> <small>欢迎光临,</small> Jason
+							src="<%=request.getContextPath()%>/static/avatars/user.jpg" alt="Jason's Photo" /> <span
+							class="user-info"> <small>欢迎光临,</small> ${userLoginInfo.userName}
 						</span> <i class="icon-caret-down"></i>
 					</a>
 
@@ -49,7 +48,7 @@
 
 							<li class="divider"></li>
 
-							<li><a href="login.html"> <i class="icon-off"></i> 退出
+							<li><a href="/invoicing/logout"> <i class="icon-off"></i> 退出
 							</a></li>
 						</ul></li>
 				</ul>
@@ -82,19 +81,19 @@
 					</a>
 
 						<ul class="submenu">
-							<li class="menu_li"><a target="tables.html"> <i
+							<li class="menu_li"><a target="/invoicing/system/user/list"> <i
 									class="icon-double-angle-right"></i> 用户管理
 							</a></li>
 
-							<li class="menu_li"><a target="mian.html"> <i
+							<li class="menu_li"><a target="/invoicing/manager/user/list"> <i
 									class="icon-double-angle-right"></i> 角色管理
 							</a></li>
 
-							<li class="menu_li"><a> <i
+							<li class="menu_li"><a target="/invoicing/manager/user/list"> <i
 									class="icon-double-angle-right"></i> 菜单管理
 							</a></li>
 
-							<li class="menu_li"><a> <i
+							<li class="menu_li"><a target="/invoicing/manager/user/list"> <i
 									class="icon-double-angle-right"></i> 权限管理
 							</a></li>
 						</ul></li>
@@ -359,9 +358,5 @@
 			});
 
 		</script>
-	<div style="display: none">
-		<script src='http//v7.cnzz.com/stat.php?id=155540&web_id=155540'
-			language='JavaScript' charset='gb2312'></script>
-	</div>
 </body>
 </html>

@@ -32,7 +32,7 @@ import com.snailf.platforms.common.entity.PageInfo;
  * @see       
  */
 @Controller
-@RequestMapping("/invoicing/manager/authority")
+@RequestMapping("/invoicing/system/authority")
 public class SystemAuthorityController {
 	private static Logger logger=LoggerFactory.getLogger(SystemAuthorityController.class);
 	

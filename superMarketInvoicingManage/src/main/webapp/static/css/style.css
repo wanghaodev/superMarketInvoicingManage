@@ -1,0 +1,1432 @@
+﻿ /**
+ * 创建时间:2017-1-12
+ * 作用范围:公用的css样式
+ * 修改时间:
+ */
+@charset "UTF-8";
+/*
+ * 网页重定义
+ */
+body {
+    font-family:"微软雅黑", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    min-width: 1366px;
+    color:#2f2f2f;
+}
+/*
+ * 页头
+ */
+/*header***************************************************************************/
+
+/*
+ * 搜索条件
+ */
+.form-search{
+    border:1px solid #d5d5d5;
+    border-radius: 0;
+}
+.form-search .col-md-3{
+    padding:0;
+}
+/*搜索条件的label*/
+.form-search label{
+    line-height: 28px;
+    font-weight:normal;
+    margin-right: 11px;
+    margin-bottom: 0;
+    float: left;
+    text-align: right;
+    color:#7b7b7b;
+    min-width:85px;
+}
+/*搜索条件的输入框,下拉选择*/
+.form-search input,
+.form-search select{
+     width: 255px;
+    height: 40px;
+    line-height: 28px;
+    float: left;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+/* 搜索_日期*/
+.form-search .input-append.date{
+    margin-bottom:0;
+    float: left;
+    margin-right: 10px;
+}
+
+/*padding =  0 */
+.form-search.panel-default .panel-body{
+    padding: 15px 0 0 15px;;
+    overflow: hidden;
+}
+/*搜索条件的 按钮居中*/
+.form-search  .panel-footer{
+    text-align: center;
+    background: #f4f7fa;
+}
+
+/*
+ * 列表
+ */
+.cloud_list{
+    border:1px solid #d5d5d5;
+    padding:17px 13px 78px;
+    background: #fff;
+    overflow: hidden;
+}
+/*列表_表单*/
+.cloud_list table{
+    margin:12px 0;
+    text-align: center;
+}
+/*列表_表单头部颜色*/
+.cloud_list thead{
+    border-bottom: 0;
+}
+/*列表_水平居中对齐*/
+.cloud_list .table-bordered > thead > tr > th{
+    text-align: center;
+    border-bottom: 0;
+    vertical-align: middle;
+    padding: 11px;
+}
+/*列表_垂直居中对齐*/
+.cloud_list .table > tbody > tr > td{
+    vertical-align: middle;
+    padding: 10px;
+}
+/*列表_表单*/
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: #fff;
+}
+/* .table-striped > tbody > tr:nth-of-type(even) {
+    background-color: #f4f7fa;
+} */
+/*列表_左侧按钮*/
+.left_listbtn .btn{
+    border-radius: 0;
+    padding: 4px 9px;
+    float: left;
+    margin-right: 12px;
+}
+.left_listbtn .btn i{
+    margin: 1px 5px 0 0;
+}
+/*列表_右侧按钮*/
+.right_listbtn .btn{
+    padding: 4px 8px;
+    float: right;
+    margin-left: 17px;
+}
+.right_listbtn .btn i{
+    margin: 1px 6px 0 0;
+}
+/*列表_多选框*/
+.cloud_list label {
+    margin-bottom: 0;
+}
+.checkbox_box input{
+    opacity: 0;
+    filter:alpha(opacity=0);
+    width:16px;
+    height:16px;
+    float: left;
+    margin: 0;
+}
+.checkbox_box{
+    width:16px;
+    height:16px;
+    float: left;
+    margin-right: 5px;
+    margin-top: 2px;
+    background: url(../images/icon.png) no-repeat -78px -54px;
+}
+.checkbox_box.active{
+    background: url(../images/icon.png) no-repeat -100px -54px;
+}
+/*列表_分页*/
+.list-page {
+    float: right;
+}
+.page-info {
+    float: left;
+    margin: 0 12px ;
+    line-height: 30px;
+    color: #838282;
+}
+.list-page ul {
+    float: left;
+    margin: 0;
+}
+.list-page i{
+    display: block;
+    width: 10px;
+    height:12px;
+}
+/*上一页的图标*/
+.icon_prev{
+    float: left;
+    margin: 9px 5px 9px 10px;
+    background: url(../images/icon.png) no-repeat -43px -54px;
+}
+/*下一页的图标*/
+.icon_next{
+    float: right;
+    margin: 9px 10px 9px 5px;
+    background: url(../images/icon.png) no-repeat -62px -54px;
+}
+/*分页按钮*/
+.list-page li a,
+.list-page button,
+.list-page input.form-control {
+    width:79px;
+    height:30px;
+    line-height: 30px;
+    border: 1px solid #d5d5d5;
+    border-radius: 3px;
+    float: left;
+    margin-left: 10px;
+}
+/*上下页按钮*/
+.list-page li a{
+    color:#303030;
+    padding: 0;
+}
+/*上下页按钮*/
+.list-page li a:hover{
+    background: #fff;
+    border: 1px solid #2c8aff;
+}
+/*上下页按钮 不能点击*/
+.list-page li.disabled a{
+    color:#999;
+}
+.list-page li.disabled a:hover{
+    background: #fff;
+    border: 1px solid #d5d5d5;
+}
+
+/**/
+.page-skip {
+    margin:0;
+    float: left;
+}
+/*确定按钮*/
+.list-page button{
+    text-align: center;
+    padding: 0;
+}
+/*
+ * 按钮
+ */
+.btn{
+    padding: 0;
+    text-align: left;
+}
+/*蓝色按钮*/
+/* .btn-primary {
+    color: #fff;
+    background-color: #2c8aff;
+    border-color: #2c8aff;
+} */
+/* .btn-primary:focus,
+.btn-primary.focus,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary,
+.btn-primary:active:hover,
+.btn-primary.active:hover,
+.open > .dropdown-toggle.btn-primary:hover,
+.btn-primary:active:focus,
+.btn-primary.active:focus,
+.open > .dropdown-toggle.btn-primary:focus,
+.btn-primary:active.focus,
+.btn-primary.active.focus,
+.open > .dropdown-toggle.btn-primary.focus {
+    color: #fff;
+    background-color: #4297ff;
+    border-color: #4297ff;
+} */
+/*刷新|导出按钮*/
+.btn-default {
+    color: #303030;
+    background-color: #e2f5ff;
+    border-color: #bfe2ff;
+}
+.btn-default:focus,
+.btn-default.focus,
+.btn-default:hover,
+.btn-default:active,
+.btn-default.active,
+.open > .dropdown-toggle.btn-default,
+.btn-default:active:hover,
+.btn-default.active:hover,
+.open > .dropdown-toggle.btn-default:hover,
+.btn-default:active:focus,
+.btn-default.active:focus,
+.open > .dropdown-toggle.btn-default:focus,
+.btn-default:active.focus,
+.btn-default.active.focus,
+.open > .dropdown-toggle.btn-default.focus {
+    background-color: #ebf8ff;
+    border-color: #bfe2ff;
+}
+/*删除按钮*/
+.btn-danger {
+    color: #fff;
+    background-color: #e45c41;
+    border-color: #e45c41;
+}
+.btn-danger:focus,
+.btn-danger.focus,
+.btn-danger:hover,
+.btn-danger:active,
+.btn-danger.active,
+.open > .dropdown-toggle.btn-danger,
+.btn-danger:active:hover,
+.btn-danger.active:hover,
+.open > .dropdown-toggle.btn-danger:hover,
+.btn-danger:active:focus,
+.btn-danger.active:focus,
+.open > .dropdown-toggle.btn-danger:focus,
+.btn-danger:active.focus,
+.btn-danger.active.focus,
+.open > .dropdown-toggle.btn-danger.focus {
+    color: #fff;
+    background-color: #e86950;
+    border-color: #e86950;
+}
+/*取消按钮*/
+.btn-warning {
+    color: #fff;
+    background-color: #6f7a87;
+    border-color: #6f7a87;
+}
+.btn-warning:focus,
+.btn-warning.focus,
+.btn-warning:hover,
+.btn-warning:active,
+.btn-warning.active,
+.open > .dropdown-toggle.btn-warning,
+.btn-warning:active:hover,
+.btn-warning.active:hover,
+.open > .dropdown-toggle.btn-warning:hover,
+.btn-warning:active:focus,
+.btn-warning.active:focus,
+.open > .dropdown-toggle.btn-warning:focus,
+.btn-warning:active.focus,
+.btn-warning.active.focus,
+.open > .dropdown-toggle.btn-warning.focus {
+    color: #fff;
+    background-color: #718297;
+    border-color: #718297;
+}
+/*行内按钮*/
+.btn-link.btn {
+    color: #2e78fa;
+    padding:0;
+}
+.btn-link + .btn-link{
+    margin-left: 10px;
+}
+.btn-link:focus,
+.btn-link.focus ,
+.btn-link:hover {
+    color: #2e78fa;
+}
+/*按钮的图标*/
+.btn i{
+    display: block;
+    float:left;
+    width:22px;
+    height:18px;
+
+}
+/*按钮的清空图标*/
+.icon_empty{
+    background: url(../images/icon.png) no-repeat -77px -26px;
+}
+/*按钮的搜索图标*/
+.icon_search{
+    background: url(../images/icon.png) no-repeat -102px -26px;
+}
+/*按钮的创建图标*/
+.icon_add{
+    background: url(../images/icon.png) no-repeat -126px -27px;
+}
+/*按钮的修改图标*/
+.icon_edit{
+    background: url(../images/icon.png) no-repeat -153px -27px;
+}
+/*按钮的删除图标*/
+.icon_delete{
+    background: url(../images/icon.png) no-repeat -177px -27px;
+}
+/*按钮的刷新图标*/
+.icon_refresh{
+    background: url(../images/icon.png) no-repeat -198px -27px;
+}
+/*按钮的导出图标*/
+.icon_export{
+    background: url(../images/icon.png) no-repeat -220px -27px;
+}
+/*按钮的重置密码图标*/
+.icon_reset{
+    background: url(../images/icon.png) no-repeat -51px -27px;
+}
+/*按钮的启用图标*/
+.icon_open{
+    background: url(../images/icon.png) no-repeat -242px -28px;
+}
+/*按钮的停用图标*/
+.icon_stop{
+    background: url(../images/icon.png) no-repeat -264px -28px;
+}
+/*按钮的审核通过图标*/
+.icon_through{
+    background: url(../images/icon.png) no-repeat -44px -109px;
+}
+/*按钮的审核不通过图标*/
+.icon_notthrough{
+    background: url(../images/icon.png) no-repeat -69px -109px;
+}
+/*流程噿*/
+.flowChart{
+    width: 80%;
+    max-width: 900px;
+    min-width: 660px;
+    margin: 0px auto;
+    display: block;
+}
+/*标签響*/
+.tabPage{ margin-bottom: 20px}
+.tabPage .glyphicon{
+    font-size: 12px;
+    color: #666;
+    margin-left:5px;
+}
+.tabPageCon{display:none;}
+/******************************************************查看详情*******************************************************/
+.view_title{
+    font-size:16px;
+    color:#303030;
+    margin-bottom: 17px;
+}
+.view_title i{
+    display: block;
+    float: left;
+    margin-top: 3px;
+    margin-right: 8px;
+    height:16px;
+    width:4px;
+    background:#4297ff;
+
+}
+/*面板页面标题  */
+.panel-default > .panel-heading{
+    font-weight: bold;
+    font-size: 16px;
+    background: #f4f7fa;
+    padding: 10px 20px;
+    font-weight: normal;
+}
+.panel-default .panel-body {
+    padding:26px 33px;
+}
+.panel-default .table{
+    padding: 0 10px;
+}
+/******************************************************全局更改的样庿*******************************************************/
+/*附件上传  */
+.upLoadFileTeam{
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+}
+.upLoadFileTeam input[type="file"]{
+    position: absolute;
+    right: -1px;
+    top: -1px;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    width: 102px;
+    height: 34px;
+}
+.upLoadFileName{
+    padding:0 10px;
+}
+/* 弹框的距上位置 */
+.modal-w100{
+    width:1000px;
+}
+.overflow{
+    overflow: hidden;
+}
+.clear{
+    clear:both;
+}
+/*文字颜色*/
+.glyphicon.green{
+    color:#00B83F;
+}
+.glyphicon.red,
+.red{
+    color:#ff7474;
+}
+
+/*按钮的全局样式  */
+.btn{
+    padding:6px 22px;
+}
+/*tab选项卡的a标签的padding值*/
+.nav-tabs > li > a{
+    padding: 10px 15px;
+}
+/*ie  a链接点击虚线的问頿*/
+a:focus,
+.btn:focus{
+    outline:none;
+}
+/*列表尾部*/
+.list-footer{
+    overflow:hidden;
+
+}
+/*审核意见*/
+.examine{
+    margin-top: -54px;
+    overflow:hidden;
+    margin-left: 13px;
+}
+.examine .btn i{
+    margin: 1px 6px 0 0;
+}
+.no-margin {
+    margin: 0 !important;
+}
+
+/*左间赿20*/
+.ml-20 {
+    margin-left: 20px;
+}
+
+.mb-0 {
+    margin-right: 0 !important;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+/*右间赿40*/
+.mr-40 {
+    margin-right: 40px !important;
+}
+.mr-20 {
+    margin-right: 20px !important;
+}
+/*左右间距40*/
+.mlr-10 {
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+}
+
+
+
+/*列表中tabel 的th 居中*/
+.table th {
+    text-align: center;
+   /*  background-color: #f4f7fa; */
+    border-bottom: 0 !important;
+
+}
+.table > thead > tr > th,
+.table > tbody > tr > td{
+    height:44px;
+}
+
+.table label {
+    margin-bottom: 0;
+}
+
+.table-striped.table-bordered input[type="checkbox"] {
+    vertical-align: middle;
+    margin: 0;
+}
+
+/*/!*列表的内容全部显碿*!/
+.table-space th,
+.table-space td{
+    white-space: nowrap;
+}*/
+/*A链接的禁用效朿*/
+a.disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: .65;
+    color: #666;
+}
+
+/*窄的input 组件*/
+.narrow-input .input-group {
+    width: 100px;
+    float: left;
+    margin-right: 10px;
+}
+
+.narrow-key {
+    float: left;
+    line-height: 34px;
+    margin-right: 10px;
+}
+
+/*50宽的input*/
+.input50 {
+    width: 50px !important;
+    margin: auto;
+}
+
+/*td 垂直居中问题*/
+.table td {
+    vertical-align: middle !important;
+}
+
+/*/!*按钮间距问题*!/
+.btn{margin-left:10px;}*/
+/*底部左侧按钮 左间距为0 上下间距20px*/
+.botm-left {
+    margin: 20px 0;
+}
+
+/*定时任务*/
+.timedPrompt {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width:100%;
+    text-align:center;
+    color: #fff;
+    height:50px;
+    line-height:50px;
+    z-index: 2000;
+}
+.timedPrompt.correct {
+    background-color:#92cc2e;
+}
+.timedPrompt.err{
+    background-color:#f05757;
+}
+.timedPrompt .glyphicon{
+    margin-right:10px;
+    color:#fff;
+}
+/*选择地址*/
+.select-address{
+    margin-right: -5%;
+}
+.select-address select {
+    width: 30%;
+    float: left;
+    margin-left: 5%;
+}
+
+.select-address select:first-child{
+    margin-left: 0;
+}
+
+/******************************************************首页*******************************************************/
+.panel-tabel {
+    margin-bottom: 0;
+}
+
+.panel-tabel th,
+.panel-tabel td {
+    white-space: nowrap;
+}
+/******************************************************详情页面*******************************************************/
+/*面板上的按钮*/
+.panel-heading .checkbox label{
+    font-weight:bold;
+}
+.padding-20{
+    padding:20px;
+}
+.relative{position:relative;}
+.panelLine{height:40px;background:#d6d6d6; width:1px ;display:block;position:absolute;
+    left: calc(15% + 12px);    top: 13px;}
+.panel-btn{
+    position:absolute;
+    left: calc(15% + 24px);
+    top: 15px;
+}
+.list-tabCon {
+    display: none;
+}
+/*内容-渠道设置-详情-签约手续费收款标兿*/
+.channe .three {
+    width: 35%;
+}
+
+.channe .narrow-input .input-group {
+    width: 100%;
+}
+
+.channe .narrow-input .input-group .input-group-addon {
+    padding: 6px;
+}
+
+.channe .narrow-input.two .input-group:first-child {
+    width: calc((100% - 15px) / 2 - 15px);
+}
+
+.channe .narrow-input.two .input-group:last-child {
+    width: calc((100% - 15px) / 2 + 15px);
+}
+
+.channe .narrow-input.two .input-group {
+    float: left;
+    margin-right: 0;
+}
+.channe .narrow-input.three .input-group
+{
+    width: calc((100% - 15px - 42px - 42px - 33px) / 3 );
+    min-width:100px;
+}
+.channe .narrow-input.three .input-group:last-child
+{
+    margin-right:0;
+}
+
+.channe .narrow-input.two p {
+    width: auto;
+    float: left;
+    line-height: 34px;
+    padding: 0 5px;
+    margin-right: 0;
+    margin-bottom: 0;
+}
+/*渠道详情 - 签约手续费收费标准*/
+.input-120.narrow-input .input-group{width:120px;}
+
+/*.channe .narrow-input.two .input-group:first-child{margin-right: 2%;}*/
+/*单翉间赿*/
+.add-form .radio-inline {
+    margin-right: 20px;
+    margin-left: 0px;
+}
+
+/*key颜色和边柿*/
+/*.add-form .panel  {
+    margin-bottom: 0;
+}*/
+
+.addform-val {
+    border: 1px solid #f5f5f5;
+    height: 70px;
+    padding-top: 5px;
+}
+
+/*form 中的按钮*/
+.btn-form {
+    margin-top: 60px;
+}
+
+/*总共2孿,站宽度一勿 键㿼对*/
+.half-table th,
+.half-table td {
+    vertical-align: middle !important;
+    height:44px;
+}
+.half-table th {
+    width: 15%;
+    font-weight:normal;
+}
+.half-table td {
+    width: 35%;
+}
+.half-table .form-group,
+.half-table .help-block {
+    margin-bottom: 0;
+}
+.half-table > tbody > tr:nth-of-type(even) th{
+    background-color: #fff;
+}
+.table_add .half-table > tbody > tr > th,
+.table_add .half-table > tbody > tr > td{
+    border:0;
+    background: transparent;
+    padding:8px;
+    height:50px;
+}
+.table_add .half-table > tbody > tr > th{
+    text-align: right;
+}
+/*角色页面的组织树*/
+.table_add tbody > tr > th.rolelabel{
+    vertical-align: top !important;
+    padding-top: 50px;
+}
+/*角色页面的组织树*/
+.table_add .widget-box{
+    margin-top: 40px;
+    margin-left: 40px;
+}
+/*星号*/
+.required{
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    vertical-align: middle;
+    font-size: 0;
+    margin-right: 10px;
+    background: url("../image/2xing.png") no-repeat;
+    background-size:contain;
+    
+}
+/*详情页按钮居上距礿*/
+.btn-margin {
+    margin: 40px 0;
+}
+.btn-margin .btn{
+    margin-right:11px;
+    width:110px;
+    text-align: center;
+}
+.form-group {
+    position: relative;
+}
+
+.form-group input[type="file"] {
+    width: 110px;
+    height: 60px;
+    position: absolute;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    font-size: 100px \9;
+    z-index: 10;
+    cursor: pointer;
+    outline: medium none;
+
+}
+
+.simulation-file {
+    background-color: #fff;
+    font-size: 50px;
+    line-height: 60px;
+    color: #53a2f5;
+    border: 1px solid #ddd !important;;
+    position: absolute;
+    width: 110px;
+    height: 60px;
+    display: block;
+    border-radius: 4px;
+    border: none;
+    outline: medium none;
+}
+
+/*列表有查询条件的tabel*/
+/* .table-margin {
+    margin-top: 20px;
+} */
+
+.list-search .btn-group,
+.list-search .btn-group button {
+    width: 100%
+}
+
+/*添加广告*/
+/*单翉后的input组件和input输入柿*/
+.addAds .radio-inline .input-group,
+.addAds .radio-inline .form-group {
+    margin-left: 10px;
+    float: right;
+}
+
+/*单罿 文字垂直居中*/
+.addAds .radio-inline {
+    line-height: 34px;
+}
+
+/*单翉图标居䶿*/
+.addAds .radio-inline input[type="radio"] {
+    margin-top: 12px;
+}
+
+/*上传文件/缩略噿*/
+.uploadPictures .thumbnail {
+    float: left;
+    margin-bottom: 0;
+    margin-right: 10px;
+}
+
+.uploadPictures .thumbnail img {
+    height: 50px;
+    width: 100px;
+}
+
+.uploadPictures .file-team {
+    float: left;
+    margin-right: 10px;
+    width: 110px;
+    height: 60px;
+}
+
+.uploadPictures .file-info {
+    margin-top: 30px;
+    float: left;
+}
+
+/*右侧图标  大小,行内元素,显示在input里面 , 左边柿, 间距*/
+.form_datetime .add-on {
+    font-size: 18px;
+    display: inline-block;
+    margin-left: -32px;
+    border-left: 1px solid #e5e5e5;
+    padding-left: 7px;
+    padding-bottom: 1px;
+    padding-top: 9px;
+}
+.form_datetime .add-on .icon-th{
+    top:-4px;
+}
+/*加载䶿*/
+.waitload {
+    position: fixed;
+    z-index: 10000;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#7F000000, endColorstr=#7F000000);
+}
+
+.waitload p {
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-color: #9d9d9d;
+    padding: 10px 20px;
+}
+/* 绑定动画 */
+.waitload img {
+    margin-right:10px;
+    -webkit-animation:play 2s linear infinite;
+    -moz-animation:play 2s linear infinite;
+    animation:play 2s linear infinite;
+}
+/* 动画 */
+@-webkit-keyframes play{
+    0%  {
+        -webkit-transform: rotate(0deg);	/* Safari and Chrome */
+    }
+    100% {
+        -webkit-transform: rotate(360deg);	/* Safari and Chrome */
+    }
+}
+@-moz-keyframes play{
+    0%  {
+        -moz-transform: rotate(0deg);		/* Firefox */
+    }
+    100% {
+        -moz-transform: rotate(360deg);		/* Firefox */
+    }
+}
+@keyframes play {
+    0% {
+
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+/*验证*/
+.verifTeam{
+    background-color: #a94442;
+    position: absolute;
+    top: -50px;
+    padding: 10px;
+    color: #fff;
+    border-radius: 4px;
+}
+.verifTeam .arrow{
+    bottom: -32px;
+    left: 50%;
+    margin-left: -11px;
+    border-top-color: #999;
+    border-top-color: rgba(0, 0, 0, .25);
+    border-bottom-width: 0;
+    border-width: 11px;
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+}
+.verifTeam .arrow:after {
+    border-top-color: #a94442 !important;
+    bottom: 1px;
+    margin-left: -10px;
+    content: " ";
+    border-top-color: #fff;
+    border-bottom-width: 0;
+    content: "";
+    border-width: 10px;
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+}
+.popover {
+    background-color: #a94442;
+    border: 1px solid rgba(255, 255, 255, .2);
+    border: 1px solid #fff;
+    color:#fff;
+}
+.popover.top > .arrow:after {
+    border-top-color: #a94442;
+}
+/*弹窗*/
+.modalDialogBg{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1050;
+    display: none;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+    outline: 0;
+    z-index: 1040;
+    background-color: #000;
+    background-color: rgba(0, 0, 0, 0.5);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#7F000000, endColorstr=#7F000000);
+}
+.modalDialo {
+    position: relative;
+    margin: 30px auto;
+    width: 400px;
+}
+.modalContent{
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #999;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: 6px;
+    outline: 0;
+    -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+}
+.modalHeader {
+    padding: 15px;
+    border-bottom: 1px solid #e5e5e5;
+}
+.modalTitle{margin: 0; }
+.modalClose{
+    background: transparent;
+    border: 0;
+    float: right;
+    font-size: 21px;
+    font-weight: bold;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    filter: alpha(opacity=20);
+    opacity: .2;
+}
+.modalBody {
+    position: relative;
+    padding: 15px;
+}
+.modalFooter {
+    padding: 15px;
+    text-align: right;
+    border-top: 1px solid #e5e5e5;
+}
+.modalFooter .btn + .btn {
+    /* margin-bottom: 0; */
+    margin-left: 5px;
+}
+/*分配终端的弹框可删除的翉择便*/
+.selectValue{
+
+    overflow: hidden;
+}
+.selectValue dt{
+    margin-top:5px;
+    line-height:26px;
+}
+.selectValue dt,
+.selectValue dd{
+    display: inline-block;
+    float: left;
+}
+.selectValue dd{
+    overflow: hidden;
+}
+.selectValue .eachSelcet{
+    border:1px solid #ccc;
+    padding:4px 6px;
+    border-radius: 4px;
+    float:left;
+    margin-top:5px;
+    margin-right: 5px;
+}
+.selectValue i{
+    font-style:normal;
+    margin-left:5px;
+    font-weight: bold;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    filter: alpha(opacity=20);
+    opacity: .2;
+    cursor:pointer;
+}
+/*定时任务*/
+.timedPromptTeam{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1050;
+    /*display: none;*/
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+    outline: 0;
+    z-index: 1040;
+}
+/*汇总数据*/
+.mergeData{
+    clear: both;
+    list-style: none;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    padding: 30px 0;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.mergeData li{
+    float:left;
+    width:33%;
+}
+/*上传图片的大小*/
+#typePic img{
+    max-width:100%;
+}
+/*添加删除小图标之间按钮的样式*/
+.addCLoperate .glyphicon{
+    color: #ff7474;
+    font-size:15px;
+}
+/*添加删除小图标之间按钮的间隔*/
+.addCLline{
+    height:23px;
+    background:#d6d6d6;
+    width:1px ;
+    display:inline-block;
+    margin:0 10px;
+    vertical-align: bottom;
+}
+/*tabel  下方没有td的th 加入下边看*/
+.tableAutoWidth.table th{
+    border-bottom: 1px solid #ddd !important;
+}
+/** 
+@新添加样式
+
+@修改；
+
+**/
+
+.form-rowops td{
+	width:20% !important;
+}
+.form-rowops th{
+	width:0% !important;
+}
+.form-rowtd{
+	width:50% !important;
+	
+}
+.form-row-td{
+	width:35%
+}
+.form-rowth{
+	width:8% !important;
+	font-weight: 500;
+}
+
+.form-row-th{
+	width:10% !important;
+	font-weight: 500;
+}
+.form-left{
+	margin-left:54px !important;
+
+}
+.form-left-input{
+	margin-left:35px !important;
+
+}
+.form-controlin{
+	
+	width:43% !important;
+}
+.form-controlindis{
+	display:inline-block;
+}
+.form-controlinsmall{
+	
+	width:48.4% !important;
+}
+.form-contdu{
+	width:20%;
+}
+.form-conttrol-th{
+	width:35%;
+}
+.input-border{
+	border-radius:4px;
+}
+.form-span{
+	font-size: 14px;
+	color:#7b7b7b;
+	margin-left:20px;
+}
+.form-margtop{
+	margin-top:10px;
+}
+.required-font{
+	font-weight: 500;
+}
+.form-border-input{
+	border-radius: 4px;
+    border: 1px solid #ccc
+}
+
+/**
+修改bootstrap默认的弹出框位置，改为接近居中
+**/
+@media (min-width: 1000px){
+	.modal-dialog {
+	    width: 600px;
+	    margin: 150px auto;
+	}
+	.loginCopyright{
+		padding: 79px 0 63px;
+		
+	}
+	
+}
+@media (min-width: 1400px){
+	.modal-dialog {
+	    width: 600px;
+	    margin:250px auto;
+	}
+	
+}
+
+.form-inlines{
+	display: inline-block !important;
+	width:30%;
+}
+.form-inline-in{
+	display: inline-block !important;
+}
+
+
+@media (min-width: 1000px){
+	.cla{
+	margin-right: 5%;
+	}
+	.login_body{
+		min-height:418px;
+	}
+}
+
+@media (min-width: 1400px){
+	.cla{
+	margin-right: 7%;
+	}
+}
+@media (min-width: 1600px){
+	.cla{
+	margin-right: 12%;
+	}
+}
+.clsmaring-letf{
+	margin-left:40px;
+}
+.claBorder-ra{
+	border-radius:4px;
+	border: 1px solid #d5d5d5;
+}
+.clasWidth{
+	width: 850px;
+	margin: 30px auto;
+}
+.clapadding{
+	padding:0;
+}
+.clasbordernone{
+	border:none;
+}
+.clatr td{
+	width:20%;
+}
+.cladivimg{
+	width:167px;
+	min-height:50px;
+	margin:0 auto;
+}
+.cladivimg img{
+    width: 83px;
+    height: 86px;
+}
+.cladivimg div{
+    text-align: center;
+    padding-top:30px;
+}
+.clap2 {
+    text-align: center;
+    padding-bottom: 10px;
+}
+.clap1{
+    color: #2c2c2c;
+    font-size: 14px;
+    text-align: center;
+    padding-top: 10px;
+}
+.claspan1{
+    font-size: 25px;
+    color: #0396f8;
+}
+.claspan2{
+    font-size: 25px;
+    color: #5ee292;
+}
+.claspan3{
+    font-size: 25px;
+    color: #ffd33e;
+}
+.claspan4{
+    font-size: 25px;
+    color: #ffa933;
+}
+.claspan5{
+    font-size: 25px;
+    color: #f3626e;
+}
+.clabuts{
+	width: 79px;
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid #d5d5d5;
+    border-radius: 3px;
+    float: left;
+    margin-left: 10px;
+    background: #fff;
+    color:#838282;
+    
+}
+.col-md-3{
+	padding-left:0;
+}
+
+
+/*弹框样式 */
+
+ .cal{
+        position:relative;
+        position:fixed;
+        height:100%;
+        width:100%;
+        top:0;
+        left:0;
+        background:rgba(0, 0, 0, 0.3);
+      	z-index:1000;
+      }
+      .clacenter{
+        margin-top:15px;
+        padding-left:20px;
+        font-size:16px;
+      }
+      .claBt1{
+        height:30px;
+        width:80px;
+        border-radius:4px;
+        background:#4297ff;
+        border:none;
+        color:#fff;
+        cursor:pointer;
+       
+      }
+ /*      .divContent{
+        min-height:75px;
+        width:95%;
+        margin:0 auto;
+        margin-top:15px;
+        margin-bottom:15px;
+        padding-left:15px;
+      } */
+      .divBut{
+        padding-bottom:15px;
+        text-align: center;
+
+      }
+       .BT1{
+        margin-right:10px;
+
+      } 
+      .turnOffButton{
+        height:20px;
+        width:20px;
+        position:absolute;
+        top:15px;
+        right:18px;
+        text-align:center;
+        line-height:20px;
+        color:#bdbdbd;
+        cursor:pointer;
+      }
+      
+      .password_mod{
+      	padding:70px 0 0 135px;
+      	color:#7b7b7b;
+      	list-style: none;
+      }
+      .username_mod{
+      	color:#303030;
+      }
+      .form-controlPs{
+      	display: inline-block;
+      	width:290px;
+      }
+	.password_mod label{
+		width:100px;
+		font-weight: 500;
+		text-align: right;
+		margin-left: 60px;
+	}
+	.password_mod li{
+		margin-top:23px;
+	}
+	
+	
+	.serimgposi{
+		position: absolute;
+		right: 0;
+		top:40%;
+	}

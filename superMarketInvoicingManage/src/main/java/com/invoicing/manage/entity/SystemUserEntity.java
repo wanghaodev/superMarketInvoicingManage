@@ -12,12 +12,6 @@ import java.util.Date;
 
 @SuppressWarnings("serial")
 public class SystemUserEntity extends BaseEntity {
-  
-    
-    /**
-     * 
-     */
-    private Long id;
     /**
      * 登录用户名
      */
@@ -43,22 +37,6 @@ public class SystemUserEntity extends BaseEntity {
      */
     private Integer state;
     /**
-     * 创建人id
-     */
-    private Long creatorId;
-    /**
-     * 
-     */
-    private Date createTime;
-    /**
-     * 
-     */
-    private Long updatorId;
-    /**
-     * 
-     */
-    private Date updateTime;
-    /**
      * 直属机构id
      */
     private String directlyOrgId;
@@ -75,18 +53,6 @@ public class SystemUserEntity extends BaseEntity {
      */
     private String certificatesNum;
 
-	/**
-	 * 设置
-	 */
-    public void setId(Long id) {
-        this.id = id;
-    }
-    /**
-     * 获取
-     */
-    public Long getId() {
-        return this.id;
-    }
 	/**
 	 * 设置登录用户名
 	 */
@@ -158,54 +124,6 @@ public class SystemUserEntity extends BaseEntity {
      */
     public Integer getState() {
         return this.state;
-    }
-	/**
-	 * 设置创建人id
-	 */
-    public void setCreatorId(Long creatorId) {
-        this.creatorId = creatorId;
-    }
-    /**
-     * 获取创建人id
-     */
-    public Long getCreatorId() {
-        return this.creatorId;
-    }
-	/**
-	 * 设置
-	 */
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-    /**
-     * 获取
-     */
-    public Date getCreateTime() {
-        return this.createTime;
-    }
-	/**
-	 * 设置
-	 */
-    public void setUpdatorId(Long updatorId) {
-        this.updatorId = updatorId;
-    }
-    /**
-     * 获取
-     */
-    public Long getUpdatorId() {
-        return this.updatorId;
-    }
-	/**
-	 * 设置
-	 */
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
-    /**
-     * 获取
-     */
-    public Date getUpdateTime() {
-        return this.updateTime;
     }
 	/**
 	 * 设置直属机构id

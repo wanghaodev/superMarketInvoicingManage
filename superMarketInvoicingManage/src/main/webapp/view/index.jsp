@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<%@ include file="../common/common.jsp"%>
 <html lang="en">
+<%@ include file="../common/common.jsp"%>
 <head>
 <meta charset="utf-8" />
 <title>商品管理</title>
@@ -74,31 +74,22 @@
 				<script type="text/javascript">
 						try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
 					</script>
-				<ul class="nav nav-list">
-					<li><a href="#" class="dropdown-toggle"> <i
-							class="icon-desktop"></i> <span class="menu-text"> 系统管理 </span> <b
-							class="arrow icon-angle-down"></b>
-					</a>
+				<ul class="nav nav-list" id="menu_id">
+					<!-- <li><a href="#" class="dropdown-toggle"> 
+							<i class="icon-desktop"></i> 
+							<span class="menu-text"> 系统管理 </span> 
+							<b class="arrow icon-angle-down"></b>
+						</a>
 
 						<ul class="submenu">
-							<li class="menu_li"><a target="/invoicing/system/user/list"> <i
-									class="icon-double-angle-right"></i> 用户管理
-							</a></li>
-
-							<li class="menu_li"><a target="/invoicing/manager/user/list"> <i
-									class="icon-double-angle-right"></i> 角色管理
-							</a></li>
-
-							<li class="menu_li"><a target="/invoicing/manager/user/list"> <i
-									class="icon-double-angle-right"></i> 菜单管理
-							</a></li>
-
-							<li class="menu_li"><a target="/invoicing/manager/user/list"> <i
-									class="icon-double-angle-right"></i> 权限管理
-							</a></li>
-						</ul></li>
-
-
+							<li class="menu_li">
+								<a target="/invoicing/system/user/list"> 
+									<i class="icon-double-angle-right"></i> 
+									用户管理
+								</a>
+							</li>
+						</ul>
+					</li> -->
 				</ul>
 				<!-- /.nav-list -->
 
@@ -336,27 +327,66 @@
 				
 			
 			})
-		</script>
-	<!--加载其他页面-->
-	<script type="text/javascript">
-			$(function(){
-				/* $.get("main/main.html",function(data){
-				 $("#iframeContent").html(data);//初始化加载界面
-				 });*/
-
-				$('.menu_li').click(function(){//点击li加载界面
-					//$('#indexMenu li a').removeAttr('href');//去掉a标签中的href属性
-					var current = $(this),
-							target = current.find('a').attr('target'); // 找到链接a中的targer的值
-					//移除当前的a标签属性
-					//current.removeAttr('href');
-					$.get(target,function(data){
-						console.log(target);
-						$("#mian_div").html(data);
-					});
+</script>
+<!--加载其他页面-->
+<script type="text/javascript">
+$(document).ready(function(){
+	//加载菜单树...
+	loadTree();	
+});
+//菜单跳转（div+js实现ifream框架内页面跳转）
+		$(function(){
+			$('.menu_li').click(function(){//点击li加载界面
+				var current = $(this),
+				target = current.find('a').attr('target'); // 找到链接a中的targer的值
+				//移除当前的a标签属性
+				//current.removeAttr('href');
+				$.get(target,function(data){
+					console.log(target);
+					$("#mian_div").html(data);
 				});
 			});
-
-		</script>
+		});
+		//菜单加载start
+		function loadTree(){
+			$.ajax({
+				type : "post"
+					,url : _path+"/invoicing/loadMenuList"
+					,async:false
+					,data : {
+						'fdid' :'0'
+					}
+			        ,success:function(data){
+			        	//主菜单
+			        	var main_menu="";
+			        	$.each(data.mainMenuList,function(index,obj){
+			        		main_menu+="<li>"
+			        						+"<a href='#' class='dropdown-toggle'>"
+			        				 		+"	<i class='"+obj.iconClass+"'></i>"
+			        						+"	<span class='menu-text'>"+obj.name+"</span>"
+			        				 		+"	<b class='arrow icon-angle-down'></b>"
+			        				 		+"</a>";
+			        		var son_menu="<ul class='submenu'>";		 
+			        		$.each(data.sonMenuList,function(index,sonObj){
+			        			if(sonObj.pid==obj.id){
+			        				son_menu+="<li class='menu_li'>"
+					        				+"	<a target='"+sonObj.url+"'> "
+					        				+"		<i class='icon-double-angle-right'></i> "
+					        				+sonObj.name
+					        				+"	</a>"
+					        				+"</li>";
+				        		}
+				        	});
+			        		main_menu+=son_menu
+			        					+"  </ul>"
+			        					+"</li>";
+			        	});
+			        	
+			        	$("#menu_id").html(main_menu);
+			        }
+			});
+		}
+		//菜单加载end
+</script>
 </body>
 </html>

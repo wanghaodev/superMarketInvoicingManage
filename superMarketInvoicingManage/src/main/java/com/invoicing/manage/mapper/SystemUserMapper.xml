@@ -303,15 +303,4 @@
  			 and systemUser.certificates_num = #{certificatesNum}
  		  </if>
 	</select>
-	<!-- 菜单加载 -->
-	<select id="selectMenu">
-		SELECT
-			aut.id,aut.pid,aut.name,aut.url,aut.icon_class,raut.role_id
-		FROM
-			system_authority_tb aut
-		LEFT  JOIN system_role_authority_tb raut ON aut.id=raut.auth_id
-		 WHERE  aut.pid = '1'
-		AND raut.role_id='1'
-		ORDER BY aut.id ASC
-	</select>
 </mapper>

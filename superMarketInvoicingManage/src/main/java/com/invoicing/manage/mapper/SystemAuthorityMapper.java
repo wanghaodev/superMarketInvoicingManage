@@ -54,5 +54,14 @@ public interface SystemAuthorityMapper  {
 	 * @return int
 	 */
 	int getListCount(Map<String,Object> params);
+	
+	/**
+	 * selectAuthMenuList 菜单列表方法
+	 * @param roleId
+	 * @return 返回类型为 List<SystemAuthorityEntity>
+	 * @exception
+	 * @since JDK 1.7
+	 */
+	List<SystemAuthorityEntity> selectAuthMenuList(Long roleId);
 
 }

@@ -3,8 +3,10 @@ package com.invoicing.manage.service.impl;
 import com.invoicing.manage.entity.SystemAuthorityEntity;
 import com.invoicing.manage.service.SystemAuthorityService;
 import com.invoicing.manage.mapper.SystemAuthorityMapper;
+
 import java.util.Map;
 import java.util.List;
+
 import com.snailf.platforms.common.entity.PageInfo;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,6 +88,11 @@ public class SystemAuthorityServiceImpl  implements SystemAuthorityService{
 	 */
 	public int getListCount(Map<String,Object> params){
 		return  systemAuthorityMapper.getListCount(params);
+	}
+	@Override
+	public List<SystemAuthorityEntity> getAuthMenuList(
+			Long roleId) {
+		return   systemAuthorityMapper.selectAuthMenuList(roleId);
 	}
 
 }

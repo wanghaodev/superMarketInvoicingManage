@@ -1,7 +1,9 @@
 package com.invoicing.manage.entity;
 
 import com.snailf.platforms.common.entity.BaseEntity;
+
 import java.util.Date;
+import java.util.List;
 /**
  *
  * @类介绍 商户权限表
@@ -57,6 +59,11 @@ public class SystemAuthorityEntity extends BaseEntity {
      * 权限
      */
     private String access;
+    
+    /**
+     * 子菜单列表
+     */
+    private List<SystemAuthorityEntity> sonAuthMenuList;
 
 	/**
 	 * 设置权限名称
@@ -190,5 +197,13 @@ public class SystemAuthorityEntity extends BaseEntity {
     public String getAccess() {
         return this.access;
     }
+	public List<SystemAuthorityEntity> getSonAuthMenuList() {
+		return sonAuthMenuList;
+	}
+	public void setSonAuthMenuList(List<SystemAuthorityEntity> sonAuthMenuList) {
+		this.sonAuthMenuList = sonAuthMenuList;
+	}
+    
+    
 
 }

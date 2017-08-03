@@ -320,4 +320,27 @@
  			 and systemAuthority.access = #{access}
  		  </if>
 	</select>
+	<!-- 主页菜单字段 -->
+	<resultMap type="com.invoicing.manage.entity.SystemAuthorityEntity" id="MainMenuResultMap">
+    	 <id column="id" property="id" /> 
+    	 <id column="pid" property="pid" /> 
+		 <id column="name" property="name" /> 
+		 <id column="url" property="url" /> 
+		 <id column="iconClass" property="iconClass" />
+    </resultMap>
+	<!-- 查询菜单 -->
+	<select id="selectAuthMenuList" resultMap="MainMenuResultMap" parameterType="java.lang.Long">
+		SELECT
+			auth.id id,
+			auth.pid pid,
+			auth. NAME NAME,
+			auth.url url,
+			auth.icon_class iconClass
+		FROM
+			system_authority_tb auth
+		LEFT JOIN system_role_authority_tb roleAuth ON auth.id = roleAuth.auth_id
+		WHERE
+			auth.hasvalid = 1
+		AND roleAuth.role_id = #{roleId}
+	</select>
 </mapper>

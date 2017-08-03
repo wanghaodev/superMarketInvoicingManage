@@ -1,8 +1,10 @@
 package com.invoicing.manage.service;
 
 import com.invoicing.manage.entity.SystemAuthorityEntity;
+
 import java.util.Map;
 import java.util.List;
+
 import com.snailf.platforms.common.entity.PageInfo;
 /**
  *
@@ -54,5 +56,14 @@ public interface SystemAuthorityService  {
 	 * @return int
 	 */
 	int getListCount(Map<String,Object> params);
+	
+	/**
+	 * getAuthMenuList 菜单列表 方法
+	 * @param params（roleId：角色ID）
+	 * @return 返回类型为 List<SystemAuthorityEntity>
+	 * @exception
+	 * @since JDK 1.7
+	 */
+	public List<SystemAuthorityEntity> getAuthMenuList(Long roleId);
 
 }

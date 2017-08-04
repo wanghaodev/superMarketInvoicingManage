@@ -69,6 +69,8 @@ public class SystemUserController {
 		pageInfo.setPageNo(userRequestEntity.getPageNo());
 		pageInfo.setPageSize(userRequestEntity.getPageSize());
 		Map<String,Object> params=new HashMap<String,Object>();
+		params.put("userName", userRequestEntity.getUserName());
+		params.put("phone", userRequestEntity.getPhone());
 		PageInfo<SystemUserEntity> userList = systemUserService.getSystemUserPageList(pageInfo, params);
 		logger.debug("method [getSystemUserEntityList] 查询用户列表，返回结果为："+JSON.toJSONString(userList));
 		ResponseEntity res=new ResponseEntity();

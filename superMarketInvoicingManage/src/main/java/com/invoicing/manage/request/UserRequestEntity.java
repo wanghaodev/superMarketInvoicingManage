@@ -42,6 +42,12 @@ public class UserRequestEntity extends BaseRequestEntity{
 	 * 机构名称
 	 */
 	private String orgName;
+	
+	/**
+	 * 电话号码
+	 */
+	private String phone;
+	
 
 	public String getUserName() {
 		return userName;
@@ -74,5 +80,15 @@ public class UserRequestEntity extends BaseRequestEntity{
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	
+	
 
 }

@@ -198,27 +198,16 @@
  		 </set>
      where id = #{id}
 	</update>
-	
-	 <select id="getList" resultMap="BaseResultMap"
-		parameterType="java.util.Map">
-		 select 
- 		  <include refid="Base_Column_List" />
- 		  from system_user_tb systemUser
- 		  where 1=1 
- 		 <if test="id != null">
- 			 and systemUser.id = #{id}
- 		  </if>
+	<!-- 列表查询条件 -->
+	<sql id="whereSQL">
  		 <if test="loginName != null">
- 			 and systemUser.login_name = #{loginName}
+ 			 and LOCATE(#{loginName},systemUser.user_name )>0 
  		  </if>
  		 <if test="userName != null">
- 			 and systemUser.user_name = #{userName}
- 		  </if>
- 		 <if test="password != null">
- 			 and systemUser.password = #{password}
+ 		 	and LOCATE(#{userName},systemUser.user_name )>0 
  		  </if>
  		 <if test="phone != null">
- 			 and systemUser.phone = #{phone}
+ 		 	and LOCATE(#{phone},systemUser.phone )>0 
  		  </if>
  		 <if test="userType != null">
  			 and systemUser.user_type = #{userType}
@@ -226,82 +215,22 @@
  		 <if test="state != null">
  			 and systemUser.state = #{state}
  		  </if>
- 		 <if test="creatorId != null">
- 			 and systemUser.creator_id = #{creatorId}
- 		  </if>
- 		 <if test="createTime != null">
- 			 and systemUser.create_time = #{createTime}
- 		  </if>
- 		 <if test="updatorId != null">
- 			 and systemUser.updator_id = #{updatorId}
- 		  </if>
- 		 <if test="updateTime != null">
- 			 and systemUser.update_time = #{updateTime}
- 		  </if>
- 		 <if test="directlyOrgId != null">
- 			 and systemUser.directly_org_id = #{directlyOrgId}
- 		  </if>
- 		 <if test="hierarchyOrgId != null">
- 			 and systemUser.hierarchy_org_id = #{hierarchyOrgId}
- 		  </if>
- 		 <if test="certificatesType != null">
- 			 and systemUser.certificates_type = #{certificatesType}
- 		  </if>
- 		 <if test="certificatesNum != null">
- 			 and systemUser.certificates_num = #{certificatesNum}
- 		  </if>
+	</sql>
+	 <select id="getList" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		 select 
+ 		  <include refid="Base_Column_List" />
+ 		  from system_user_tb systemUser
+ 		  where 1=1
+ 		  <include refid="whereSQL"/>
 	</select>
 	 <select id="getListCount" resultType="java.lang.Integer"
 		parameterType="java.util.Map">
 		 select 
  		  count(systemUser.id)
  		  from system_user_tb systemUser
- 		  where 1=1 
- 		 <if test="id != null">
- 			 and systemUser.id = #{id}
- 		  </if>
- 		 <if test="loginName != null">
- 			 and systemUser.login_name = #{loginName}
- 		  </if>
- 		 <if test="userName != null">
- 			 and systemUser.user_name = #{userName}
- 		  </if>
- 		 <if test="password != null">
- 			 and systemUser.password = #{password}
- 		  </if>
- 		 <if test="phone != null">
- 			 and systemUser.phone = #{phone}
- 		  </if>
- 		 <if test="userType != null">
- 			 and systemUser.user_type = #{userType}
- 		  </if>
- 		 <if test="state != null">
- 			 and systemUser.state = #{state}
- 		  </if>
- 		 <if test="creatorId != null">
- 			 and systemUser.creator_id = #{creatorId}
- 		  </if>
- 		 <if test="createTime != null">
- 			 and systemUser.create_time = #{createTime}
- 		  </if>
- 		 <if test="updatorId != null">
- 			 and systemUser.updator_id = #{updatorId}
- 		  </if>
- 		 <if test="updateTime != null">
- 			 and systemUser.update_time = #{updateTime}
- 		  </if>
- 		 <if test="directlyOrgId != null">
- 			 and systemUser.directly_org_id = #{directlyOrgId}
- 		  </if>
- 		 <if test="hierarchyOrgId != null">
- 			 and systemUser.hierarchy_org_id = #{hierarchyOrgId}
- 		  </if>
- 		 <if test="certificatesType != null">
- 			 and systemUser.certificates_type = #{certificatesType}
- 		  </if>
- 		 <if test="certificatesNum != null">
- 			 and systemUser.certificates_num = #{certificatesNum}
- 		  </if>
+ 		  where 1=1
+ 		  <include refid="whereSQL"/>
 	</select>
 	<!-- 根据登录账号查询用户角色信息 -->
 	<select id="selectUserByLoginName" resultType="com.invoicing.manage.respose.UserResponse" parameterType="java.util.Map">

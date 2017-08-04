@@ -26,6 +26,10 @@
 				<i class="icon_search"></i>
 				查询
 			</button>
+			<button type="button" id="resetBtn" class="btn btn-success">
+				<i class="icon-reply icon-only"></i>
+				重置
+			</button>
 		</div>
 	</div>
 	<!-- 列表：查询条件组装  end -->
@@ -78,11 +82,16 @@
             // grid(param1,param2);参数1分页数据，参数2table类名如.user_table_content
             $(".user_table_content").grid(_options,".user_table_content");
         }
-		
+		//条件查询
 		$("#searchBtn").click(function(){
 			getData();
 			
-		})
+		});
+		//条件重置
+		$("#resetBtn").click(function (){
+			$("input[name=userName]").val("");
+			$("input[name=phone]").val("");
+		});
 		
     });
     

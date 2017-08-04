@@ -1,6 +1,10 @@
 package com.invoicing.manage.service.impl;
 
+
+import com.alibaba.fastjson.JSON;
+import com.invoicing.manage.controller.SystemAuthorityController;
 import com.invoicing.manage.entity.SystemUserEntity;
+import com.invoicing.manage.respose.UserResponse;
 import com.invoicing.manage.service.SystemUserService;
 import com.invoicing.manage.mapper.SystemUserMapper;
 
@@ -9,6 +13,8 @@ import java.util.List;
 
 import com.snailf.platforms.common.entity.PageInfo;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -22,6 +28,7 @@ import org.apache.ibatis.session.RowBounds;
  **/
 @Service("systemUserService")
 public class SystemUserServiceImpl  implements SystemUserService{
+	private static Logger logger=LoggerFactory.getLogger(SystemUserServiceImpl.class);
 
 	@Autowired
 	private SystemUserMapper systemUserMapper;
@@ -79,6 +86,14 @@ public class SystemUserServiceImpl  implements SystemUserService{
 		pageInfo.setRows(list);
 		pageInfo.setTotal(total);
 		return pageInfo;
+	}
+	
+	@Override
+	public UserResponse getUserByLoginName(Map<String, Object> map) {
+		logger.info("method [getUserByLoginName] 用户登录信息查询，请求参数,{}",JSON.toJSON(map));
+		UserResponse userRes= systemUserMapper.selectUserByLoginName(map);
+		logger.info("method [getUserByLoginName] 用户登录信息查询，返回结果,{}",JSON.toJSON(userRes));
+		return userRes;
 	}
 
 

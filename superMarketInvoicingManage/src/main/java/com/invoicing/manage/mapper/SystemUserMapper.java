@@ -1,8 +1,11 @@
 package com.invoicing.manage.mapper;
 
 import com.invoicing.manage.entity.SystemUserEntity;
+import com.invoicing.manage.respose.UserResponse;
+
 import java.util.Map;
 import java.util.List;
+
 import org.apache.ibatis.session.RowBounds;
 /**
  *
@@ -54,5 +57,14 @@ public interface SystemUserMapper  {
 	 * @return int
 	 */
 	int getListCount(Map<String,Object> params);
+	
+	/**
+	 * selectUserByLoginName 根据登录名查询用户角色信息方法
+	 * @param map
+	 * @return 返回类型为 SystemUserEntity
+	 * @exception
+	 * @since JDK 1.7 
+	 */
+	UserResponse selectUserByLoginName(Map<String,Object> map);
 
 }

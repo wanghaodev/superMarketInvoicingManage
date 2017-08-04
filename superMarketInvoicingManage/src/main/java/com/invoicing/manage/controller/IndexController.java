@@ -1,7 +1,9 @@
 package com.invoicing.manage.controller; 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,9 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
@@ -80,22 +80,29 @@ public class IndexController {
 			modelMap.put("info", "登录名不存在");
 			return new ModelAndView("/login");
 		}else{
-			//登录账号验证	
-			if(!defaultLoginName.equals(loginName)){
-					logger.info("登录名不存在。");
-					modelMap.put("info", "登录名不存在");
-					return new ModelAndView("/login");
-				}
+			//查询用户登录信息
+			Map<String,Object> queryMap=new HashMap<String,Object>();
+			queryMap.put("loginName", loginName);
+			UserResponse userInfo = systemUserService.getUserByLoginName(queryMap);
+			//判断用户是否存在
+			if(StringUtil.isNull(userInfo)){
+				logger.info("登录名不存在。");
+				modelMap.put("info", "登录名不存在");
+				return new ModelAndView("/login");
+			}
 			//登录密码验证
 			if(!defaultPassWord.equals(password)){
 				modelMap.put("info", "密码错误");
 				return new ModelAndView("/login");
 			}
+			
 			//权限分配
 			UserResponse userLoginInfo=new UserResponse();
-			userLoginInfo.setUserName("系统管理员");
+			userLoginInfo.setUserName(userInfo.getUserName());
+			userLoginInfo.setRoleName(userInfo.getRoleName());
+			userLoginInfo.setRoleId(userInfo.getRoleId());
 			modelMap.put("userLoginInfo", userLoginInfo);
-			session.setAttribute("roleId", 1);
+			session.setAttribute("userLoginInfo", userLoginInfo);
 			if(StringUtil.isNotEmpty(userLoginInfo.getUserName())){
 				logger.info("当前登录用户："+userLoginInfo.getUserName());
 				return new ModelAndView("/index");
@@ -111,7 +118,9 @@ public class IndexController {
 	
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	 public ModelAndView logOut(UserRequestEntity userRequestEntity,HttpSession session){
+		logger.info("method [logOut],退出系统，并将当前用户信息从session中删除。");
 		session.removeAttribute("userLoginInfo");
+		logger.info("method [removeAttribute],移除后查询session结果：[]",session.getAttribute("userLoginInfo"));
 		return new ModelAndView("/login");
 		
 	}
@@ -126,10 +135,11 @@ public class IndexController {
 	@RequestMapping(value = "/loadMenuList", method = RequestMethod.POST)
 	@ResponseBody
 	private Object loadMenuList(HttpSession session){
-		//Long roleId=Long.valueOf((String) session.getAttribute("roleId"));
+		UserResponse userLoginInfo=(UserResponse) session.getAttribute("userLoginInfo");
+		logger.info("从session中获取登录信息 ，{}",JSON.toJSON(userLoginInfo));
 		//logger.info("获取角色ID："+roleId);
 		//加载菜单...
-		List<SystemAuthorityEntity> queryMenuRestult=systemAuthorityService.getAuthMenuList(Long.valueOf(1));
+		List<SystemAuthorityEntity> queryMenuRestult=systemAuthorityService.getAuthMenuList(Long.valueOf(userLoginInfo.getRoleId()));
 		List<SystemAuthorityEntity> mainMenuList=new ArrayList<SystemAuthorityEntity>();
 		List<SystemAuthorityEntity> sonMenuList=new ArrayList<SystemAuthorityEntity>();
 		logger.info(queryMenuRestult.size()+"");

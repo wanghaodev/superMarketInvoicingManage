@@ -40,7 +40,7 @@ function closewait(){
 /*自定义封装方法*/
 $.extend($.fn, {
 	/*列表解析*/
-    grid: function (options) {
+    grid: function (options,pageTable) {
         var _this = this;
         var _total, 
         //modify by gaolp start
@@ -54,7 +54,7 @@ $.extend($.fn, {
             $listTitle, $tableTeam, $table,//table相关
             $thead, $headTr, $headcheck, $headlabel, $headinput;//thead相关
         //定义默认的 属性,用传值覆盖
-        defaults = {checkAll: false, checkType:"checkbox",parentMark: ".ticket_table_content",buttonMark:"#buttonsId",sequenceNum:false};
+        defaults = {checkAll: false, checkType:"checkbox",parentMark:pageTable,buttonMark:"#buttonsId",sequenceNum:false};
         //			是否有列表每行有选择					 多选					  table父类								按钮父类ID			     序号
         opts = $.extend(defaults, options);
         //定义URL

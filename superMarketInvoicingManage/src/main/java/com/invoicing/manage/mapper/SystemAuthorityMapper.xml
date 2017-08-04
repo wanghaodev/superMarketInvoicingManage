@@ -5,6 +5,7 @@
 	 <resultMap type="com.invoicing.manage.entity.SystemAuthorityEntity" id="BaseResultMap">
     	 <id column="id" property="id" /> 
 		  <id column="name" property="name" /> 
+		  <id column="parentName" property="parentName" /> 
 		  <id column="url" property="url" /> 
 		  <id column="createTime" property="createTime" /> 
 		  <id column="creator" property="creator" /> 
@@ -212,9 +213,18 @@
 	
 	 <select id="getList" resultMap="BaseResultMap"
 		parameterType="java.util.Map">
-		 select 
- 		  <include refid="Base_Column_List" />
- 		  from system_authority_tb systemAuthority
+		 SELECT
+			systemAuthority.id,
+			systemAuthority.pid,
+			systemAuthority.name name,
+			pSystemAuthority. NAME parentName,
+			systemAuthority.url,
+			systemAuthority.create_time createTime,
+			systemAuthority.update_time updateTime,
+			systemAuthority.creator creator
+		FROM
+			system_authority_tb systemAuthority
+		LEFT JOIN system_authority_tb pSystemAuthority ON systemAuthority.pid = pSystemAuthority.id
  		  where 1=1 
  		 <if test="id != null">
  			 and systemAuthority.id = #{id}
@@ -267,10 +277,12 @@
 	</select>
 	 <select id="getListCount" resultType="java.lang.Integer"
 		parameterType="java.util.Map">
-		 select 
- 		  count(systemAuthority.id)
- 		  from system_authority_tb systemAuthority
- 		  where 1=1 
+			SELECT
+				COUNT(1)
+			FROM
+				system_authority_tb systemAuthority
+			LEFT JOIN system_authority_tb pSystemAuthority ON systemAuthority.pid = pSystemAuthority.id
+ 		    where 1=1 
  		 <if test="id != null">
  			 and systemAuthority.id = #{id}
  		  </if>

@@ -10,14 +10,14 @@
 	<ol class="breadcrumb">
 		<span>当前位置：</span>
 		<li><a href="/index">系统管理</a></li>
-		<li><a href="####">用户管理</a></li>
+		<li><a href="####">角色管理</a></li>
 	</ol>
 
 	<!-- 列表：查询条件组装  start -->
 	<div class="panel panel-default form-search">
 		<div class="panel-body">
 			<div class="conditions_team">
-				<input type="text" name="userName" class="form-control"placeholder="用户姓名"> 
+				<input type="text" name="userName" class="form-control"placeholder="角色姓名"> 
 				<input type="text" name="phone"class="form-control" placeholder="手机号码">
 			</div>
 		</div>
@@ -30,30 +30,29 @@
 	</div>
 	<!-- 列表：查询条件组装  end -->
 	<!-- 列表：查询分页列表 start -->
-	<div class="user_table_content cloud_list">
+	<div class="role_table_content cloud_list">
 		<div id="buttonsId" class="row list-title">
 			<div class="col-md-4">
-				<h4>用户列表</h4>
+				<h4>角色列表</h4>
 			</div>
 		</div>
 	</div>
 	<!-- 列表：查询分页列表 end -->
-	<!-- add by WHao start 引入：用户列表js -->
+	<!-- add by WHao start 引入：角色列表js -->
 	<script type="text/javascript">
 	$(document).ready(function(){
         var buttonsArr =[];
         getData();
         function getData(){
             var _options ={
-                url:_path+"/invoicing/system/user/list"
+                url:_path+"/invoicing/system/role/list"
                 ,checkAll:true
                 //查询条件
-                ,data:{'userName':$("[name=userName]").val()
-                	  ,'phone':$("[name=phone]").val()}
+                ,data:{'userName':$("[name=roleName]").val()
+                	  ,'phone':$("[name=roleDesc]").val()}
                 ,cloumns:[
-					 {name:'用户名称',value:'loginName'}
-                    ,{name:'真实姓名',value:'userName'}
-                    ,{name:'手机号',value:'phone'}
+					 {name:'角色名称',value:'roleName'}
+                    ,{name:'角色描述',value:'roleDesc'}
                     ,{name:'更新时间',value:'updateTime'}
                     ,{name:'状态',value:'state',type:"function", fun : function(obj){
 	                    	var html="";
@@ -75,8 +74,7 @@
                 ]
                 ,buttons:buttonsArr
             };
-            // grid(param1,param2);参数1分页数据，参数2table类名如.user_table_content
-            $(".user_table_content").grid(_options,".user_table_content");
+            $(".role_table_content").grid(_options,".role_table_content");
         }
 		
 		$("#searchBtn").click(function(){
@@ -105,11 +103,11 @@
     				if (data != null && data != 'undefined'
     						&& data == 1) {
     					var jumpUrl = '/goods/brand/list';
-    					timedTaskFun(1000,'用户删除成功',jumpUrl,'correct');
+    					timedTaskFun(1000,'角色删除成功',jumpUrl,'correct');
     				} else if (data == 0) {
-    					timedTaskFun(1000,'用户删除失败','','err');
+    					timedTaskFun(1000,'角色删除失败','','err');
     				} else if(data == -2) {
-    					timedTaskFun(1000,'该用户，已关联其他业务，故无法删除！','','err');
+    					timedTaskFun(1000,'该角色，已关联其他业务，故无法删除！','','err');
     				}
     				
     			}

@@ -15,14 +15,14 @@ import org.springframework.web.servlet.ModelAndView;
 import com.alibaba.fastjson.JSON;
 import com.invoicing.manage.comment.entity.ResponseEntity;
 import com.invoicing.manage.comment.entity.SuccessResponseEntity;
-import com.invoicing.manage.entity.SystemAuthorityEntity;
+import com.invoicing.manage.entity.SystemRoleEntity;
 import com.invoicing.manage.request.UserRequestEntity;
-import com.invoicing.manage.service.SystemAuthorityService;
+import com.invoicing.manage.service.SystemRoleService;
 import com.snailf.platforms.common.entity.PageInfo;
  
 /** 
- * 类名: SystemAuthorityController   
- * 类描述: TODO.  权限菜单管理 
+ * 类名: SystemRoleController   
+ * 类描述: TODO.  角色管理 
  * 创建人: WangHao.   
  * 创建日期: 2017年7月28日 上午10:50:43   
  * 修改备注：
@@ -32,28 +32,28 @@ import com.snailf.platforms.common.entity.PageInfo;
  * @see       
  */
 @Controller
-@RequestMapping("/invoicing/system/authority")
-public class SystemAuthorityController {
-	private static Logger logger=LoggerFactory.getLogger(SystemAuthorityController.class);
+@RequestMapping("/invoicing/system/role")
+public class SystemRoleController {
+	private static Logger logger=LoggerFactory.getLogger(SystemRoleController.class);
 	
 	@Autowired
-	private SystemAuthorityService systemAuthorityService;
+	private SystemRoleService systemRoleService;
 	
 	
 	/**
-	 * goToUserList 权限菜单列表页
+	 * goToUserList 角色列表页
 	 * @return 返回类型为 ModelAndView
 	 * @exception
 	 * @since JDK 1.7
 	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView goToUserList(){
-		String url="/system/authority/authority_list";
+		String url="/system/role/role_list";
 		return new ModelAndView(url);
 	}
 		
 	/**
-	 * getSystemAuthorityEntityList 获取权限菜单列表
+	 * getSystemRoleEntityList 获取角色列表
 	 * @param requestParams
 	 * @return 返回类型为 ResponseEntity
 	 * @exception
@@ -62,32 +62,32 @@ public class SystemAuthorityController {
 	
 	@RequestMapping(value = "/list", method = RequestMethod.POST)
 	@ResponseBody
-	 public ResponseEntity getSystemAuthorityList(UserRequestEntity authorityRequestEntity){
-		logger.debug("method [getSystemAuthorityEntityList] 查询权限菜单列表，请求参数："+JSON.toJSONString(authorityRequestEntity));
-		PageInfo<SystemAuthorityEntity> pageInfo=new PageInfo<SystemAuthorityEntity>();
-		pageInfo.setPageNo(authorityRequestEntity.getPageNo());
-		pageInfo.setPageSize(authorityRequestEntity.getPageSize());
+	 public ResponseEntity getSystemRoleList(UserRequestEntity RoleRequestEntity){
+		logger.debug("method [getSystemRoleEntityList] 查询角色列表，请求参数："+JSON.toJSONString(RoleRequestEntity));
+		PageInfo<SystemRoleEntity> pageInfo=new PageInfo<SystemRoleEntity>();
+		pageInfo.setPageNo(RoleRequestEntity.getPageNo());
+		pageInfo.setPageSize(RoleRequestEntity.getPageSize());
 		Map<String,Object> params=new HashMap<String,Object>();
-		PageInfo<SystemAuthorityEntity> authorityList = systemAuthorityService.getList(pageInfo, params);
-		logger.debug("method [getSystemAuthorityEntityList] 查询权限菜单列表，返回结果为："+JSON.toJSONString(authorityList));
-		return new SuccessResponseEntity(authorityList);
+		PageInfo<SystemRoleEntity> roleList = systemRoleService.getList(pageInfo, params);
+		logger.debug("method [getSystemRoleEntityList] 查询角色列表，返回结果为："+JSON.toJSONString(roleList));
+		return new SuccessResponseEntity(roleList);
 		
 	}
 	
 	/**
-	 * goToUserAdd 权限菜单添加页
+	 * goToUserAdd 角色添加页
 	 * @return 返回类型为 ModelAndView
 	 * @exception
 	 * @since JDK 1.7
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public ModelAndView goToUserAdd(){
-		String url="/system/authority/authority_add";
+		String url="/system/Role/Role_add";
 		return new ModelAndView(url);
 	}
 	
 	/**
-	 * addSystemAuthorityEntity 新建权限菜单
+	 * addSystemRoleEntity 新建角色
 	 * @param requestParams
 	 * @return 返回类型为 ResponseEntity
 	 * @exception
@@ -95,10 +95,10 @@ public class SystemAuthorityController {
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity addSystemAuthority(SystemAuthorityEntity SystemAuthorityEntity){
-		logger.debug("新建权限菜单，传入参数为："+JSON.toJSONString(SystemAuthorityEntity));
+	public ResponseEntity addSystemRole(SystemRoleEntity SystemRoleEntity){
+		logger.debug("新建角色，传入参数为："+JSON.toJSONString(SystemRoleEntity));
 		ResponseEntity result = null;
-		logger.debug("新建权限菜单，返回结果为："+JSON.toJSONString(result));
+		logger.debug("新建角色，返回结果为："+JSON.toJSONString(result));
 		//若返回结果不等于1时，返回前台统一转为0，提示信息不变。
 		if(result.getCode()==-1){
 			result.setCode(0);
@@ -108,30 +108,30 @@ public class SystemAuthorityController {
 	}
 	
 	/**
-	 * goToUserUpdate 权限菜单编辑页
+	 * goToUserUpdate 角色编辑页
 	 * @return 返回类型为 ModelAndView
 	 * @exception
 	 * @since JDK 1.7
 	 */
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public ModelAndView goToUserUpdate(){
-		String url="/system/authority/authority_update";
+		String url="/system/Role/Role_update";
 		return new ModelAndView(url);
 	}
 	
 	/**
-	 * updateSystemAuthorityEntity 修改权限菜单
-	 * @param SystemAuthorityEntity
+	 * updateSystemRoleEntity 修改角色
+	 * @param SystemRoleEntity
 	 * @return 返回类型为 ResponseEntity
 	 * @exception
 	 * @since JDK 1.7
 	 */
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity updateSystemAuthority(SystemAuthorityEntity SystemAuthorityEntity){
-		logger.debug("编辑权限菜单，传入参数为："+JSON.toJSONString(SystemAuthorityEntity));
+	public ResponseEntity updateSystemRole(SystemRoleEntity SystemRoleEntity){
+		logger.debug("编辑角色，传入参数为："+JSON.toJSONString(SystemRoleEntity));
 		ResponseEntity result = null;
-		logger.debug("编辑权限菜单，返回结果为："+JSON.toJSONString(result));
+		logger.debug("编辑角色，返回结果为："+JSON.toJSONString(result));
 		//若返回结果不等于1时，返回前台统一转为0，提示信息不变。
 		if(result.getCode()==-1){
 			result.setCode(0);
@@ -145,23 +145,23 @@ public class SystemAuthorityController {
 	
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
 	public ModelAndView goToUserDetail(){
-		String url="/system/authority/authority_detail";
+		String url="/system/Role/Role_detail";
 		return new ModelAndView(url);
 	}
 	
 	/**
-	 * delSystemAuthorityEntity 删除权限菜单
-	 * @param SystemAuthorityEntity
+	 * delSystemRoleEntity 删除角色
+	 * @param SystemRoleEntity
 	 * @return 返回类型为 ResponseEntity
 	 * @exception
 	 * @since JDK 1.7
 	 */
 	@RequestMapping(value = "/del", method = {RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
-	public ResponseEntity delSystemAuthority(SystemAuthorityEntity SystemAuthorityEntity){
-		logger.debug("删除权限菜单，传入参数为："+JSON.toJSONString(SystemAuthorityEntity));
+	public ResponseEntity delSystemRole(SystemRoleEntity SystemRoleEntity){
+		logger.debug("删除角色，传入参数为："+JSON.toJSONString(SystemRoleEntity));
 		ResponseEntity result = null;
-		logger.debug("删除权限菜单，返回结果为："+JSON.toJSONString(result));
+		logger.debug("删除角色，返回结果为："+JSON.toJSONString(result));
 		//若返回结果不等于1时，返回前台统一转为0，提示信息不变。
 		if(result.getCode()==-2){
 			result.setCode(0);

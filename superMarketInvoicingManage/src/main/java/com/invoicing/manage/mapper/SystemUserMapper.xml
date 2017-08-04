@@ -303,4 +303,21 @@
  			 and systemUser.certificates_num = #{certificatesNum}
  		  </if>
 	</select>
+	<!-- 根据登录账号查询用户角色信息 -->
+	<select id="selectUserByLoginName" resultType="com.invoicing.manage.respose.UserResponse" parameterType="java.util.Map">
+		SELECT
+			userEntity.id userId,
+			userEntity.user_name userName,
+			userEntity.login_name loginName,
+			userEntity.phone,
+			roleEntity.role_name roleName,
+			userEntity.password,
+			roleEntity.id roleId
+		FROM
+			system_user_tb userEntity
+		RIGHT JOIN system_user_role_tb userrole ON userEntity.id = userrole.user_id
+		LEFT JOIN system_role_tb roleEntity ON userrole.role_id = roleEntity.id
+		WHERE
+			userEntity.login_name = #{loginName}
+	</select>
 </mapper>

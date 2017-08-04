@@ -1,8 +1,11 @@
 package com.invoicing.manage.service;
 
 import com.invoicing.manage.entity.SystemUserEntity;
+import com.invoicing.manage.respose.UserResponse;
+
 import java.util.Map;
 import java.util.List;
+
 import com.snailf.platforms.common.entity.PageInfo;
 /**
  *
@@ -48,5 +51,14 @@ public interface SystemUserService  {
 	 * @return PageInfo<SystemUserEntity>
 	 */
 	PageInfo<SystemUserEntity> getSystemUserPageList(PageInfo<SystemUserEntity> pageInfo,Map<String,Object> params);
+	
+	/**
+	 * getUserByLoginName 根据登录账号查询用户角色信息
+	 * @param map
+	 * @return 返回类型为 SystemUserEntity
+	 * @exception
+	 * @since JDK 1.7
+	 */
+	public UserResponse getUserByLoginName(Map<String,Object> map);
 
 }

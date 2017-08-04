@@ -19,6 +19,11 @@ public class SystemAuthorityEntity extends BaseEntity {
      * 权限名称
      */
     private String name;
+    
+    /**
+     * 父菜单名称
+     */
+    private String  parentName;
     /**
      * 功能url
      */
@@ -202,6 +207,12 @@ public class SystemAuthorityEntity extends BaseEntity {
 	}
 	public void setSonAuthMenuList(List<SystemAuthorityEntity> sonAuthMenuList) {
 		this.sonAuthMenuList = sonAuthMenuList;
+	}
+	public String getParentName() {
+		return parentName;
+	}
+	public void setParentName(String parentName) {
+		this.parentName = parentName;
 	}
     
     

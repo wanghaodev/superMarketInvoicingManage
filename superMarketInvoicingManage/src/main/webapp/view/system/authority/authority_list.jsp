@@ -10,50 +10,68 @@
 	<ol class="breadcrumb">
 		<span>当前位置：</span>
 		<li><a href="/index">系统管理</a></li>
-		<li><a href="####">用户管理</a></li>
+		<li><a href="####">菜单管理</a></li>
 	</ol>
 
 	<!-- 列表：查询条件组装  start -->
 	<div class="panel panel-default form-search">
 		<div class="panel-body">
 			<div class="conditions_team">
-				<input type="text" name="userName" class="form-control"placeholder="用户姓名"> 
-				<input type="text" name="phone"class="form-control" placeholder="手机号码">
+				<input type="text" name="authorName" class="form-control"placeholder="菜单名称"> 
+				<input type="text" name="phone"class="form-control" placeholder="上级菜单">
 			</div>
 		</div>
 		<div class="panel-footer">
 			<button type="button" id="searchBtn" class="btn btn-primary">
 				<i class="icon_search"></i>
-				查询
+				搜查
 			</button>
 		</div>
 	</div>
 	<!-- 列表：查询条件组装  end -->
 	<!-- 列表：查询分页列表 start -->
-	<div class="user_table_content cloud_list">
+	<div class="authority_table_content cloud_list">
 		<div id="buttonsId" class="row list-title">
 			<div class="col-md-4">
-				<h4>用户列表</h4>
+				<h4>菜单列表</h4>
 			</div>
 		</div>
 	</div>
 	<!-- 列表：查询分页列表 end -->
-	<!-- add by WHao start 引入：用户列表js -->
+	<!-- add by WHao start 引入：菜单列表js -->
 	<script type="text/javascript">
 	$(document).ready(function(){
         var buttonsArr =[];
         getData();
         function getData(){
             var _options ={
-                url:_path+"/invoicing/system/user/list"
+                url:_path+"/invoicing/system/authority/list"
                 ,checkAll:true
                 //查询条件
-                ,data:{'userName':$("[name=userName]").val()
-                	  ,'phone':$("[name=phone]").val()}
+                ,data:{'name':$("[name=name]").val()
+                	  ,'pName':$("[name=pName]").val()}
                 ,cloumns:[
-					 {name:'用户名称',value:'loginName'}
-                    ,{name:'真实姓名',value:'userName'}
-                    ,{name:'手机号',value:'phone'}
+					 {name:'菜单名称',value:'name'}
+                    ,{name:'上级菜单',value:'parentName',type:"function",fun:function(obj){
+                    	var html="";
+                    	if(obj.pid==0){
+                    		html+= "进销存管理系统";
+                    	}else{
+                    		html+= obj.parentName;
+                    	}
+                    	return html;
+                    	}
+                    }
+                    ,{name:'URL',value:'url',type:"function",fun:function(obj){
+                    	var html="";
+                    	if(obj.pid==0){
+                    		html+= "----";
+                    	}else{
+                    		html+= obj.url;
+                    	}
+                    	return html;
+                    	}
+                    }
                     ,{name:'更新时间',value:'updateTime'}
                     ,{name:'状态',value:'state',type:"function", fun : function(obj){
 	                    	var html="";
@@ -75,8 +93,7 @@
                 ]
                 ,buttons:buttonsArr
             };
-            // grid(param1,param2);参数1分页数据，参数2table类名如.user_table_content
-            $(".user_table_content").grid(_options,".user_table_content");
+            $(".authority_table_content").grid(_options,".authority_table_content");
         }
 		
 		$("#searchBtn").click(function(){
@@ -105,11 +122,11 @@
     				if (data != null && data != 'undefined'
     						&& data == 1) {
     					var jumpUrl = '/goods/brand/list';
-    					timedTaskFun(1000,'用户删除成功',jumpUrl,'correct');
+    					timedTaskFun(1000,'菜单删除成功',jumpUrl,'correct');
     				} else if (data == 0) {
-    					timedTaskFun(1000,'用户删除失败','','err');
+    					timedTaskFun(1000,'菜单删除失败','','err');
     				} else if(data == -2) {
-    					timedTaskFun(1000,'该用户，已关联其他业务，故无法删除！','','err');
+    					timedTaskFun(1000,'该菜单，已关联其他业务，故无法删除！','','err');
     				}
     				
     			}

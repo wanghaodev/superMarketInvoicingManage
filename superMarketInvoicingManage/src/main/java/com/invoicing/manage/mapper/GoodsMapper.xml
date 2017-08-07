@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.invoicing.manage.mapper.GoodsMapper">
+
+	 <resultMap type="com.invoicing.manage.entity.GoodsEntity" id="BaseResultMap">
+    	 <id column="id" property="id" /> 
+		  <id column="goodsName" property="goodsName" /> 
+		  <id column="goodsShortName" property="goodsShortName" /> 
+		  <id column="goodsSpu" property="goodsSpu" /> 
+		  <id column="goodsType" property="goodsType" /> 
+		  <id column="selfSupport" property="selfSupport" /> 
+		  <id column="goodsCategoryId" property="goodsCategoryId" /> 
+		  <id column="isMultiProperties" property="isMultiProperties" /> 
+		  <id column="skuNums" property="skuNums" /> 
+		  <id column="saleMap" property="saleMap" /> 
+		  <id column="state" property="state" /> 
+		  <id column="isDelete" property="isDelete" /> 
+		  <id column="directlyOrgId" property="directlyOrgId" /> 
+		  <id column="hierarchyId" property="hierarchyId" /> 
+		  <id column="creatorId" property="creatorId" /> 
+		  <id column="creator" property="creator" /> 
+		  <id column="createTime" property="createTime" /> 
+		  <id column="updatorId" property="updatorId" /> 
+		  <id column="updator" property="updator" /> 
+		  <id column="updateTime" property="updateTime" /> 
+		  <id column="extendsParams" property="extendsParams" /> 
+		  <id column="remark1" property="remark1" /> 
+		  <id column="remark2" property="remark2" /> 
+  
+    </resultMap>
+    <sql id="Base_Column_List">
+    	 goods.id as id ,
+ 		 goods.goods_name as goodsName ,
+ 		 goods.goods_short_name as goodsShortName ,
+ 		 goods.goods_spu as goodsSpu ,
+ 		 goods.goods_type as goodsType ,
+ 		 goods.self_support as selfSupport ,
+ 		 goods.goods_category_id as goodsCategoryId ,
+ 		 goods.is_multi_properties as isMultiProperties ,
+ 		 goods.sku_nums as skuNums ,
+ 		 goods.sale_map as saleMap ,
+ 		 goods.state as state ,
+ 		 goods.is_delete as isDelete ,
+ 		 goods.directly_org_id as directlyOrgId ,
+ 		 goods.hierarchy_id as hierarchyId ,
+ 		 goods.creator_id as creatorId ,
+ 		 goods.creator as creator ,
+ 		 goods.create_time as createTime ,
+ 		 goods.updator_id as updatorId ,
+ 		 goods.updator as updator ,
+ 		 goods.update_time as updateTime ,
+ 		 goods.extends_params as extendsParams ,
+ 		 goods.remark1 as remark1 ,
+ 		 goods.remark2 as remark2
+    </sql>
+    
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		 select 
+ 		  <include refid="Base_Column_List" />
+ 		  from goods_tb goods
+ 		  where goods.id = #{ id }
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		 delete 
+ 		  from goods_tb
+ 		  where id = #{ id }
+	</delete>
+	
+	<insert id="insertSelective" parameterType="com.invoicing.manage.entity.GoodsEntity">
+		 insert into  goods_tb
+ 		  <trim prefix="(" suffix=")" suffixOverrides=","> 
+ 			 <if test="id != null">
+ 				 id,
+ 			  </if>
+ 			 <if test="goodsName != null">
+ 				 goods_name,
+ 			  </if>
+ 			 <if test="goodsShortName != null">
+ 				 goods_short_name,
+ 			  </if>
+ 			 <if test="goodsSpu != null">
+ 				 goods_spu,
+ 			  </if>
+ 			 <if test="goodsType != null">
+ 				 goods_type,
+ 			  </if>
+ 			 <if test="selfSupport != null">
+ 				 self_support,
+ 			  </if>
+ 			 <if test="goodsCategoryId != null">
+ 				 goods_category_id,
+ 			  </if>
+ 			 <if test="isMultiProperties != null">
+ 				 is_multi_properties,
+ 			  </if>
+ 			 <if test="skuNums != null">
+ 				 sku_nums,
+ 			  </if>
+ 			 <if test="saleMap != null">
+ 				 sale_map,
+ 			  </if>
+ 			 <if test="state != null">
+ 				 state,
+ 			  </if>
+ 			 <if test="isDelete != null">
+ 				 is_delete,
+ 			  </if>
+ 			 <if test="directlyOrgId != null">
+ 				 directly_org_id,
+ 			  </if>
+ 			 <if test="hierarchyId != null">
+ 				 hierarchy_id,
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 creator_id,
+ 			  </if>
+ 			 <if test="creator != null">
+ 				 creator,
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 create_time,
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 updator_id,
+ 			  </if>
+ 			 <if test="updator != null">
+ 				 updator,
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 update_time,
+ 			  </if>
+ 			 <if test="extendsParams != null">
+ 				 extends_params,
+ 			  </if>
+ 			 <if test="remark1 != null">
+ 				 remark1,
+ 			  </if>
+ 			 <if test="remark2 != null">
+ 				 remark2,
+ 			  </if>
+ 		  </trim>
+ 		  <trim prefix="values (" suffix=")" suffixOverrides="," >
+ 			 <if test="id != null">
+ 				 #{id},
+ 			  </if>
+ 			 <if test="goodsName != null">
+ 				 #{goodsName},
+ 			  </if>
+ 			 <if test="goodsShortName != null">
+ 				 #{goodsShortName},
+ 			  </if>
+ 			 <if test="goodsSpu != null">
+ 				 #{goodsSpu},
+ 			  </if>
+ 			 <if test="goodsType != null">
+ 				 #{goodsType},
+ 			  </if>
+ 			 <if test="selfSupport != null">
+ 				 #{selfSupport},
+ 			  </if>
+ 			 <if test="goodsCategoryId != null">
+ 				 #{goodsCategoryId},
+ 			  </if>
+ 			 <if test="isMultiProperties != null">
+ 				 #{isMultiProperties},
+ 			  </if>
+ 			 <if test="skuNums != null">
+ 				 #{skuNums},
+ 			  </if>
+ 			 <if test="saleMap != null">
+ 				 #{saleMap},
+ 			  </if>
+ 			 <if test="state != null">
+ 				 #{state},
+ 			  </if>
+ 			 <if test="isDelete != null">
+ 				 #{isDelete},
+ 			  </if>
+ 			 <if test="directlyOrgId != null">
+ 				 #{directlyOrgId},
+ 			  </if>
+ 			 <if test="hierarchyId != null">
+ 				 #{hierarchyId},
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 #{creatorId},
+ 			  </if>
+ 			 <if test="creator != null">
+ 				 #{creator},
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 #{createTime},
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 #{updatorId},
+ 			  </if>
+ 			 <if test="updator != null">
+ 				 #{updator},
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 #{updateTime},
+ 			  </if>
+ 			 <if test="extendsParams != null">
+ 				 #{extendsParams},
+ 			  </if>
+ 			 <if test="remark1 != null">
+ 				 #{remark1},
+ 			  </if>
+ 			 <if test="remark2 != null">
+ 				 #{remark2},
+ 			  </if>
+ 		  </trim>
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="com.invoicing.manage.entity.GoodsEntity">
+		 update   goods_tb
+ 		 <set>
+ 			 <if test="goodsName != null">
+ 				 goods_name = #{goodsName},
+ 			  </if>
+ 			 <if test="goodsShortName != null">
+ 				 goods_short_name = #{goodsShortName},
+ 			  </if>
+ 			 <if test="goodsSpu != null">
+ 				 goods_spu = #{goodsSpu},
+ 			  </if>
+ 			 <if test="goodsType != null">
+ 				 goods_type = #{goodsType},
+ 			  </if>
+ 			 <if test="selfSupport != null">
+ 				 self_support = #{selfSupport},
+ 			  </if>
+ 			 <if test="goodsCategoryId != null">
+ 				 goods_category_id = #{goodsCategoryId},
+ 			  </if>
+ 			 <if test="isMultiProperties != null">
+ 				 is_multi_properties = #{isMultiProperties},
+ 			  </if>
+ 			 <if test="skuNums != null">
+ 				 sku_nums = #{skuNums},
+ 			  </if>
+ 			 <if test="saleMap != null">
+ 				 sale_map = #{saleMap},
+ 			  </if>
+ 			 <if test="state != null">
+ 				 state = #{state},
+ 			  </if>
+ 			 <if test="isDelete != null">
+ 				 is_delete = #{isDelete},
+ 			  </if>
+ 			 <if test="directlyOrgId != null">
+ 				 directly_org_id = #{directlyOrgId},
+ 			  </if>
+ 			 <if test="hierarchyId != null">
+ 				 hierarchy_id = #{hierarchyId},
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 creator_id = #{creatorId},
+ 			  </if>
+ 			 <if test="creator != null">
+ 				 creator = #{creator},
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 create_time = #{createTime},
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 updator_id = #{updatorId},
+ 			  </if>
+ 			 <if test="updator != null">
+ 				 updator = #{updator},
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 update_time = #{updateTime},
+ 			  </if>
+ 			 <if test="extendsParams != null">
+ 				 extends_params = #{extendsParams},
+ 			  </if>
+ 			 <if test="remark1 != null">
+ 				 remark1 = #{remark1},
+ 			  </if>
+ 			 <if test="remark2 != null">
+ 				 remark2 = #{remark2},
+ 			  </if>
+ 		 </set>
+     where id = #{id}
+	</update>
+	
+	 <select id="getList" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		 select 
+ 		  <include refid="Base_Column_List" />
+ 		  from goods_tb goods
+ 		  where 1=1 
+ 		 <if test="id != null">
+ 			 and goods.id = #{id}
+ 		  </if>
+ 		 <if test="goodsName != null">
+ 			 and goods.goods_name = #{goodsName}
+ 		  </if>
+ 		 <if test="goodsShortName != null">
+ 			 and goods.goods_short_name = #{goodsShortName}
+ 		  </if>
+ 		 <if test="goodsSpu != null">
+ 			 and goods.goods_spu = #{goodsSpu}
+ 		  </if>
+ 		 <if test="goodsType != null">
+ 			 and goods.goods_type = #{goodsType}
+ 		  </if>
+ 		 <if test="selfSupport != null">
+ 			 and goods.self_support = #{selfSupport}
+ 		  </if>
+ 		 <if test="goodsCategoryId != null">
+ 			 and goods.goods_category_id = #{goodsCategoryId}
+ 		  </if>
+ 		 <if test="isMultiProperties != null">
+ 			 and goods.is_multi_properties = #{isMultiProperties}
+ 		  </if>
+ 		 <if test="skuNums != null">
+ 			 and goods.sku_nums = #{skuNums}
+ 		  </if>
+ 		 <if test="saleMap != null">
+ 			 and goods.sale_map = #{saleMap}
+ 		  </if>
+ 		 <if test="state != null">
+ 			 and goods.state = #{state}
+ 		  </if>
+ 		 <if test="isDelete != null">
+ 			 and goods.is_delete = #{isDelete}
+ 		  </if>
+ 		 <if test="directlyOrgId != null">
+ 			 and goods.directly_org_id = #{directlyOrgId}
+ 		  </if>
+ 		 <if test="hierarchyId != null">
+ 			 and goods.hierarchy_id = #{hierarchyId}
+ 		  </if>
+ 		 <if test="creatorId != null">
+ 			 and goods.creator_id = #{creatorId}
+ 		  </if>
+ 		 <if test="creator != null">
+ 			 and goods.creator = #{creator}
+ 		  </if>
+ 		 <if test="createTime != null">
+ 			 and goods.create_time = #{createTime}
+ 		  </if>
+ 		 <if test="updatorId != null">
+ 			 and goods.updator_id = #{updatorId}
+ 		  </if>
+ 		 <if test="updator != null">
+ 			 and goods.updator = #{updator}
+ 		  </if>
+ 		 <if test="updateTime != null">
+ 			 and goods.update_time = #{updateTime}
+ 		  </if>
+ 		 <if test="extendsParams != null">
+ 			 and goods.extends_params = #{extendsParams}
+ 		  </if>
+ 		 <if test="remark1 != null">
+ 			 and goods.remark1 = #{remark1}
+ 		  </if>
+ 		 <if test="remark2 != null">
+ 			 and goods.remark2 = #{remark2}
+ 		  </if>
+	</select>
+	 <select id="getListCount" resultType="java.lang.Integer"
+		parameterType="java.util.Map">
+		 select 
+ 		  count(goods.id)
+ 		  from goods_tb goods
+ 		  where 1=1 
+ 		 <if test="id != null">
+ 			 and goods.id = #{id}
+ 		  </if>
+ 		 <if test="goodsName != null">
+ 			 and goods.goods_name = #{goodsName}
+ 		  </if>
+ 		 <if test="goodsShortName != null">
+ 			 and goods.goods_short_name = #{goodsShortName}
+ 		  </if>
+ 		 <if test="goodsSpu != null">
+ 			 and goods.goods_spu = #{goodsSpu}
+ 		  </if>
+ 		 <if test="goodsType != null">
+ 			 and goods.goods_type = #{goodsType}
+ 		  </if>
+ 		 <if test="selfSupport != null">
+ 			 and goods.self_support = #{selfSupport}
+ 		  </if>
+ 		 <if test="goodsCategoryId != null">
+ 			 and goods.goods_category_id = #{goodsCategoryId}
+ 		  </if>
+ 		 <if test="isMultiProperties != null">
+ 			 and goods.is_multi_properties = #{isMultiProperties}
+ 		  </if>
+ 		 <if test="skuNums != null">
+ 			 and goods.sku_nums = #{skuNums}
+ 		  </if>
+ 		 <if test="saleMap != null">
+ 			 and goods.sale_map = #{saleMap}
+ 		  </if>
+ 		 <if test="state != null">
+ 			 and goods.state = #{state}
+ 		  </if>
+ 		 <if test="isDelete != null">
+ 			 and goods.is_delete = #{isDelete}
+ 		  </if>
+ 		 <if test="directlyOrgId != null">
+ 			 and goods.directly_org_id = #{directlyOrgId}
+ 		  </if>
+ 		 <if test="hierarchyId != null">
+ 			 and goods.hierarchy_id = #{hierarchyId}
+ 		  </if>
+ 		 <if test="creatorId != null">
+ 			 and goods.creator_id = #{creatorId}
+ 		  </if>
+ 		 <if test="creator != null">
+ 			 and goods.creator = #{creator}
+ 		  </if>
+ 		 <if test="createTime != null">
+ 			 and goods.create_time = #{createTime}
+ 		  </if>
+ 		 <if test="updatorId != null">
+ 			 and goods.updator_id = #{updatorId}
+ 		  </if>
+ 		 <if test="updator != null">
+ 			 and goods.updator = #{updator}
+ 		  </if>
+ 		 <if test="updateTime != null">
+ 			 and goods.update_time = #{updateTime}
+ 		  </if>
+ 		 <if test="extendsParams != null">
+ 			 and goods.extends_params = #{extendsParams}
+ 		  </if>
+ 		 <if test="remark1 != null">
+ 			 and goods.remark1 = #{remark1}
+ 		  </if>
+ 		 <if test="remark2 != null">
+ 			 and goods.remark2 = #{remark2}
+ 		  </if>
+	</select>
+</mapper>

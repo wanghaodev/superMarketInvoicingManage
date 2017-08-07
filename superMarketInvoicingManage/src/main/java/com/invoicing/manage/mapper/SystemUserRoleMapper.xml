@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.invoicing.manage.mapper.SystemUserRoleMapper">
+
+	 <resultMap type="com.invoicing.manage.entity.SystemUserRoleEntity" id="BaseResultMap">
+    	 <id column="id" property="id" /> 
+		  <id column="userId" property="userId" /> 
+		  <id column="roleId" property="roleId" /> 
+  
+    </resultMap>
+    <sql id="Base_Column_List">
+    	 systemUserRole.id as id ,
+ 		 systemUserRole.user_id as userId ,
+ 		 systemUserRole.role_id as roleId
+    </sql>
+    
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		 select 
+ 		  <include refid="Base_Column_List" />
+ 		  from system_user_role_tb systemUserRole
+ 		  where systemUserRole.id = #{ id }
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		 delete 
+ 		  from system_user_role_tb
+ 		  where id = #{ id }
+	</delete>
+	
+	<insert id="insertSelective" parameterType="com.invoicing.manage.entity.SystemUserRoleEntity">
+		 insert into  system_user_role_tb
+ 		  <trim prefix="(" suffix=")" suffixOverrides=","> 
+ 			 <if test="id != null">
+ 				 id,
+ 			  </if>
+ 			 <if test="userId != null">
+ 				 user_id,
+ 			  </if>
+ 			 <if test="roleId != null">
+ 				 role_id,
+ 			  </if>
+ 		  </trim>
+ 		  <trim prefix="values (" suffix=")" suffixOverrides="," >
+ 			 <if test="id != null">
+ 				 #{id},
+ 			  </if>
+ 			 <if test="userId != null">
+ 				 #{userId},
+ 			  </if>
+ 			 <if test="roleId != null">
+ 				 #{roleId},
+ 			  </if>
+ 		  </trim>
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="com.invoicing.manage.entity.SystemUserRoleEntity">
+		 update   system_user_role_tb
+ 		 <set>
+ 			 <if test="userId != null">
+ 				 user_id = #{userId},
+ 			  </if>
+ 			 <if test="roleId != null">
+ 				 role_id = #{roleId},
+ 			  </if>
+ 		 </set>
+     where id = #{id}
+	</update>
+	
+	 <select id="getList" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		 select 
+ 		  <include refid="Base_Column_List" />
+ 		  from system_user_role_tb systemUserRole
+ 		  where 1=1 
+ 		 <if test="id != null">
+ 			 and systemUserRole.id = #{id}
+ 		  </if>
+ 		 <if test="userId != null">
+ 			 and systemUserRole.user_id = #{userId}
+ 		  </if>
+ 		 <if test="roleId != null">
+ 			 and systemUserRole.role_id = #{roleId}
+ 		  </if>
+	</select>
+	 <select id="getListCount" resultType="java.lang.Integer"
+		parameterType="java.util.Map">
+		 select 
+ 		  count(systemUserRole.id)
+ 		  from system_user_role_tb systemUserRole
+ 		  where 1=1 
+ 		 <if test="id != null">
+ 			 and systemUserRole.id = #{id}
+ 		  </if>
+ 		 <if test="userId != null">
+ 			 and systemUserRole.user_id = #{userId}
+ 		  </if>
+ 		 <if test="roleId != null">
+ 			 and systemUserRole.role_id = #{roleId}
+ 		  </if>
+	</select>
+</mapper>

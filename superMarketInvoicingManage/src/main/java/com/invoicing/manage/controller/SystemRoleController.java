@@ -21,10 +21,14 @@ import com.alibaba.fastjson.JSON;
 import com.invoicing.manage.comment.entity.ResponseEntity;
 import com.invoicing.manage.comment.entity.SuccessResponseEntity;
 import com.invoicing.manage.entity.SystemAuthorityEntity;
+import com.invoicing.manage.entity.SystemRoleAuthorityEntity;
 import com.invoicing.manage.entity.SystemRoleEntity;
+import com.invoicing.manage.request.RoleAuthResquestEntity;
 import com.invoicing.manage.request.UserRequestEntity;
 import com.invoicing.manage.service.SystemAuthorityService;
+import com.invoicing.manage.service.SystemRoleAuthorityService;
 import com.invoicing.manage.service.SystemRoleService;
+import com.snailf.platforms.common.entity.ErrorResponseEntity;
 import com.snailf.platforms.common.entity.PageInfo;
  
 /** 
@@ -50,6 +54,9 @@ public class SystemRoleController {
 	
 	@Autowired
 	private SystemAuthorityService systemAuthorityService;
+	
+	@Autowired
+	private SystemRoleAuthorityService systemRoleAuthorityService;
 	
 	
 	
@@ -223,13 +230,22 @@ public class SystemRoleController {
 	 */
 	@RequestMapping(value = "/authority", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity roleAuthority(SystemRoleEntity SystemRoleEntity){
-		logger.debug("角色权限维护，传入参数为："+JSON.toJSONString(SystemRoleEntity));
-		ResponseEntity result = null;
-		logger.debug("角色权限维护，返回结果为："+JSON.toJSONString(result));
-		//若返回结果不等于1时，返回前台统一转为0，提示信息不变。
-		return result;
-		
+	public ResponseEntity roleAuthority(RoleAuthResquestEntity roleAuthEntity){
+		try {
+			logger.debug("角色权限维护，传入参数为：角色ID{},菜单ID{}",roleAuthEntity.getRoleId(),JSON.toJSONString(roleAuthEntity.getAuthIds()));
+			if(null!=roleAuthEntity.getRoleId()&&null!=roleAuthEntity.getAuthIds()){
+				for (int i = 0; i < roleAuthEntity.getAuthIds().length; i++) {
+					SystemRoleAuthorityEntity roleAuth=new SystemRoleAuthorityEntity();
+					roleAuth.setRoleId(roleAuthEntity.getRoleId());
+					roleAuth.setAuthId(roleAuthEntity.getAuthIds()[i]);
+					systemRoleAuthorityService.insertSelective(roleAuth);
+				}
+			}
+			return new SuccessResponseEntity();
+		} catch (Exception e) {
+			logger.error("菜单权限维护异常！",e);
+			return null;
+		}
 	}
 	
 

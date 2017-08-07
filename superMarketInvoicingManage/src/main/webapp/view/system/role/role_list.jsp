@@ -65,9 +65,11 @@
                  	}
                  }
                     ,{name:'操作',value:'id',type:"function", fun : function(obj){
+                    	var roleAuth="/invoicing/system/role/authority";
                     	var html="";
-	                		html += "  <a href='javascript:void(0)' class='btn-link' onclick='updateObj("+obj.id+")'>编辑</a>"
-	                		html += "  <a href='javascript:void(0)' class='btn-link' onclick='delObj("+obj.id+")'>删除</a>";
+                    		html += "  <a  class='btn-link role_auth' onclick='roleAuthObj("+obj.id+")'>角色授权</a>"
+	                		html += "  <a  class='btn-link' onclick='updateObj("+obj.id+")'>编辑</a>"
+	                		html += "  <a  class='btn-link' onclick='delObj("+obj.id+")'>删除</a>";
                     	return html;
                       }
                     }
@@ -80,10 +82,17 @@
 		$("#searchBtn").click(function(){
 			getData();
 			
-		})
-		
+		});
     });
     
+	//到角色授权页面
+	function roleAuthObj(roleId){
+		var url=_path+"/invoicing/system/role/authority?roleId="+roleId;
+		$.get(url,function(data){
+			$("#mian_div").html(data);
+		});
+	}
+	
   //点击：删除
     function delObj(id) {
     	callmodalFun('您确认删除该记录吗？',function(){
@@ -113,5 +122,5 @@
     			}
     		 });
     	});
-    }
+    } 
 </script>

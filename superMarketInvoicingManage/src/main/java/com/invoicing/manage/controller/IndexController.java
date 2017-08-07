@@ -145,10 +145,10 @@ public class IndexController {
 		logger.info(queryMenuRestult.size()+"");
 		for(SystemAuthorityEntity aut:queryMenuRestult){
 			
-			if(String.valueOf(aut.getPid()).equals("0")){
+			if(String.valueOf(aut.getpId()).equals("0")){
 				SystemAuthorityEntity menu=new SystemAuthorityEntity();
 				menu.setId(aut.getId());
-				menu.setPid(aut.getPid());
+				menu.setpId(aut.getpId());
 				menu.setName(aut.getName());
 				menu.setUrl(aut.getUrl());
 				menu.setIconClass(aut.getIconClass());
@@ -156,7 +156,7 @@ public class IndexController {
 			}else{
 				SystemAuthorityEntity sonMenu=new SystemAuthorityEntity();
 				sonMenu.setId(aut.getId());
-				sonMenu.setPid(aut.getPid());
+				sonMenu.setpId(aut.getpId());
 				sonMenu.setName(aut.getName());
 				sonMenu.setUrl(aut.getUrl());
 				sonMenu.setIconClass(aut.getIconClass());

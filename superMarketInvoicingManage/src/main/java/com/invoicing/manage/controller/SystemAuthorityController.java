@@ -1,6 +1,7 @@
 package com.invoicing.manage.controller; 
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -156,7 +157,7 @@ public class SystemAuthorityController {
 	 * @exception
 	 * @since JDK 1.7
 	 */
-	@RequestMapping(value = "/del", method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/del", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity delSystemAuthority(SystemAuthorityEntity SystemAuthorityEntity){
 		logger.debug("删除权限菜单，传入参数为："+JSON.toJSONString(SystemAuthorityEntity));
@@ -168,6 +169,24 @@ public class SystemAuthorityController {
 		}
 		return result;
 	}
+	
+	/**
+	 * loadZtree 属性菜单加载方法
+	 * @param SystemAuthorityEntity
+	 * @return 返回类型为 ResponseEntity
+	 * @exception
+	 * @since JDK 1.7
+	 */
+	@RequestMapping(value = "load/ztree", method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity loadZtree(){
+		Map<String,Object> queryMap=new HashMap<String,Object>();
+		List<SystemAuthorityEntity> getList=systemAuthorityService.getZTree(queryMap);
+		logger.debug("删除权限菜单，返回结果为："+JSON.toJSONString(getList));
+		return new SuccessResponseEntity(getList);
+	}
+	
+	
 	
 
 }

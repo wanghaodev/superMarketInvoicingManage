@@ -47,7 +47,7 @@ public class SystemAuthorityEntity extends BaseEntity {
     /**
      * 父权限id
      */
-    private Long pid;
+    private Long pId;
     /**
      * true表示显示菜单，false表示界面不显示菜单
      */
@@ -143,18 +143,6 @@ public class SystemAuthorityEntity extends BaseEntity {
         return this.orderbyId;
     }
 	/**
-	 * 设置父权限id
-	 */
-    public void setPid(Long pid) {
-        this.pid = pid;
-    }
-    /**
-     * 获取父权限id
-     */
-    public Long getPid() {
-        return this.pid;
-    }
-	/**
 	 * 设置true表示显示菜单，false表示界面不显示菜单
 	 */
     public void setShowMenu(String showMenu) {
@@ -214,7 +202,13 @@ public class SystemAuthorityEntity extends BaseEntity {
 	public void setParentName(String parentName) {
 		this.parentName = parentName;
 	}
-    
+	public Long getpId() {
+		return pId;
+	}
+	public void setpId(Long pId) {
+		this.pId = pId;
+	}
+
     
 
 }

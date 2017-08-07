@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/static/css/ace-rtl.min.css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/static/css/ace-skins.min.css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/static/css/style.css" />
+<link rel="stylesheet" href="<%=request.getContextPath() %>/static/js/ztree/zTreeStyle.css" type="text/css"/>
 <!--[if lte IE 8]>
   <link rel="stylesheet" href="<%=request.getContextPath()%>/static/css/ace-ie.min.css" />
 <![endif]-->
@@ -32,7 +33,7 @@
 <!--END GLOBAL STYLES -->
 <!-- GLOBAL SCRIPTS -->
 	<script src="<%=request.getContextPath()%>/static/plugins/jquery-1.11.3.min.js"></script>
-    <script src="<%=request.getContextPath()%>/static/plugins/jquery-2.0.3.min.js"></script>
+    <%-- <script src="<%=request.getContextPath()%>/static/plugins/jquery-2.0.3.min.js"></script> --%>
     <!-- END GLOBAL SCRIPTS -->
 
 <script type="text/javascript">
@@ -65,7 +66,13 @@ if("ontouchend" in document) document.write("<script src='<%=request.getContextP
 <!-- ace scripts -->
 
 <script src="<%=request.getContextPath()%>/static/js/ace-elements.min.js"></script>
-<script src="<%=request.getContextPath()%>/static/js/ace.min.js"></script>  
+<script src="<%=request.getContextPath()%>/static/js/ace.min.js"></script> 
+
+<!-- ztree start -->
+<script type="text/javascript" src="<%=request.getContextPath() %>/static/js/ztree/jquery.ztree.core-3.5.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/static/js/ztree/jquery.ztree.excheck-3.5.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/static/js/ztree/jquery.ztree.exedit-3.5.js"></script>
+<!-- ztree end  --> 
 
 <script>
 var _path ="<%=request.getContextPath()%>";

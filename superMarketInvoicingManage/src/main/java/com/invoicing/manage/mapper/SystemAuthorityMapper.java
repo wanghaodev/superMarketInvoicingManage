@@ -63,5 +63,15 @@ public interface SystemAuthorityMapper  {
 	 * @since JDK 1.7
 	 */
 	List<SystemAuthorityEntity> selectAuthMenuList(Long roleId);
+	
+	/**
+	 * getZTree 加载菜单树方法
+	 * @param params
+	 * @return 返回类型为 List<SystemAuthorityEntity>
+	 * @exception
+	 * @since JDK 1.7
+	 */
+	List<SystemAuthorityEntity> getZTree(Map<String,Object> params);
+	
 
 }

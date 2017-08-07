@@ -15,7 +15,7 @@
 		  <id column="updateTime" property="updateTime" /> 
 		  <id column="hierarchical" property="hierarchical" /> 
 		  <id column="orderbyId" property="orderbyId" /> 
-		  <id column="pid" property="pid" /> 
+		  <id column="pId" property="pId" /> 
 		  <id column="showMenu" property="showMenu" /> 
 		  <id column="showType" property="showType" /> 
 		  <id column="iconClass" property="iconClass" /> 
@@ -34,7 +34,7 @@
  		 systemAuthority.update_time as updateTime ,
  		 systemAuthority.hierarchical as hierarchical ,
  		 systemAuthority.orderby_id as orderbyId ,
- 		 systemAuthority.pid as pid ,
+ 		 systemAuthority.pid as pId ,
  		 systemAuthority.show_menu as showMenu ,
  		 systemAuthority.show_type as showType ,
  		 systemAuthority.icon_class as iconClass ,
@@ -91,7 +91,7 @@
  			 <if test="orderbyId != null">
  				 orderby_id,
  			  </if>
- 			 <if test="pid != null">
+ 			 <if test="pId != null">
  				 pid,
  			  </if>
  			 <if test="showMenu != null">
@@ -141,8 +141,8 @@
  			 <if test="orderbyId != null">
  				 #{orderbyId},
  			  </if>
- 			 <if test="pid != null">
- 				 #{pid},
+ 			 <if test="pId != null">
+ 				 #{pId},
  			  </if>
  			 <if test="showMenu != null">
  				 #{showMenu},
@@ -192,8 +192,8 @@
  			 <if test="orderbyId != null">
  				 orderby_id = #{orderbyId},
  			  </if>
- 			 <if test="pid != null">
- 				 pid = #{pid},
+ 			 <if test="pId != null">
+ 				 pid = #{pId},
  			  </if>
  			 <if test="showMenu != null">
  				 show_menu = #{showMenu},
@@ -215,7 +215,7 @@
 		parameterType="java.util.Map">
 		 SELECT
 			systemAuthority.id,
-			systemAuthority.pid,
+			systemAuthority.pid pId,
 			systemAuthority.name name,
 			pSystemAuthority. NAME parentName,
 			systemAuthority.url,
@@ -224,7 +224,7 @@
 			systemAuthority.creator creator
 		FROM
 			system_authority_tb systemAuthority
-		LEFT JOIN system_authority_tb pSystemAuthority ON systemAuthority.pid = pSystemAuthority.id
+		LEFT JOIN system_authority_tb pSystemAuthority ON systemAuthority.pId = pSystemAuthority.id
  		  where 1=1 
  		 <if test="id != null">
  			 and systemAuthority.id = #{id}
@@ -259,8 +259,8 @@
  		 <if test="orderbyId != null">
  			 and systemAuthority.orderby_id = #{orderbyId}
  		  </if>
- 		 <if test="pid != null">
- 			 and systemAuthority.pid = #{pid}
+ 		 <if test="pId != null">
+ 			 and systemAuthority.pId = #{pId}
  		  </if>
  		 <if test="showMenu != null">
  			 and systemAuthority.show_menu = #{showMenu}
@@ -281,7 +281,7 @@
 				COUNT(1)
 			FROM
 				system_authority_tb systemAuthority
-			LEFT JOIN system_authority_tb pSystemAuthority ON systemAuthority.pid = pSystemAuthority.id
+			LEFT JOIN system_authority_tb pSystemAuthority ON systemAuthority.pId = pSystemAuthority.id
  		    where 1=1 
  		 <if test="id != null">
  			 and systemAuthority.id = #{id}
@@ -316,8 +316,8 @@
  		 <if test="orderbyId != null">
  			 and systemAuthority.orderby_id = #{orderbyId}
  		  </if>
- 		 <if test="pid != null">
- 			 and systemAuthority.pid = #{pid}
+ 		 <if test="pId != null">
+ 			 and systemAuthority.pId = #{pId}
  		  </if>
  		 <if test="showMenu != null">
  			 and systemAuthority.show_menu = #{showMenu}
@@ -335,7 +335,7 @@
 	<!-- 主页菜单字段 -->
 	<resultMap type="com.invoicing.manage.entity.SystemAuthorityEntity" id="MainMenuResultMap">
     	 <id column="id" property="id" /> 
-    	 <id column="pid" property="pid" /> 
+    	 <id column="pId" property="pId" /> 
 		 <id column="name" property="name" /> 
 		 <id column="url" property="url" /> 
 		 <id column="iconClass" property="iconClass" />
@@ -344,7 +344,7 @@
 	<select id="selectAuthMenuList" resultMap="MainMenuResultMap" parameterType="java.lang.Long">
 		SELECT
 			auth.id id,
-			auth.pid pid,
+			auth.pid pId,
 			auth. NAME NAME,
 			auth.url url,
 			auth.icon_class iconClass
@@ -354,5 +354,16 @@
 		WHERE
 			auth.hasvalid = 1
 		AND roleAuth.role_id = #{roleId}
+	</select>
+	
+	<select id="getZTree" resultMap="BaseResultMap" parameterType="java.util.Map">
+		SELECT
+			auth.id,
+			auth.pid pId,
+			auth.`name` NAME
+		FROM
+			system_authority_tb auth
+		WHERE
+			auth.hasvalid = 1
 	</select>
 </mapper>

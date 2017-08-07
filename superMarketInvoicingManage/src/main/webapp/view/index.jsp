@@ -33,7 +33,7 @@
 				<ul class="nav ace-nav">
 					<li class="light-blue"><a data-toggle="dropdown" href="#"
 						class="dropdown-toggle"> <img class="nav-user-photo"
-							src="<%=request.getContextPath()%>/static/avatars/user.jpg" alt="Jason's Photo" /> <span
+							src="<%=request.getContextPath()%>/static/avatars/avatar2.png" alt="Jason's Photo" /> <span
 							class="user-info"> <small>欢迎光临,</small> ${userLoginInfo.userName}
 						</span> <i class="icon-caret-down"></i>
 					</a>
@@ -368,7 +368,7 @@ $(document).ready(function(){
 			        				 		+"</a>";
 			        		var son_menu="<ul class='submenu'>";		 
 			        		$.each(data.sonMenuList,function(index,sonObj){
-			        			if(sonObj.pid==obj.id){
+			        			if(sonObj.pId==obj.id){
 			        				son_menu+="<li class='menu_li'>"
 					        				+"	<a target='"+sonObj.url+"'> "
 					        				+"		<i class='icon-double-angle-right'></i> "

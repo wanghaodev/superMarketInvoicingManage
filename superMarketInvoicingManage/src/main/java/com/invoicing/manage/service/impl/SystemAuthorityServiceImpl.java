@@ -94,5 +94,10 @@ public class SystemAuthorityServiceImpl  implements SystemAuthorityService{
 			Long roleId) {
 		return   systemAuthorityMapper.selectAuthMenuList(roleId);
 	}
+	@Override
+	public List<SystemAuthorityEntity> getZTree(Map<String, Object> params) {
+		// TODO Auto-generated method stub
+		return systemAuthorityMapper.getZTree(params);
+	}
 
 }

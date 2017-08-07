@@ -1,22 +1,29 @@
 package com.invoicing.manage.controller; 
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.alibaba.dubbo.common.json.JSONArray;
 import com.alibaba.fastjson.JSON;
 import com.invoicing.manage.comment.entity.ResponseEntity;
 import com.invoicing.manage.comment.entity.SuccessResponseEntity;
+import com.invoicing.manage.entity.SystemAuthorityEntity;
 import com.invoicing.manage.entity.SystemRoleEntity;
 import com.invoicing.manage.request.UserRequestEntity;
+import com.invoicing.manage.service.SystemAuthorityService;
 import com.invoicing.manage.service.SystemRoleService;
 import com.snailf.platforms.common.entity.PageInfo;
  
@@ -34,10 +41,16 @@ import com.snailf.platforms.common.entity.PageInfo;
 @Controller
 @RequestMapping("/invoicing/system/role")
 public class SystemRoleController {
+	private static final List<SystemAuthorityEntity> JSONArray = null;
+
 	private static Logger logger=LoggerFactory.getLogger(SystemRoleController.class);
 	
 	@Autowired
 	private SystemRoleService systemRoleService;
+	
+	@Autowired
+	private SystemAuthorityService systemAuthorityService;
+	
 	
 	
 	/**
@@ -144,7 +157,18 @@ public class SystemRoleController {
 	}
 	
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
-	public ModelAndView goToUserDetail(){
+	@ResponseBody
+	public ResponseEntity goToUserDetail(Long roleId){
+		ResponseEntity res=null;
+		if(null!=roleId){
+			SystemRoleEntity resRoleEntity=systemRoleService.selectByPrimaryKey(roleId);
+			res.setData(resRoleEntity);
+		}
+		return res;
+	}
+	
+	@RequestMapping(value = "/detail", method = RequestMethod.POST)
+	public ModelAndView getRoleDetail(){
 		String url="/system/Role/Role_detail";
 		return new ModelAndView(url);
 	}
@@ -167,6 +191,45 @@ public class SystemRoleController {
 			result.setCode(0);
 		}
 		return result;
+	}
+	
+	/**
+	 * roleoleAuthority 到角色授权页面
+	 * @return 返回类型为 ModelAndView
+	 * @exception
+	 * @since JDK 1.7
+	 */
+	@RequestMapping(value = "/authority", method = RequestMethod.GET)
+	@ResponseBody
+	public ModelAndView roleAuthority(HttpServletRequest request,ModelMap modelMap){
+		Long roleId=Long.valueOf(request.getParameter("roleId"));
+		//根据角色ID查询角色信息
+		SystemRoleEntity resRoleEntity=systemRoleService.selectByPrimaryKey(roleId);
+		//根据角色Id查询角色权限信息
+		List<SystemAuthorityEntity> roleAuthList=systemAuthorityService.getAuthMenuList(roleId);
+		logger.info(JSON.toJSONString(roleAuthList));
+		modelMap.put("role", resRoleEntity);
+		modelMap.put("roleAuthList", JSON.toJSONString(roleAuthList));
+		String url="/system/role/role_authority";
+		return new ModelAndView(url,modelMap);
+	}
+	
+	/**
+	 * roleoleAuthority 角色授权异步提交方法
+	 * @param SystemRoleEntity
+	 * @return 返回类型为 ResponseEntity
+	 * @exception
+	 * @since JDK 1.7
+	 */
+	@RequestMapping(value = "/authority", method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity roleAuthority(SystemRoleEntity SystemRoleEntity){
+		logger.debug("角色权限维护，传入参数为："+JSON.toJSONString(SystemRoleEntity));
+		ResponseEntity result = null;
+		logger.debug("角色权限维护，返回结果为："+JSON.toJSONString(result));
+		//若返回结果不等于1时，返回前台统一转为0，提示信息不变。
+		return result;
+		
 	}
 	
 

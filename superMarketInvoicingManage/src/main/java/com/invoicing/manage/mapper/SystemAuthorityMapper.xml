@@ -218,6 +218,7 @@
 			systemAuthority.pid pId,
 			systemAuthority.name name,
 			pSystemAuthority. NAME parentName,
+			systemAuthority.hasvalid,
 			systemAuthority.url,
 			systemAuthority.create_time createTime,
 			systemAuthority.update_time updateTime,
@@ -365,5 +366,8 @@
 			system_authority_tb auth
 		WHERE
 			auth.hasvalid = 1
+		<if test="pId != null">
+ 			 and auth.pId = #{pId}
+ 		  </if>
 	</select>
 </mapper>

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>菜单添加页</title>
+<title>菜单编辑页</title>
 </head>
 <body>
 <div class="container-fluid">
@@ -12,10 +12,11 @@
 		<span>当前位置：</span>
 		<li><a href="/index">系统管理</a></li>
 		<li><a href="####">菜单管理</a></li>
-		<li><a href="####">添加菜单</a></li>
+		<li><a href="####">编辑菜单</a></li>
 	</ol>
 	<!-- user-form start  -->
 	<form class="add-form" id="authority-add-form" >
+	 <input type="hidden" name="id" value="${auth.id}">
         	<div class="panel panel-default">
 	            <div class="panel-heading">新增菜单</div>
 	            <div class="panel-body table_add">
@@ -35,7 +36,7 @@
 		                	<th><span class="required">*</span>菜单名称</th>
 		                    <td>
 		                        <div class="form-group ">
-		                            <input type="text" class="form-control"  placeholder="菜单名称" name="name" value="">
+		                            <input type="text" class="form-control"  placeholder="菜单名称" name="name" value="${auth.name}">
 		                        </div>
 		                    </td>
 		                </tr>
@@ -43,13 +44,13 @@
 		                	<th>url</th>
 		                    <td>
 		                        <div class="form-group ">
-		                            <input type="text" class="form-control"  name="url" value="">
+		                            <input type="text" class="form-control"  name="url" value="${auth.url}">
 		                        </div>
 		                    </td>
 		                    <th><span class="required"></span>菜单图标样式</th>
 		                    <td>
 		                        <div class="form-group ">
-		                            <input type="text" class="form-control"  placeholder="iconClass"  name="iconClass" value="">
+		                            <input type="text" class="form-control"  placeholder="iconClass"  name="iconClass" value="${auth.iconClass}">
 		                        </div>
 		                    </td>
 		                </tr>
@@ -78,18 +79,18 @@
 	$("#addBtn").click(function (){
 	     $.ajax({
  			type : "post",
- 			url : _path+"/invoicing/system/authority/add?__"+(new Date()).getTime(),
+ 			url : _path+"/invoicing/system/authority/update?__"+(new Date()).getTime(),
  			 data:$('#authority-add-form').serialize(),// 你的formid
               async:false,
  			 	success : function(data) {
  				if(data.code==1){
- 					alert("菜单保存成功！");
+ 					alert("菜单编辑成功！");
  					var url=_path+"/invoicing/system/authority/list";
  					$.get(url,function(data){
  						$("#mian_div").html(data);
  					});
  				}else{
- 					alert("菜单保存失败");
+ 					alert("菜单编辑失败");
  				}
  			}
          });
@@ -105,14 +106,21 @@
 	
 	//加载父菜单
 	function loadPAuth(){
-		var authList='${pAuthList}';
+		var authPId="${auth.id}";
+		var authList='${authList}';
 		//遍历并组装
 		var selectParenAuth=$("#pId");
 		var optionStr="";
 		$.each(JSON.parse(authList),function(index,obj){
-			optionStr+="<option value='"
+			if(authPId==obj.pId){
+				optionStr+="<option value=' checked='checked'" 
 					 +obj.id+"' >"
 					 +obj.name+"</option>";
+			}else{
+				optionStr+="<option value='"
+					 +obj.id+"' >"
+					 +obj.name+"</option>";
+			}
 		});
 		selectParenAuth.append(optionStr);
 	}

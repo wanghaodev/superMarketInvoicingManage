@@ -24,7 +24,15 @@
 		<div class="panel-footer">
 			<button type="button" id="searchBtn" class="btn btn-primary">
 				<i class="icon_search"></i>
-				搜查
+				查询
+			</button>
+			<button type="button" id="resetBtn" class="btn btn-success">
+				<i class="icon-reply icon-only"></i>
+				重置
+			</button>
+			<button type="button" id="addBtn" class="btn btn-primary">
+			<i class="icon_add"></i>
+				新增
 			</button>
 		</div>
 	</div>
@@ -46,7 +54,7 @@
         function getData(){
             var _options ={
                 url:_path+"/invoicing/system/authority/list"
-                ,checkAll:true
+                ,checkAll:false
                 //查询条件
                 ,data:{'name':$("[name=name]").val()
                 	  ,'pName':$("[name=pName]").val()}
@@ -73,11 +81,11 @@
                     	}
                     }
                     ,{name:'更新时间',value:'updateTime'}
-                    ,{name:'状态',value:'state',type:"function", fun : function(obj){
+                    ,{name:'状态',value:'hasvalid',type:"function", fun : function(obj){
 	                    	var html="";
-	                    	if(obj.state == 0){
+	                    	if(obj.hasvalid == 0){
 	                    		html += "停用";
-	                    	}else if(obj.state==1){
+	                    	}else if(obj.hasvalid==1){
 	                    		html += "开启";
 	                    	}
 	                    	return html;
@@ -103,12 +111,26 @@
 		
     });
     
+	  //到新增页面
+    $("#addBtn").click(function(){
+    	var url=_path+"/invoicing/system/authority/add";
+		$.get(url,function(data){
+			$("#mian_div").html(data);
+		});    
+    });
+	 
+	 function updateObj(id){
+		 var url=_path+"/invoicing/system/authority/update?id="+id;
+			$.get(url,function(data){
+				$("#mian_div").html(data);
+			});   
+	 } 
   //点击：删除
     function delObj(id) {
     	callmodalFun('您确认删除该记录吗？',function(){
     		$.ajax({
     			type : "post",
-    			url : _path+"/goods/brand/delete?__"+(new Date()).getTime(),
+    			url : _path+"/invoicing/system/authority/del",
     			data : {
     				'id' : id
     			},
@@ -121,8 +143,11 @@
     				//若执行成功的话，则隐藏进度条提示
     				if (data != null && data != 'undefined'
     						&& data == 1) {
-    					var jumpUrl = '/goods/brand/list';
-    					timedTaskFun(1000,'菜单删除成功',jumpUrl,'correct');
+    					timedTaskFun(1000,'菜单删除成功',"",'correct');
+    					var url=_path+"/invoicing/system/authority/list";
+    					$.get(url,function(data){
+    						$("#mian_div").html(data);
+    					});   
     				} else if (data == 0) {
     					timedTaskFun(1000,'菜单删除失败','','err');
     				} else if(data == -2) {

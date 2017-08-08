@@ -55,7 +55,7 @@
         function getData(){
             var _options ={
                 url:_path+"/invoicing/system/user/list"
-                ,checkAll:true
+                ,checkAll:false
                 //查询条件
                 ,data:{'userName':$("[name=userName]").val()
                 	  ,'phone':$("[name=phone]").val()}
@@ -139,6 +139,7 @@
 			$("#mian_div").html(data);
 		});    	
     }
+    
     //到新增页面
     $("#addBtn").click(function(){
     	var url=_path+"/invoicing/system/user/add";

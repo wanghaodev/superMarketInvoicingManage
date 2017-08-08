@@ -165,49 +165,19 @@
  		 </set>
      where id = #{id}
 	</update>
-	
+	<sql id="whereSQL">
+			and systemRole.hasvalid in(1,2)
+ 		 <if test="roleName != null">
+ 			 and systemRole.role_name = #{roleName}
+ 		  </if>
+	</sql>
 	 <select id="getList" resultMap="BaseResultMap"
 		parameterType="java.util.Map">
 		 select 
  		  <include refid="Base_Column_List" />
  		  from system_role_tb systemRole
  		  where 1=1 
- 		 <if test="id != null">
- 			 and systemRole.id = #{id}
- 		  </if>
- 		 <if test="roleName != null">
- 			 and systemRole.role_name = #{roleName}
- 		  </if>
- 		 <if test="roleDesc != null">
- 			 and systemRole.role_desc = #{roleDesc}
- 		  </if>
- 		 <if test="createTime != null">
- 			 and systemRole.create_time = #{createTime}
- 		  </if>
- 		 <if test="creator != null">
- 			 and systemRole.creator = #{creator}
- 		  </if>
- 		 <if test="creatorId != null">
- 			 and systemRole.creator_id = #{creatorId}
- 		  </if>
- 		 <if test="hasvalid != null">
- 			 and systemRole.hasvalid = #{hasvalid}
- 		  </if>
- 		 <if test="updateTime != null">
- 			 and systemRole.update_time = #{updateTime}
- 		  </if>
- 		 <if test="updator != null">
- 			 and systemRole.updator = #{updator}
- 		  </if>
- 		 <if test="updatorId != null">
- 			 and systemRole.updator_id = #{updatorId}
- 		  </if>
- 		 <if test="directlyOrgId != null">
- 			 and systemRole.directly_org_id = #{directlyOrgId}
- 		  </if>
- 		 <if test="hierarchyOrgId != null">
- 			 and systemRole.hierarchy_org_id = #{hierarchyOrgId}
- 		  </if>
+ 		  <include refid="whereSQL"/>
 	</select>
 	 <select id="getListCount" resultType="java.lang.Integer"
 		parameterType="java.util.Map">
@@ -215,41 +185,6 @@
  		  count(systemRole.id)
  		  from system_role_tb systemRole
  		  where 1=1 
- 		 <if test="id != null">
- 			 and systemRole.id = #{id}
- 		  </if>
- 		 <if test="roleName != null">
- 			 and systemRole.role_name = #{roleName}
- 		  </if>
- 		 <if test="roleDesc != null">
- 			 and systemRole.role_desc = #{roleDesc}
- 		  </if>
- 		 <if test="createTime != null">
- 			 and systemRole.create_time = #{createTime}
- 		  </if>
- 		 <if test="creator != null">
- 			 and systemRole.creator = #{creator}
- 		  </if>
- 		 <if test="creatorId != null">
- 			 and systemRole.creator_id = #{creatorId}
- 		  </if>
- 		 <if test="hasvalid != null">
- 			 and systemRole.hasvalid = #{hasvalid}
- 		  </if>
- 		 <if test="updateTime != null">
- 			 and systemRole.update_time = #{updateTime}
- 		  </if>
- 		 <if test="updator != null">
- 			 and systemRole.updator = #{updator}
- 		  </if>
- 		 <if test="updatorId != null">
- 			 and systemRole.updator_id = #{updatorId}
- 		  </if>
- 		 <if test="directlyOrgId != null">
- 			 and systemRole.directly_org_id = #{directlyOrgId}
- 		  </if>
- 		 <if test="hierarchyOrgId != null">
- 			 and systemRole.hierarchy_org_id = #{hierarchyOrgId}
- 		  </if>
+ 		 <include refid="whereSQL"/>
 	</select>
 </mapper>

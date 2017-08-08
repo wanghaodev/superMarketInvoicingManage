@@ -4,65 +4,37 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>用户添加页</title>
+<title>角色添加页</title>
 </head>
 <body>
 <div class="container-fluid">
 	<ol class="breadcrumb">
 		<span>当前位置：</span>
 		<li><a href="/index">系统管理</a></li>
-		<li><a href="####">用户管理</a></li>
-		<li><a href="####">添加用户</a></li>
+		<li><a href="####">角色管理</a></li>
+		<li><a href="####">添加角色</a></li>
 	</ol>
 	<!-- user-form start  -->
-	<form class="add-form" id="user-add-form" >
+	<form class="add-form" id="role-add-form" >
         	<div class="panel panel-default">
-	            <div class="panel-heading">新增用户</div>
+	            <div class="panel-heading">新增角色</div>
 	            <div class="panel-body table_add">
 		            <table class="table half-table">
 		                <tbody>
 		                <tr>
-		                	<th><span class="required">*</span>用户姓名</th>
+		                	<th><span class="required">*</span>角色名称</th>
 		                    <td>
 		                        <div class="form-group ">
-		                            <input type="text" class="form-control"  placeholder="最多可输入20个汉字" name="userName" value="">
+		                            <input type="text" class="form-control"  placeholder="角色名称" name="roleName" value="">
 		                        </div>
 		                    </td>
-		                    <th><span class="required">*</span>登录账号</th>
+		                    <th><span class="required"></span>角色名描述</th>
 		                    <td>
 		                        <div class="form-group ">
-		                            <input type="text" class="form-control"  placeholder="请输入字母"  name="loginName" value="">
-		                        </div>
-		                    </td>
-		                </tr>
-		                <tr>
-		                	<th><span class="required">*</span>登录密码</th>
-		                    <td>
-		                        <div class="form-group ">
-		                            <input type="text" class="form-control"  placeholder="请输入数字，字母组成的8位数" name="password" value="">
-		                        </div>
-		                    </td>
-		                    <th><span class="required">*</span>手机号码</th>
-		                    <td>
-		                        <div class="form-group ">
-		                            <input type="text" class="form-control"  placeholder="请手机号"  name="phone" value="">
+		                            <input type="text" class="form-control"  placeholder="角色名描述"  name="roleDesc" value="">
 		                        </div>
 		                    </td>
 		                </tr>
-		                <tr>
-		                <th>销售类型</th>
-		                     <td>
-		                        <div class="form-group ">
-		                            <select class="form-control"  name="unitType" id="unitType">
-					        			<option value="0" selected="selected">关闭</option>
-					        			<option value="1">开启</option>
-					        		</select>
-		                        </div>
-		                     </td>
-		                     <th></th>
-			                 <td>
-			                 </td>
-		                    </tr>
 		                </tbody>
 		            </table>
 			        <div class="col-md-12 text-center btn-margin">
@@ -70,7 +42,7 @@
 					        <i class="icon-ok bigger-110"></i>           
 					                    提交
 	                    </button>
-	                    <button class="btn" type="button" name="cancelButton">
+	                    <button class="btn" type="button" id="cancelBtn" name="cancelButton">
 	                    	<i class="icon-undo bigger-110"></i>  
 	                    	取消
 	                    </button>
@@ -84,17 +56,29 @@
 	$("#addBtn").click(function (){
 	     $.ajax({
  			type : "post",
- 			url : _path+"/invoicing/system/role/authority?__"+(new Date()).getTime(),
- 			 data:$('#roleAuthForm').serialize(),// 你的formid
+ 			url : _path+"/invoicing/system/role/add?__"+(new Date()).getTime(),
+ 			 data:$('#role-add-form').serialize(),// 你的formid
               async:false,
  			 	success : function(data) {
  				if(data.code==1){
- 					alert("菜单维护成功！");
+ 					alert("角色保存成功！");
+ 					var url=_path+"/invoicing/system/role/page/list";
+ 					$.get(url,function(data){
+ 						$("#mian_div").html(data);
+ 					});
  				}else{
- 					alert("菜单维护失败，请联系管理员！");
+ 					alert("角色保存失败");
  				}
  			}
          });
+	});
+	
+	//返回列表页
+	$("#cancelBtn").click(function (){
+		var url=_path+"/invoicing/system/role/page/list";
+		$.get(url,function(data){
+			$("#mian_div").html(data);
+		});
 	});
 </script>
 </body>

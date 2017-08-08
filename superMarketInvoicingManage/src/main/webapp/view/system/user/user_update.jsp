@@ -43,11 +43,11 @@
 		                            <input type="text" class="form-control"  placeholder="请手机号"  name="phone" value="${user.phone}">
 		                        </div>
 		                    </td>
-		                   <th>销售类型</th>
+		                   <th>状态</th>
 		                     <td>
 		                        <div class="form-group ">
 		                            <select class="form-control"  name="unitType" id="unitType">
-					        			<option value="0" >关闭</option>
+					        			<option value="0" >停用</option>
 					        			<option value="1"  selected="selected">开启</option>
 					        		</select>
 		                        </div>

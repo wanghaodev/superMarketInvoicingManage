@@ -1,5 +1,6 @@
 package com.invoicing.manage.controller; 
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,11 +14,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.dubbo.common.json.JSONArray;
 import com.alibaba.fastjson.JSON;
+import com.invoicing.manage.comment.entity.ErrorResponseEntity;
 import com.invoicing.manage.comment.entity.ResponseEntity;
 import com.invoicing.manage.comment.entity.SuccessResponseEntity;
 import com.invoicing.manage.entity.SystemAuthorityEntity;
@@ -29,7 +32,6 @@ import com.invoicing.manage.service.SystemAuthorityService;
 import com.invoicing.manage.service.SystemRoleAuthorityService;
 import com.invoicing.manage.service.SystemRoleService;
 import com.invoicing.manage.util.StringUtil;
-import com.snailf.platforms.common.entity.ErrorResponseEntity;
 import com.snailf.platforms.common.entity.PageInfo;
  
 /** 
@@ -116,15 +118,17 @@ public class SystemRoleController {
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity addSystemRole(SystemRoleEntity SystemRoleEntity){
-		logger.debug("新建角色，传入参数为："+JSON.toJSONString(SystemRoleEntity));
-		ResponseEntity result = null;
-		logger.debug("新建角色，返回结果为："+JSON.toJSONString(result));
-		//若返回结果不等于1时，返回前台统一转为0，提示信息不变。
-		if(result.getCode()==-1){
-			result.setCode(0);
+	public ResponseEntity addSystemRole(SystemRoleEntity roleEntity){
+		try {
+			logger.debug("新建角色，传入参数为："+JSON.toJSONString(roleEntity));
+			int result = systemRoleService.insertSelective(roleEntity);
+			logger.debug("新建角色，返回结果为："+JSON.toJSONString(result));
+			return new SuccessResponseEntity();
+		} catch (Exception e) {
+			logger.info("角色添加异常，{}",e);
+			return new ErrorResponseEntity();
 		}
-		return result;
+		
 		
 	}
 	
@@ -135,9 +139,13 @@ public class SystemRoleController {
 	 * @since JDK 1.7
 	 */
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public ModelAndView goToUserUpdate(){
-		String url="/system/Role/Role_update";
-		return new ModelAndView(url);
+	public ModelAndView goToUserUpdate(@RequestParam Long id,ModelMap modelMap){
+		String url="/system/role/role_update";
+		SystemRoleEntity roleEntity=systemRoleService.selectByPrimaryKey(id);
+		if(null!=roleEntity){
+			modelMap.put("role", roleEntity);
+		}
+		return new ModelAndView(url,modelMap);
 	}
 	
 	/**
@@ -149,36 +157,17 @@ public class SystemRoleController {
 	 */
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity updateSystemRole(SystemRoleEntity SystemRoleEntity){
-		logger.debug("编辑角色，传入参数为："+JSON.toJSONString(SystemRoleEntity));
-		ResponseEntity result = null;
-		logger.debug("编辑角色，返回结果为："+JSON.toJSONString(result));
-		//若返回结果不等于1时，返回前台统一转为0，提示信息不变。
-		if(result.getCode()==-1){
-			result.setCode(0);
+	public ResponseEntity updateSystemRole(SystemRoleEntity roleEntity){
+		try {
+			logger.debug("编辑角色，传入参数为："+JSON.toJSONString(roleEntity));
+			int result = systemRoleService.updateByPrimaryKeySelective(roleEntity);
+			logger.debug("编辑角色，返回结果为："+JSON.toJSONString(result));
+			return new SuccessResponseEntity();
+		} catch (Exception e) {
+			logger.info("角色编辑异常，{}",e);
+			return new ErrorResponseEntity();
 		}
-		if(result.getCode()==-2){
-			result.setCode(0);
-		}
-		return result;
 		
-	}
-	
-	@RequestMapping(value = "/detail", method = RequestMethod.GET)
-	@ResponseBody
-	public ResponseEntity goToUserDetail(Long roleId){
-		ResponseEntity res=null;
-		if(null!=roleId){
-			SystemRoleEntity resRoleEntity=systemRoleService.selectByPrimaryKey(roleId);
-			res.setData(resRoleEntity);
-		}
-		return res;
-	}
-	
-	@RequestMapping(value = "/detail", method = RequestMethod.POST)
-	public ModelAndView getRoleDetail(){
-		String url="/system/Role/Role_detail";
-		return new ModelAndView(url);
 	}
 	
 	/**
@@ -190,15 +179,22 @@ public class SystemRoleController {
 	 */
 	@RequestMapping(value = "/del", method = {RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
-	public ResponseEntity delSystemRole(SystemRoleEntity SystemRoleEntity){
-		logger.debug("删除角色，传入参数为："+JSON.toJSONString(SystemRoleEntity));
-		ResponseEntity result = null;
-		logger.debug("删除角色，返回结果为："+JSON.toJSONString(result));
-		//若返回结果不等于1时，返回前台统一转为0，提示信息不变。
-		if(result.getCode()==-2){
-			result.setCode(0);
+	public ResponseEntity delSystemRole(@RequestParam Long id){
+		try {
+			if(null!=String.valueOf(id)){
+				SystemRoleEntity roleEntity=new SystemRoleEntity ();
+				roleEntity.setId(id);
+				roleEntity.setHasvalid(String.valueOf(3));
+				roleEntity.setUpdateTime(new Date());
+				logger.debug("删除角色，传入参数为："+JSON.toJSONString(roleEntity));
+				int result = systemRoleService.updateByPrimaryKeySelective(roleEntity);
+				logger.debug("删除角色，返回结果为："+JSON.toJSONString(result));
+			}
+			return new SuccessResponseEntity();
+		} catch (Exception e) {
+			logger.info("角色删除异常，{}",e);
+			return new ErrorResponseEntity();
 		}
-		return result;
 	}
 	
 	/**

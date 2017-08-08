@@ -1,5 +1,6 @@
 package com.invoicing.manage.controller; 
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,12 +9,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
+import com.invoicing.manage.comment.entity.ErrorResponseEntity;
 import com.invoicing.manage.comment.entity.ResponseEntity;
 import com.invoicing.manage.comment.entity.SuccessResponseEntity;
 import com.invoicing.manage.entity.SystemAuthorityEntity;
@@ -82,9 +86,15 @@ public class SystemAuthorityController {
 	 * @since JDK 1.7
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public ModelAndView goToUserAdd(){
+	public ModelAndView goToUserAdd(ModelMap modelMap){
+		Map<String,Object> queryMap=new HashMap<String, Object>();
+		queryMap.put("pId", 0);
+		List<SystemAuthorityEntity> queryAuthListRestult=systemAuthorityService.getZTree(queryMap);
 		String url="/system/authority/authority_add";
-		return new ModelAndView(url);
+		if(queryAuthListRestult.size()>0){
+			modelMap.put("pAuthList", JSON.toJSON(queryAuthListRestult));
+		}
+		return new ModelAndView(url,modelMap);
 	}
 	
 	/**
@@ -96,16 +106,16 @@ public class SystemAuthorityController {
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity addSystemAuthority(SystemAuthorityEntity SystemAuthorityEntity){
-		logger.debug("新建权限菜单，传入参数为："+JSON.toJSONString(SystemAuthorityEntity));
-		ResponseEntity result = null;
-		logger.debug("新建权限菜单，返回结果为："+JSON.toJSONString(result));
-		//若返回结果不等于1时，返回前台统一转为0，提示信息不变。
-		if(result.getCode()==-1){
-			result.setCode(0);
+	public ResponseEntity addSystemAuthority(SystemAuthorityEntity systemAuthorityEntity){
+		try {
+			logger.debug("新建权限菜单，传入参数为："+JSON.toJSONString(systemAuthorityEntity));
+			int insertRest=systemAuthorityService.insertSelective(systemAuthorityEntity);
+			logger.debug("新建权限菜单，返回结果为："+JSON.toJSONString(insertRest));
+			return new SuccessResponseEntity();
+		} catch (Exception e) {
+			logger.error("插入菜单异常，"+e);
+			return new ErrorResponseEntity();
 		}
-		return result;
-		
 	}
 	
 	/**
@@ -115,9 +125,22 @@ public class SystemAuthorityController {
 	 * @since JDK 1.7
 	 */
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public ModelAndView goToUserUpdate(){
+	@ResponseBody
+	public ModelAndView goToUserUpdate(@RequestParam Long id,ModelMap modelMap){
+		//查询上级菜单
+		Map<String,Object> queryMap=new HashMap<String, Object>();
+		queryMap.put("pId", 0);
+		List<SystemAuthorityEntity> queryAuthListRestult=systemAuthorityService.getZTree(queryMap);
+		//查询详情
+		SystemAuthorityEntity systemAuthorityEntity=systemAuthorityService.selectByPrimaryKey(id);
+		if(null!=systemAuthorityEntity){
+			modelMap.put("auth", systemAuthorityEntity);
+		}
+		if(null!=queryAuthListRestult){
+			modelMap.put("authList", JSON.toJSON(queryAuthListRestult));
+		}
 		String url="/system/authority/authority_update";
-		return new ModelAndView(url);
+		return new ModelAndView(url,modelMap);
 	}
 	
 	/**
@@ -129,25 +152,17 @@ public class SystemAuthorityController {
 	 */
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity updateSystemAuthority(SystemAuthorityEntity SystemAuthorityEntity){
-		logger.debug("编辑权限菜单，传入参数为："+JSON.toJSONString(SystemAuthorityEntity));
-		ResponseEntity result = null;
-		logger.debug("编辑权限菜单，返回结果为："+JSON.toJSONString(result));
-		//若返回结果不等于1时，返回前台统一转为0，提示信息不变。
-		if(result.getCode()==-1){
-			result.setCode(0);
+	public ResponseEntity updateSystemAuthority(SystemAuthorityEntity systemAuthorityEntity){
+		try {
+			logger.debug("编辑菜单，传入参数为："+JSON.toJSONString(systemAuthorityEntity));
+			int insertRest=systemAuthorityService.updateByPrimaryKeySelective(systemAuthorityEntity);
+			logger.debug("编辑菜单，返回结果为："+JSON.toJSONString(insertRest));
+			return new SuccessResponseEntity();
+		} catch (Exception e) {
+			logger.error("编辑异常，"+e);
+			return new ErrorResponseEntity();
 		}
-		if(result.getCode()==-2){
-			result.setCode(0);
-		}
-		return result;
 		
-	}
-	
-	@RequestMapping(value = "/detail", method = RequestMethod.GET)
-	public ModelAndView goToUserDetail(){
-		String url="/system/authority/authority_detail";
-		return new ModelAndView(url);
 	}
 	
 	/**
@@ -159,15 +174,20 @@ public class SystemAuthorityController {
 	 */
 	@RequestMapping(value = "/del", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity delSystemAuthority(SystemAuthorityEntity SystemAuthorityEntity){
-		logger.debug("删除权限菜单，传入参数为："+JSON.toJSONString(SystemAuthorityEntity));
-		ResponseEntity result = null;
-		logger.debug("删除权限菜单，返回结果为："+JSON.toJSONString(result));
-		//若返回结果不等于1时，返回前台统一转为0，提示信息不变。
-		if(result.getCode()==-2){
-			result.setCode(0);
+	public ResponseEntity delSystemAuthority(@RequestParam Long id){
+		try {
+			SystemAuthorityEntity systemAuthorityEntity=new SystemAuthorityEntity ();
+			systemAuthorityEntity.setId(id);
+			systemAuthorityEntity.setHasvalid(String.valueOf(0));
+			systemAuthorityEntity.setUpdateTime(new Date());
+			logger.debug("删除菜单，传入参数为："+JSON.toJSONString(systemAuthorityEntity));
+			int insertRest=systemAuthorityService.updateByPrimaryKeySelective(systemAuthorityEntity);
+			logger.debug("删除菜单，返回结果为："+JSON.toJSONString(insertRest));
+			return new SuccessResponseEntity();
+		} catch (Exception e) {
+			logger.error("删除异常，"+e);
+			return new ErrorResponseEntity();
 		}
-		return result;
 	}
 	
 	/**
@@ -185,6 +205,8 @@ public class SystemAuthorityController {
 		logger.debug("删除权限菜单，返回结果为："+JSON.toJSONString(getList));
 		return new SuccessResponseEntity(getList);
 	}
+	
+	
 	
 	
 	

@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.invoicing.manage.mapper.GoodsBrandMapper">
+
+	 <resultMap type="com.invoicing.manage.entity.GoodsBrandEntity" id="BaseResultMap">
+    	 <id column="id" property="id" /> 
+		  <id column="brandNumber" property="brandNumber" /> 
+		  <id column="brandName" property="brandName" /> 
+		  <id column="brandEnglishName" property="brandEnglishName" /> 
+		  <id column="brandInitial" property="brandInitial" /> 
+		  <id column="state" property="state" /> 
+		  <id column="isDelete" property="isDelete" /> 
+		  <id column="directlyOrgId" property="directlyOrgId" /> 
+		  <id column="hierarchyId" property="hierarchyId" /> 
+		  <id column="creatorId" property="creatorId" /> 
+		  <id column="creator" property="creator" /> 
+		  <id column="createTime" property="createTime" /> 
+		  <id column="updatorId" property="updatorId" /> 
+		  <id column="updator" property="updator" /> 
+		  <id column="updateTime" property="updateTime" /> 
+		  <id column="extendsParams" property="extendsParams" /> 
+		  <id column="remark1" property="remark1" /> 
+		  <id column="remark2" property="remark2" /> 
+  
+    </resultMap>
+    <sql id="Base_Column_List">
+    	 goodsBrand.id as id ,
+ 		 goodsBrand.brand_number as brandNumber ,
+ 		 goodsBrand.brand_name as brandName ,
+ 		 goodsBrand.brand_english_name as brandEnglishName ,
+ 		 goodsBrand.brand_initial as brandInitial ,
+ 		 goodsBrand.state as state ,
+ 		 goodsBrand.is_delete as isDelete ,
+ 		 goodsBrand.directly_org_id as directlyOrgId ,
+ 		 goodsBrand.hierarchy_id as hierarchyId ,
+ 		 goodsBrand.creator_id as creatorId ,
+ 		 goodsBrand.creator as creator ,
+ 		 goodsBrand.create_time as createTime ,
+ 		 goodsBrand.updator_id as updatorId ,
+ 		 goodsBrand.updator as updator ,
+ 		 goodsBrand.update_time as updateTime ,
+ 		 goodsBrand.extends_params as extendsParams ,
+ 		 goodsBrand.remark1 as remark1 ,
+ 		 goodsBrand.remark2 as remark2
+    </sql>
+    
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		 select 
+ 		  <include refid="Base_Column_List" />
+ 		  from goods_brand_tb goodsBrand
+ 		  where goodsBrand.id = #{ id }
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		 delete 
+ 		  from goods_brand_tb
+ 		  where id = #{ id }
+	</delete>
+	
+	<insert id="insertSelective" parameterType="com.invoicing.manage.entity.GoodsBrandEntity">
+		 insert into  goods_brand_tb
+ 		  <trim prefix="(" suffix=")" suffixOverrides=","> 
+ 			 <if test="id != null">
+ 				 id,
+ 			  </if>
+ 			 <if test="brandNumber != null">
+ 				 brand_number,
+ 			  </if>
+ 			 <if test="brandName != null">
+ 				 brand_name,
+ 			  </if>
+ 			 <if test="brandEnglishName != null">
+ 				 brand_english_name,
+ 			  </if>
+ 			 <if test="brandInitial != null">
+ 				 brand_initial,
+ 			  </if>
+ 			 <if test="state != null">
+ 				 state,
+ 			  </if>
+ 			 <if test="isDelete != null">
+ 				 is_delete,
+ 			  </if>
+ 			 <if test="directlyOrgId != null">
+ 				 directly_org_id,
+ 			  </if>
+ 			 <if test="hierarchyId != null">
+ 				 hierarchy_id,
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 creator_id,
+ 			  </if>
+ 			 <if test="creator != null">
+ 				 creator,
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 create_time,
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 updator_id,
+ 			  </if>
+ 			 <if test="updator != null">
+ 				 updator,
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 update_time,
+ 			  </if>
+ 			 <if test="extendsParams != null">
+ 				 extends_params,
+ 			  </if>
+ 			 <if test="remark1 != null">
+ 				 remark1,
+ 			  </if>
+ 			 <if test="remark2 != null">
+ 				 remark2,
+ 			  </if>
+ 		  </trim>
+ 		  <trim prefix="values (" suffix=")" suffixOverrides="," >
+ 			 <if test="id != null">
+ 				 #{id},
+ 			  </if>
+ 			 <if test="brandNumber != null">
+ 				 #{brandNumber},
+ 			  </if>
+ 			 <if test="brandName != null">
+ 				 #{brandName},
+ 			  </if>
+ 			 <if test="brandEnglishName != null">
+ 				 #{brandEnglishName},
+ 			  </if>
+ 			 <if test="brandInitial != null">
+ 				 #{brandInitial},
+ 			  </if>
+ 			 <if test="state != null">
+ 				 #{state},
+ 			  </if>
+ 			 <if test="isDelete != null">
+ 				 #{isDelete},
+ 			  </if>
+ 			 <if test="directlyOrgId != null">
+ 				 #{directlyOrgId},
+ 			  </if>
+ 			 <if test="hierarchyId != null">
+ 				 #{hierarchyId},
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 #{creatorId},
+ 			  </if>
+ 			 <if test="creator != null">
+ 				 #{creator},
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 #{createTime},
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 #{updatorId},
+ 			  </if>
+ 			 <if test="updator != null">
+ 				 #{updator},
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 #{updateTime},
+ 			  </if>
+ 			 <if test="extendsParams != null">
+ 				 #{extendsParams},
+ 			  </if>
+ 			 <if test="remark1 != null">
+ 				 #{remark1},
+ 			  </if>
+ 			 <if test="remark2 != null">
+ 				 #{remark2},
+ 			  </if>
+ 		  </trim>
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="com.invoicing.manage.entity.GoodsBrandEntity">
+		 update   goods_brand_tb
+ 		 <set>
+ 			 <if test="brandNumber != null">
+ 				 brand_number = #{brandNumber},
+ 			  </if>
+ 			 <if test="brandName != null">
+ 				 brand_name = #{brandName},
+ 			  </if>
+ 			 <if test="brandEnglishName != null">
+ 				 brand_english_name = #{brandEnglishName},
+ 			  </if>
+ 			 <if test="brandInitial != null">
+ 				 brand_initial = #{brandInitial},
+ 			  </if>
+ 			 <if test="state != null">
+ 				 state = #{state},
+ 			  </if>
+ 			 <if test="isDelete != null">
+ 				 is_delete = #{isDelete},
+ 			  </if>
+ 			 <if test="directlyOrgId != null">
+ 				 directly_org_id = #{directlyOrgId},
+ 			  </if>
+ 			 <if test="hierarchyId != null">
+ 				 hierarchy_id = #{hierarchyId},
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 creator_id = #{creatorId},
+ 			  </if>
+ 			 <if test="creator != null">
+ 				 creator = #{creator},
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 create_time = #{createTime},
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 updator_id = #{updatorId},
+ 			  </if>
+ 			 <if test="updator != null">
+ 				 updator = #{updator},
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 update_time = #{updateTime},
+ 			  </if>
+ 			 <if test="extendsParams != null">
+ 				 extends_params = #{extendsParams},
+ 			  </if>
+ 			 <if test="remark1 != null">
+ 				 remark1 = #{remark1},
+ 			  </if>
+ 			 <if test="remark2 != null">
+ 				 remark2 = #{remark2},
+ 			  </if>
+ 		 </set>
+     where id = #{id}
+	</update>
+	
+	 <select id="getList" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		 select 
+ 		  <include refid="Base_Column_List" />
+ 		  from goods_brand_tb goodsBrand
+ 		  where 1=1 
+ 		 <if test="id != null">
+ 			 and goodsBrand.id = #{id}
+ 		  </if>
+ 		 <if test="brandNumber != null">
+ 			 and goodsBrand.brand_number = #{brandNumber}
+ 		  </if>
+ 		 <if test="brandName != null">
+ 			 and goodsBrand.brand_name = #{brandName}
+ 		  </if>
+ 		 <if test="brandEnglishName != null">
+ 			 and goodsBrand.brand_english_name = #{brandEnglishName}
+ 		  </if>
+ 		 <if test="brandInitial != null">
+ 			 and goodsBrand.brand_initial = #{brandInitial}
+ 		  </if>
+ 		 <if test="state != null">
+ 			 and goodsBrand.state = #{state}
+ 		  </if>
+ 		 <if test="isDelete != null">
+ 			 and goodsBrand.is_delete = #{isDelete}
+ 		  </if>
+ 		 <if test="directlyOrgId != null">
+ 			 and goodsBrand.directly_org_id = #{directlyOrgId}
+ 		  </if>
+ 		 <if test="hierarchyId != null">
+ 			 and goodsBrand.hierarchy_id = #{hierarchyId}
+ 		  </if>
+ 		 <if test="creatorId != null">
+ 			 and goodsBrand.creator_id = #{creatorId}
+ 		  </if>
+ 		 <if test="creator != null">
+ 			 and goodsBrand.creator = #{creator}
+ 		  </if>
+ 		 <if test="createTime != null">
+ 			 and goodsBrand.create_time = #{createTime}
+ 		  </if>
+ 		 <if test="updatorId != null">
+ 			 and goodsBrand.updator_id = #{updatorId}
+ 		  </if>
+ 		 <if test="updator != null">
+ 			 and goodsBrand.updator = #{updator}
+ 		  </if>
+ 		 <if test="updateTime != null">
+ 			 and goodsBrand.update_time = #{updateTime}
+ 		  </if>
+ 		 <if test="extendsParams != null">
+ 			 and goodsBrand.extends_params = #{extendsParams}
+ 		  </if>
+ 		 <if test="remark1 != null">
+ 			 and goodsBrand.remark1 = #{remark1}
+ 		  </if>
+ 		 <if test="remark2 != null">
+ 			 and goodsBrand.remark2 = #{remark2}
+ 		  </if>
+	</select>
+	 <select id="getListCount" resultType="java.lang.Integer"
+		parameterType="java.util.Map">
+		 select 
+ 		  count(goodsBrand.id)
+ 		  from goods_brand_tb goodsBrand
+ 		  where 1=1 
+ 		 <if test="id != null">
+ 			 and goodsBrand.id = #{id}
+ 		  </if>
+ 		 <if test="brandNumber != null">
+ 			 and goodsBrand.brand_number = #{brandNumber}
+ 		  </if>
+ 		 <if test="brandName != null">
+ 			 and goodsBrand.brand_name = #{brandName}
+ 		  </if>
+ 		 <if test="brandEnglishName != null">
+ 			 and goodsBrand.brand_english_name = #{brandEnglishName}
+ 		  </if>
+ 		 <if test="brandInitial != null">
+ 			 and goodsBrand.brand_initial = #{brandInitial}
+ 		  </if>
+ 		 <if test="state != null">
+ 			 and goodsBrand.state = #{state}
+ 		  </if>
+ 		 <if test="isDelete != null">
+ 			 and goodsBrand.is_delete = #{isDelete}
+ 		  </if>
+ 		 <if test="directlyOrgId != null">
+ 			 and goodsBrand.directly_org_id = #{directlyOrgId}
+ 		  </if>
+ 		 <if test="hierarchyId != null">
+ 			 and goodsBrand.hierarchy_id = #{hierarchyId}
+ 		  </if>
+ 		 <if test="creatorId != null">
+ 			 and goodsBrand.creator_id = #{creatorId}
+ 		  </if>
+ 		 <if test="creator != null">
+ 			 and goodsBrand.creator = #{creator}
+ 		  </if>
+ 		 <if test="createTime != null">
+ 			 and goodsBrand.create_time = #{createTime}
+ 		  </if>
+ 		 <if test="updatorId != null">
+ 			 and goodsBrand.updator_id = #{updatorId}
+ 		  </if>
+ 		 <if test="updator != null">
+ 			 and goodsBrand.updator = #{updator}
+ 		  </if>
+ 		 <if test="updateTime != null">
+ 			 and goodsBrand.update_time = #{updateTime}
+ 		  </if>
+ 		 <if test="extendsParams != null">
+ 			 and goodsBrand.extends_params = #{extendsParams}
+ 		  </if>
+ 		 <if test="remark1 != null">
+ 			 and goodsBrand.remark1 = #{remark1}
+ 		  </if>
+ 		 <if test="remark2 != null">
+ 			 and goodsBrand.remark2 = #{remark2}
+ 		  </if>
+	</select>
+</mapper>

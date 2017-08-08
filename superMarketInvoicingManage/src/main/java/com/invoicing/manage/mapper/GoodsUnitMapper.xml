@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.invoicing.manage.mapper.GoodsUnitMapper">
+
+	 <resultMap type="com.invoicing.manage.entity.GoodsUnitEntity" id="BaseResultMap">
+    	 <id column="id" property="id" /> 
+		  <id column="unitName" property="unitName" /> 
+		  <id column="unitEnglishName" property="unitEnglishName" /> 
+		  <id column="unitType" property="unitType" /> 
+		  <id column="minimumUnitType" property="minimumUnitType" /> 
+		  <id column="minimumUnitVal" property="minimumUnitVal" /> 
+		  <id column="state" property="state" /> 
+		  <id column="isDelete" property="isDelete" /> 
+		  <id column="directlyOrgId" property="directlyOrgId" /> 
+		  <id column="hierarchyId" property="hierarchyId" /> 
+		  <id column="creatorId" property="creatorId" /> 
+		  <id column="creator" property="creator" /> 
+		  <id column="createTime" property="createTime" /> 
+		  <id column="updatorId" property="updatorId" /> 
+		  <id column="updator" property="updator" /> 
+		  <id column="updateTime" property="updateTime" /> 
+  
+    </resultMap>
+    <sql id="Base_Column_List">
+    	 goodsUnit.id as id ,
+ 		 goodsUnit.unit_name as unitName ,
+ 		 goodsUnit.unit_english_name as unitEnglishName ,
+ 		 goodsUnit.unit_type as unitType ,
+ 		 goodsUnit.minimum_unit_type as minimumUnitType ,
+ 		 goodsUnit.minimum_unit_val as minimumUnitVal ,
+ 		 goodsUnit.state as state ,
+ 		 goodsUnit.is_delete as isDelete ,
+ 		 goodsUnit.directly_org_id as directlyOrgId ,
+ 		 goodsUnit.hierarchy_id as hierarchyId ,
+ 		 goodsUnit.creator_id as creatorId ,
+ 		 goodsUnit.creator as creator ,
+ 		 goodsUnit.create_time as createTime ,
+ 		 goodsUnit.updator_id as updatorId ,
+ 		 goodsUnit.updator as updator ,
+ 		 goodsUnit.update_time as updateTime
+    </sql>
+    
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		 select 
+ 		  <include refid="Base_Column_List" />
+ 		  from goods_unit_tb goodsUnit
+ 		  where goodsUnit.id = #{ id }
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		 delete 
+ 		  from goods_unit_tb
+ 		  where id = #{ id }
+	</delete>
+	
+	<insert id="insertSelective" parameterType="com.invoicing.manage.entity.GoodsUnitEntity">
+		 insert into  goods_unit_tb
+ 		  <trim prefix="(" suffix=")" suffixOverrides=","> 
+ 			 <if test="id != null">
+ 				 id,
+ 			  </if>
+ 			 <if test="unitName != null">
+ 				 unit_name,
+ 			  </if>
+ 			 <if test="unitEnglishName != null">
+ 				 unit_english_name,
+ 			  </if>
+ 			 <if test="unitType != null">
+ 				 unit_type,
+ 			  </if>
+ 			 <if test="minimumUnitType != null">
+ 				 minimum_unit_type,
+ 			  </if>
+ 			 <if test="minimumUnitVal != null">
+ 				 minimum_unit_val,
+ 			  </if>
+ 			 <if test="state != null">
+ 				 state,
+ 			  </if>
+ 			 <if test="isDelete != null">
+ 				 is_delete,
+ 			  </if>
+ 			 <if test="directlyOrgId != null">
+ 				 directly_org_id,
+ 			  </if>
+ 			 <if test="hierarchyId != null">
+ 				 hierarchy_id,
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 creator_id,
+ 			  </if>
+ 			 <if test="creator != null">
+ 				 creator,
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 create_time,
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 updator_id,
+ 			  </if>
+ 			 <if test="updator != null">
+ 				 updator,
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 update_time,
+ 			  </if>
+ 		  </trim>
+ 		  <trim prefix="values (" suffix=")" suffixOverrides="," >
+ 			 <if test="id != null">
+ 				 #{id},
+ 			  </if>
+ 			 <if test="unitName != null">
+ 				 #{unitName},
+ 			  </if>
+ 			 <if test="unitEnglishName != null">
+ 				 #{unitEnglishName},
+ 			  </if>
+ 			 <if test="unitType != null">
+ 				 #{unitType},
+ 			  </if>
+ 			 <if test="minimumUnitType != null">
+ 				 #{minimumUnitType},
+ 			  </if>
+ 			 <if test="minimumUnitVal != null">
+ 				 #{minimumUnitVal},
+ 			  </if>
+ 			 <if test="state != null">
+ 				 #{state},
+ 			  </if>
+ 			 <if test="isDelete != null">
+ 				 #{isDelete},
+ 			  </if>
+ 			 <if test="directlyOrgId != null">
+ 				 #{directlyOrgId},
+ 			  </if>
+ 			 <if test="hierarchyId != null">
+ 				 #{hierarchyId},
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 #{creatorId},
+ 			  </if>
+ 			 <if test="creator != null">
+ 				 #{creator},
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 #{createTime},
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 #{updatorId},
+ 			  </if>
+ 			 <if test="updator != null">
+ 				 #{updator},
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 #{updateTime},
+ 			  </if>
+ 		  </trim>
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="com.invoicing.manage.entity.GoodsUnitEntity">
+		 update   goods_unit_tb
+ 		 <set>
+ 			 <if test="unitName != null">
+ 				 unit_name = #{unitName},
+ 			  </if>
+ 			 <if test="unitEnglishName != null">
+ 				 unit_english_name = #{unitEnglishName},
+ 			  </if>
+ 			 <if test="unitType != null">
+ 				 unit_type = #{unitType},
+ 			  </if>
+ 			 <if test="minimumUnitType != null">
+ 				 minimum_unit_type = #{minimumUnitType},
+ 			  </if>
+ 			 <if test="minimumUnitVal != null">
+ 				 minimum_unit_val = #{minimumUnitVal},
+ 			  </if>
+ 			 <if test="state != null">
+ 				 state = #{state},
+ 			  </if>
+ 			 <if test="isDelete != null">
+ 				 is_delete = #{isDelete},
+ 			  </if>
+ 			 <if test="directlyOrgId != null">
+ 				 directly_org_id = #{directlyOrgId},
+ 			  </if>
+ 			 <if test="hierarchyId != null">
+ 				 hierarchy_id = #{hierarchyId},
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 creator_id = #{creatorId},
+ 			  </if>
+ 			 <if test="creator != null">
+ 				 creator = #{creator},
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 create_time = #{createTime},
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 updator_id = #{updatorId},
+ 			  </if>
+ 			 <if test="updator != null">
+ 				 updator = #{updator},
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 update_time = #{updateTime},
+ 			  </if>
+ 		 </set>
+     where id = #{id}
+	</update>
+	
+	 <select id="getList" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		 select 
+ 		  <include refid="Base_Column_List" />
+ 		  from goods_unit_tb goodsUnit
+ 		  where 1=1 
+ 		 <if test="id != null">
+ 			 and goodsUnit.id = #{id}
+ 		  </if>
+ 		 <if test="unitName != null">
+ 			 and goodsUnit.unit_name = #{unitName}
+ 		  </if>
+ 		 <if test="unitEnglishName != null">
+ 			 and goodsUnit.unit_english_name = #{unitEnglishName}
+ 		  </if>
+ 		 <if test="unitType != null">
+ 			 and goodsUnit.unit_type = #{unitType}
+ 		  </if>
+ 		 <if test="minimumUnitType != null">
+ 			 and goodsUnit.minimum_unit_type = #{minimumUnitType}
+ 		  </if>
+ 		 <if test="minimumUnitVal != null">
+ 			 and goodsUnit.minimum_unit_val = #{minimumUnitVal}
+ 		  </if>
+ 		 <if test="state != null">
+ 			 and goodsUnit.state = #{state}
+ 		  </if>
+ 		 <if test="isDelete != null">
+ 			 and goodsUnit.is_delete = #{isDelete}
+ 		  </if>
+ 		 <if test="directlyOrgId != null">
+ 			 and goodsUnit.directly_org_id = #{directlyOrgId}
+ 		  </if>
+ 		 <if test="hierarchyId != null">
+ 			 and goodsUnit.hierarchy_id = #{hierarchyId}
+ 		  </if>
+ 		 <if test="creatorId != null">
+ 			 and goodsUnit.creator_id = #{creatorId}
+ 		  </if>
+ 		 <if test="creator != null">
+ 			 and goodsUnit.creator = #{creator}
+ 		  </if>
+ 		 <if test="createTime != null">
+ 			 and goodsUnit.create_time = #{createTime}
+ 		  </if>
+ 		 <if test="updatorId != null">
+ 			 and goodsUnit.updator_id = #{updatorId}
+ 		  </if>
+ 		 <if test="updator != null">
+ 			 and goodsUnit.updator = #{updator}
+ 		  </if>
+ 		 <if test="updateTime != null">
+ 			 and goodsUnit.update_time = #{updateTime}
+ 		  </if>
+	</select>
+	 <select id="getListCount" resultType="java.lang.Integer"
+		parameterType="java.util.Map">
+		 select 
+ 		  count(goodsUnit.id)
+ 		  from goods_unit_tb goodsUnit
+ 		  where 1=1 
+ 		 <if test="id != null">
+ 			 and goodsUnit.id = #{id}
+ 		  </if>
+ 		 <if test="unitName != null">
+ 			 and goodsUnit.unit_name = #{unitName}
+ 		  </if>
+ 		 <if test="unitEnglishName != null">
+ 			 and goodsUnit.unit_english_name = #{unitEnglishName}
+ 		  </if>
+ 		 <if test="unitType != null">
+ 			 and goodsUnit.unit_type = #{unitType}
+ 		  </if>
+ 		 <if test="minimumUnitType != null">
+ 			 and goodsUnit.minimum_unit_type = #{minimumUnitType}
+ 		  </if>
+ 		 <if test="minimumUnitVal != null">
+ 			 and goodsUnit.minimum_unit_val = #{minimumUnitVal}
+ 		  </if>
+ 		 <if test="state != null">
+ 			 and goodsUnit.state = #{state}
+ 		  </if>
+ 		 <if test="isDelete != null">
+ 			 and goodsUnit.is_delete = #{isDelete}
+ 		  </if>
+ 		 <if test="directlyOrgId != null">
+ 			 and goodsUnit.directly_org_id = #{directlyOrgId}
+ 		  </if>
+ 		 <if test="hierarchyId != null">
+ 			 and goodsUnit.hierarchy_id = #{hierarchyId}
+ 		  </if>
+ 		 <if test="creatorId != null">
+ 			 and goodsUnit.creator_id = #{creatorId}
+ 		  </if>
+ 		 <if test="creator != null">
+ 			 and goodsUnit.creator = #{creator}
+ 		  </if>
+ 		 <if test="createTime != null">
+ 			 and goodsUnit.create_time = #{createTime}
+ 		  </if>
+ 		 <if test="updatorId != null">
+ 			 and goodsUnit.updator_id = #{updatorId}
+ 		  </if>
+ 		 <if test="updator != null">
+ 			 and goodsUnit.updator = #{updator}
+ 		  </if>
+ 		 <if test="updateTime != null">
+ 			 and goodsUnit.update_time = #{updateTime}
+ 		  </if>
+	</select>
+</mapper>

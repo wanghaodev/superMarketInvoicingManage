@@ -74,6 +74,12 @@ if("ontouchend" in document) document.write("<script src='<%=request.getContextP
 <script type="text/javascript" src="<%=request.getContextPath() %>/static/js/ztree/jquery.ztree.exedit-3.5.js"></script>
 <!-- ztree end  --> 
 
-<script>
+<script type="text/javascript">
 var _path ="<%=request.getContextPath()%>";
+//跳转到主页的指定的div中
+function goBackPage(url){
+	$.get(url,function(data){
+		$("#mian_div").html(data);
+	});  
+}
 </script>

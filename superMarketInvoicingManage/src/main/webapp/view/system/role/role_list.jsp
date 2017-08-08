@@ -45,7 +45,7 @@
         getData();
         function getData(){
             var _options ={
-                url:_path+"/invoicing/system/role/list"
+                url:_path+"/invoicing/system/role/page/list"
                 ,checkAll:true
                 //查询条件
                 ,data:{'userName':$("[name=roleName]").val()

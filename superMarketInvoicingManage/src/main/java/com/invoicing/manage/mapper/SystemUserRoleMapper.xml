@@ -15,11 +15,22 @@
     </sql>
     
     <select id="selectByPrimaryKey" resultMap="BaseResultMap"
-		parameterType="java.lang.Long">
+		parameterType="java.util.Map" >
 		 select 
  		  <include refid="Base_Column_List" />
  		  from system_user_role_tb systemUserRole
- 		  where systemUserRole.id = #{ id }
+ 		  <where>
+ 		  <if test="id !=null">
+ 		  	 systemUserRole.id = #{ id }
+ 		  </if>
+ 		  <if test="userId !=null">
+ 		  	 and  systemUserRole.user_id = #{ userId }
+ 		  </if>
+ 		  <if test="roleId !=null">
+ 		  	 and  systemUserRole.role_id = #{ roleId }
+ 		  </if>
+ 		  </where> 
+ 		  
 	</select>
 
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
@@ -28,7 +39,7 @@
  		  where id = #{ id }
 	</delete>
 	
-	<insert id="insertSelective" parameterType="com.invoicing.manage.entity.SystemUserRoleEntity">
+	<insert id="insertSelective" parameterType="com.invoicing.manage.entity.SystemUserRoleEntity" useGeneratedKeys="true" keyProperty="id">
 		 insert into  system_user_role_tb
  		  <trim prefix="(" suffix=")" suffixOverrides=","> 
  			 <if test="id != null">

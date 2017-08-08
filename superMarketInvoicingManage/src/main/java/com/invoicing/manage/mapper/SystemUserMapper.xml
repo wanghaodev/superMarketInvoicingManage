@@ -200,6 +200,7 @@
 	</update>
 	<!-- 列表查询条件 -->
 	<sql id="whereSQL">
+			and systemUser.state = 1
  		 <if test="loginName != null">
  			 and LOCATE(#{loginName},systemUser.user_name )>0 
  		  </if>
@@ -212,9 +213,6 @@
  		 <if test="userType != null">
  			 and systemUser.user_type = #{userType}
  		  </if>
- 		 <if test="state != null">
- 			 and systemUser.state = #{state}
- 		  </if>
 	</sql>
 	 <select id="getList" resultMap="BaseResultMap"
 		parameterType="java.util.Map">
@@ -223,6 +221,7 @@
  		  from system_user_tb systemUser
  		  where 1=1
  		  <include refid="whereSQL"/>
+ 		  ORDER BY systemUser.update_time DESC
 	</select>
 	 <select id="getListCount" resultType="java.lang.Integer"
 		parameterType="java.util.Map">

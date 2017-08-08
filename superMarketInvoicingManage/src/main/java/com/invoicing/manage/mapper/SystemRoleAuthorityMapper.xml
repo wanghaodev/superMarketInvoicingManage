@@ -15,11 +15,21 @@
     </sql>
     
     <select id="selectByPrimaryKey" resultMap="BaseResultMap"
-		parameterType="java.lang.Long">
+		parameterType="java.util.Map">
 		 select 
  		  <include refid="Base_Column_List" />
  		  from system_role_authority_tb systemRoleAuthority
- 		  where systemRoleAuthority.id = #{ id }
+ 		  <where>
+	 		  <if test="id !=null and id!='' ">
+	 		  	systemRoleAuthority.id = #{ id }
+	 		  </if>
+	 		  <if test="roleId !=null and roleId !='' ">
+	 		  	AND	systemRoleAuthority.role_id = #{roleId}
+	 		  </if>
+	 		  <if test="authId !=null and authId !='' ">
+	 		  	AND systemRoleAuthority.auth_id = #{authId}
+	 		  </if>
+ 		  </where>
 	</select>
 
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">

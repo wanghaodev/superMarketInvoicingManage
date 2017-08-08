@@ -46,8 +46,8 @@ public class SystemRoleAuthorityServiceImpl  implements SystemRoleAuthorityServi
 	 * @param id
 	 * @return
 	 */
-	public SystemRoleAuthorityEntity selectByPrimaryKey(Long id){
-		return systemRoleAuthorityMapper.selectByPrimaryKey(id);
+	public SystemRoleAuthorityEntity getRoleAuthority(Map<String,Object> map){
+		return systemRoleAuthorityMapper.selectByPrimaryKey(map);
 	}
 	/**
 	 * 通过主键id 更新实体

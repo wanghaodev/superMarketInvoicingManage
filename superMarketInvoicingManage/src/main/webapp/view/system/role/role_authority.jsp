@@ -60,8 +60,9 @@
 						<button type="button" id="searchBtn" class="btn btn-primary" onclick="saveRoleAuthTree()">
 							<i class="icon_add"></i> 保存
 						</button>
-						<button type="button" id="searchBtn" class="btn btn-primary">
-							<i class="icon_cancle"></i> 取消
+						<button type="button" name="cancelButton" id="cancelBtn" class="btn btn-success">
+							<i class="icon-reply icon-only"></i>
+							取消
 						</button>
 					</div>
 				</div>
@@ -167,4 +168,11 @@
             	
 		};
 		
+		//取消
+		$("#cancelBtn").click(function(){
+			 var url=_path+"/invoicing/system/role/page/list";
+				$.get(url,function(data){
+					$("#mian_div").html(data);
+				});  
+		});
 	</script>

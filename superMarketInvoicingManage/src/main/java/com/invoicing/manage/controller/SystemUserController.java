@@ -1,7 +1,11 @@
 package com.invoicing.manage.controller; 
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSessionContext;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,15 +14,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
+import com.invoicing.manage.comment.entity.ErrorResponseEntity;
 import com.invoicing.manage.comment.entity.ResponseEntity;
 import com.invoicing.manage.comment.entity.SuccessResponseEntity;
 import com.invoicing.manage.entity.SystemUserEntity;
+import com.invoicing.manage.entity.SystemUserRoleEntity;
 import com.invoicing.manage.request.UserRequestEntity;
+import com.invoicing.manage.service.SystemUserRoleService;
 import com.invoicing.manage.service.SystemUserService;
+import com.invoicing.manage.util.StringUtil;
 import com.snailf.platforms.common.entity.PageInfo;
  
 /** 
@@ -39,6 +48,9 @@ public class SystemUserController {
 	
 	@Autowired
 	private SystemUserService systemUserService;
+	
+	@Autowired
+	private SystemUserRoleService systemUserRoleService;
 	
 	
 	/**
@@ -100,16 +112,16 @@ public class SystemUserController {
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity addSystemUser(SystemUserEntity SystemUserEntity){
-		logger.debug("新建用户，传入参数为："+JSON.toJSONString(SystemUserEntity));
-		ResponseEntity result = null;
-		logger.debug("新建用户，返回结果为："+JSON.toJSONString(result));
-		//若返回结果不等于1时，返回前台统一转为0，提示信息不变。
-		if(result.getCode()==-1){
-			result.setCode(0);
+	public ResponseEntity addSystemUser(SystemUserEntity systemUserEntity){
+		logger.debug("新建用户，传入参数为："+JSON.toJSONString(systemUserEntity));
+		try {
+			int res= systemUserService.insertSystemUser(systemUserEntity);
+			logger.debug("新建用户，返回结果为："+JSON.toJSONString(res));
+			return new SuccessResponseEntity();
+		} catch (Exception e) {
+			logger.error("新建用户异常,{}",e);
+			return new ErrorResponseEntity();
 		}
-		return result;
-		
 	}
 	
 	/**
@@ -119,9 +131,13 @@ public class SystemUserController {
 	 * @since JDK 1.7
 	 */
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public ModelAndView goToUserUpdate(){
+	public ModelAndView goToUserUpdate(@RequestParam Long userId,ModelMap modelMap){
 		String url="/system/user/user_update";
-		return new ModelAndView(url);
+		if(null!=userId.toString()){
+			SystemUserEntity userEntity=systemUserService.getSystemUser(userId);
+			modelMap.put("user", userEntity);
+		}
+		return new ModelAndView(url,modelMap);
 	}
 	
 	/**
@@ -133,18 +149,15 @@ public class SystemUserController {
 	 */
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity updateSystemUser(SystemUserEntity SystemUserEntity){
-		logger.debug("编辑用户，传入参数为："+JSON.toJSONString(SystemUserEntity));
-		ResponseEntity result = null;
-		logger.debug("编辑用户，返回结果为："+JSON.toJSONString(result));
-		//若返回结果不等于1时，返回前台统一转为0，提示信息不变。
-		if(result.getCode()==-1){
-			result.setCode(0);
+	public ResponseEntity updateSystemUser(SystemUserEntity systemUserEntity){
+		try {
+			int res= systemUserService.updateSystemUser(systemUserEntity);
+			logger.debug("编辑用户，返回结果为："+JSON.toJSONString(res));
+			return new SuccessResponseEntity();
+		} catch (Exception e) {
+			logger.error("编辑用户异常,{}",e);
+			return new ErrorResponseEntity();
 		}
-		if(result.getCode()==-2){
-			result.setCode(0);
-		}
-		return result;
 		
 	}
 	
@@ -163,15 +176,78 @@ public class SystemUserController {
 	 */
 	@RequestMapping(value = "/del", method = {RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
-	public ResponseEntity delSystemUser(SystemUserEntity SystemUserEntity){
-		logger.debug("删除用户，传入参数为："+JSON.toJSONString(SystemUserEntity));
-		ResponseEntity result = null;
-		logger.debug("删除用户，返回结果为："+JSON.toJSONString(result));
-		//若返回结果不等于1时，返回前台统一转为0，提示信息不变。
-		if(result.getCode()==-2){
-			result.setCode(0);
+	public ResponseEntity delSystemUser(@RequestParam Long id){
+		try {
+			SystemUserEntity userEntity=new SystemUserEntity();
+			userEntity.setId(id);
+			userEntity.setState(0);
+			int res= systemUserService.updateSystemUser(userEntity);
+			logger.debug("删除用户，返回结果为："+JSON.toJSONString(res));
+			return new SuccessResponseEntity();
+		} catch (Exception e) {
+			logger.error("删除用户异常,{}",e);
+			return new ErrorResponseEntity();
 		}
-		return result;
+	}
+	
+	/**
+	 * goToUserRole 到用户角色维护页面
+	 * @return 返回类型为 ModelAndView
+	 * @exception
+	 * @since JDK 1.7
+	 */
+	@RequestMapping(value="/role",method=RequestMethod.GET)
+	@ResponseBody
+	public ModelAndView goToUserRole(Long userId,ModelMap modelMap){
+		String url="/system/user/user_role";
+		logger.info("method [goToUserRole],请求参数：{}",userId);
+		SystemUserEntity userEntity=systemUserService.getSystemUser(userId);
+		logger.info("method [goToUserRole],返回结果：{}",JSON.toJSON(userEntity));
+		Map<String,Object> queryParam=new HashMap<String,Object>();
+		queryParam.put("userId", userId);
+		SystemUserRoleEntity userRole=systemUserRoleService.getUserRole(queryParam);
+		modelMap.put("user", userEntity);
+		if(null!=userRole){
+			modelMap.put("roleId", userRole.getRoleId());
+		}
+		return new ModelAndView(url,modelMap);
+	}
+	
+	/**
+	 * savaUserRole 保存用户角色配置方法
+	 * @param param
+	 * @return 返回类型为 ResponseEntity
+	 * @exception
+	 * @since JDK 1.7
+	 */
+	@RequestMapping(value="/role",method=RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity savaUserRole(@RequestParam  Map<String,Object> param){
+		try {
+			logger.info("method [savaUserRole],请求参数：{}",param);
+			if(null!=param.get("userId")&&null!=param.get("roleId")){
+				//根据角色ID和用户ID查询用户角色关联表，若存在则做更新操作，若不存则做插入操作
+				Map<String,Object> queryParam=new HashMap<String,Object>();
+				queryParam.put("userId", param.get("userId"));
+				SystemUserRoleEntity queryUserRoleResult=systemUserRoleService.getUserRole(queryParam);
+				if(StringUtil.isNotNull(queryUserRoleResult)){
+					SystemUserRoleEntity updateUserRole=new SystemUserRoleEntity();
+					updateUserRole.setId(queryUserRoleResult.getId());
+					updateUserRole.setUserId(Long.valueOf(param.get("userId").toString()));
+					updateUserRole.setRoleId(Long.valueOf(param.get("roleId").toString()));
+					systemUserRoleService.updateByPrimaryKeySelective(updateUserRole);
+				}else{
+					SystemUserRoleEntity insertUserRole=new SystemUserRoleEntity();
+					insertUserRole.setUserId(Long.valueOf(param.get("userId").toString()));
+					insertUserRole.setRoleId(Long.valueOf(param.get("roleId").toString()));
+					systemUserRoleService.insertSelective(insertUserRole);
+				}
+			}
+			return new SuccessResponseEntity();
+		} catch (Exception e) {
+			logger.error("用户角色插入异常！",e);
+			return new ErrorResponseEntity("系统异常");
+		}
 	}
 
 }

@@ -1,8 +1,10 @@
 package com.invoicing.manage.service;
 
 import com.invoicing.manage.entity.SystemRoleAuthorityEntity;
+
 import java.util.Map;
 import java.util.List;
+
 import com.snailf.platforms.common.entity.PageInfo;
 /**
  *
@@ -29,7 +31,7 @@ public interface SystemRoleAuthorityService  {
 	 * @param id
 	 * @return
 	 */
-	SystemRoleAuthorityEntity selectByPrimaryKey(Long id);
+	SystemRoleAuthorityEntity getRoleAuthority(Map<String,Object> map);
 	/**
 	 * 通过主键id 更新实体
 	 * @param record

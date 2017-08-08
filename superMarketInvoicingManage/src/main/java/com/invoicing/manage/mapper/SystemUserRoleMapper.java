@@ -29,7 +29,7 @@ public interface SystemUserRoleMapper  {
 	 * @param id
 	 * @return
 	 */
-	SystemUserRoleEntity selectByPrimaryKey(Long id);
+	SystemUserRoleEntity selectByPrimaryKey(Map<String,Object> queryMap);
 	/**
 	 * 通过主键id 更新实体
 	 * @param record

@@ -8,6 +8,7 @@ import com.invoicing.manage.respose.UserResponse;
 import com.invoicing.manage.service.SystemUserService;
 import com.invoicing.manage.mapper.SystemUserMapper;
 
+import java.util.Date;
 import java.util.Map;
 import java.util.List;
 
@@ -48,6 +49,8 @@ public class SystemUserServiceImpl  implements SystemUserService{
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = RuntimeException.class)
 	public int insertSystemUser(SystemUserEntity record){
+		record.setCreateTime(new Date());
+		record.setUpdateTime(new Date());
 		return systemUserMapper.insertSelective(record);
 	}
 	/**

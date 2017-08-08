@@ -357,32 +357,36 @@ $(document).ready(function(){
 						'fdid' :'0'
 					}
 			        ,success:function(data){
-			        	//主菜单
-			        	var main_menu="";
-			        	$.each(data.mainMenuList,function(index,obj){
-			        		main_menu+="<li>"
-			        						+"<a href='#' class='dropdown-toggle'>"
-			        				 		+"	<i class='"+obj.iconClass+"'></i>"
-			        						+"	<span class='menu-text'>"+obj.name+"</span>"
-			        				 		+"	<b class='arrow icon-angle-down'></b>"
-			        				 		+"</a>";
-			        		var son_menu="<ul class='submenu'>";		 
-			        		$.each(data.sonMenuList,function(index,sonObj){
-			        			if(sonObj.pId==obj.id){
-			        				son_menu+="<li class='menu_li'>"
-					        				+"	<a target='"+sonObj.url+"'> "
-					        				+"		<i class='icon-double-angle-right'></i> "
-					        				+sonObj.name
-					        				+"	</a>"
-					        				+"</li>";
-				        		}
+			        	if(data.code==0){
+			        		alert("没有分配权限，请联系管理员。")
+			        	}else{
+			        		//主菜单
+				        	var main_menu="";
+				        	$.each(data.mainMenuList,function(index,obj){
+				        		main_menu+="<li>"
+				        						+"<a href='#' class='dropdown-toggle'>"
+				        				 		+"	<i class='"+obj.iconClass+"'></i>"
+				        						+"	<span class='menu-text'>"+obj.name+"</span>"
+				        				 		+"	<b class='arrow icon-angle-down'></b>"
+				        				 		+"</a>";
+				        		var son_menu="<ul class='submenu'>";		 
+				        		$.each(data.sonMenuList,function(index,sonObj){
+				        			if(sonObj.pId==obj.id){
+				        				son_menu+="<li class='menu_li'>"
+						        				+"	<a target='"+sonObj.url+"'> "
+						        				+"		<i class='icon-double-angle-right'></i> "
+						        				+sonObj.name
+						        				+"	</a>"
+						        				+"</li>";
+					        		}
+					        	});
+				        		main_menu+=son_menu
+				        					+"  </ul>"
+				        					+"</li>";
 				        	});
-			        		main_menu+=son_menu
-			        					+"  </ul>"
-			        					+"</li>";
-			        	});
-			        	
-			        	$("#menu_id").html(main_menu);
+				        	
+				        	$("#menu_id").html(main_menu);
+			        	}
 			        }
 			});
 		}

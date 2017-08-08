@@ -46,8 +46,8 @@ public class SystemUserRoleServiceImpl  implements SystemUserRoleService{
 	 * @param id
 	 * @return
 	 */
-	public SystemUserRoleEntity selectByPrimaryKey(Long id){
-		return systemUserRoleMapper.selectByPrimaryKey(id);
+	public SystemUserRoleEntity getUserRole(Map<String,Object> map){
+		return systemUserRoleMapper.selectByPrimaryKey(map);
 	}
 	/**
 	 * 通过主键id 更新实体

@@ -28,6 +28,7 @@ import com.invoicing.manage.request.UserRequestEntity;
 import com.invoicing.manage.service.SystemAuthorityService;
 import com.invoicing.manage.service.SystemRoleAuthorityService;
 import com.invoicing.manage.service.SystemRoleService;
+import com.invoicing.manage.util.StringUtil;
 import com.snailf.platforms.common.entity.ErrorResponseEntity;
 import com.snailf.platforms.common.entity.PageInfo;
  
@@ -66,7 +67,7 @@ public class SystemRoleController {
 	 * @exception
 	 * @since JDK 1.7
 	 */
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/page/list", method = RequestMethod.GET)
 	public ModelAndView goToUserList(){
 		String url="/system/role/role_list";
 		return new ModelAndView(url);
@@ -80,7 +81,7 @@ public class SystemRoleController {
 	 * @since JDK 1.7
 	 */
 	
-	@RequestMapping(value = "/list", method = RequestMethod.POST)
+	@RequestMapping(value = "/page/list", method = RequestMethod.POST)
 	@ResponseBody
 	 public ResponseEntity getSystemRoleList(UserRequestEntity RoleRequestEntity){
 		logger.debug("method [getSystemRoleEntityList] 查询角色列表，请求参数："+JSON.toJSONString(RoleRequestEntity));
@@ -222,7 +223,7 @@ public class SystemRoleController {
 	}
 	
 	/**
-	 * roleoleAuthority 角色授权异步提交方法
+	 * roleoleAuthority 保存角色授权
 	 * @param SystemRoleEntity
 	 * @return 返回类型为 ResponseEntity
 	 * @exception
@@ -234,11 +235,22 @@ public class SystemRoleController {
 		try {
 			logger.debug("角色权限维护，传入参数为：角色ID{},菜单ID{}",roleAuthEntity.getRoleId(),JSON.toJSONString(roleAuthEntity.getAuthIds()));
 			if(null!=roleAuthEntity.getRoleId()&&null!=roleAuthEntity.getAuthIds()){
+				//查询该角色下是否已分配相应权限，若分配则做先删除再插入操作。
+				Map<String,Object> queryMap=new HashMap<String,Object>();
+				queryMap.put("roleId", roleAuthEntity.getRoleId());
+				List<SystemRoleAuthorityEntity>  roleAuthRes=systemRoleAuthorityService.getList(queryMap);
+				if(StringUtil.isNotNull(roleAuthRes)){
+					for(SystemRoleAuthorityEntity queryRoleAuthRest:roleAuthRes){
+						logger.info("method [updateByPrimaryKeySelective]删除已配置的角色权限,请求参数{}",JSON.toJSON(queryRoleAuthRest));
+						systemRoleAuthorityService.deleteByPrimaryKey(queryRoleAuthRest.getId());
+					}
+				}
 				for (int i = 0; i < roleAuthEntity.getAuthIds().length; i++) {
-					SystemRoleAuthorityEntity roleAuth=new SystemRoleAuthorityEntity();
-					roleAuth.setRoleId(roleAuthEntity.getRoleId());
-					roleAuth.setAuthId(roleAuthEntity.getAuthIds()[i]);
-					systemRoleAuthorityService.insertSelective(roleAuth);
+					SystemRoleAuthorityEntity insertRoleAuth=new SystemRoleAuthorityEntity();
+					insertRoleAuth.setRoleId(roleAuthEntity.getRoleId());
+					insertRoleAuth.setAuthId(roleAuthEntity.getAuthIds()[i]);
+					logger.info("method [updateByPrimaryKeySelective]新增,请求参数{}",JSON.toJSON(insertRoleAuth));
+					systemRoleAuthorityService.insertSelective(insertRoleAuth);
 				}
 			}
 			return new SuccessResponseEntity();
@@ -246,6 +258,20 @@ public class SystemRoleController {
 			logger.error("菜单权限维护异常！",e);
 			return null;
 		}
+	}
+	
+	@RequestMapping(value="/list",method=RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity getRoleList(){
+		Map<String,Object> queryMap=new HashMap<String,Object>();
+		List<SystemRoleEntity> roleList=systemRoleService.getList(queryMap);
+		ResponseEntity res=new ResponseEntity();
+		if(roleList.size()>0){
+			res.setData(roleList);
+			logger.info("method [getRoleList],返回结果：{}",res);
+		}
+		return res;
+		
 	}
 	
 

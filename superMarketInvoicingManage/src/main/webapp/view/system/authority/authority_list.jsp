@@ -54,7 +54,7 @@
 					 {name:'菜单名称',value:'name'}
                     ,{name:'上级菜单',value:'parentName',type:"function",fun:function(obj){
                     	var html="";
-                    	if(obj.pid==0){
+                    	if(obj.pId==0){
                     		html+= "进销存管理系统";
                     	}else{
                     		html+= obj.parentName;

@@ -1,8 +1,10 @@
 package com.invoicing.manage.mapper;
 
 import com.invoicing.manage.entity.SystemRoleAuthorityEntity;
+
 import java.util.Map;
 import java.util.List;
+
 import org.apache.ibatis.session.RowBounds;
 /**
  *
@@ -29,7 +31,7 @@ public interface SystemRoleAuthorityMapper  {
 	 * @param id
 	 * @return
 	 */
-	SystemRoleAuthorityEntity selectByPrimaryKey(Long id);
+	SystemRoleAuthorityEntity selectByPrimaryKey(Map<String,Object> map);
 	/**
 	 * 通过主键id 更新实体
 	 * @param record

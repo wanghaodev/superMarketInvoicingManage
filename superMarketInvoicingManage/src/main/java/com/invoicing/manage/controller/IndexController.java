@@ -135,6 +135,7 @@ public class IndexController {
 	@RequestMapping(value = "/loadMenuList", method = RequestMethod.POST)
 	@ResponseBody
 	private Object loadMenuList(HttpSession session){
+		JSONObject jsonObject=new JSONObject();
 		UserResponse userLoginInfo=(UserResponse) session.getAttribute("userLoginInfo");
 		logger.info("从session中获取登录信息 ，{}",JSON.toJSON(userLoginInfo));
 		//logger.info("获取角色ID："+roleId);
@@ -143,33 +144,34 @@ public class IndexController {
 		List<SystemAuthorityEntity> mainMenuList=new ArrayList<SystemAuthorityEntity>();
 		List<SystemAuthorityEntity> sonMenuList=new ArrayList<SystemAuthorityEntity>();
 		logger.info(queryMenuRestult.size()+"");
-		for(SystemAuthorityEntity aut:queryMenuRestult){
-			
-			if(String.valueOf(aut.getpId()).equals("0")){
-				SystemAuthorityEntity menu=new SystemAuthorityEntity();
-				menu.setId(aut.getId());
-				menu.setpId(aut.getpId());
-				menu.setName(aut.getName());
-				menu.setUrl(aut.getUrl());
-				menu.setIconClass(aut.getIconClass());
-				mainMenuList.add(menu);
-			}else{
-				SystemAuthorityEntity sonMenu=new SystemAuthorityEntity();
-				sonMenu.setId(aut.getId());
-				sonMenu.setpId(aut.getpId());
-				sonMenu.setName(aut.getName());
-				sonMenu.setUrl(aut.getUrl());
-				sonMenu.setIconClass(aut.getIconClass());
-				sonMenuList.add(sonMenu);
-			}
-		}
-		JSONObject jsonObject=new JSONObject();
 		if(queryMenuRestult.size()>0){
-			jsonObject.put("mainMenuList", mainMenuList);
-			jsonObject.put("sonMenuList", sonMenuList);
-			jsonObject.put("code", 1);
+			for(SystemAuthorityEntity aut:queryMenuRestult){
+				
+				if(String.valueOf(aut.getpId()).equals("0")){
+					SystemAuthorityEntity menu=new SystemAuthorityEntity();
+					menu.setId(aut.getId());
+					menu.setpId(aut.getpId());
+					menu.setName(aut.getName());
+					menu.setUrl(aut.getUrl());
+					menu.setIconClass(aut.getIconClass());
+					mainMenuList.add(menu);
+				}else{
+					SystemAuthorityEntity sonMenu=new SystemAuthorityEntity();
+					sonMenu.setId(aut.getId());
+					sonMenu.setpId(aut.getpId());
+					sonMenu.setName(aut.getName());
+					sonMenu.setUrl(aut.getUrl());
+					sonMenu.setIconClass(aut.getIconClass());
+					sonMenuList.add(sonMenu);
+				}
+			}
+			if(queryMenuRestult.size()>0){
+				jsonObject.put("mainMenuList", mainMenuList);
+				jsonObject.put("sonMenuList", sonMenuList);
+				jsonObject.put("code", 1);
+			}
 		}else{
-			jsonObject.put("code", 1);
+			jsonObject.put("code", 0);
 		}
 		logger.info("菜单加载,"+jsonObject);
 		return jsonObject;

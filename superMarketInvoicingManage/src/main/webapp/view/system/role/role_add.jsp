@@ -15,7 +15,7 @@
 		<li><a href="####">添加用户</a></li>
 	</ol>
 	<!-- user-form start  -->
-	<form class="add-form" id="user-add-form" method="post">
+	<form class="add-form" id="user-add-form" >
         	<div class="panel panel-default">
 	            <div class="panel-heading">新增用户</div>
 	            <div class="panel-body table_add">
@@ -66,11 +66,11 @@
 		                </tbody>
 		            </table>
 			        <div class="col-md-12 text-center btn-margin">
-	                    <button class="btn btn-info" type="button"  id="addBtn">
+	                    <button class="btn  btn-info" type="button" name="addSub" id="addBtn">
 					        <i class="icon-ok bigger-110"></i>           
 					                    提交
 	                    </button>
-	                    <button class="btn" id="cancelBtn" type="button" name="cancelButton">
+	                    <button class="btn" type="button" name="cancelButton">
 	                    	<i class="icon-undo bigger-110"></i>  
 	                    	取消
 	                    </button>
@@ -81,57 +81,20 @@
 	<!-- user-form end -->
 </div>
 <script type="text/javascript">
-	//添加用户
 	$("#addBtn").click(function (){
-		var userName=$("input[name=userName]").val();
-		var loginName=$("input[name=loginName]").val();
-		var password=$("input[name=password]").val();
-		var phone=$("input[name=phone]").val();
-		if(userName==null || userName==''){
-			alert("姓名不能为空！");
-			$("input[name=userName]").focus();
-			return false;
-		}
-		if(loginName==null || loginName==''){
-			alert("登录名不能为空！");
-			//timedTaskFun(2000,'登录名不能为空！','','err');
-			$("input[name=loginName]").focus();
-			return false;
-		}
-		if(password==null || password==''){
-			alert("密码不能为空！");
-			$("input[name=password]").focus();
-			return false;
-		}
-		if(phone==null || phone==''){
-			alert("手机号不能为空！");
-			$("input[name=phone]").focus();
-			return false;
-		}else{
-			$.ajax({
-	 			type : "post",
-	 			url : _path+"/invoicing/system/user/add",
-	 			 data:$('#user-add-form').serialize(),// 你的formid
-	              async:false,
-	 			 	success : function(data) {
-	 				if(data.code==1){
-	 					alert("用户保存成功！");
-	 					var url=_path+"/invoicing/system/user/list";
-	 					goBackPage(url);
-	 				}else{
-	 					alert("用户保存失败！");
-	 				}
-	 			}
-	         });
-		}
-	     
-	});
-	
-	//取消
-	$("#cancelBtn").click(function(){
-		 var url=_path+"/invoicing/system/user/list";
-		 //调用跳转方法
-		 goBackPage(url);
+	     $.ajax({
+ 			type : "post",
+ 			url : _path+"/invoicing/system/role/authority?__"+(new Date()).getTime(),
+ 			 data:$('#roleAuthForm').serialize(),// 你的formid
+              async:false,
+ 			 	success : function(data) {
+ 				if(data.code==1){
+ 					alert("菜单维护成功！");
+ 				}else{
+ 					alert("菜单维护失败，请联系管理员！");
+ 				}
+ 			}
+         });
 	});
 </script>
 </body>

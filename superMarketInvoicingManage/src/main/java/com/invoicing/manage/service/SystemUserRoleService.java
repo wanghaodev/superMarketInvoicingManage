@@ -1,8 +1,10 @@
 package com.invoicing.manage.service;
 
 import com.invoicing.manage.entity.SystemUserRoleEntity;
+
 import java.util.Map;
 import java.util.List;
+
 import com.snailf.platforms.common.entity.PageInfo;
 /**
  *
@@ -29,7 +31,7 @@ public interface SystemUserRoleService  {
 	 * @param id
 	 * @return
 	 */
-	SystemUserRoleEntity selectByPrimaryKey(Long id);
+	SystemUserRoleEntity getUserRole(Map<String,Object> queryMap);
 	/**
 	 * 通过主键id 更新实体
 	 * @param record

@@ -30,6 +30,10 @@
 				<i class="icon-reply icon-only"></i>
 				重置
 			</button>
+			<button type="button" id="addBtn" class="btn btn-primary">
+			<i class="icon_add"></i>
+				新增
+			</button>
 		</div>
 	</div>
 	<!-- 列表：查询条件组装  end -->
@@ -41,6 +45,7 @@
 			</div>
 		</div>
 	</div>
+</div>
 	<!-- 列表：查询分页列表 end -->
 	<!-- add by WHao start 引入：用户列表js -->
 	<script type="text/javascript">
@@ -71,9 +76,11 @@
                  }
                     ,{name:'操作',value:'id',type:"function", fun : function(obj){
                     	var html="";
-	                		html += "  <a href='javascript:void(0)' class='btn-link' onclick='updateObj("+obj.id+")'>编辑</a>"
+                    		
+	                		html += "  <a href='javascript:void(0)' class='btn-link' onclick='toUpdatePage("+obj.id+")'>编辑</a>"
 	                		html += "  <a href='javascript:void(0)' class='btn-link' onclick='delObj("+obj.id+")'>删除</a>";
-                    	return html;
+	                		html += "  <a href='javascript:void(0)' class='btn-link' onclick='toUserRole("+obj.id+")'>用户角色维护</a>"
+	                	return html;
                       }
                     }
                 ]
@@ -100,9 +107,9 @@
     	callmodalFun('您确认删除该记录吗？',function(){
     		$.ajax({
     			type : "post",
-    			url : _path+"/goods/brand/delete?__"+(new Date()).getTime(),
+    			url :_path+"/invoicing/system/user/del",
     			data : {
-    				'id' : id
+    				'id':id
     			},
     			beforeSend: function () {
                     //加载中
@@ -111,10 +118,10 @@
     			success : function(data) {
     				closewait();
     				//若执行成功的话，则隐藏进度条提示
-    				if (data != null && data != 'undefined'
-    						&& data == 1) {
-    					var jumpUrl = '/goods/brand/list';
-    					timedTaskFun(1000,'用户删除成功',jumpUrl,'correct');
+    				if (data.code== 1) {
+    					alert("用户删除成功！")
+    					var url = _path+"/invoicing/system/user/list";
+    					goBackPage(url);
     				} else if (data == 0) {
     					timedTaskFun(1000,'用户删除失败','','err');
     				} else if(data == -2) {
@@ -124,5 +131,26 @@
     			}
     		 });
     	});
+    };
+    //用户角色维护
+    function toUserRole(userId){
+  	  var url=_path+"/invoicing/system/user/role?userId="+userId;
+		$.get(url,function(data){
+			$("#mian_div").html(data);
+		});    	
     }
+    //到新增页面
+    $("#addBtn").click(function(){
+    	var url=_path+"/invoicing/system/user/add";
+		$.get(url,function(data){
+			$("#mian_div").html(data);
+		});    
+    });
+    //编辑用户信息
+    function toUpdatePage(userId){
+    	 var url=_path+"/invoicing/system/user/update?userId="+userId;
+		 //调用跳转方法
+		 goBackPage(url);
+    }
+    
 </script>

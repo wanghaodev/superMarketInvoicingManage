@@ -32,6 +32,11 @@ public class GoodsCategoryEntity extends BaseEntity {
      * 类目名称
      */
     private String categoryName;
+    
+    /**
+     * 父类目名称
+     */
+    private String pCategoryName;
     /**
      * 父类目id
      */
@@ -383,5 +388,13 @@ public class GoodsCategoryEntity extends BaseEntity {
     public String getRemark2() {
         return this.remark2;
     }
+	public String getpCategoryName() {
+		return pCategoryName;
+	}
+	public void setpCategoryName(String pCategoryName) {
+		this.pCategoryName = pCategoryName;
+	}
+    
+    
 
 }

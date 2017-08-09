@@ -13,12 +13,6 @@ import com.invoicing.manage.comment.entity.BaseEntity;
 
 @SuppressWarnings("serial")
 public class GoodsEntity extends BaseEntity {
-  
-    
-    /**
-     * 主键
-     */
-    private Long id;
     /**
      * 服务商品名称
      */
@@ -27,6 +21,13 @@ public class GoodsEntity extends BaseEntity {
      * 商品简称
      */
     private String goodsShortName;
+    
+    /**
+     * 商品类目名称
+     */
+    private String categoryName;
+    
+    
     /**
      * SPU
      */
@@ -73,30 +74,6 @@ public class GoodsEntity extends BaseEntity {
      */
     private String hierarchyId;
     /**
-     * 创建人ID
-     */
-    private Long creatorId;
-    /**
-     * 创建人
-     */
-    private String creator;
-    /**
-     * 创建时间
-     */
-    private Date createTime;
-    /**
-     * 修改人ID
-     */
-    private Long updatorId;
-    /**
-     * 修改人
-     */
-    private String updator;
-    /**
-     * 修改时间
-     */
-    private Date updateTime;
-    /**
      * 扩展参数，冗余扩展表中的名值对
      */
     private String extendsParams;
@@ -109,18 +86,6 @@ public class GoodsEntity extends BaseEntity {
      */
     private String remark2;
 
-	/**
-	 * 设置主键
-	 */
-    public void setId(Long id) {
-        this.id = id;
-    }
-    /**
-     * 获取主键
-     */
-    public Long getId() {
-        return this.id;
-    }
 	/**
 	 * 设置服务商品名称
 	 */
@@ -280,78 +245,6 @@ public class GoodsEntity extends BaseEntity {
         return this.hierarchyId;
     }
 	/**
-	 * 设置创建人ID
-	 */
-    public void setCreatorId(Long creatorId) {
-        this.creatorId = creatorId;
-    }
-    /**
-     * 获取创建人ID
-     */
-    public Long getCreatorId() {
-        return this.creatorId;
-    }
-	/**
-	 * 设置创建人
-	 */
-    public void setCreator(String creator) {
-        this.creator = creator;
-    }
-    /**
-     * 获取创建人
-     */
-    public String getCreator() {
-        return this.creator;
-    }
-	/**
-	 * 设置创建时间
-	 */
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-    /**
-     * 获取创建时间
-     */
-    public Date getCreateTime() {
-        return this.createTime;
-    }
-	/**
-	 * 设置修改人ID
-	 */
-    public void setUpdatorId(Long updatorId) {
-        this.updatorId = updatorId;
-    }
-    /**
-     * 获取修改人ID
-     */
-    public Long getUpdatorId() {
-        return this.updatorId;
-    }
-	/**
-	 * 设置修改人
-	 */
-    public void setUpdator(String updator) {
-        this.updator = updator;
-    }
-    /**
-     * 获取修改人
-     */
-    public String getUpdator() {
-        return this.updator;
-    }
-	/**
-	 * 设置修改时间
-	 */
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
-    /**
-     * 获取修改时间
-     */
-    public Date getUpdateTime() {
-        return this.updateTime;
-    }
-	/**
 	 * 设置扩展参数，冗余扩展表中的名值对
 	 */
     public void setExtendsParams(String extendsParams) {
@@ -387,5 +280,13 @@ public class GoodsEntity extends BaseEntity {
     public String getRemark2() {
         return this.remark2;
     }
+	public String getCategoryName() {
+		return categoryName;
+	}
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+    
+    
 
 }

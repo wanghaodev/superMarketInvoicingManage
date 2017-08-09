@@ -6,6 +6,8 @@
     	 <id column="id" property="id" /> 
 		  <id column="goodsName" property="goodsName" /> 
 		  <id column="goodsShortName" property="goodsShortName" /> 
+		  
+		  <id column="categoryName" property="categoryName" /> 
 		  <id column="goodsSpu" property="goodsSpu" /> 
 		  <id column="goodsType" property="goodsType" /> 
 		  <id column="selfSupport" property="selfSupport" /> 
@@ -286,14 +288,8 @@
  		 </set>
      where id = #{id}
 	</update>
-	
-	 <select id="getList" resultMap="BaseResultMap"
-		parameterType="java.util.Map">
-		 select 
- 		  <include refid="Base_Column_List" />
- 		  from goods_tb goods
- 		  where 1=1 
- 		 <if test="id != null">
+	<sql id="whereSQL">
+		<if test="id != null">
  			 and goods.id = #{id}
  		  </if>
  		 <if test="goodsName != null">
@@ -326,117 +322,32 @@
  		 <if test="state != null">
  			 and goods.state = #{state}
  		  </if>
- 		 <if test="isDelete != null">
- 			 and goods.is_delete = #{isDelete}
- 		  </if>
- 		 <if test="directlyOrgId != null">
- 			 and goods.directly_org_id = #{directlyOrgId}
- 		  </if>
- 		 <if test="hierarchyId != null">
- 			 and goods.hierarchy_id = #{hierarchyId}
- 		  </if>
- 		 <if test="creatorId != null">
- 			 and goods.creator_id = #{creatorId}
- 		  </if>
- 		 <if test="creator != null">
- 			 and goods.creator = #{creator}
- 		  </if>
- 		 <if test="createTime != null">
- 			 and goods.create_time = #{createTime}
- 		  </if>
- 		 <if test="updatorId != null">
- 			 and goods.updator_id = #{updatorId}
- 		  </if>
- 		 <if test="updator != null">
- 			 and goods.updator = #{updator}
- 		  </if>
- 		 <if test="updateTime != null">
- 			 and goods.update_time = #{updateTime}
- 		  </if>
- 		 <if test="extendsParams != null">
- 			 and goods.extends_params = #{extendsParams}
- 		  </if>
- 		 <if test="remark1 != null">
- 			 and goods.remark1 = #{remark1}
- 		  </if>
- 		 <if test="remark2 != null">
- 			 and goods.remark2 = #{remark2}
- 		  </if>
+	</sql>
+	 <select id="getList" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		 SELECT
+			goods.id id,
+			goods.goods_category_id goodsCategoryId,
+			goods.goods_name goodsName,
+			goodsCategory.category_name categoryName,
+			goods.goods_spu goodsSpu,
+			goods.goods_type goodsType,
+			goods.state state,
+			goods.create_time createTime,
+			goods.update_time updateTime
+		FROM
+			goods_tb goods
+		LEFT JOIN goods_category_tb goodsCategory ON goods.goods_category_id = goodsCategory.id
+ 		  where 1=1 
 	</select>
 	 <select id="getListCount" resultType="java.lang.Integer"
 		parameterType="java.util.Map">
-		 select 
- 		  count(goods.id)
- 		  from goods_tb goods
+		SELECT
+			count(1)
+		FROM
+			goods_tb goods
+		LEFT JOIN goods_category_tb goodsCategory ON goods.goods_category_id = goodsCategory.id
  		  where 1=1 
- 		 <if test="id != null">
- 			 and goods.id = #{id}
- 		  </if>
- 		 <if test="goodsName != null">
- 			 and goods.goods_name = #{goodsName}
- 		  </if>
- 		 <if test="goodsShortName != null">
- 			 and goods.goods_short_name = #{goodsShortName}
- 		  </if>
- 		 <if test="goodsSpu != null">
- 			 and goods.goods_spu = #{goodsSpu}
- 		  </if>
- 		 <if test="goodsType != null">
- 			 and goods.goods_type = #{goodsType}
- 		  </if>
- 		 <if test="selfSupport != null">
- 			 and goods.self_support = #{selfSupport}
- 		  </if>
- 		 <if test="goodsCategoryId != null">
- 			 and goods.goods_category_id = #{goodsCategoryId}
- 		  </if>
- 		 <if test="isMultiProperties != null">
- 			 and goods.is_multi_properties = #{isMultiProperties}
- 		  </if>
- 		 <if test="skuNums != null">
- 			 and goods.sku_nums = #{skuNums}
- 		  </if>
- 		 <if test="saleMap != null">
- 			 and goods.sale_map = #{saleMap}
- 		  </if>
- 		 <if test="state != null">
- 			 and goods.state = #{state}
- 		  </if>
- 		 <if test="isDelete != null">
- 			 and goods.is_delete = #{isDelete}
- 		  </if>
- 		 <if test="directlyOrgId != null">
- 			 and goods.directly_org_id = #{directlyOrgId}
- 		  </if>
- 		 <if test="hierarchyId != null">
- 			 and goods.hierarchy_id = #{hierarchyId}
- 		  </if>
- 		 <if test="creatorId != null">
- 			 and goods.creator_id = #{creatorId}
- 		  </if>
- 		 <if test="creator != null">
- 			 and goods.creator = #{creator}
- 		  </if>
- 		 <if test="createTime != null">
- 			 and goods.create_time = #{createTime}
- 		  </if>
- 		 <if test="updatorId != null">
- 			 and goods.updator_id = #{updatorId}
- 		  </if>
- 		 <if test="updator != null">
- 			 and goods.updator = #{updator}
- 		  </if>
- 		 <if test="updateTime != null">
- 			 and goods.update_time = #{updateTime}
- 		  </if>
- 		 <if test="extendsParams != null">
- 			 and goods.extends_params = #{extendsParams}
- 		  </if>
- 		 <if test="remark1 != null">
- 			 and goods.remark1 = #{remark1}
- 		  </if>
- 		 <if test="remark2 != null">
- 			 and goods.remark2 = #{remark2}
- 		  </if>
+ 		 <include refid="whereSQL"/>
 	</select>
 </mapper>

@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.invoicing.manage.mapper.GoodsNormalPriceMapper">
+
+	 <resultMap type="com.invoicing.manage.entity.GoodsNormalPriceEntity" id="BaseResultMap">
+    	 <id column="id" property="id" /> 
+		  <id column="salePrice" property="salePrice" /> 
+		  <id column="marketPrice" property="marketPrice" /> 
+		  <id column="purchasePrice" property="purchasePrice" /> 
+		  <id column="goodsId" property="goodsId" /> 
+		  <id column="goodsSaleId" property="goodsSaleId" /> 
+		  <id column="storeId" property="storeId" /> 
+		  <id column="storeType" property="storeType" /> 
+		  <id column="storeName" property="storeName" /> 
+		  <id column="goodsState" property="goodsState" /> 
+		  <id column="isDelete" property="isDelete" /> 
+		  <id column="directlyOrgId" property="directlyOrgId" /> 
+		  <id column="hierarchyId" property="hierarchyId" /> 
+		  <id column="valid" property="valid" /> 
+		  <id column="creatorId" property="creatorId" /> 
+		  <id column="createTime" property="createTime" /> 
+		  <id column="updatorId" property="updatorId" /> 
+		  <id column="updateTime" property="updateTime" /> 
+		  <id column="remark1" property="remark1" /> 
+		  <id column="remark2" property="remark2" /> 
+  
+    </resultMap>
+    <sql id="Base_Column_List">
+    	 goodsNormalPrice.id as id ,
+ 		 goodsNormalPrice.sale_price as salePrice ,
+ 		 goodsNormalPrice.market_price as marketPrice ,
+ 		 goodsNormalPrice.purchase_price as purchasePrice ,
+ 		 goodsNormalPrice.goods_id as goodsId ,
+ 		 goodsNormalPrice.goods_sale_id as goodsSaleId ,
+ 		 goodsNormalPrice.store_id as storeId ,
+ 		 goodsNormalPrice.store_type as storeType ,
+ 		 goodsNormalPrice.store_name as storeName ,
+ 		 goodsNormalPrice.goods_state as goodsState ,
+ 		 goodsNormalPrice.is_delete as isDelete ,
+ 		 goodsNormalPrice.directly_org_id as directlyOrgId ,
+ 		 goodsNormalPrice.hierarchy_id as hierarchyId ,
+ 		 goodsNormalPrice.valid as valid ,
+ 		 goodsNormalPrice.creator_id as creatorId ,
+ 		 goodsNormalPrice.create_time as createTime ,
+ 		 goodsNormalPrice.updator_id as updatorId ,
+ 		 goodsNormalPrice.update_time as updateTime ,
+ 		 goodsNormalPrice.remark1 as remark1 ,
+ 		 goodsNormalPrice.remark2 as remark2
+    </sql>
+    
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		 select 
+ 		  <include refid="Base_Column_List" />
+ 		  from goods_normal_price_tb goodsNormalPrice
+ 		  where goodsNormalPrice.id = #{ id }
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		 delete 
+ 		  from goods_normal_price_tb
+ 		  where id = #{ id }
+	</delete>
+	
+	<insert id="insertSelective" parameterType="com.invoicing.manage.entity.GoodsNormalPriceEntity">
+		 insert into  goods_normal_price_tb
+ 		  <trim prefix="(" suffix=")" suffixOverrides=","> 
+ 			 <if test="id != null">
+ 				 id,
+ 			  </if>
+ 			 <if test="salePrice != null">
+ 				 sale_price,
+ 			  </if>
+ 			 <if test="marketPrice != null">
+ 				 market_price,
+ 			  </if>
+ 			 <if test="purchasePrice != null">
+ 				 purchase_price,
+ 			  </if>
+ 			 <if test="goodsId != null">
+ 				 goods_id,
+ 			  </if>
+ 			 <if test="goodsSaleId != null">
+ 				 goods_sale_id,
+ 			  </if>
+ 			 <if test="storeId != null">
+ 				 store_id,
+ 			  </if>
+ 			 <if test="storeType != null">
+ 				 store_type,
+ 			  </if>
+ 			 <if test="storeName != null">
+ 				 store_name,
+ 			  </if>
+ 			 <if test="goodsState != null">
+ 				 goods_state,
+ 			  </if>
+ 			 <if test="isDelete != null">
+ 				 is_delete,
+ 			  </if>
+ 			 <if test="directlyOrgId != null">
+ 				 directly_org_id,
+ 			  </if>
+ 			 <if test="hierarchyId != null">
+ 				 hierarchy_id,
+ 			  </if>
+ 			 <if test="valid != null">
+ 				 valid,
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 creator_id,
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 create_time,
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 updator_id,
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 update_time,
+ 			  </if>
+ 			 <if test="remark1 != null">
+ 				 remark1,
+ 			  </if>
+ 			 <if test="remark2 != null">
+ 				 remark2,
+ 			  </if>
+ 		  </trim>
+ 		  <trim prefix="values (" suffix=")" suffixOverrides="," >
+ 			 <if test="id != null">
+ 				 #{id},
+ 			  </if>
+ 			 <if test="salePrice != null">
+ 				 #{salePrice},
+ 			  </if>
+ 			 <if test="marketPrice != null">
+ 				 #{marketPrice},
+ 			  </if>
+ 			 <if test="purchasePrice != null">
+ 				 #{purchasePrice},
+ 			  </if>
+ 			 <if test="goodsId != null">
+ 				 #{goodsId},
+ 			  </if>
+ 			 <if test="goodsSaleId != null">
+ 				 #{goodsSaleId},
+ 			  </if>
+ 			 <if test="storeId != null">
+ 				 #{storeId},
+ 			  </if>
+ 			 <if test="storeType != null">
+ 				 #{storeType},
+ 			  </if>
+ 			 <if test="storeName != null">
+ 				 #{storeName},
+ 			  </if>
+ 			 <if test="goodsState != null">
+ 				 #{goodsState},
+ 			  </if>
+ 			 <if test="isDelete != null">
+ 				 #{isDelete},
+ 			  </if>
+ 			 <if test="directlyOrgId != null">
+ 				 #{directlyOrgId},
+ 			  </if>
+ 			 <if test="hierarchyId != null">
+ 				 #{hierarchyId},
+ 			  </if>
+ 			 <if test="valid != null">
+ 				 #{valid},
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 #{creatorId},
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 #{createTime},
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 #{updatorId},
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 #{updateTime},
+ 			  </if>
+ 			 <if test="remark1 != null">
+ 				 #{remark1},
+ 			  </if>
+ 			 <if test="remark2 != null">
+ 				 #{remark2},
+ 			  </if>
+ 		  </trim>
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="com.invoicing.manage.entity.GoodsNormalPriceEntity">
+		 update   goods_normal_price_tb
+ 		 <set>
+ 			 <if test="salePrice != null">
+ 				 sale_price = #{salePrice},
+ 			  </if>
+ 			 <if test="marketPrice != null">
+ 				 market_price = #{marketPrice},
+ 			  </if>
+ 			 <if test="purchasePrice != null">
+ 				 purchase_price = #{purchasePrice},
+ 			  </if>
+ 			 <if test="goodsId != null">
+ 				 goods_id = #{goodsId},
+ 			  </if>
+ 			 <if test="goodsSaleId != null">
+ 				 goods_sale_id = #{goodsSaleId},
+ 			  </if>
+ 			 <if test="storeId != null">
+ 				 store_id = #{storeId},
+ 			  </if>
+ 			 <if test="storeType != null">
+ 				 store_type = #{storeType},
+ 			  </if>
+ 			 <if test="storeName != null">
+ 				 store_name = #{storeName},
+ 			  </if>
+ 			 <if test="goodsState != null">
+ 				 goods_state = #{goodsState},
+ 			  </if>
+ 			 <if test="isDelete != null">
+ 				 is_delete = #{isDelete},
+ 			  </if>
+ 			 <if test="directlyOrgId != null">
+ 				 directly_org_id = #{directlyOrgId},
+ 			  </if>
+ 			 <if test="hierarchyId != null">
+ 				 hierarchy_id = #{hierarchyId},
+ 			  </if>
+ 			 <if test="valid != null">
+ 				 valid = #{valid},
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 creator_id = #{creatorId},
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 create_time = #{createTime},
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 updator_id = #{updatorId},
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 update_time = #{updateTime},
+ 			  </if>
+ 			 <if test="remark1 != null">
+ 				 remark1 = #{remark1},
+ 			  </if>
+ 			 <if test="remark2 != null">
+ 				 remark2 = #{remark2},
+ 			  </if>
+ 		 </set>
+     where id = #{id}
+	</update>
+	
+	 <select id="getList" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		 select 
+ 		  <include refid="Base_Column_List" />
+ 		  from goods_normal_price_tb goodsNormalPrice
+ 		  where 1=1 
+ 		 <if test="id != null">
+ 			 and goodsNormalPrice.id = #{id}
+ 		  </if>
+ 		 <if test="salePrice != null">
+ 			 and goodsNormalPrice.sale_price = #{salePrice}
+ 		  </if>
+ 		 <if test="marketPrice != null">
+ 			 and goodsNormalPrice.market_price = #{marketPrice}
+ 		  </if>
+ 		 <if test="purchasePrice != null">
+ 			 and goodsNormalPrice.purchase_price = #{purchasePrice}
+ 		  </if>
+ 		 <if test="goodsId != null">
+ 			 and goodsNormalPrice.goods_id = #{goodsId}
+ 		  </if>
+ 		 <if test="goodsSaleId != null">
+ 			 and goodsNormalPrice.goods_sale_id = #{goodsSaleId}
+ 		  </if>
+ 		 <if test="storeId != null">
+ 			 and goodsNormalPrice.store_id = #{storeId}
+ 		  </if>
+ 		 <if test="storeType != null">
+ 			 and goodsNormalPrice.store_type = #{storeType}
+ 		  </if>
+ 		 <if test="storeName != null">
+ 			 and goodsNormalPrice.store_name = #{storeName}
+ 		  </if>
+ 		 <if test="goodsState != null">
+ 			 and goodsNormalPrice.goods_state = #{goodsState}
+ 		  </if>
+ 		 <if test="isDelete != null">
+ 			 and goodsNormalPrice.is_delete = #{isDelete}
+ 		  </if>
+ 		 <if test="directlyOrgId != null">
+ 			 and goodsNormalPrice.directly_org_id = #{directlyOrgId}
+ 		  </if>
+ 		 <if test="hierarchyId != null">
+ 			 and goodsNormalPrice.hierarchy_id = #{hierarchyId}
+ 		  </if>
+ 		 <if test="valid != null">
+ 			 and goodsNormalPrice.valid = #{valid}
+ 		  </if>
+ 		 <if test="creatorId != null">
+ 			 and goodsNormalPrice.creator_id = #{creatorId}
+ 		  </if>
+ 		 <if test="createTime != null">
+ 			 and goodsNormalPrice.create_time = #{createTime}
+ 		  </if>
+ 		 <if test="updatorId != null">
+ 			 and goodsNormalPrice.updator_id = #{updatorId}
+ 		  </if>
+ 		 <if test="updateTime != null">
+ 			 and goodsNormalPrice.update_time = #{updateTime}
+ 		  </if>
+ 		 <if test="remark1 != null">
+ 			 and goodsNormalPrice.remark1 = #{remark1}
+ 		  </if>
+ 		 <if test="remark2 != null">
+ 			 and goodsNormalPrice.remark2 = #{remark2}
+ 		  </if>
+	</select>
+	 <select id="getListCount" resultType="java.lang.Integer"
+		parameterType="java.util.Map">
+		 select 
+ 		  count(goodsNormalPrice.id)
+ 		  from goods_normal_price_tb goodsNormalPrice
+ 		  where 1=1 
+ 		 <if test="id != null">
+ 			 and goodsNormalPrice.id = #{id}
+ 		  </if>
+ 		 <if test="salePrice != null">
+ 			 and goodsNormalPrice.sale_price = #{salePrice}
+ 		  </if>
+ 		 <if test="marketPrice != null">
+ 			 and goodsNormalPrice.market_price = #{marketPrice}
+ 		  </if>
+ 		 <if test="purchasePrice != null">
+ 			 and goodsNormalPrice.purchase_price = #{purchasePrice}
+ 		  </if>
+ 		 <if test="goodsId != null">
+ 			 and goodsNormalPrice.goods_id = #{goodsId}
+ 		  </if>
+ 		 <if test="goodsSaleId != null">
+ 			 and goodsNormalPrice.goods_sale_id = #{goodsSaleId}
+ 		  </if>
+ 		 <if test="storeId != null">
+ 			 and goodsNormalPrice.store_id = #{storeId}
+ 		  </if>
+ 		 <if test="storeType != null">
+ 			 and goodsNormalPrice.store_type = #{storeType}
+ 		  </if>
+ 		 <if test="storeName != null">
+ 			 and goodsNormalPrice.store_name = #{storeName}
+ 		  </if>
+ 		 <if test="goodsState != null">
+ 			 and goodsNormalPrice.goods_state = #{goodsState}
+ 		  </if>
+ 		 <if test="isDelete != null">
+ 			 and goodsNormalPrice.is_delete = #{isDelete}
+ 		  </if>
+ 		 <if test="directlyOrgId != null">
+ 			 and goodsNormalPrice.directly_org_id = #{directlyOrgId}
+ 		  </if>
+ 		 <if test="hierarchyId != null">
+ 			 and goodsNormalPrice.hierarchy_id = #{hierarchyId}
+ 		  </if>
+ 		 <if test="valid != null">
+ 			 and goodsNormalPrice.valid = #{valid}
+ 		  </if>
+ 		 <if test="creatorId != null">
+ 			 and goodsNormalPrice.creator_id = #{creatorId}
+ 		  </if>
+ 		 <if test="createTime != null">
+ 			 and goodsNormalPrice.create_time = #{createTime}
+ 		  </if>
+ 		 <if test="updatorId != null">
+ 			 and goodsNormalPrice.updator_id = #{updatorId}
+ 		  </if>
+ 		 <if test="updateTime != null">
+ 			 and goodsNormalPrice.update_time = #{updateTime}
+ 		  </if>
+ 		 <if test="remark1 != null">
+ 			 and goodsNormalPrice.remark1 = #{remark1}
+ 		  </if>
+ 		 <if test="remark2 != null">
+ 			 and goodsNormalPrice.remark2 = #{remark2}
+ 		  </if>
+	</select>
+</mapper>

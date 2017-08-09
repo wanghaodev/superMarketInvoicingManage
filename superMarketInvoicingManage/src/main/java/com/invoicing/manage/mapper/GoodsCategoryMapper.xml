@@ -5,7 +5,8 @@
 	 <resultMap type="com.invoicing.manage.entity.GoodsCategoryEntity" id="BaseResultMap">
     	 <id column="id" property="id" /> 
 		  <id column="categoryId" property="categoryId" /> 
-		  <id column="categoryName" property="categoryName" /> 
+		  <id column="categoryName" property="categoryName" />
+		  <id column="pCategoryName" property="pCategoryName" />
 		  <id column="parentId" property="parentId" /> 
 		  <id column="categoryType" property="categoryType" /> 
 		  <id column="categoryLevel" property="categoryLevel" /> 
@@ -276,13 +277,8 @@
      where id = #{id}
 	</update>
 	
-	 <select id="getList" resultMap="BaseResultMap"
-		parameterType="java.util.Map">
-		 select 
- 		  <include refid="Base_Column_List" />
- 		  from goods_category_tb goodsCategory
- 		  where 1=1 
- 		 <if test="id != null">
+	<sql id="whereSQL">
+		<if test="id != null">
  			 and goodsCategory.id = #{id}
  		  </if>
  		 <if test="categoryId != null">
@@ -300,126 +296,31 @@
  		 <if test="categoryLevel != null">
  			 and goodsCategory.category_level = #{categoryLevel}
  		  </if>
- 		 <if test="inputTax != null">
- 			 and goodsCategory.input_tax = #{inputTax}
- 		  </if>
- 		 <if test="outputTax != null">
- 			 and goodsCategory.output_tax = #{outputTax}
- 		  </if>
- 		 <if test="consumeTax != null">
- 			 and goodsCategory.consume_tax = #{consumeTax}
- 		  </if>
- 		 <if test="hierarchyId != null">
- 			 and goodsCategory.hierarchy_id = #{hierarchyId}
- 		  </if>
- 		 <if test="directlyOrgId != null">
- 			 and goodsCategory.directly_org_id = #{directlyOrgId}
- 		  </if>
- 		 <if test="orderNumber != null">
- 			 and goodsCategory.order_number = #{orderNumber}
- 		  </if>
- 		 <if test="status != null">
- 			 and goodsCategory.status = #{status}
- 		  </if>
- 		 <if test="isDelete != null">
- 			 and goodsCategory.is_delete = #{isDelete}
- 		  </if>
- 		 <if test="creatorId != null">
- 			 and goodsCategory.creator_id = #{creatorId}
- 		  </if>
- 		 <if test="creator != null">
- 			 and goodsCategory.creator = #{creator}
- 		  </if>
- 		 <if test="createTime != null">
- 			 and goodsCategory.create_time = #{createTime}
- 		  </if>
- 		 <if test="updatorId != null">
- 			 and goodsCategory.updator_id = #{updatorId}
- 		  </if>
- 		 <if test="updator != null">
- 			 and goodsCategory.updator = #{updator}
- 		  </if>
- 		 <if test="updateTime != null">
- 			 and goodsCategory.update_time = #{updateTime}
- 		  </if>
- 		 <if test="remark1 != null">
- 			 and goodsCategory.remark1 = #{remark1}
- 		  </if>
- 		 <if test="remark2 != null">
- 			 and goodsCategory.remark2 = #{remark2}
- 		  </if>
+	</sql>
+	 <select id="getList" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		 		 SELECT
+					goodsCategory.category_name categoryName,
+					pGoodsCategory.category_name pCategoryName,
+					goodsCategory.id id,
+					goodsCategory.parent_id parentId,
+					goodsCategory.category_level categoryLevel,
+					goodsCategory.create_time createTime,
+					goodsCategory.update_time updateTime
+					FROM
+					goods_category_tb goodsCategory
+				LEFT JOIN goods_category_tb pGoodsCategory ON goodsCategory.parent_id = pGoodsCategory.id
+					where 1=1 
+				ORDER BY goodsCategory.create_time ASC
 	</select>
 	 <select id="getListCount" resultType="java.lang.Integer"
 		parameterType="java.util.Map">
-		 select 
- 		  count(goodsCategory.id)
- 		  from goods_category_tb goodsCategory
- 		  where 1=1 
- 		 <if test="id != null">
- 			 and goodsCategory.id = #{id}
- 		  </if>
- 		 <if test="categoryId != null">
- 			 and goodsCategory.category_id = #{categoryId}
- 		  </if>
- 		 <if test="categoryName != null">
- 			 and goodsCategory.category_name = #{categoryName}
- 		  </if>
- 		 <if test="parentId != null">
- 			 and goodsCategory.parent_id = #{parentId}
- 		  </if>
- 		 <if test="categoryType != null">
- 			 and goodsCategory.category_type = #{categoryType}
- 		  </if>
- 		 <if test="categoryLevel != null">
- 			 and goodsCategory.category_level = #{categoryLevel}
- 		  </if>
- 		 <if test="inputTax != null">
- 			 and goodsCategory.input_tax = #{inputTax}
- 		  </if>
- 		 <if test="outputTax != null">
- 			 and goodsCategory.output_tax = #{outputTax}
- 		  </if>
- 		 <if test="consumeTax != null">
- 			 and goodsCategory.consume_tax = #{consumeTax}
- 		  </if>
- 		 <if test="hierarchyId != null">
- 			 and goodsCategory.hierarchy_id = #{hierarchyId}
- 		  </if>
- 		 <if test="directlyOrgId != null">
- 			 and goodsCategory.directly_org_id = #{directlyOrgId}
- 		  </if>
- 		 <if test="orderNumber != null">
- 			 and goodsCategory.order_number = #{orderNumber}
- 		  </if>
- 		 <if test="status != null">
- 			 and goodsCategory.status = #{status}
- 		  </if>
- 		 <if test="isDelete != null">
- 			 and goodsCategory.is_delete = #{isDelete}
- 		  </if>
- 		 <if test="creatorId != null">
- 			 and goodsCategory.creator_id = #{creatorId}
- 		  </if>
- 		 <if test="creator != null">
- 			 and goodsCategory.creator = #{creator}
- 		  </if>
- 		 <if test="createTime != null">
- 			 and goodsCategory.create_time = #{createTime}
- 		  </if>
- 		 <if test="updatorId != null">
- 			 and goodsCategory.updator_id = #{updatorId}
- 		  </if>
- 		 <if test="updator != null">
- 			 and goodsCategory.updator = #{updator}
- 		  </if>
- 		 <if test="updateTime != null">
- 			 and goodsCategory.update_time = #{updateTime}
- 		  </if>
- 		 <if test="remark1 != null">
- 			 and goodsCategory.remark1 = #{remark1}
- 		  </if>
- 		 <if test="remark2 != null">
- 			 and goodsCategory.remark2 = #{remark2}
- 		  </if>
+			SELECT
+				COUNT(1)
+			FROM
+				goods_category_tb goodsCategory
+			LEFT JOIN goods_category_tb pGoodsCategory ON goodsCategory.parent_id = pGoodsCategory.id
+			where 1=1 
+ 		 <include refid="whereSQL"/>
 	</select>
 </mapper>

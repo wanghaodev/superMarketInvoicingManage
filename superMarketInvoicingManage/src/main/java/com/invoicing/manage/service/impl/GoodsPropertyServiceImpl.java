@@ -1,29 +1,28 @@
 package com.invoicing.manage.service.impl;
 
-import java.util.List;
+import com.invoicing.manage.entity.GoodsPropertyEntity;
+import com.invoicing.manage.service.GoodsPropertyService;
+import com.invoicing.manage.mapper.GoodsPropertyMapper;
 import java.util.Map;
+import java.util.List;
+import com.snailf.platforms.common.entity.PageInfo;
 
-import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.invoicing.manage.entity.AreaEntity;
-import com.invoicing.manage.mapper.AreaMapper;
-import com.invoicing.manage.service.AreaService;
-import com.snailf.platforms.common.entity.PageInfo;
+import org.apache.ibatis.session.RowBounds;
 /**
  *
- * @time 2017年07月27日 19:41:57
+ * @time 2017年08月09日 18:58:21
  * @version 1.0
  *
  **/
-@Service("areaService")
-public class AreaServiceImpl  implements AreaService{
+@Service("goodsPropertyService")
+public class GoodsPropertyServiceImpl  implements GoodsPropertyService{
 
 	@Autowired
-	private AreaMapper areaMapper;
+	private GoodsPropertyMapper goodsPropertyMapper;
   	/**
 	 * 通过主键id 删除
 	 * @param id
@@ -31,7 +30,7 @@ public class AreaServiceImpl  implements AreaService{
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = RuntimeException.class)
 	public int deleteByPrimaryKey(Long id){
-		return	areaMapper.deleteByPrimaryKey(id);
+		return	goodsPropertyMapper.deleteByPrimaryKey(id);
 	}
 	/**
 	 * 插入实体
@@ -39,16 +38,16 @@ public class AreaServiceImpl  implements AreaService{
 	 * @return
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = RuntimeException.class)
-	public int insertSelective(AreaEntity record){
-		return areaMapper.insertSelective(record);
+	public int insertSelective(GoodsPropertyEntity record){
+		return goodsPropertyMapper.insertSelective(record);
 	}
 	/**
 	 * 通过主键id 获取实体对象
 	 * @param id
 	 * @return
 	 */
-	public AreaEntity selectByPrimaryKey(Long id){
-		return areaMapper.selectByPrimaryKey(id);
+	public GoodsPropertyEntity selectByPrimaryKey(Long id){
+		return goodsPropertyMapper.selectByPrimaryKey(id);
 	}
 	/**
 	 * 通过主键id 更新实体
@@ -56,26 +55,26 @@ public class AreaServiceImpl  implements AreaService{
 	 * @return 1成功  其它失败
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = RuntimeException.class)
-	public int updateByPrimaryKeySelective(AreaEntity record){
-		return areaMapper.updateByPrimaryKeySelective(record);
+	public int updateByPrimaryKeySelective(GoodsPropertyEntity record){
+		return goodsPropertyMapper.updateByPrimaryKeySelective(record);
 	}
 	/**
 	 * 通过map参数获取列表
 	 * @param params
-	 * @return List<AreaEntity>
+	 * @return List<GoodsPropertyEntity>
 	 */
-	public List<AreaEntity> getList(Map<String,Object> params){
-		return  areaMapper.getList(params);
+	public List<GoodsPropertyEntity> getList(Map<String,Object> params){
+		return  goodsPropertyMapper.getList(params);
 	}
 	/**
 	 * 通过map参数获取列表 分页
 	 * @param params
-	 * @return PageInfo<AreaEntity>
+	 * @return PageInfo<GoodsPropertyEntity>
 	 */
-	public PageInfo<AreaEntity> getList(PageInfo<AreaEntity> pageInfo,Map<String,Object> params){
-		List<AreaEntity> list = areaMapper.getList(params,
+	public PageInfo<GoodsPropertyEntity> getList(PageInfo<GoodsPropertyEntity> pageInfo,Map<String,Object> params){
+		List<GoodsPropertyEntity> list = goodsPropertyMapper.getList(params,
 				new RowBounds(pageInfo.getStart(), pageInfo.getPageSize()));
-		Integer total = areaMapper.getListCount(params);
+		Integer total = goodsPropertyMapper.getListCount(params);
 		pageInfo.setRows(list);
 		pageInfo.setTotal(total);
 		return pageInfo;
@@ -86,7 +85,7 @@ public class AreaServiceImpl  implements AreaService{
 	 * @return int
 	 */
 	public int getListCount(Map<String,Object> params){
-		return  areaMapper.getListCount(params);
+		return  goodsPropertyMapper.getListCount(params);
 	}
 
 }

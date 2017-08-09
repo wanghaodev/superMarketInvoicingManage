@@ -1,6 +1,7 @@
 package com.invoicing.manage.entity;
 
-import com.snailf.platforms.common.entity.BaseEntity;
+import com.invoicing.manage.comment.entity.BaseEntity;
+
 /**
  *
  * @类介绍 

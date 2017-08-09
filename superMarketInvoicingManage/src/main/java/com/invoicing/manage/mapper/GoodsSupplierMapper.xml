@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.invoicing.manage.mapper.GoodsSupplierMapper">
+
+	 <resultMap type="com.invoicing.manage.entity.GoodsSupplierEntity" id="BaseResultMap">
+    	 <id column="id" property="id" /> 
+		  <id column="supplierName" property="supplierName" /> 
+		  <id column="supplierShortName" property="supplierShortName" /> 
+		  <id column="supplierEnglishName" property="supplierEnglishName" /> 
+		  <id column="linkmanName" property="linkmanName" /> 
+		  <id column="linkmanSex" property="linkmanSex" /> 
+		  <id column="linkmanAge" property="linkmanAge" /> 
+		  <id column="supplierAddress" property="supplierAddress" /> 
+		  <id column="businessScope" property="businessScope" /> 
+		  <id column="linkmanPhone" property="linkmanPhone" /> 
+		  <id column="linkEmail" property="linkEmail" /> 
+		  <id column="businessType" property="businessType" /> 
+		  <id column="state" property="state" /> 
+		  <id column="isDelete" property="isDelete" /> 
+		  <id column="creatorId" property="creatorId" /> 
+		  <id column="creator" property="creator" /> 
+		  <id column="createTime" property="createTime" /> 
+		  <id column="updatorId" property="updatorId" /> 
+		  <id column="updator" property="updator" /> 
+		  <id column="updateTime" property="updateTime" /> 
+  
+    </resultMap>
+    <sql id="Base_Column_List">
+    	 goodsSupplier.id as id ,
+ 		 goodsSupplier.supplier_name as supplierName ,
+ 		 goodsSupplier.supplier_short_name as supplierShortName ,
+ 		 goodsSupplier.supplier_english_name as supplierEnglishName ,
+ 		 goodsSupplier.linkman_name as linkmanName ,
+ 		 goodsSupplier.linkman_sex as linkmanSex ,
+ 		 goodsSupplier.linkman_age as linkmanAge ,
+ 		 goodsSupplier.supplier_address as supplierAddress ,
+ 		 goodsSupplier.business_scope as businessScope ,
+ 		 goodsSupplier.linkman_phone as linkmanPhone ,
+ 		 goodsSupplier.link_email as linkEmail ,
+ 		 goodsSupplier.business_type as businessType ,
+ 		 goodsSupplier.state as state ,
+ 		 goodsSupplier.is_delete as isDelete ,
+ 		 goodsSupplier.creator_id as creatorId ,
+ 		 goodsSupplier.creator as creator ,
+ 		 goodsSupplier.create_time as createTime ,
+ 		 goodsSupplier.updator_id as updatorId ,
+ 		 goodsSupplier.updator as updator ,
+ 		 goodsSupplier.update_time as updateTime
+    </sql>
+    
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		 select 
+ 		  <include refid="Base_Column_List" />
+ 		  from goods_supplier_tb goodsSupplier
+ 		  where goodsSupplier.id = #{ id }
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		 delete 
+ 		  from goods_supplier_tb
+ 		  where id = #{ id }
+	</delete>
+	
+	<insert id="insertSelective" parameterType="com.invoicing.manage.entity.GoodsSupplierEntity">
+		 insert into  goods_supplier_tb
+ 		  <trim prefix="(" suffix=")" suffixOverrides=","> 
+ 			 <if test="id != null">
+ 				 id,
+ 			  </if>
+ 			 <if test="supplierName != null">
+ 				 supplier_name,
+ 			  </if>
+ 			 <if test="supplierShortName != null">
+ 				 supplier_short_name,
+ 			  </if>
+ 			 <if test="supplierEnglishName != null">
+ 				 supplier_english_name,
+ 			  </if>
+ 			 <if test="linkmanName != null">
+ 				 linkman_name,
+ 			  </if>
+ 			 <if test="linkmanSex != null">
+ 				 linkman_sex,
+ 			  </if>
+ 			 <if test="linkmanAge != null">
+ 				 linkman_age,
+ 			  </if>
+ 			 <if test="supplierAddress != null">
+ 				 supplier_address,
+ 			  </if>
+ 			 <if test="businessScope != null">
+ 				 business_scope,
+ 			  </if>
+ 			 <if test="linkmanPhone != null">
+ 				 linkman_phone,
+ 			  </if>
+ 			 <if test="linkEmail != null">
+ 				 link_email,
+ 			  </if>
+ 			 <if test="businessType != null">
+ 				 business_type,
+ 			  </if>
+ 			 <if test="state != null">
+ 				 state,
+ 			  </if>
+ 			 <if test="isDelete != null">
+ 				 is_delete,
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 creator_id,
+ 			  </if>
+ 			 <if test="creator != null">
+ 				 creator,
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 create_time,
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 updator_id,
+ 			  </if>
+ 			 <if test="updator != null">
+ 				 updator,
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 update_time,
+ 			  </if>
+ 		  </trim>
+ 		  <trim prefix="values (" suffix=")" suffixOverrides="," >
+ 			 <if test="id != null">
+ 				 #{id},
+ 			  </if>
+ 			 <if test="supplierName != null">
+ 				 #{supplierName},
+ 			  </if>
+ 			 <if test="supplierShortName != null">
+ 				 #{supplierShortName},
+ 			  </if>
+ 			 <if test="supplierEnglishName != null">
+ 				 #{supplierEnglishName},
+ 			  </if>
+ 			 <if test="linkmanName != null">
+ 				 #{linkmanName},
+ 			  </if>
+ 			 <if test="linkmanSex != null">
+ 				 #{linkmanSex},
+ 			  </if>
+ 			 <if test="linkmanAge != null">
+ 				 #{linkmanAge},
+ 			  </if>
+ 			 <if test="supplierAddress != null">
+ 				 #{supplierAddress},
+ 			  </if>
+ 			 <if test="businessScope != null">
+ 				 #{businessScope},
+ 			  </if>
+ 			 <if test="linkmanPhone != null">
+ 				 #{linkmanPhone},
+ 			  </if>
+ 			 <if test="linkEmail != null">
+ 				 #{linkEmail},
+ 			  </if>
+ 			 <if test="businessType != null">
+ 				 #{businessType},
+ 			  </if>
+ 			 <if test="state != null">
+ 				 #{state},
+ 			  </if>
+ 			 <if test="isDelete != null">
+ 				 #{isDelete},
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 #{creatorId},
+ 			  </if>
+ 			 <if test="creator != null">
+ 				 #{creator},
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 #{createTime},
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 #{updatorId},
+ 			  </if>
+ 			 <if test="updator != null">
+ 				 #{updator},
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 #{updateTime},
+ 			  </if>
+ 		  </trim>
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="com.invoicing.manage.entity.GoodsSupplierEntity">
+		 update   goods_supplier_tb
+ 		 <set>
+ 			 <if test="supplierName != null">
+ 				 supplier_name = #{supplierName},
+ 			  </if>
+ 			 <if test="supplierShortName != null">
+ 				 supplier_short_name = #{supplierShortName},
+ 			  </if>
+ 			 <if test="supplierEnglishName != null">
+ 				 supplier_english_name = #{supplierEnglishName},
+ 			  </if>
+ 			 <if test="linkmanName != null">
+ 				 linkman_name = #{linkmanName},
+ 			  </if>
+ 			 <if test="linkmanSex != null">
+ 				 linkman_sex = #{linkmanSex},
+ 			  </if>
+ 			 <if test="linkmanAge != null">
+ 				 linkman_age = #{linkmanAge},
+ 			  </if>
+ 			 <if test="supplierAddress != null">
+ 				 supplier_address = #{supplierAddress},
+ 			  </if>
+ 			 <if test="businessScope != null">
+ 				 business_scope = #{businessScope},
+ 			  </if>
+ 			 <if test="linkmanPhone != null">
+ 				 linkman_phone = #{linkmanPhone},
+ 			  </if>
+ 			 <if test="linkEmail != null">
+ 				 link_email = #{linkEmail},
+ 			  </if>
+ 			 <if test="businessType != null">
+ 				 business_type = #{businessType},
+ 			  </if>
+ 			 <if test="state != null">
+ 				 state = #{state},
+ 			  </if>
+ 			 <if test="isDelete != null">
+ 				 is_delete = #{isDelete},
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 creator_id = #{creatorId},
+ 			  </if>
+ 			 <if test="creator != null">
+ 				 creator = #{creator},
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 create_time = #{createTime},
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 updator_id = #{updatorId},
+ 			  </if>
+ 			 <if test="updator != null">
+ 				 updator = #{updator},
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 update_time = #{updateTime},
+ 			  </if>
+ 		 </set>
+     where id = #{id}
+	</update>
+	
+	 <select id="getList" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		 select 
+ 		  <include refid="Base_Column_List" />
+ 		  from goods_supplier_tb goodsSupplier
+ 		  where 1=1 
+ 		 <if test="id != null">
+ 			 and goodsSupplier.id = #{id}
+ 		  </if>
+ 		 <if test="supplierName != null">
+ 			 and goodsSupplier.supplier_name = #{supplierName}
+ 		  </if>
+ 		 <if test="supplierShortName != null">
+ 			 and goodsSupplier.supplier_short_name = #{supplierShortName}
+ 		  </if>
+ 		 <if test="supplierEnglishName != null">
+ 			 and goodsSupplier.supplier_english_name = #{supplierEnglishName}
+ 		  </if>
+ 		 <if test="linkmanName != null">
+ 			 and goodsSupplier.linkman_name = #{linkmanName}
+ 		  </if>
+ 		 <if test="linkmanSex != null">
+ 			 and goodsSupplier.linkman_sex = #{linkmanSex}
+ 		  </if>
+ 		 <if test="linkmanAge != null">
+ 			 and goodsSupplier.linkman_age = #{linkmanAge}
+ 		  </if>
+ 		 <if test="supplierAddress != null">
+ 			 and goodsSupplier.supplier_address = #{supplierAddress}
+ 		  </if>
+ 		 <if test="businessScope != null">
+ 			 and goodsSupplier.business_scope = #{businessScope}
+ 		  </if>
+ 		 <if test="linkmanPhone != null">
+ 			 and goodsSupplier.linkman_phone = #{linkmanPhone}
+ 		  </if>
+ 		 <if test="linkEmail != null">
+ 			 and goodsSupplier.link_email = #{linkEmail}
+ 		  </if>
+ 		 <if test="businessType != null">
+ 			 and goodsSupplier.business_type = #{businessType}
+ 		  </if>
+ 		 <if test="state != null">
+ 			 and goodsSupplier.state = #{state}
+ 		  </if>
+ 		 <if test="isDelete != null">
+ 			 and goodsSupplier.is_delete = #{isDelete}
+ 		  </if>
+ 		 <if test="creatorId != null">
+ 			 and goodsSupplier.creator_id = #{creatorId}
+ 		  </if>
+ 		 <if test="creator != null">
+ 			 and goodsSupplier.creator = #{creator}
+ 		  </if>
+ 		 <if test="createTime != null">
+ 			 and goodsSupplier.create_time = #{createTime}
+ 		  </if>
+ 		 <if test="updatorId != null">
+ 			 and goodsSupplier.updator_id = #{updatorId}
+ 		  </if>
+ 		 <if test="updator != null">
+ 			 and goodsSupplier.updator = #{updator}
+ 		  </if>
+ 		 <if test="updateTime != null">
+ 			 and goodsSupplier.update_time = #{updateTime}
+ 		  </if>
+	</select>
+	 <select id="getListCount" resultType="java.lang.Integer"
+		parameterType="java.util.Map">
+		 select 
+ 		  count(goodsSupplier.id)
+ 		  from goods_supplier_tb goodsSupplier
+ 		  where 1=1 
+ 		 <if test="id != null">
+ 			 and goodsSupplier.id = #{id}
+ 		  </if>
+ 		 <if test="supplierName != null">
+ 			 and goodsSupplier.supplier_name = #{supplierName}
+ 		  </if>
+ 		 <if test="supplierShortName != null">
+ 			 and goodsSupplier.supplier_short_name = #{supplierShortName}
+ 		  </if>
+ 		 <if test="supplierEnglishName != null">
+ 			 and goodsSupplier.supplier_english_name = #{supplierEnglishName}
+ 		  </if>
+ 		 <if test="linkmanName != null">
+ 			 and goodsSupplier.linkman_name = #{linkmanName}
+ 		  </if>
+ 		 <if test="linkmanSex != null">
+ 			 and goodsSupplier.linkman_sex = #{linkmanSex}
+ 		  </if>
+ 		 <if test="linkmanAge != null">
+ 			 and goodsSupplier.linkman_age = #{linkmanAge}
+ 		  </if>
+ 		 <if test="supplierAddress != null">
+ 			 and goodsSupplier.supplier_address = #{supplierAddress}
+ 		  </if>
+ 		 <if test="businessScope != null">
+ 			 and goodsSupplier.business_scope = #{businessScope}
+ 		  </if>
+ 		 <if test="linkmanPhone != null">
+ 			 and goodsSupplier.linkman_phone = #{linkmanPhone}
+ 		  </if>
+ 		 <if test="linkEmail != null">
+ 			 and goodsSupplier.link_email = #{linkEmail}
+ 		  </if>
+ 		 <if test="businessType != null">
+ 			 and goodsSupplier.business_type = #{businessType}
+ 		  </if>
+ 		 <if test="state != null">
+ 			 and goodsSupplier.state = #{state}
+ 		  </if>
+ 		 <if test="isDelete != null">
+ 			 and goodsSupplier.is_delete = #{isDelete}
+ 		  </if>
+ 		 <if test="creatorId != null">
+ 			 and goodsSupplier.creator_id = #{creatorId}
+ 		  </if>
+ 		 <if test="creator != null">
+ 			 and goodsSupplier.creator = #{creator}
+ 		  </if>
+ 		 <if test="createTime != null">
+ 			 and goodsSupplier.create_time = #{createTime}
+ 		  </if>
+ 		 <if test="updatorId != null">
+ 			 and goodsSupplier.updator_id = #{updatorId}
+ 		  </if>
+ 		 <if test="updator != null">
+ 			 and goodsSupplier.updator = #{updator}
+ 		  </if>
+ 		 <if test="updateTime != null">
+ 			 and goodsSupplier.update_time = #{updateTime}
+ 		  </if>
+	</select>
+</mapper>

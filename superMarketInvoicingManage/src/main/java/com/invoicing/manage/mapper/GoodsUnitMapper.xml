@@ -210,114 +210,31 @@
      where id = #{id}
 	</update>
 	
+	<sql id="whereSQL">
+		 and goodsUnit.is_delete=0
+ 		 <if test="unitName != null and unitName !='' ">
+ 			 and goodsUnit.unit_name = #{unitName}
+ 		  </if>
+ 		 <if test="unitEnglishName != null and unitEnglishName!='' ">
+ 			 and goodsUnit.unit_english_name = #{unitEnglishName}
+ 		  </if>
+	</sql>
+	
 	 <select id="getList" resultMap="BaseResultMap"
 		parameterType="java.util.Map">
 		 select 
  		  <include refid="Base_Column_List" />
  		  from goods_unit_tb goodsUnit
- 		  where 1=1 
- 		 <if test="id != null">
- 			 and goodsUnit.id = #{id}
- 		  </if>
- 		 <if test="unitName != null">
- 			 and goodsUnit.unit_name = #{unitName}
- 		  </if>
- 		 <if test="unitEnglishName != null">
- 			 and goodsUnit.unit_english_name = #{unitEnglishName}
- 		  </if>
- 		 <if test="unitType != null">
- 			 and goodsUnit.unit_type = #{unitType}
- 		  </if>
- 		 <if test="minimumUnitType != null">
- 			 and goodsUnit.minimum_unit_type = #{minimumUnitType}
- 		  </if>
- 		 <if test="minimumUnitVal != null">
- 			 and goodsUnit.minimum_unit_val = #{minimumUnitVal}
- 		  </if>
- 		 <if test="state != null">
- 			 and goodsUnit.state = #{state}
- 		  </if>
- 		 <if test="isDelete != null">
- 			 and goodsUnit.is_delete = #{isDelete}
- 		  </if>
- 		 <if test="directlyOrgId != null">
- 			 and goodsUnit.directly_org_id = #{directlyOrgId}
- 		  </if>
- 		 <if test="hierarchyId != null">
- 			 and goodsUnit.hierarchy_id = #{hierarchyId}
- 		  </if>
- 		 <if test="creatorId != null">
- 			 and goodsUnit.creator_id = #{creatorId}
- 		  </if>
- 		 <if test="creator != null">
- 			 and goodsUnit.creator = #{creator}
- 		  </if>
- 		 <if test="createTime != null">
- 			 and goodsUnit.create_time = #{createTime}
- 		  </if>
- 		 <if test="updatorId != null">
- 			 and goodsUnit.updator_id = #{updatorId}
- 		  </if>
- 		 <if test="updator != null">
- 			 and goodsUnit.updator = #{updator}
- 		  </if>
- 		 <if test="updateTime != null">
- 			 and goodsUnit.update_time = #{updateTime}
- 		  </if>
+ 		  where 1=1
+ 		 <include refid="whereSQL"/>
 	</select>
+	 
 	 <select id="getListCount" resultType="java.lang.Integer"
 		parameterType="java.util.Map">
 		 select 
  		  count(goodsUnit.id)
  		  from goods_unit_tb goodsUnit
- 		  where 1=1 
- 		 <if test="id != null">
- 			 and goodsUnit.id = #{id}
- 		  </if>
- 		 <if test="unitName != null">
- 			 and goodsUnit.unit_name = #{unitName}
- 		  </if>
- 		 <if test="unitEnglishName != null">
- 			 and goodsUnit.unit_english_name = #{unitEnglishName}
- 		  </if>
- 		 <if test="unitType != null">
- 			 and goodsUnit.unit_type = #{unitType}
- 		  </if>
- 		 <if test="minimumUnitType != null">
- 			 and goodsUnit.minimum_unit_type = #{minimumUnitType}
- 		  </if>
- 		 <if test="minimumUnitVal != null">
- 			 and goodsUnit.minimum_unit_val = #{minimumUnitVal}
- 		  </if>
- 		 <if test="state != null">
- 			 and goodsUnit.state = #{state}
- 		  </if>
- 		 <if test="isDelete != null">
- 			 and goodsUnit.is_delete = #{isDelete}
- 		  </if>
- 		 <if test="directlyOrgId != null">
- 			 and goodsUnit.directly_org_id = #{directlyOrgId}
- 		  </if>
- 		 <if test="hierarchyId != null">
- 			 and goodsUnit.hierarchy_id = #{hierarchyId}
- 		  </if>
- 		 <if test="creatorId != null">
- 			 and goodsUnit.creator_id = #{creatorId}
- 		  </if>
- 		 <if test="creator != null">
- 			 and goodsUnit.creator = #{creator}
- 		  </if>
- 		 <if test="createTime != null">
- 			 and goodsUnit.create_time = #{createTime}
- 		  </if>
- 		 <if test="updatorId != null">
- 			 and goodsUnit.updator_id = #{updatorId}
- 		  </if>
- 		 <if test="updator != null">
- 			 and goodsUnit.updator = #{updator}
- 		  </if>
- 		 <if test="updateTime != null">
- 			 and goodsUnit.update_time = #{updateTime}
- 		  </if>
+ 		  where 1=1
+ 		 <include refid="whereSQL"/>
 	</select>
 </mapper>

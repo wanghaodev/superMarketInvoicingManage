@@ -1,7 +1,7 @@
 package com.invoicing.manage.entity;
 
-import com.snailf.platforms.common.entity.BaseEntity;
-import java.util.Date;
+import com.invoicing.manage.comment.entity.BaseEntity;
+
 /**
  *
  * @类介绍 商户用户表

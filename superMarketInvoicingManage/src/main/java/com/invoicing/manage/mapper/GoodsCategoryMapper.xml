@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.invoicing.manage.mapper.GoodsCategoryMapper">
+
+	 <resultMap type="com.invoicing.manage.entity.GoodsCategoryEntity" id="BaseResultMap">
+    	 <id column="id" property="id" /> 
+		  <id column="categoryId" property="categoryId" /> 
+		  <id column="categoryName" property="categoryName" /> 
+		  <id column="parentId" property="parentId" /> 
+		  <id column="categoryType" property="categoryType" /> 
+		  <id column="categoryLevel" property="categoryLevel" /> 
+		  <id column="inputTax" property="inputTax" /> 
+		  <id column="outputTax" property="outputTax" /> 
+		  <id column="consumeTax" property="consumeTax" /> 
+		  <id column="hierarchyId" property="hierarchyId" /> 
+		  <id column="directlyOrgId" property="directlyOrgId" /> 
+		  <id column="orderNumber" property="orderNumber" /> 
+		  <id column="status" property="status" /> 
+		  <id column="isDelete" property="isDelete" /> 
+		  <id column="creatorId" property="creatorId" /> 
+		  <id column="creator" property="creator" /> 
+		  <id column="createTime" property="createTime" /> 
+		  <id column="updatorId" property="updatorId" /> 
+		  <id column="updator" property="updator" /> 
+		  <id column="updateTime" property="updateTime" /> 
+		  <id column="remark1" property="remark1" /> 
+		  <id column="remark2" property="remark2" /> 
+  
+    </resultMap>
+    <sql id="Base_Column_List">
+    	 goodsCategory.id as id ,
+ 		 goodsCategory.category_id as categoryId ,
+ 		 goodsCategory.category_name as categoryName ,
+ 		 goodsCategory.parent_id as parentId ,
+ 		 goodsCategory.category_type as categoryType ,
+ 		 goodsCategory.category_level as categoryLevel ,
+ 		 goodsCategory.input_tax as inputTax ,
+ 		 goodsCategory.output_tax as outputTax ,
+ 		 goodsCategory.consume_tax as consumeTax ,
+ 		 goodsCategory.hierarchy_id as hierarchyId ,
+ 		 goodsCategory.directly_org_id as directlyOrgId ,
+ 		 goodsCategory.order_number as orderNumber ,
+ 		 goodsCategory.status as status ,
+ 		 goodsCategory.is_delete as isDelete ,
+ 		 goodsCategory.creator_id as creatorId ,
+ 		 goodsCategory.creator as creator ,
+ 		 goodsCategory.create_time as createTime ,
+ 		 goodsCategory.updator_id as updatorId ,
+ 		 goodsCategory.updator as updator ,
+ 		 goodsCategory.update_time as updateTime ,
+ 		 goodsCategory.remark1 as remark1 ,
+ 		 goodsCategory.remark2 as remark2
+    </sql>
+    
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		 select 
+ 		  <include refid="Base_Column_List" />
+ 		  from goods_category_tb goodsCategory
+ 		  where goodsCategory.id = #{ id }
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		 delete 
+ 		  from goods_category_tb
+ 		  where id = #{ id }
+	</delete>
+	
+	<insert id="insertSelective" parameterType="com.invoicing.manage.entity.GoodsCategoryEntity">
+		 insert into  goods_category_tb
+ 		  <trim prefix="(" suffix=")" suffixOverrides=","> 
+ 			 <if test="id != null">
+ 				 id,
+ 			  </if>
+ 			 <if test="categoryId != null">
+ 				 category_id,
+ 			  </if>
+ 			 <if test="categoryName != null">
+ 				 category_name,
+ 			  </if>
+ 			 <if test="parentId != null">
+ 				 parent_id,
+ 			  </if>
+ 			 <if test="categoryType != null">
+ 				 category_type,
+ 			  </if>
+ 			 <if test="categoryLevel != null">
+ 				 category_level,
+ 			  </if>
+ 			 <if test="inputTax != null">
+ 				 input_tax,
+ 			  </if>
+ 			 <if test="outputTax != null">
+ 				 output_tax,
+ 			  </if>
+ 			 <if test="consumeTax != null">
+ 				 consume_tax,
+ 			  </if>
+ 			 <if test="hierarchyId != null">
+ 				 hierarchy_id,
+ 			  </if>
+ 			 <if test="directlyOrgId != null">
+ 				 directly_org_id,
+ 			  </if>
+ 			 <if test="orderNumber != null">
+ 				 order_number,
+ 			  </if>
+ 			 <if test="status != null">
+ 				 status,
+ 			  </if>
+ 			 <if test="isDelete != null">
+ 				 is_delete,
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 creator_id,
+ 			  </if>
+ 			 <if test="creator != null">
+ 				 creator,
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 create_time,
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 updator_id,
+ 			  </if>
+ 			 <if test="updator != null">
+ 				 updator,
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 update_time,
+ 			  </if>
+ 			 <if test="remark1 != null">
+ 				 remark1,
+ 			  </if>
+ 			 <if test="remark2 != null">
+ 				 remark2,
+ 			  </if>
+ 		  </trim>
+ 		  <trim prefix="values (" suffix=")" suffixOverrides="," >
+ 			 <if test="id != null">
+ 				 #{id},
+ 			  </if>
+ 			 <if test="categoryId != null">
+ 				 #{categoryId},
+ 			  </if>
+ 			 <if test="categoryName != null">
+ 				 #{categoryName},
+ 			  </if>
+ 			 <if test="parentId != null">
+ 				 #{parentId},
+ 			  </if>
+ 			 <if test="categoryType != null">
+ 				 #{categoryType},
+ 			  </if>
+ 			 <if test="categoryLevel != null">
+ 				 #{categoryLevel},
+ 			  </if>
+ 			 <if test="inputTax != null">
+ 				 #{inputTax},
+ 			  </if>
+ 			 <if test="outputTax != null">
+ 				 #{outputTax},
+ 			  </if>
+ 			 <if test="consumeTax != null">
+ 				 #{consumeTax},
+ 			  </if>
+ 			 <if test="hierarchyId != null">
+ 				 #{hierarchyId},
+ 			  </if>
+ 			 <if test="directlyOrgId != null">
+ 				 #{directlyOrgId},
+ 			  </if>
+ 			 <if test="orderNumber != null">
+ 				 #{orderNumber},
+ 			  </if>
+ 			 <if test="status != null">
+ 				 #{status},
+ 			  </if>
+ 			 <if test="isDelete != null">
+ 				 #{isDelete},
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 #{creatorId},
+ 			  </if>
+ 			 <if test="creator != null">
+ 				 #{creator},
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 #{createTime},
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 #{updatorId},
+ 			  </if>
+ 			 <if test="updator != null">
+ 				 #{updator},
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 #{updateTime},
+ 			  </if>
+ 			 <if test="remark1 != null">
+ 				 #{remark1},
+ 			  </if>
+ 			 <if test="remark2 != null">
+ 				 #{remark2},
+ 			  </if>
+ 		  </trim>
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="com.invoicing.manage.entity.GoodsCategoryEntity">
+		 update   goods_category_tb
+ 		 <set>
+ 			 <if test="categoryId != null">
+ 				 category_id = #{categoryId},
+ 			  </if>
+ 			 <if test="categoryName != null">
+ 				 category_name = #{categoryName},
+ 			  </if>
+ 			 <if test="parentId != null">
+ 				 parent_id = #{parentId},
+ 			  </if>
+ 			 <if test="categoryType != null">
+ 				 category_type = #{categoryType},
+ 			  </if>
+ 			 <if test="categoryLevel != null">
+ 				 category_level = #{categoryLevel},
+ 			  </if>
+ 			 <if test="inputTax != null">
+ 				 input_tax = #{inputTax},
+ 			  </if>
+ 			 <if test="outputTax != null">
+ 				 output_tax = #{outputTax},
+ 			  </if>
+ 			 <if test="consumeTax != null">
+ 				 consume_tax = #{consumeTax},
+ 			  </if>
+ 			 <if test="hierarchyId != null">
+ 				 hierarchy_id = #{hierarchyId},
+ 			  </if>
+ 			 <if test="directlyOrgId != null">
+ 				 directly_org_id = #{directlyOrgId},
+ 			  </if>
+ 			 <if test="orderNumber != null">
+ 				 order_number = #{orderNumber},
+ 			  </if>
+ 			 <if test="status != null">
+ 				 status = #{status},
+ 			  </if>
+ 			 <if test="isDelete != null">
+ 				 is_delete = #{isDelete},
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 creator_id = #{creatorId},
+ 			  </if>
+ 			 <if test="creator != null">
+ 				 creator = #{creator},
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 create_time = #{createTime},
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 updator_id = #{updatorId},
+ 			  </if>
+ 			 <if test="updator != null">
+ 				 updator = #{updator},
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 update_time = #{updateTime},
+ 			  </if>
+ 			 <if test="remark1 != null">
+ 				 remark1 = #{remark1},
+ 			  </if>
+ 			 <if test="remark2 != null">
+ 				 remark2 = #{remark2},
+ 			  </if>
+ 		 </set>
+     where id = #{id}
+	</update>
+	
+	 <select id="getList" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		 select 
+ 		  <include refid="Base_Column_List" />
+ 		  from goods_category_tb goodsCategory
+ 		  where 1=1 
+ 		 <if test="id != null">
+ 			 and goodsCategory.id = #{id}
+ 		  </if>
+ 		 <if test="categoryId != null">
+ 			 and goodsCategory.category_id = #{categoryId}
+ 		  </if>
+ 		 <if test="categoryName != null">
+ 			 and goodsCategory.category_name = #{categoryName}
+ 		  </if>
+ 		 <if test="parentId != null">
+ 			 and goodsCategory.parent_id = #{parentId}
+ 		  </if>
+ 		 <if test="categoryType != null">
+ 			 and goodsCategory.category_type = #{categoryType}
+ 		  </if>
+ 		 <if test="categoryLevel != null">
+ 			 and goodsCategory.category_level = #{categoryLevel}
+ 		  </if>
+ 		 <if test="inputTax != null">
+ 			 and goodsCategory.input_tax = #{inputTax}
+ 		  </if>
+ 		 <if test="outputTax != null">
+ 			 and goodsCategory.output_tax = #{outputTax}
+ 		  </if>
+ 		 <if test="consumeTax != null">
+ 			 and goodsCategory.consume_tax = #{consumeTax}
+ 		  </if>
+ 		 <if test="hierarchyId != null">
+ 			 and goodsCategory.hierarchy_id = #{hierarchyId}
+ 		  </if>
+ 		 <if test="directlyOrgId != null">
+ 			 and goodsCategory.directly_org_id = #{directlyOrgId}
+ 		  </if>
+ 		 <if test="orderNumber != null">
+ 			 and goodsCategory.order_number = #{orderNumber}
+ 		  </if>
+ 		 <if test="status != null">
+ 			 and goodsCategory.status = #{status}
+ 		  </if>
+ 		 <if test="isDelete != null">
+ 			 and goodsCategory.is_delete = #{isDelete}
+ 		  </if>
+ 		 <if test="creatorId != null">
+ 			 and goodsCategory.creator_id = #{creatorId}
+ 		  </if>
+ 		 <if test="creator != null">
+ 			 and goodsCategory.creator = #{creator}
+ 		  </if>
+ 		 <if test="createTime != null">
+ 			 and goodsCategory.create_time = #{createTime}
+ 		  </if>
+ 		 <if test="updatorId != null">
+ 			 and goodsCategory.updator_id = #{updatorId}
+ 		  </if>
+ 		 <if test="updator != null">
+ 			 and goodsCategory.updator = #{updator}
+ 		  </if>
+ 		 <if test="updateTime != null">
+ 			 and goodsCategory.update_time = #{updateTime}
+ 		  </if>
+ 		 <if test="remark1 != null">
+ 			 and goodsCategory.remark1 = #{remark1}
+ 		  </if>
+ 		 <if test="remark2 != null">
+ 			 and goodsCategory.remark2 = #{remark2}
+ 		  </if>
+	</select>
+	 <select id="getListCount" resultType="java.lang.Integer"
+		parameterType="java.util.Map">
+		 select 
+ 		  count(goodsCategory.id)
+ 		  from goods_category_tb goodsCategory
+ 		  where 1=1 
+ 		 <if test="id != null">
+ 			 and goodsCategory.id = #{id}
+ 		  </if>
+ 		 <if test="categoryId != null">
+ 			 and goodsCategory.category_id = #{categoryId}
+ 		  </if>
+ 		 <if test="categoryName != null">
+ 			 and goodsCategory.category_name = #{categoryName}
+ 		  </if>
+ 		 <if test="parentId != null">
+ 			 and goodsCategory.parent_id = #{parentId}
+ 		  </if>
+ 		 <if test="categoryType != null">
+ 			 and goodsCategory.category_type = #{categoryType}
+ 		  </if>
+ 		 <if test="categoryLevel != null">
+ 			 and goodsCategory.category_level = #{categoryLevel}
+ 		  </if>
+ 		 <if test="inputTax != null">
+ 			 and goodsCategory.input_tax = #{inputTax}
+ 		  </if>
+ 		 <if test="outputTax != null">
+ 			 and goodsCategory.output_tax = #{outputTax}
+ 		  </if>
+ 		 <if test="consumeTax != null">
+ 			 and goodsCategory.consume_tax = #{consumeTax}
+ 		  </if>
+ 		 <if test="hierarchyId != null">
+ 			 and goodsCategory.hierarchy_id = #{hierarchyId}
+ 		  </if>
+ 		 <if test="directlyOrgId != null">
+ 			 and goodsCategory.directly_org_id = #{directlyOrgId}
+ 		  </if>
+ 		 <if test="orderNumber != null">
+ 			 and goodsCategory.order_number = #{orderNumber}
+ 		  </if>
+ 		 <if test="status != null">
+ 			 and goodsCategory.status = #{status}
+ 		  </if>
+ 		 <if test="isDelete != null">
+ 			 and goodsCategory.is_delete = #{isDelete}
+ 		  </if>
+ 		 <if test="creatorId != null">
+ 			 and goodsCategory.creator_id = #{creatorId}
+ 		  </if>
+ 		 <if test="creator != null">
+ 			 and goodsCategory.creator = #{creator}
+ 		  </if>
+ 		 <if test="createTime != null">
+ 			 and goodsCategory.create_time = #{createTime}
+ 		  </if>
+ 		 <if test="updatorId != null">
+ 			 and goodsCategory.updator_id = #{updatorId}
+ 		  </if>
+ 		 <if test="updator != null">
+ 			 and goodsCategory.updator = #{updator}
+ 		  </if>
+ 		 <if test="updateTime != null">
+ 			 and goodsCategory.update_time = #{updateTime}
+ 		  </if>
+ 		 <if test="remark1 != null">
+ 			 and goodsCategory.remark1 = #{remark1}
+ 		  </if>
+ 		 <if test="remark2 != null">
+ 			 and goodsCategory.remark2 = #{remark2}
+ 		  </if>
+	</select>
+</mapper>

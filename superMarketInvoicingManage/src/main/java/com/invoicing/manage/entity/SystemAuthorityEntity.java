@@ -1,9 +1,9 @@
 package com.invoicing.manage.entity;
 
-import com.snailf.platforms.common.entity.BaseEntity;
 
-import java.util.Date;
 import java.util.List;
+
+import com.invoicing.manage.comment.entity.BaseEntity;
 /**
  *
  * @类介绍 商户权限表

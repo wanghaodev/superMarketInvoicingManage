@@ -4,13 +4,8 @@
 
 	 <resultMap type="com.invoicing.manage.entity.AreaEntity" id="BaseResultMap">
     	 <id column="id" property="id" /> 
-		  <id column="createTime" property="createTime" /> 
-		  <id column="creator" property="creator" /> 
-		  <id column="creatorId" property="creatorId" /> 
 		  <id column="valid" property="valid" /> 
 		  <id column="updateTime" property="updateTime" /> 
-		  <id column="updator" property="updator" /> 
-		  <id column="updatorId" property="updatorId" /> 
 		  <id column="pid" property="pid" /> 
 		  <id column="shortMapName" property="shortMapName" /> 
 		  <id column="shortName" property="shortName" /> 
@@ -23,16 +18,10 @@
     </resultMap>
     <sql id="Base_Column_List">
     	 area.id as id ,
- 		 area.create_time as createTime ,
- 		 area.creator as creator ,
- 		 area.creator_id as creatorId ,
  		 area.valid as valid ,
- 		 area.update_time as updateTime ,
- 		 area.updator as updator ,
- 		 area.updator_id as updatorId ,
- 		 area.pid as pid ,
- 		 area.short_map_name as shortMapName ,
- 		 area.short_name as shortName ,
+ 		 area.update_time as updateTime,
+ 		 area.pid as pid,
+ 		 area.short_name as shortName,
  		 area.spelling as spelling ,
  		 area.state as state ,
  		 area.type as type ,
@@ -210,114 +199,35 @@
      where id = #{id}
 	</update>
 	
+	<sql id="wheresql">
+ 		 <if test="shortName != null">
+ 			 and area.short_name = #{shortName}
+ 		  </if>
+ 		 <if test="spelling != null">
+ 			 and area.spelling = #{spelling}
+ 		  </if>
+ 		 <if test="zip != null">
+ 			 and area.zip = #{zip}
+ 		  </if>
+ 		 <if test="name != null">
+ 			 and area.name = #{name}
+ 		  </if>
+	</sql>
 	 <select id="getList" resultMap="BaseResultMap"
 		parameterType="java.util.Map">
 		 select 
  		  <include refid="Base_Column_List" />
  		  from area_tb area
  		  where 1=1 
- 		 <if test="id != null">
- 			 and area.id = #{id}
- 		  </if>
- 		 <if test="createTime != null">
- 			 and area.create_time = #{createTime}
- 		  </if>
- 		 <if test="creator != null">
- 			 and area.creator = #{creator}
- 		  </if>
- 		 <if test="creatorId != null">
- 			 and area.creator_id = #{creatorId}
- 		  </if>
- 		 <if test="valid != null">
- 			 and area.valid = #{valid}
- 		  </if>
- 		 <if test="updateTime != null">
- 			 and area.update_time = #{updateTime}
- 		  </if>
- 		 <if test="updator != null">
- 			 and area.updator = #{updator}
- 		  </if>
- 		 <if test="updatorId != null">
- 			 and area.updator_id = #{updatorId}
- 		  </if>
- 		 <if test="pid != null">
- 			 and area.pid = #{pid}
- 		  </if>
- 		 <if test="shortMapName != null">
- 			 and area.short_map_name = #{shortMapName}
- 		  </if>
- 		 <if test="shortName != null">
- 			 and area.short_name = #{shortName}
- 		  </if>
- 		 <if test="spelling != null">
- 			 and area.spelling = #{spelling}
- 		  </if>
- 		 <if test="state != null">
- 			 and area.state = #{state}
- 		  </if>
- 		 <if test="type != null">
- 			 and area.type = #{type}
- 		  </if>
- 		 <if test="zip != null">
- 			 and area.zip = #{zip}
- 		  </if>
- 		 <if test="name != null">
- 			 and area.name = #{name}
- 		  </if>
+ 		 <include refid="wheresql"/>
 	</select>
+	
 	 <select id="getListCount" resultType="java.lang.Integer"
 		parameterType="java.util.Map">
 		 select 
  		  count(area.id)
  		  from area_tb area
  		  where 1=1 
- 		 <if test="id != null">
- 			 and area.id = #{id}
- 		  </if>
- 		 <if test="createTime != null">
- 			 and area.create_time = #{createTime}
- 		  </if>
- 		 <if test="creator != null">
- 			 and area.creator = #{creator}
- 		  </if>
- 		 <if test="creatorId != null">
- 			 and area.creator_id = #{creatorId}
- 		  </if>
- 		 <if test="valid != null">
- 			 and area.valid = #{valid}
- 		  </if>
- 		 <if test="updateTime != null">
- 			 and area.update_time = #{updateTime}
- 		  </if>
- 		 <if test="updator != null">
- 			 and area.updator = #{updator}
- 		  </if>
- 		 <if test="updatorId != null">
- 			 and area.updator_id = #{updatorId}
- 		  </if>
- 		 <if test="pid != null">
- 			 and area.pid = #{pid}
- 		  </if>
- 		 <if test="shortMapName != null">
- 			 and area.short_map_name = #{shortMapName}
- 		  </if>
- 		 <if test="shortName != null">
- 			 and area.short_name = #{shortName}
- 		  </if>
- 		 <if test="spelling != null">
- 			 and area.spelling = #{spelling}
- 		  </if>
- 		 <if test="state != null">
- 			 and area.state = #{state}
- 		  </if>
- 		 <if test="type != null">
- 			 and area.type = #{type}
- 		  </if>
- 		 <if test="zip != null">
- 			 and area.zip = #{zip}
- 		  </if>
- 		 <if test="name != null">
- 			 and area.name = #{name}
- 		  </if>
+ 		 <include refid="wheresql"/>
 	</select>
 </mapper>

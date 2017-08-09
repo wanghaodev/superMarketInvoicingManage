@@ -232,18 +232,8 @@
      where id = #{id}
 	</update>
 	
-	 <select id="getList" resultMap="BaseResultMap"
-		parameterType="java.util.Map">
-		 select 
- 		  <include refid="Base_Column_List" />
- 		  from goods_brand_tb goodsBrand
- 		  where 1=1 
- 		 <if test="id != null">
- 			 and goodsBrand.id = #{id}
- 		  </if>
- 		 <if test="brandNumber != null">
- 			 and goodsBrand.brand_number = #{brandNumber}
- 		  </if>
+	<sql id="whereSQL">
+			and goodsBrand.is_delete =0
  		 <if test="brandName != null">
  			 and goodsBrand.brand_name = #{brandName}
  		  </if>
@@ -253,45 +243,15 @@
  		 <if test="brandInitial != null">
  			 and goodsBrand.brand_initial = #{brandInitial}
  		  </if>
- 		 <if test="state != null">
- 			 and goodsBrand.state = #{state}
- 		  </if>
- 		 <if test="isDelete != null">
- 			 and goodsBrand.is_delete = #{isDelete}
- 		  </if>
- 		 <if test="directlyOrgId != null">
- 			 and goodsBrand.directly_org_id = #{directlyOrgId}
- 		  </if>
- 		 <if test="hierarchyId != null">
- 			 and goodsBrand.hierarchy_id = #{hierarchyId}
- 		  </if>
- 		 <if test="creatorId != null">
- 			 and goodsBrand.creator_id = #{creatorId}
- 		  </if>
- 		 <if test="creator != null">
- 			 and goodsBrand.creator = #{creator}
- 		  </if>
- 		 <if test="createTime != null">
- 			 and goodsBrand.create_time = #{createTime}
- 		  </if>
- 		 <if test="updatorId != null">
- 			 and goodsBrand.updator_id = #{updatorId}
- 		  </if>
- 		 <if test="updator != null">
- 			 and goodsBrand.updator = #{updator}
- 		  </if>
- 		 <if test="updateTime != null">
- 			 and goodsBrand.update_time = #{updateTime}
- 		  </if>
- 		 <if test="extendsParams != null">
- 			 and goodsBrand.extends_params = #{extendsParams}
- 		  </if>
- 		 <if test="remark1 != null">
- 			 and goodsBrand.remark1 = #{remark1}
- 		  </if>
- 		 <if test="remark2 != null">
- 			 and goodsBrand.remark2 = #{remark2}
- 		  </if>
+	</sql>
+	
+	 <select id="getList" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		 select 
+ 		  <include refid="Base_Column_List" />
+ 		  from goods_brand_tb goodsBrand
+ 		  where 1=1 
+ 		  <include refid="whereSQL"/>
 	</select>
 	 <select id="getListCount" resultType="java.lang.Integer"
 		parameterType="java.util.Map">
@@ -299,59 +259,6 @@
  		  count(goodsBrand.id)
  		  from goods_brand_tb goodsBrand
  		  where 1=1 
- 		 <if test="id != null">
- 			 and goodsBrand.id = #{id}
- 		  </if>
- 		 <if test="brandNumber != null">
- 			 and goodsBrand.brand_number = #{brandNumber}
- 		  </if>
- 		 <if test="brandName != null">
- 			 and goodsBrand.brand_name = #{brandName}
- 		  </if>
- 		 <if test="brandEnglishName != null">
- 			 and goodsBrand.brand_english_name = #{brandEnglishName}
- 		  </if>
- 		 <if test="brandInitial != null">
- 			 and goodsBrand.brand_initial = #{brandInitial}
- 		  </if>
- 		 <if test="state != null">
- 			 and goodsBrand.state = #{state}
- 		  </if>
- 		 <if test="isDelete != null">
- 			 and goodsBrand.is_delete = #{isDelete}
- 		  </if>
- 		 <if test="directlyOrgId != null">
- 			 and goodsBrand.directly_org_id = #{directlyOrgId}
- 		  </if>
- 		 <if test="hierarchyId != null">
- 			 and goodsBrand.hierarchy_id = #{hierarchyId}
- 		  </if>
- 		 <if test="creatorId != null">
- 			 and goodsBrand.creator_id = #{creatorId}
- 		  </if>
- 		 <if test="creator != null">
- 			 and goodsBrand.creator = #{creator}
- 		  </if>
- 		 <if test="createTime != null">
- 			 and goodsBrand.create_time = #{createTime}
- 		  </if>
- 		 <if test="updatorId != null">
- 			 and goodsBrand.updator_id = #{updatorId}
- 		  </if>
- 		 <if test="updator != null">
- 			 and goodsBrand.updator = #{updator}
- 		  </if>
- 		 <if test="updateTime != null">
- 			 and goodsBrand.update_time = #{updateTime}
- 		  </if>
- 		 <if test="extendsParams != null">
- 			 and goodsBrand.extends_params = #{extendsParams}
- 		  </if>
- 		 <if test="remark1 != null">
- 			 and goodsBrand.remark1 = #{remark1}
- 		  </if>
- 		 <if test="remark2 != null">
- 			 and goodsBrand.remark2 = #{remark2}
- 		  </if>
+ 		  <include refid="whereSQL"/>
 	</select>
 </mapper>

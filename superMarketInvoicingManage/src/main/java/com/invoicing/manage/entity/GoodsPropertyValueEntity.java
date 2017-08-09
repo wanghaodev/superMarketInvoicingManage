@@ -1,44 +1,31 @@
 package com.invoicing.manage.entity;
 
+import com.snailf.platforms.common.entity.BaseEntity;
 import java.util.Date;
-
-import com.invoicing.manage.comment.entity.BaseEntity;
 /**
  *
- * @类介绍 品牌表
- * @time 2017年08月09日 01:13:02
+ * @类介绍 商品属性值维护表
+ * @time 2017年08月09日 18:58:38
  * @version 1.0
  *
  **/
 
 @SuppressWarnings("serial")
-public class GoodsBrandEntity extends BaseEntity {
+public class GoodsPropertyValueEntity extends BaseEntity {
   
     
     /**
-     * 主键
+     * 
      */
     private Long id;
     /**
-     * 品牌编号（暂定）
+     * 属性id
      */
-    private Long brandNumber;
+    private Long propertyId;
     /**
-     * 品牌中文名
+     * 属性值
      */
-    private String brandName;
-    /**
-     * 品牌英文名
-     */
-    private String brandEnglishName;
-    /**
-     * 品牌首字母
-     */
-    private String brandInitial;
-    /**
-     * 状态(0：停用，1启用)
-     */
-    private Integer state;
+    private String propertyValue;
     /**
      * 是否删除(0，否;1，是)
      */
@@ -76,10 +63,6 @@ public class GoodsBrandEntity extends BaseEntity {
      */
     private Date updateTime;
     /**
-     * 扩展参数
-     */
-    private String extendsParams;
-    /**
      * 扩展字段1
      */
     private String remark1;
@@ -89,76 +72,40 @@ public class GoodsBrandEntity extends BaseEntity {
     private String remark2;
 
 	/**
-	 * 设置主键
+	 * 设置
 	 */
     public void setId(Long id) {
         this.id = id;
     }
     /**
-     * 获取主键
+     * 获取
      */
     public Long getId() {
         return this.id;
     }
 	/**
-	 * 设置品牌编号（暂定）
+	 * 设置属性id
 	 */
-    public void setBrandNumber(Long brandNumber) {
-        this.brandNumber = brandNumber;
+    public void setPropertyId(Long propertyId) {
+        this.propertyId = propertyId;
     }
     /**
-     * 获取品牌编号（暂定）
+     * 获取属性id
      */
-    public Long getBrandNumber() {
-        return this.brandNumber;
+    public Long getPropertyId() {
+        return this.propertyId;
     }
 	/**
-	 * 设置品牌中文名
+	 * 设置属性值
 	 */
-    public void setBrandName(String brandName) {
-        this.brandName = brandName;
+    public void setPropertyValue(String propertyValue) {
+        this.propertyValue = propertyValue;
     }
     /**
-     * 获取品牌中文名
+     * 获取属性值
      */
-    public String getBrandName() {
-        return this.brandName;
-    }
-	/**
-	 * 设置品牌英文名
-	 */
-    public void setBrandEnglishName(String brandEnglishName) {
-        this.brandEnglishName = brandEnglishName;
-    }
-    /**
-     * 获取品牌英文名
-     */
-    public String getBrandEnglishName() {
-        return this.brandEnglishName;
-    }
-	/**
-	 * 设置品牌首字母
-	 */
-    public void setBrandInitial(String brandInitial) {
-        this.brandInitial = brandInitial;
-    }
-    /**
-     * 获取品牌首字母
-     */
-    public String getBrandInitial() {
-        return this.brandInitial;
-    }
-	/**
-	 * 设置状态(0：停用，1启用)
-	 */
-    public void setState(Integer state) {
-        this.state = state;
-    }
-    /**
-     * 获取状态(0：停用，1启用)
-     */
-    public Integer getState() {
-        return this.state;
+    public String getPropertyValue() {
+        return this.propertyValue;
     }
 	/**
 	 * 设置是否删除(0，否;1，是)
@@ -267,18 +214,6 @@ public class GoodsBrandEntity extends BaseEntity {
      */
     public Date getUpdateTime() {
         return this.updateTime;
-    }
-	/**
-	 * 设置扩展参数
-	 */
-    public void setExtendsParams(String extendsParams) {
-        this.extendsParams = extendsParams;
-    }
-    /**
-     * 获取扩展参数
-     */
-    public String getExtendsParams() {
-        return this.extendsParams;
     }
 	/**
 	 * 设置扩展字段1

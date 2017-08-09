@@ -1,4 +1,4 @@
-
+DROP TABLE IF EXISTS `goods_supplier_tb`;
 CREATE TABLE `goods_supplier_tb` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `supplier_name` varchar(256) DEFAULT NULL COMMENT '供应商名称',
@@ -12,6 +12,8 @@ CREATE TABLE `goods_supplier_tb` (
   `linkman_phone` varchar(32) DEFAULT NULL COMMENT '联系人手机号',
   `link_email` varchar(64) DEFAULT NULL COMMENT '联系邮箱',
   `business_type` bigint(20) DEFAULT NULL COMMENT '行业类型',
+  `state` int(1) DEFAULT NULL COMMENT '状态(0：停用，1启用)',
+  `is_delete` int(1) DEFAULT NULL COMMENT '是否删除(0，否;1，是)',
   `creator_id` bigint(20) DEFAULT NULL COMMENT '创建人ID',
   `creator` varchar(255) DEFAULT NULL COMMENT '创建人',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',

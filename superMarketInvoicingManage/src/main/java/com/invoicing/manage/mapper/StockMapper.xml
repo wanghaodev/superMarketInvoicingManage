@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.invoicing.manage.mapper.StockMapper">
+
+	 <resultMap type="com.invoicing.manage.entity.StockEntity" id="BaseResultMap">
+    	 <id column="id" property="id" /> 
+		  <id column="storeId" property="storeId" /> 
+		  <id column="stockGroundId" property="stockGroundId" /> 
+		  <id column="goodsSaleId" property="goodsSaleId" /> 
+		  <id column="goodsId" property="goodsId" /> 
+		  <id column="stockNum" property="stockNum" /> 
+		  <id column="directlyOrgId" property="directlyOrgId" /> 
+		  <id column="hierarchyId" property="hierarchyId" /> 
+		  <id column="isDelete" property="isDelete" /> 
+		  <id column="creatorId" property="creatorId" /> 
+		  <id column="createTime" property="createTime" /> 
+		  <id column="updatorId" property="updatorId" /> 
+		  <id column="updateTime" property="updateTime" /> 
+		  <id column="remark1" property="remark1" /> 
+		  <id column="remark2" property="remark2" /> 
+  
+    </resultMap>
+    <sql id="Base_Column_List">
+    	 stock.id as id ,
+ 		 stock.store_id as storeId ,
+ 		 stock.stock_ground_id as stockGroundId ,
+ 		 stock.goods_sale_id as goodsSaleId ,
+ 		 stock.goods_id as goodsId ,
+ 		 stock.stock_num as stockNum ,
+ 		 stock.directly_org_id as directlyOrgId ,
+ 		 stock.hierarchy_id as hierarchyId ,
+ 		 stock.is_delete as isDelete ,
+ 		 stock.creator_id as creatorId ,
+ 		 stock.create_time as createTime ,
+ 		 stock.updator_id as updatorId ,
+ 		 stock.update_time as updateTime ,
+ 		 stock.remark1 as remark1 ,
+ 		 stock.remark2 as remark2
+    </sql>
+    
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		 select 
+ 		  <include refid="Base_Column_List" />
+ 		  from stock_tb stock
+ 		  where stock.id = #{ id }
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		 delete 
+ 		  from stock_tb
+ 		  where id = #{ id }
+	</delete>
+	
+	<insert id="insertSelective" parameterType="com.invoicing.manage.entity.StockEntity">
+		 insert into  stock_tb
+ 		  <trim prefix="(" suffix=")" suffixOverrides=","> 
+ 			 <if test="id != null">
+ 				 id,
+ 			  </if>
+ 			 <if test="storeId != null">
+ 				 store_id,
+ 			  </if>
+ 			 <if test="stockGroundId != null">
+ 				 stock_ground_id,
+ 			  </if>
+ 			 <if test="goodsSaleId != null">
+ 				 goods_sale_id,
+ 			  </if>
+ 			 <if test="goodsId != null">
+ 				 goods_id,
+ 			  </if>
+ 			 <if test="stockNum != null">
+ 				 stock_num,
+ 			  </if>
+ 			 <if test="directlyOrgId != null">
+ 				 directly_org_id,
+ 			  </if>
+ 			 <if test="hierarchyId != null">
+ 				 hierarchy_id,
+ 			  </if>
+ 			 <if test="isDelete != null">
+ 				 is_delete,
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 creator_id,
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 create_time,
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 updator_id,
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 update_time,
+ 			  </if>
+ 			 <if test="remark1 != null">
+ 				 remark1,
+ 			  </if>
+ 			 <if test="remark2 != null">
+ 				 remark2,
+ 			  </if>
+ 		  </trim>
+ 		  <trim prefix="values (" suffix=")" suffixOverrides="," >
+ 			 <if test="id != null">
+ 				 #{id},
+ 			  </if>
+ 			 <if test="storeId != null">
+ 				 #{storeId},
+ 			  </if>
+ 			 <if test="stockGroundId != null">
+ 				 #{stockGroundId},
+ 			  </if>
+ 			 <if test="goodsSaleId != null">
+ 				 #{goodsSaleId},
+ 			  </if>
+ 			 <if test="goodsId != null">
+ 				 #{goodsId},
+ 			  </if>
+ 			 <if test="stockNum != null">
+ 				 #{stockNum},
+ 			  </if>
+ 			 <if test="directlyOrgId != null">
+ 				 #{directlyOrgId},
+ 			  </if>
+ 			 <if test="hierarchyId != null">
+ 				 #{hierarchyId},
+ 			  </if>
+ 			 <if test="isDelete != null">
+ 				 #{isDelete},
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 #{creatorId},
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 #{createTime},
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 #{updatorId},
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 #{updateTime},
+ 			  </if>
+ 			 <if test="remark1 != null">
+ 				 #{remark1},
+ 			  </if>
+ 			 <if test="remark2 != null">
+ 				 #{remark2},
+ 			  </if>
+ 		  </trim>
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="com.invoicing.manage.entity.StockEntity">
+		 update   stock_tb
+ 		 <set>
+ 			 <if test="storeId != null">
+ 				 store_id = #{storeId},
+ 			  </if>
+ 			 <if test="stockGroundId != null">
+ 				 stock_ground_id = #{stockGroundId},
+ 			  </if>
+ 			 <if test="goodsSaleId != null">
+ 				 goods_sale_id = #{goodsSaleId},
+ 			  </if>
+ 			 <if test="goodsId != null">
+ 				 goods_id = #{goodsId},
+ 			  </if>
+ 			 <if test="stockNum != null">
+ 				 stock_num = #{stockNum},
+ 			  </if>
+ 			 <if test="directlyOrgId != null">
+ 				 directly_org_id = #{directlyOrgId},
+ 			  </if>
+ 			 <if test="hierarchyId != null">
+ 				 hierarchy_id = #{hierarchyId},
+ 			  </if>
+ 			 <if test="isDelete != null">
+ 				 is_delete = #{isDelete},
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 creator_id = #{creatorId},
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 create_time = #{createTime},
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 updator_id = #{updatorId},
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 update_time = #{updateTime},
+ 			  </if>
+ 			 <if test="remark1 != null">
+ 				 remark1 = #{remark1},
+ 			  </if>
+ 			 <if test="remark2 != null">
+ 				 remark2 = #{remark2},
+ 			  </if>
+ 		 </set>
+     where id = #{id}
+	</update>
+	
+	 <select id="getList" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		 select 
+ 		  <include refid="Base_Column_List" />
+ 		  from stock_tb stock
+ 		  where 1=1 
+ 		 <if test="id != null">
+ 			 and stock.id = #{id}
+ 		  </if>
+ 		 <if test="storeId != null">
+ 			 and stock.store_id = #{storeId}
+ 		  </if>
+ 		 <if test="stockGroundId != null">
+ 			 and stock.stock_ground_id = #{stockGroundId}
+ 		  </if>
+ 		 <if test="goodsSaleId != null">
+ 			 and stock.goods_sale_id = #{goodsSaleId}
+ 		  </if>
+ 		 <if test="goodsId != null">
+ 			 and stock.goods_id = #{goodsId}
+ 		  </if>
+ 		 <if test="stockNum != null">
+ 			 and stock.stock_num = #{stockNum}
+ 		  </if>
+ 		 <if test="directlyOrgId != null">
+ 			 and stock.directly_org_id = #{directlyOrgId}
+ 		  </if>
+ 		 <if test="hierarchyId != null">
+ 			 and stock.hierarchy_id = #{hierarchyId}
+ 		  </if>
+ 		 <if test="isDelete != null">
+ 			 and stock.is_delete = #{isDelete}
+ 		  </if>
+ 		 <if test="creatorId != null">
+ 			 and stock.creator_id = #{creatorId}
+ 		  </if>
+ 		 <if test="createTime != null">
+ 			 and stock.create_time = #{createTime}
+ 		  </if>
+ 		 <if test="updatorId != null">
+ 			 and stock.updator_id = #{updatorId}
+ 		  </if>
+ 		 <if test="updateTime != null">
+ 			 and stock.update_time = #{updateTime}
+ 		  </if>
+ 		 <if test="remark1 != null">
+ 			 and stock.remark1 = #{remark1}
+ 		  </if>
+ 		 <if test="remark2 != null">
+ 			 and stock.remark2 = #{remark2}
+ 		  </if>
+	</select>
+	 <select id="getListCount" resultType="java.lang.Integer"
+		parameterType="java.util.Map">
+		 select 
+ 		  count(stock.id)
+ 		  from stock_tb stock
+ 		  where 1=1 
+ 		 <if test="id != null">
+ 			 and stock.id = #{id}
+ 		  </if>
+ 		 <if test="storeId != null">
+ 			 and stock.store_id = #{storeId}
+ 		  </if>
+ 		 <if test="stockGroundId != null">
+ 			 and stock.stock_ground_id = #{stockGroundId}
+ 		  </if>
+ 		 <if test="goodsSaleId != null">
+ 			 and stock.goods_sale_id = #{goodsSaleId}
+ 		  </if>
+ 		 <if test="goodsId != null">
+ 			 and stock.goods_id = #{goodsId}
+ 		  </if>
+ 		 <if test="stockNum != null">
+ 			 and stock.stock_num = #{stockNum}
+ 		  </if>
+ 		 <if test="directlyOrgId != null">
+ 			 and stock.directly_org_id = #{directlyOrgId}
+ 		  </if>
+ 		 <if test="hierarchyId != null">
+ 			 and stock.hierarchy_id = #{hierarchyId}
+ 		  </if>
+ 		 <if test="isDelete != null">
+ 			 and stock.is_delete = #{isDelete}
+ 		  </if>
+ 		 <if test="creatorId != null">
+ 			 and stock.creator_id = #{creatorId}
+ 		  </if>
+ 		 <if test="createTime != null">
+ 			 and stock.create_time = #{createTime}
+ 		  </if>
+ 		 <if test="updatorId != null">
+ 			 and stock.updator_id = #{updatorId}
+ 		  </if>
+ 		 <if test="updateTime != null">
+ 			 and stock.update_time = #{updateTime}
+ 		  </if>
+ 		 <if test="remark1 != null">
+ 			 and stock.remark1 = #{remark1}
+ 		  </if>
+ 		 <if test="remark2 != null">
+ 			 and stock.remark2 = #{remark2}
+ 		  </if>
+	</select>
+</mapper>

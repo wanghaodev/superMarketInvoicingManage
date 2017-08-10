@@ -4,61 +4,60 @@ import com.snailf.platforms.common.entity.BaseEntity;
 import java.util.Date;
 /**
  *
- * @类介绍 商品属性维护表
- * @time 2017年08月09日 18:58:21
+ * @类介绍 进货退货表
+ * @time 2017年08月10日 14:40:43
  * @version 1.0
  *
  **/
 
 @SuppressWarnings("serial")
-public class GoodsPropertyEntity extends BaseEntity {
+public class PurchasesRefundEntity extends BaseEntity {
   
     
     /**
-     * 
+     * 主键
      */
     private Long id;
     /**
-     * 属性名称
+     * 商品ID
      */
-    private String propertyName;
-    
+    private Long goodsId;
     /**
-     * 商品分类
+     * 进货订单号
      */
-    private String categoryName;
+    private String purchaseOrderNo;
     /**
-     * 属性类型：1表示销售属性  2辅助属性
+     * 采购价
      */
-    private Integer propertyType;
+    private Long purchasePrice;
     /**
-     * 所属类目
+     * 采购数量
      */
-    private Long categoryId;
+    private Integer purchaseNumber;
     /**
-     * 类目类型,1服务类，2实物类
+     * 商品总额
      */
-    private Integer categoryType;
-    /**
-     * 排序号
-     */
-    private Integer orderNumber;
-    /**
-     * 属性状态0，停用，1启用（默认）
-     */
-    private Integer status;
+    private Long totalAmount;
     /**
      * 是否删除(0，否;1，是)
      */
-    private Integer isDelete;
+    private Integer supplierId;
+    /**
+     * 订单类型(1：进货，2：退货)
+     */
+    private Integer orderType;
+    /**
+     * 订单状态（1：进行中，2：已完成，3：下单失败，4：撤销订单）
+     */
+    private String orderStatus;
+    /**
+     * 层级ID
+     */
+    private Long hierarchyId;
     /**
      * 直属机构ID
      */
-    private Long directlyOrgId;
-    /**
-     * 机构层级ID
-     */
-    private String hierarchyId;
+    private String directlyOrgId;
     /**
      * 创建人ID
      */
@@ -93,124 +92,136 @@ public class GoodsPropertyEntity extends BaseEntity {
     private String remark2;
 
 	/**
-	 * 设置
+	 * 设置主键
 	 */
     public void setId(Long id) {
         this.id = id;
     }
     /**
-     * 获取
+     * 获取主键
      */
     public Long getId() {
         return this.id;
     }
 	/**
-	 * 设置属性名称
+	 * 设置商品ID
 	 */
-    public void setPropertyName(String propertyName) {
-        this.propertyName = propertyName;
+    public void setGoodsId(Long goodsId) {
+        this.goodsId = goodsId;
     }
     /**
-     * 获取属性名称
+     * 获取商品ID
      */
-    public String getPropertyName() {
-        return this.propertyName;
+    public Long getGoodsId() {
+        return this.goodsId;
     }
 	/**
-	 * 设置属性类型：1表示销售属性  2辅助属性
+	 * 设置进货订单号
 	 */
-    public void setPropertyType(Integer propertyType) {
-        this.propertyType = propertyType;
+    public void setPurchaseOrderNo(String purchaseOrderNo) {
+        this.purchaseOrderNo = purchaseOrderNo;
     }
     /**
-     * 获取属性类型：1表示销售属性  2辅助属性
+     * 获取进货订单号
      */
-    public Integer getPropertyType() {
-        return this.propertyType;
+    public String getPurchaseOrderNo() {
+        return this.purchaseOrderNo;
     }
 	/**
-	 * 设置所属类目
+	 * 设置采购价
 	 */
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
+    public void setPurchasePrice(Long purchasePrice) {
+        this.purchasePrice = purchasePrice;
     }
     /**
-     * 获取所属类目
+     * 获取采购价
      */
-    public Long getCategoryId() {
-        return this.categoryId;
+    public Long getPurchasePrice() {
+        return this.purchasePrice;
     }
 	/**
-	 * 设置类目类型,1服务类，2实物类
+	 * 设置采购数量
 	 */
-    public void setCategoryType(Integer categoryType) {
-        this.categoryType = categoryType;
+    public void setPurchaseNumber(Integer purchaseNumber) {
+        this.purchaseNumber = purchaseNumber;
     }
     /**
-     * 获取类目类型,1服务类，2实物类
+     * 获取采购数量
      */
-    public Integer getCategoryType() {
-        return this.categoryType;
+    public Integer getPurchaseNumber() {
+        return this.purchaseNumber;
     }
 	/**
-	 * 设置排序号
+	 * 设置商品总额
 	 */
-    public void setOrderNumber(Integer orderNumber) {
-        this.orderNumber = orderNumber;
+    public void setTotalAmount(Long totalAmount) {
+        this.totalAmount = totalAmount;
     }
     /**
-     * 获取排序号
+     * 获取商品总额
      */
-    public Integer getOrderNumber() {
-        return this.orderNumber;
-    }
-	/**
-	 * 设置属性状态0，停用，1启用（默认）
-	 */
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-    /**
-     * 获取属性状态0，停用，1启用（默认）
-     */
-    public Integer getStatus() {
-        return this.status;
+    public Long getTotalAmount() {
+        return this.totalAmount;
     }
 	/**
 	 * 设置是否删除(0，否;1，是)
 	 */
-    public void setIsDelete(Integer isDelete) {
-        this.isDelete = isDelete;
+    public void setSupplierId(Integer supplierId) {
+        this.supplierId = supplierId;
     }
     /**
      * 获取是否删除(0，否;1，是)
      */
-    public Integer getIsDelete() {
-        return this.isDelete;
+    public Integer getSupplierId() {
+        return this.supplierId;
+    }
+	/**
+	 * 设置订单类型(1：进货，2：退货)
+	 */
+    public void setOrderType(Integer orderType) {
+        this.orderType = orderType;
+    }
+    /**
+     * 获取订单类型(1：进货，2：退货)
+     */
+    public Integer getOrderType() {
+        return this.orderType;
+    }
+	/**
+	 * 设置订单状态（1：进行中，2：已完成，3：下单失败，4：撤销订单）
+	 */
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+    /**
+     * 获取订单状态（1：进行中，2：已完成，3：下单失败，4：撤销订单）
+     */
+    public String getOrderStatus() {
+        return this.orderStatus;
+    }
+	/**
+	 * 设置层级ID
+	 */
+    public void setHierarchyId(Long hierarchyId) {
+        this.hierarchyId = hierarchyId;
+    }
+    /**
+     * 获取层级ID
+     */
+    public Long getHierarchyId() {
+        return this.hierarchyId;
     }
 	/**
 	 * 设置直属机构ID
 	 */
-    public void setDirectlyOrgId(Long directlyOrgId) {
+    public void setDirectlyOrgId(String directlyOrgId) {
         this.directlyOrgId = directlyOrgId;
     }
     /**
      * 获取直属机构ID
      */
-    public Long getDirectlyOrgId() {
+    public String getDirectlyOrgId() {
         return this.directlyOrgId;
-    }
-	/**
-	 * 设置机构层级ID
-	 */
-    public void setHierarchyId(String hierarchyId) {
-        this.hierarchyId = hierarchyId;
-    }
-    /**
-     * 获取机构层级ID
-     */
-    public String getHierarchyId() {
-        return this.hierarchyId;
     }
 	/**
 	 * 设置创建人ID
@@ -308,13 +319,5 @@ public class GoodsPropertyEntity extends BaseEntity {
     public String getRemark2() {
         return this.remark2;
     }
-	public String getCategoryName() {
-		return categoryName;
-	}
-	public void setCategoryName(String categoryName) {
-		this.categoryName = categoryName;
-	}
-    
-    
 
 }

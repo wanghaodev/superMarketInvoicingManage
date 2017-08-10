@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.invoicing.manage.mapper.SystemOrgMapper">
+
+	 <resultMap type="com.invoicing.manage.entity.SystemOrgEntity" id="BaseResultMap">
+    	 <id column="id" property="id" /> 
+		  <id column="orgNum" property="orgNum" /> 
+		  <id column="orgName" property="orgName" /> 
+		  <id column="orgAbbreviation" property="orgAbbreviation" /> 
+		  <id column="status" property="status" /> 
+		  <id column="pid" property="pid" /> 
+		  <id column="hierarchyId" property="hierarchyId" /> 
+		  <id column="userName" property="userName" /> 
+		  <id column="contactName" property="contactName" /> 
+		  <id column="contactPhone" property="contactPhone" /> 
+		  <id column="province" property="province" /> 
+		  <id column="city" property="city" /> 
+		  <id column="area" property="area" /> 
+		  <id column="address" property="address" /> 
+		  <id column="remark" property="remark" /> 
+		  <id column="valid" property="valid" /> 
+		  <id column="creatorId" property="creatorId" /> 
+		  <id column="createTime" property="createTime" /> 
+		  <id column="updatorId" property="updatorId" /> 
+		  <id column="updateTime" property="updateTime" /> 
+		  <id column="remark1" property="remark1" /> 
+		  <id column="remark2" property="remark2" /> 
+  
+    </resultMap>
+    <sql id="Base_Column_List">
+    	 systemOrg.id as id ,
+ 		 systemOrg.org_num as orgNum ,
+ 		 systemOrg.org_name as orgName ,
+ 		 systemOrg.org_abbreviation as orgAbbreviation ,
+ 		 systemOrg.status as status ,
+ 		 systemOrg.pid as pid ,
+ 		 systemOrg.hierarchy_id as hierarchyId ,
+ 		 systemOrg.user_name as userName ,
+ 		 systemOrg.contact_name as contactName ,
+ 		 systemOrg.contact_phone as contactPhone ,
+ 		 systemOrg.province as province ,
+ 		 systemOrg.city as city ,
+ 		 systemOrg.area as area ,
+ 		 systemOrg.address as address ,
+ 		 systemOrg.remark as remark ,
+ 		 systemOrg.valid as valid ,
+ 		 systemOrg.creator_id as creatorId ,
+ 		 systemOrg.create_time as createTime ,
+ 		 systemOrg.updator_id as updatorId ,
+ 		 systemOrg.update_time as updateTime ,
+ 		 systemOrg.remark1 as remark1 ,
+ 		 systemOrg.remark2 as remark2
+    </sql>
+    
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		 select 
+ 		  <include refid="Base_Column_List" />
+ 		  from system_org_tb systemOrg
+ 		  where systemOrg.id = #{ id }
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		 delete 
+ 		  from system_org_tb
+ 		  where id = #{ id }
+	</delete>
+	
+	<insert id="insertSelective" parameterType="com.invoicing.manage.entity.SystemOrgEntity">
+		 insert into  system_org_tb
+ 		  <trim prefix="(" suffix=")" suffixOverrides=","> 
+ 			 <if test="id != null">
+ 				 id,
+ 			  </if>
+ 			 <if test="orgNum != null">
+ 				 org_num,
+ 			  </if>
+ 			 <if test="orgName != null">
+ 				 org_name,
+ 			  </if>
+ 			 <if test="orgAbbreviation != null">
+ 				 org_abbreviation,
+ 			  </if>
+ 			 <if test="status != null">
+ 				 status,
+ 			  </if>
+ 			 <if test="pid != null">
+ 				 pid,
+ 			  </if>
+ 			 <if test="hierarchyId != null">
+ 				 hierarchy_id,
+ 			  </if>
+ 			 <if test="userName != null">
+ 				 user_name,
+ 			  </if>
+ 			 <if test="contactName != null">
+ 				 contact_name,
+ 			  </if>
+ 			 <if test="contactPhone != null">
+ 				 contact_phone,
+ 			  </if>
+ 			 <if test="province != null">
+ 				 province,
+ 			  </if>
+ 			 <if test="city != null">
+ 				 city,
+ 			  </if>
+ 			 <if test="area != null">
+ 				 area,
+ 			  </if>
+ 			 <if test="address != null">
+ 				 address,
+ 			  </if>
+ 			 <if test="remark != null">
+ 				 remark,
+ 			  </if>
+ 			 <if test="valid != null">
+ 				 valid,
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 creator_id,
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 create_time,
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 updator_id,
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 update_time,
+ 			  </if>
+ 			 <if test="remark1 != null">
+ 				 remark1,
+ 			  </if>
+ 			 <if test="remark2 != null">
+ 				 remark2,
+ 			  </if>
+ 		  </trim>
+ 		  <trim prefix="values (" suffix=")" suffixOverrides="," >
+ 			 <if test="id != null">
+ 				 #{id},
+ 			  </if>
+ 			 <if test="orgNum != null">
+ 				 #{orgNum},
+ 			  </if>
+ 			 <if test="orgName != null">
+ 				 #{orgName},
+ 			  </if>
+ 			 <if test="orgAbbreviation != null">
+ 				 #{orgAbbreviation},
+ 			  </if>
+ 			 <if test="status != null">
+ 				 #{status},
+ 			  </if>
+ 			 <if test="pid != null">
+ 				 #{pid},
+ 			  </if>
+ 			 <if test="hierarchyId != null">
+ 				 #{hierarchyId},
+ 			  </if>
+ 			 <if test="userName != null">
+ 				 #{userName},
+ 			  </if>
+ 			 <if test="contactName != null">
+ 				 #{contactName},
+ 			  </if>
+ 			 <if test="contactPhone != null">
+ 				 #{contactPhone},
+ 			  </if>
+ 			 <if test="province != null">
+ 				 #{province},
+ 			  </if>
+ 			 <if test="city != null">
+ 				 #{city},
+ 			  </if>
+ 			 <if test="area != null">
+ 				 #{area},
+ 			  </if>
+ 			 <if test="address != null">
+ 				 #{address},
+ 			  </if>
+ 			 <if test="remark != null">
+ 				 #{remark},
+ 			  </if>
+ 			 <if test="valid != null">
+ 				 #{valid},
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 #{creatorId},
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 #{createTime},
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 #{updatorId},
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 #{updateTime},
+ 			  </if>
+ 			 <if test="remark1 != null">
+ 				 #{remark1},
+ 			  </if>
+ 			 <if test="remark2 != null">
+ 				 #{remark2},
+ 			  </if>
+ 		  </trim>
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="com.invoicing.manage.entity.SystemOrgEntity">
+		 update   system_org_tb
+ 		 <set>
+ 			 <if test="orgNum != null">
+ 				 org_num = #{orgNum},
+ 			  </if>
+ 			 <if test="orgName != null">
+ 				 org_name = #{orgName},
+ 			  </if>
+ 			 <if test="orgAbbreviation != null">
+ 				 org_abbreviation = #{orgAbbreviation},
+ 			  </if>
+ 			 <if test="status != null">
+ 				 status = #{status},
+ 			  </if>
+ 			 <if test="pid != null">
+ 				 pid = #{pid},
+ 			  </if>
+ 			 <if test="hierarchyId != null">
+ 				 hierarchy_id = #{hierarchyId},
+ 			  </if>
+ 			 <if test="userName != null">
+ 				 user_name = #{userName},
+ 			  </if>
+ 			 <if test="contactName != null">
+ 				 contact_name = #{contactName},
+ 			  </if>
+ 			 <if test="contactPhone != null">
+ 				 contact_phone = #{contactPhone},
+ 			  </if>
+ 			 <if test="province != null">
+ 				 province = #{province},
+ 			  </if>
+ 			 <if test="city != null">
+ 				 city = #{city},
+ 			  </if>
+ 			 <if test="area != null">
+ 				 area = #{area},
+ 			  </if>
+ 			 <if test="address != null">
+ 				 address = #{address},
+ 			  </if>
+ 			 <if test="remark != null">
+ 				 remark = #{remark},
+ 			  </if>
+ 			 <if test="valid != null">
+ 				 valid = #{valid},
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 creator_id = #{creatorId},
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 create_time = #{createTime},
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 updator_id = #{updatorId},
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 update_time = #{updateTime},
+ 			  </if>
+ 			 <if test="remark1 != null">
+ 				 remark1 = #{remark1},
+ 			  </if>
+ 			 <if test="remark2 != null">
+ 				 remark2 = #{remark2},
+ 			  </if>
+ 		 </set>
+     where id = #{id}
+	</update>
+	
+	<select id="getList" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		SELECT
+		systemOrg.id,
+		systemOrg.pid,
+		systemOrg.org_name orgName,
+		systemOrg.org_num orgNum,
+		systemOrg.hierarchy_id hierarchyId
+		FROM
+			system_org_tb systemOrg
+ 		  where 1=1 
+ 		<include refid="whereSQL"/>
+	</select>
+	
+	
+	 <select id="getPageList" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		 SELECT
+			systemOrg.id id,
+			systemOrg.pid pid,
+			systemOrg.org_name orgName,
+			systemOrg.org_num orgNum,
+			pSystemOrg.org_name parentOrgName,
+			systemOrg.contact_name contactName,
+			systemOrg.contact_phone contactPhone,
+			systemOrg.update_time updateTime
+		FROM
+			system_org_tb systemOrg
+		LEFT JOIN system_org_tb pSystemOrg ON systemOrg.pid=pSystemOrg.id
+ 		<include refid="whereSQL"/>
+	</select>
+	
+	 <select id="getListCount" resultType="java.lang.Integer"
+		parameterType="java.util.Map">
+		 SELECT
+		COUNT(systemOrg.pid)
+		FROM
+			system_org_tb systemOrg
+		LEFT JOIN system_org_tb pSystemOrg ON systemOrg.pid=pSystemOrg.id
+ 		 <include refid="whereSQL"/>
+	</select>
+	<sql id="whereSQL">
+		<if test="id != null">
+ 			 and systemOrg.id = #{id}
+ 		  </if>
+ 		 <if test="orgNum != null">
+ 			 and systemOrg.org_num = #{orgNum}
+ 		  </if>
+ 		 <if test="orgName != null">
+ 			 and LOCATE(#{orgName},systemOrg.org_name)>0
+ 		  </if>
+ 		 <if test="pid != null">
+ 			 and systemOrg.pid = #{pid}
+ 		  </if>
+ 		 <if test="hierarchyId != null">
+ 			 and systemOrg.hierarchy_id = #{hierarchyId}
+ 		  </if>
+ 		 <if test="userName != null">
+ 			 and systemOrg.user_name = #{userName}
+ 		  </if>
+ 		 <if test="contactName != null">
+ 			 and systemOrg.contact_name = #{contactName}
+ 		  </if>
+ 		 <if test="contactPhone != null">
+ 			 and systemOrg.contact_phone = #{contactPhone}
+ 		  </if>
+ 		   and systemOrg.status = 1
+	</sql>
+</mapper>

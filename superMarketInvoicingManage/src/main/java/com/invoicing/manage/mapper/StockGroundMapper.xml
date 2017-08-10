@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.invoicing.manage.mapper.StockGroundMapper">
+
+	 <resultMap type="com.invoicing.manage.entity.StockGroundEntity" id="BaseResultMap">
+    	 <id column="id" property="id" /> 
+		  <id column="number" property="number" /> 
+		  <id column="name" property="name" /> 
+		  <id column="instruction" property="instruction" /> 
+		  <id column="isInitialise" property="isInitialise" /> 
+		  <id column="valid" property="valid" /> 
+		  <id column="directlyOrgId" property="directlyOrgId" /> 
+		  <id column="hierarchyId" property="hierarchyId" /> 
+		  <id column="creatorId" property="creatorId" /> 
+		  <id column="createTime" property="createTime" /> 
+		  <id column="updatorId" property="updatorId" /> 
+		  <id column="updateTime" property="updateTime" /> 
+		  <id column="remark1" property="remark1" /> 
+		  <id column="remark2" property="remark2" /> 
+  
+    </resultMap>
+    <sql id="Base_Column_List">
+    	 stockGround.id as id ,
+ 		 stockGround.number as number ,
+ 		 stockGround.name as name ,
+ 		 stockGround.instruction as instruction ,
+ 		 stockGround.is_initialise as isInitialise ,
+ 		 stockGround.valid as valid ,
+ 		 stockGround.directly_org_id as directlyOrgId ,
+ 		 stockGround.hierarchy_id as hierarchyId ,
+ 		 stockGround.creator_id as creatorId ,
+ 		 stockGround.create_time as createTime ,
+ 		 stockGround.updator_id as updatorId ,
+ 		 stockGround.update_time as updateTime ,
+ 		 stockGround.remark1 as remark1 ,
+ 		 stockGround.remark2 as remark2
+    </sql>
+    
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		 select 
+ 		  <include refid="Base_Column_List" />
+ 		  from stock_ground_tb stockGround
+ 		  where stockGround.id = #{ id }
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		 delete 
+ 		  from stock_ground_tb
+ 		  where id = #{ id }
+	</delete>
+	
+	<insert id="insertSelective" parameterType="com.invoicing.manage.entity.StockGroundEntity">
+		 insert into  stock_ground_tb
+ 		  <trim prefix="(" suffix=")" suffixOverrides=","> 
+ 			 <if test="id != null">
+ 				 id,
+ 			  </if>
+ 			 <if test="number != null">
+ 				 number,
+ 			  </if>
+ 			 <if test="name != null">
+ 				 name,
+ 			  </if>
+ 			 <if test="instruction != null">
+ 				 instruction,
+ 			  </if>
+ 			 <if test="isInitialise != null">
+ 				 is_initialise,
+ 			  </if>
+ 			 <if test="valid != null">
+ 				 valid,
+ 			  </if>
+ 			 <if test="directlyOrgId != null">
+ 				 directly_org_id,
+ 			  </if>
+ 			 <if test="hierarchyId != null">
+ 				 hierarchy_id,
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 creator_id,
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 create_time,
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 updator_id,
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 update_time,
+ 			  </if>
+ 			 <if test="remark1 != null">
+ 				 remark1,
+ 			  </if>
+ 			 <if test="remark2 != null">
+ 				 remark2,
+ 			  </if>
+ 		  </trim>
+ 		  <trim prefix="values (" suffix=")" suffixOverrides="," >
+ 			 <if test="id != null">
+ 				 #{id},
+ 			  </if>
+ 			 <if test="number != null">
+ 				 #{number},
+ 			  </if>
+ 			 <if test="name != null">
+ 				 #{name},
+ 			  </if>
+ 			 <if test="instruction != null">
+ 				 #{instruction},
+ 			  </if>
+ 			 <if test="isInitialise != null">
+ 				 #{isInitialise},
+ 			  </if>
+ 			 <if test="valid != null">
+ 				 #{valid},
+ 			  </if>
+ 			 <if test="directlyOrgId != null">
+ 				 #{directlyOrgId},
+ 			  </if>
+ 			 <if test="hierarchyId != null">
+ 				 #{hierarchyId},
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 #{creatorId},
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 #{createTime},
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 #{updatorId},
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 #{updateTime},
+ 			  </if>
+ 			 <if test="remark1 != null">
+ 				 #{remark1},
+ 			  </if>
+ 			 <if test="remark2 != null">
+ 				 #{remark2},
+ 			  </if>
+ 		  </trim>
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="com.invoicing.manage.entity.StockGroundEntity">
+		 update   stock_ground_tb
+ 		 <set>
+ 			 <if test="number != null">
+ 				 number = #{number},
+ 			  </if>
+ 			 <if test="name != null">
+ 				 name = #{name},
+ 			  </if>
+ 			 <if test="instruction != null">
+ 				 instruction = #{instruction},
+ 			  </if>
+ 			 <if test="isInitialise != null">
+ 				 is_initialise = #{isInitialise},
+ 			  </if>
+ 			 <if test="valid != null">
+ 				 valid = #{valid},
+ 			  </if>
+ 			 <if test="directlyOrgId != null">
+ 				 directly_org_id = #{directlyOrgId},
+ 			  </if>
+ 			 <if test="hierarchyId != null">
+ 				 hierarchy_id = #{hierarchyId},
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 creator_id = #{creatorId},
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 create_time = #{createTime},
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 updator_id = #{updatorId},
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 update_time = #{updateTime},
+ 			  </if>
+ 			 <if test="remark1 != null">
+ 				 remark1 = #{remark1},
+ 			  </if>
+ 			 <if test="remark2 != null">
+ 				 remark2 = #{remark2},
+ 			  </if>
+ 		 </set>
+     where id = #{id}
+	</update>
+	
+	 <select id="getList" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		 select 
+ 		  <include refid="Base_Column_List" />
+ 		  from stock_ground_tb stockGround
+ 		  where 1=1 
+ 		 <if test="id != null">
+ 			 and stockGround.id = #{id}
+ 		  </if>
+ 		 <if test="number != null">
+ 			 and stockGround.number = #{number}
+ 		  </if>
+ 		 <if test="name != null">
+ 			 and stockGround.name = #{name}
+ 		  </if>
+ 		 <if test="instruction != null">
+ 			 and stockGround.instruction = #{instruction}
+ 		  </if>
+ 		 <if test="isInitialise != null">
+ 			 and stockGround.is_initialise = #{isInitialise}
+ 		  </if>
+ 		 <if test="valid != null">
+ 			 and stockGround.valid = #{valid}
+ 		  </if>
+ 		 <if test="directlyOrgId != null">
+ 			 and stockGround.directly_org_id = #{directlyOrgId}
+ 		  </if>
+ 		 <if test="hierarchyId != null">
+ 			 and stockGround.hierarchy_id = #{hierarchyId}
+ 		  </if>
+ 		 <if test="creatorId != null">
+ 			 and stockGround.creator_id = #{creatorId}
+ 		  </if>
+ 		 <if test="createTime != null">
+ 			 and stockGround.create_time = #{createTime}
+ 		  </if>
+ 		 <if test="updatorId != null">
+ 			 and stockGround.updator_id = #{updatorId}
+ 		  </if>
+ 		 <if test="updateTime != null">
+ 			 and stockGround.update_time = #{updateTime}
+ 		  </if>
+ 		 <if test="remark1 != null">
+ 			 and stockGround.remark1 = #{remark1}
+ 		  </if>
+ 		 <if test="remark2 != null">
+ 			 and stockGround.remark2 = #{remark2}
+ 		  </if>
+	</select>
+	 <select id="getListCount" resultType="java.lang.Integer"
+		parameterType="java.util.Map">
+		 select 
+ 		  count(stockGround.id)
+ 		  from stock_ground_tb stockGround
+ 		  where 1=1 
+ 		 <if test="id != null">
+ 			 and stockGround.id = #{id}
+ 		  </if>
+ 		 <if test="number != null">
+ 			 and stockGround.number = #{number}
+ 		  </if>
+ 		 <if test="name != null">
+ 			 and stockGround.name = #{name}
+ 		  </if>
+ 		 <if test="instruction != null">
+ 			 and stockGround.instruction = #{instruction}
+ 		  </if>
+ 		 <if test="isInitialise != null">
+ 			 and stockGround.is_initialise = #{isInitialise}
+ 		  </if>
+ 		 <if test="valid != null">
+ 			 and stockGround.valid = #{valid}
+ 		  </if>
+ 		 <if test="directlyOrgId != null">
+ 			 and stockGround.directly_org_id = #{directlyOrgId}
+ 		  </if>
+ 		 <if test="hierarchyId != null">
+ 			 and stockGround.hierarchy_id = #{hierarchyId}
+ 		  </if>
+ 		 <if test="creatorId != null">
+ 			 and stockGround.creator_id = #{creatorId}
+ 		  </if>
+ 		 <if test="createTime != null">
+ 			 and stockGround.create_time = #{createTime}
+ 		  </if>
+ 		 <if test="updatorId != null">
+ 			 and stockGround.updator_id = #{updatorId}
+ 		  </if>
+ 		 <if test="updateTime != null">
+ 			 and stockGround.update_time = #{updateTime}
+ 		  </if>
+ 		 <if test="remark1 != null">
+ 			 and stockGround.remark1 = #{remark1}
+ 		  </if>
+ 		 <if test="remark2 != null">
+ 			 and stockGround.remark2 = #{remark2}
+ 		  </if>
+	</select>
+</mapper>

@@ -4,49 +4,44 @@ import com.snailf.platforms.common.entity.BaseEntity;
 import java.util.Date;
 /**
  *
- * @类介绍 商品属性维护表
- * @time 2017年08月09日 18:58:21
+ * @类介绍 收银结算表
+ * @time 2017年08月10日 14:40:26
  * @version 1.0
  *
  **/
 
 @SuppressWarnings("serial")
-public class GoodsPropertyEntity extends BaseEntity {
+public class CashsSettlementEntity extends BaseEntity {
   
     
     /**
-     * 
+     * 主键
      */
     private Long id;
     /**
-     * 属性名称
+     * 支付方式
      */
-    private String propertyName;
-    
+    private Integer payMethod;
     /**
-     * 商品分类
+     * 收银开始时间
      */
-    private String categoryName;
+    private Date cashBeginTime;
     /**
-     * 属性类型：1表示销售属性  2辅助属性
+     * 收银结束时间
      */
-    private Integer propertyType;
+    private Date cashBeginEnd;
     /**
-     * 所属类目
+     * 收银总额
      */
-    private Long categoryId;
+    private Long totalAmount;
     /**
-     * 类目类型,1服务类，2实物类
+     * 核对结果（1：正确，2：错误，3，未核对）
      */
-    private Integer categoryType;
+    private Integer checkUpResult;
     /**
-     * 排序号
+     * 收银员姓名
      */
-    private Integer orderNumber;
-    /**
-     * 属性状态0，停用，1启用（默认）
-     */
-    private Integer status;
+    private String cashierName;
     /**
      * 是否删除(0，否;1，是)
      */
@@ -91,90 +86,98 @@ public class GoodsPropertyEntity extends BaseEntity {
      * 扩展字段2
      */
     private String remark2;
+    /**
+     * 扩展字段3
+     */
+    private Long remark3;
+    /**
+     * 扩展字段4
+     */
+    private Long remark4;
 
 	/**
-	 * 设置
+	 * 设置主键
 	 */
     public void setId(Long id) {
         this.id = id;
     }
     /**
-     * 获取
+     * 获取主键
      */
     public Long getId() {
         return this.id;
     }
 	/**
-	 * 设置属性名称
+	 * 设置支付方式
 	 */
-    public void setPropertyName(String propertyName) {
-        this.propertyName = propertyName;
+    public void setPayMethod(Integer payMethod) {
+        this.payMethod = payMethod;
     }
     /**
-     * 获取属性名称
+     * 获取支付方式
      */
-    public String getPropertyName() {
-        return this.propertyName;
+    public Integer getPayMethod() {
+        return this.payMethod;
     }
 	/**
-	 * 设置属性类型：1表示销售属性  2辅助属性
+	 * 设置收银开始时间
 	 */
-    public void setPropertyType(Integer propertyType) {
-        this.propertyType = propertyType;
+    public void setCashBeginTime(Date cashBeginTime) {
+        this.cashBeginTime = cashBeginTime;
     }
     /**
-     * 获取属性类型：1表示销售属性  2辅助属性
+     * 获取收银开始时间
      */
-    public Integer getPropertyType() {
-        return this.propertyType;
+    public Date getCashBeginTime() {
+        return this.cashBeginTime;
     }
 	/**
-	 * 设置所属类目
+	 * 设置收银结束时间
 	 */
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
+    public void setCashBeginEnd(Date cashBeginEnd) {
+        this.cashBeginEnd = cashBeginEnd;
     }
     /**
-     * 获取所属类目
+     * 获取收银结束时间
      */
-    public Long getCategoryId() {
-        return this.categoryId;
+    public Date getCashBeginEnd() {
+        return this.cashBeginEnd;
     }
 	/**
-	 * 设置类目类型,1服务类，2实物类
+	 * 设置收银总额
 	 */
-    public void setCategoryType(Integer categoryType) {
-        this.categoryType = categoryType;
+    public void setTotalAmount(Long totalAmount) {
+        this.totalAmount = totalAmount;
     }
     /**
-     * 获取类目类型,1服务类，2实物类
+     * 获取收银总额
      */
-    public Integer getCategoryType() {
-        return this.categoryType;
+    public Long getTotalAmount() {
+        return this.totalAmount;
     }
 	/**
-	 * 设置排序号
+	 * 设置核对结果（1：正确，2：错误，3，未核对）
 	 */
-    public void setOrderNumber(Integer orderNumber) {
-        this.orderNumber = orderNumber;
+    public void setCheckUpResult(Integer checkUpResult) {
+        this.checkUpResult = checkUpResult;
     }
     /**
-     * 获取排序号
+     * 获取核对结果（1：正确，2：错误，3，未核对）
      */
-    public Integer getOrderNumber() {
-        return this.orderNumber;
+    public Integer getCheckUpResult() {
+        return this.checkUpResult;
     }
 	/**
-	 * 设置属性状态0，停用，1启用（默认）
+	 * 设置收银员姓名
 	 */
-    public void setStatus(Integer status) {
-        this.status = status;
+    public void setCashierName(String cashierName) {
+        this.cashierName = cashierName;
     }
     /**
-     * 获取属性状态0，停用，1启用（默认）
+     * 获取收银员姓名
      */
-    public Integer getStatus() {
-        return this.status;
+    public String getCashierName() {
+        return this.cashierName;
     }
 	/**
 	 * 设置是否删除(0，否;1，是)
@@ -308,13 +311,29 @@ public class GoodsPropertyEntity extends BaseEntity {
     public String getRemark2() {
         return this.remark2;
     }
-	public String getCategoryName() {
-		return categoryName;
-	}
-	public void setCategoryName(String categoryName) {
-		this.categoryName = categoryName;
-	}
-    
-    
+	/**
+	 * 设置扩展字段3
+	 */
+    public void setRemark3(Long remark3) {
+        this.remark3 = remark3;
+    }
+    /**
+     * 获取扩展字段3
+     */
+    public Long getRemark3() {
+        return this.remark3;
+    }
+	/**
+	 * 设置扩展字段4
+	 */
+    public void setRemark4(Long remark4) {
+        this.remark4 = remark4;
+    }
+    /**
+     * 获取扩展字段4
+     */
+    public Long getRemark4() {
+        return this.remark4;
+    }
 
 }

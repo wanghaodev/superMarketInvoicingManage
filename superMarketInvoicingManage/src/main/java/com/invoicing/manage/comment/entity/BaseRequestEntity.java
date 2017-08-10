@@ -24,6 +24,7 @@ import com.alibaba.fastjson.JSON;
  */
 @SuppressWarnings("serial")
 public class BaseRequestEntity implements Serializable{
+	
 
 	/**
 	 *页码 

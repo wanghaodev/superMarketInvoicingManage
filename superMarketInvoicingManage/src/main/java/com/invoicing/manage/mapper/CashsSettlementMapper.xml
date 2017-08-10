@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.invoicing.manage.mapper.CashsSettlementMapper">
+
+	 <resultMap type="com.invoicing.manage.entity.CashsSettlementEntity" id="BaseResultMap">
+    	 <id column="id" property="id" /> 
+		  <id column="payMethod" property="payMethod" /> 
+		  <id column="cashBeginTime" property="cashBeginTime" /> 
+		  <id column="cashBeginEnd" property="cashBeginEnd" /> 
+		  <id column="totalAmount" property="totalAmount" /> 
+		  <id column="checkUpResult" property="checkUpResult" /> 
+		  <id column="cashierName" property="cashierName" /> 
+		  <id column="isDelete" property="isDelete" /> 
+		  <id column="directlyOrgId" property="directlyOrgId" /> 
+		  <id column="hierarchyId" property="hierarchyId" /> 
+		  <id column="creatorId" property="creatorId" /> 
+		  <id column="creator" property="creator" /> 
+		  <id column="createTime" property="createTime" /> 
+		  <id column="updatorId" property="updatorId" /> 
+		  <id column="updator" property="updator" /> 
+		  <id column="updateTime" property="updateTime" /> 
+		  <id column="remark1" property="remark1" /> 
+		  <id column="remark2" property="remark2" /> 
+		  <id column="remark3" property="remark3" /> 
+		  <id column="remark4" property="remark4" /> 
+  
+    </resultMap>
+    <sql id="Base_Column_List">
+    	 cashsSettlement.id as id ,
+ 		 cashsSettlement.pay_method as payMethod ,
+ 		 cashsSettlement.cash_begin_time as cashBeginTime ,
+ 		 cashsSettlement.cash_begin_end as cashBeginEnd ,
+ 		 cashsSettlement.total_amount as totalAmount ,
+ 		 cashsSettlement.check_up_result as checkUpResult ,
+ 		 cashsSettlement.cashier_name as cashierName ,
+ 		 cashsSettlement.is_delete as isDelete ,
+ 		 cashsSettlement.directly_org_id as directlyOrgId ,
+ 		 cashsSettlement.hierarchy_id as hierarchyId ,
+ 		 cashsSettlement.creator_id as creatorId ,
+ 		 cashsSettlement.creator as creator ,
+ 		 cashsSettlement.create_time as createTime ,
+ 		 cashsSettlement.updator_id as updatorId ,
+ 		 cashsSettlement.updator as updator ,
+ 		 cashsSettlement.update_time as updateTime ,
+ 		 cashsSettlement.remark1 as remark1 ,
+ 		 cashsSettlement.remark2 as remark2 ,
+ 		 cashsSettlement.remark3 as remark3 ,
+ 		 cashsSettlement.remark4 as remark4
+    </sql>
+    
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		 select 
+ 		  <include refid="Base_Column_List" />
+ 		  from cashs_settlement_tb cashsSettlement
+ 		  where cashsSettlement.id = #{ id }
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		 delete 
+ 		  from cashs_settlement_tb
+ 		  where id = #{ id }
+	</delete>
+	
+	<insert id="insertSelective" parameterType="com.invoicing.manage.entity.CashsSettlementEntity">
+		 insert into  cashs_settlement_tb
+ 		  <trim prefix="(" suffix=")" suffixOverrides=","> 
+ 			 <if test="id != null">
+ 				 id,
+ 			  </if>
+ 			 <if test="payMethod != null">
+ 				 pay_method,
+ 			  </if>
+ 			 <if test="cashBeginTime != null">
+ 				 cash_begin_time,
+ 			  </if>
+ 			 <if test="cashBeginEnd != null">
+ 				 cash_begin_end,
+ 			  </if>
+ 			 <if test="totalAmount != null">
+ 				 total_amount,
+ 			  </if>
+ 			 <if test="checkUpResult != null">
+ 				 check_up_result,
+ 			  </if>
+ 			 <if test="cashierName != null">
+ 				 cashier_name,
+ 			  </if>
+ 			 <if test="isDelete != null">
+ 				 is_delete,
+ 			  </if>
+ 			 <if test="directlyOrgId != null">
+ 				 directly_org_id,
+ 			  </if>
+ 			 <if test="hierarchyId != null">
+ 				 hierarchy_id,
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 creator_id,
+ 			  </if>
+ 			 <if test="creator != null">
+ 				 creator,
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 create_time,
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 updator_id,
+ 			  </if>
+ 			 <if test="updator != null">
+ 				 updator,
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 update_time,
+ 			  </if>
+ 			 <if test="remark1 != null">
+ 				 remark1,
+ 			  </if>
+ 			 <if test="remark2 != null">
+ 				 remark2,
+ 			  </if>
+ 			 <if test="remark3 != null">
+ 				 remark3,
+ 			  </if>
+ 			 <if test="remark4 != null">
+ 				 remark4,
+ 			  </if>
+ 		  </trim>
+ 		  <trim prefix="values (" suffix=")" suffixOverrides="," >
+ 			 <if test="id != null">
+ 				 #{id},
+ 			  </if>
+ 			 <if test="payMethod != null">
+ 				 #{payMethod},
+ 			  </if>
+ 			 <if test="cashBeginTime != null">
+ 				 #{cashBeginTime},
+ 			  </if>
+ 			 <if test="cashBeginEnd != null">
+ 				 #{cashBeginEnd},
+ 			  </if>
+ 			 <if test="totalAmount != null">
+ 				 #{totalAmount},
+ 			  </if>
+ 			 <if test="checkUpResult != null">
+ 				 #{checkUpResult},
+ 			  </if>
+ 			 <if test="cashierName != null">
+ 				 #{cashierName},
+ 			  </if>
+ 			 <if test="isDelete != null">
+ 				 #{isDelete},
+ 			  </if>
+ 			 <if test="directlyOrgId != null">
+ 				 #{directlyOrgId},
+ 			  </if>
+ 			 <if test="hierarchyId != null">
+ 				 #{hierarchyId},
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 #{creatorId},
+ 			  </if>
+ 			 <if test="creator != null">
+ 				 #{creator},
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 #{createTime},
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 #{updatorId},
+ 			  </if>
+ 			 <if test="updator != null">
+ 				 #{updator},
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 #{updateTime},
+ 			  </if>
+ 			 <if test="remark1 != null">
+ 				 #{remark1},
+ 			  </if>
+ 			 <if test="remark2 != null">
+ 				 #{remark2},
+ 			  </if>
+ 			 <if test="remark3 != null">
+ 				 #{remark3},
+ 			  </if>
+ 			 <if test="remark4 != null">
+ 				 #{remark4},
+ 			  </if>
+ 		  </trim>
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="com.invoicing.manage.entity.CashsSettlementEntity">
+		 update   cashs_settlement_tb
+ 		 <set>
+ 			 <if test="payMethod != null">
+ 				 pay_method = #{payMethod},
+ 			  </if>
+ 			 <if test="cashBeginTime != null">
+ 				 cash_begin_time = #{cashBeginTime},
+ 			  </if>
+ 			 <if test="cashBeginEnd != null">
+ 				 cash_begin_end = #{cashBeginEnd},
+ 			  </if>
+ 			 <if test="totalAmount != null">
+ 				 total_amount = #{totalAmount},
+ 			  </if>
+ 			 <if test="checkUpResult != null">
+ 				 check_up_result = #{checkUpResult},
+ 			  </if>
+ 			 <if test="cashierName != null">
+ 				 cashier_name = #{cashierName},
+ 			  </if>
+ 			 <if test="isDelete != null">
+ 				 is_delete = #{isDelete},
+ 			  </if>
+ 			 <if test="directlyOrgId != null">
+ 				 directly_org_id = #{directlyOrgId},
+ 			  </if>
+ 			 <if test="hierarchyId != null">
+ 				 hierarchy_id = #{hierarchyId},
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 creator_id = #{creatorId},
+ 			  </if>
+ 			 <if test="creator != null">
+ 				 creator = #{creator},
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 create_time = #{createTime},
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 updator_id = #{updatorId},
+ 			  </if>
+ 			 <if test="updator != null">
+ 				 updator = #{updator},
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 update_time = #{updateTime},
+ 			  </if>
+ 			 <if test="remark1 != null">
+ 				 remark1 = #{remark1},
+ 			  </if>
+ 			 <if test="remark2 != null">
+ 				 remark2 = #{remark2},
+ 			  </if>
+ 			 <if test="remark3 != null">
+ 				 remark3 = #{remark3},
+ 			  </if>
+ 			 <if test="remark4 != null">
+ 				 remark4 = #{remark4},
+ 			  </if>
+ 		 </set>
+     where id = #{id}
+	</update>
+	
+	 <select id="getList" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		 select 
+ 		  <include refid="Base_Column_List" />
+ 		  from cashs_settlement_tb cashsSettlement
+ 		  where 1=1 
+ 		 <if test="id != null">
+ 			 and cashsSettlement.id = #{id}
+ 		  </if>
+ 		 <if test="payMethod != null">
+ 			 and cashsSettlement.pay_method = #{payMethod}
+ 		  </if>
+ 		 <if test="cashBeginTime != null">
+ 			 and cashsSettlement.cash_begin_time = #{cashBeginTime}
+ 		  </if>
+ 		 <if test="cashBeginEnd != null">
+ 			 and cashsSettlement.cash_begin_end = #{cashBeginEnd}
+ 		  </if>
+ 		 <if test="totalAmount != null">
+ 			 and cashsSettlement.total_amount = #{totalAmount}
+ 		  </if>
+ 		 <if test="checkUpResult != null">
+ 			 and cashsSettlement.check_up_result = #{checkUpResult}
+ 		  </if>
+ 		 <if test="cashierName != null">
+ 			 and cashsSettlement.cashier_name = #{cashierName}
+ 		  </if>
+ 		 <if test="isDelete != null">
+ 			 and cashsSettlement.is_delete = #{isDelete}
+ 		  </if>
+ 		 <if test="directlyOrgId != null">
+ 			 and cashsSettlement.directly_org_id = #{directlyOrgId}
+ 		  </if>
+ 		 <if test="hierarchyId != null">
+ 			 and cashsSettlement.hierarchy_id = #{hierarchyId}
+ 		  </if>
+ 		 <if test="creatorId != null">
+ 			 and cashsSettlement.creator_id = #{creatorId}
+ 		  </if>
+ 		 <if test="creator != null">
+ 			 and cashsSettlement.creator = #{creator}
+ 		  </if>
+ 		 <if test="createTime != null">
+ 			 and cashsSettlement.create_time = #{createTime}
+ 		  </if>
+ 		 <if test="updatorId != null">
+ 			 and cashsSettlement.updator_id = #{updatorId}
+ 		  </if>
+ 		 <if test="updator != null">
+ 			 and cashsSettlement.updator = #{updator}
+ 		  </if>
+ 		 <if test="updateTime != null">
+ 			 and cashsSettlement.update_time = #{updateTime}
+ 		  </if>
+ 		 <if test="remark1 != null">
+ 			 and cashsSettlement.remark1 = #{remark1}
+ 		  </if>
+ 		 <if test="remark2 != null">
+ 			 and cashsSettlement.remark2 = #{remark2}
+ 		  </if>
+ 		 <if test="remark3 != null">
+ 			 and cashsSettlement.remark3 = #{remark3}
+ 		  </if>
+ 		 <if test="remark4 != null">
+ 			 and cashsSettlement.remark4 = #{remark4}
+ 		  </if>
+	</select>
+	 <select id="getListCount" resultType="java.lang.Integer"
+		parameterType="java.util.Map">
+		 select 
+ 		  count(cashsSettlement.id)
+ 		  from cashs_settlement_tb cashsSettlement
+ 		  where 1=1 
+ 		 <if test="id != null">
+ 			 and cashsSettlement.id = #{id}
+ 		  </if>
+ 		 <if test="payMethod != null">
+ 			 and cashsSettlement.pay_method = #{payMethod}
+ 		  </if>
+ 		 <if test="cashBeginTime != null">
+ 			 and cashsSettlement.cash_begin_time = #{cashBeginTime}
+ 		  </if>
+ 		 <if test="cashBeginEnd != null">
+ 			 and cashsSettlement.cash_begin_end = #{cashBeginEnd}
+ 		  </if>
+ 		 <if test="totalAmount != null">
+ 			 and cashsSettlement.total_amount = #{totalAmount}
+ 		  </if>
+ 		 <if test="checkUpResult != null">
+ 			 and cashsSettlement.check_up_result = #{checkUpResult}
+ 		  </if>
+ 		 <if test="cashierName != null">
+ 			 and cashsSettlement.cashier_name = #{cashierName}
+ 		  </if>
+ 		 <if test="isDelete != null">
+ 			 and cashsSettlement.is_delete = #{isDelete}
+ 		  </if>
+ 		 <if test="directlyOrgId != null">
+ 			 and cashsSettlement.directly_org_id = #{directlyOrgId}
+ 		  </if>
+ 		 <if test="hierarchyId != null">
+ 			 and cashsSettlement.hierarchy_id = #{hierarchyId}
+ 		  </if>
+ 		 <if test="creatorId != null">
+ 			 and cashsSettlement.creator_id = #{creatorId}
+ 		  </if>
+ 		 <if test="creator != null">
+ 			 and cashsSettlement.creator = #{creator}
+ 		  </if>
+ 		 <if test="createTime != null">
+ 			 and cashsSettlement.create_time = #{createTime}
+ 		  </if>
+ 		 <if test="updatorId != null">
+ 			 and cashsSettlement.updator_id = #{updatorId}
+ 		  </if>
+ 		 <if test="updator != null">
+ 			 and cashsSettlement.updator = #{updator}
+ 		  </if>
+ 		 <if test="updateTime != null">
+ 			 and cashsSettlement.update_time = #{updateTime}
+ 		  </if>
+ 		 <if test="remark1 != null">
+ 			 and cashsSettlement.remark1 = #{remark1}
+ 		  </if>
+ 		 <if test="remark2 != null">
+ 			 and cashsSettlement.remark2 = #{remark2}
+ 		  </if>
+ 		 <if test="remark3 != null">
+ 			 and cashsSettlement.remark3 = #{remark3}
+ 		  </if>
+ 		 <if test="remark4 != null">
+ 			 and cashsSettlement.remark4 = #{remark4}
+ 		  </if>
+	</select>
+</mapper>

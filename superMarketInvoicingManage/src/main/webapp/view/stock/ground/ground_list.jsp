@@ -9,25 +9,17 @@
 <div class="container-fluid">
 	<ol class="breadcrumb">
 		<span>当前位置：</span>
-		<li><a href="/index">商品管理</a></li>
-		<li><a href="####">属性管理</a></li>
+		<li><a href="/index">库存管理</a></li>
+		<li><a href="####">库存地管理</a></li>
 	</ol>
 
 	<!-- 列表：查询条件组装  start -->
 	<div class="panel panel-default form-search">
 		<div class="panel-body">
 			<div class="conditions_team">
-				<label>属性名称：</label>
-				<input type="text" name="propertyName" class="form-control"placeholder="属性名称"> 
+				<input type="text" name="userName" class="form-control"placeholder="库存地姓名"> 
+				<input type="text" name="phone"class="form-control" placeholder="手机号码">
 			</div>
-			<div class="conditions_team">
-       		<label>属性类型：</label>
-       		<select name="propertyType" class="form-control">
-       		   <option value="-1">--请选择类型--</option>
-       		   <option value="1">销售属性</option>
-       		   <option value="2">辅助属性</option>
-       		</select>
-       	</div>
 		</div>
 		<div class="panel-footer">
 			<button type="button" id="searchBtn" class="btn btn-primary">
@@ -46,45 +38,56 @@
 	</div>
 	<!-- 列表：查询条件组装  end -->
 	<!-- 列表：查询分页列表 start -->
-	<div class="area_table_content cloud_list">
+	<div class="user_table_content cloud_list">
 		<div id="buttonsId" class="row list-title">
 			<div class="col-md-4">
-				<h4>属性列表</h4>
+				<h4>库存地列表</h4>
 			</div>
 		</div>
 	</div>
 </div>
 	<!-- 列表：查询分页列表 end -->
-	<!-- add by WHao start 引入：属性列表js -->
+	<!-- add by WHao start 引入：库存地列表js -->
 	<script type="text/javascript">
 	$(document).ready(function(){
         var buttonsArr =[];
         getData();
         function getData(){
             var _options ={
-                url:_path+"/invoicing/goods/property/page/list"
+                url:_path+"/invoicing/stock/ground/page/list"
                 ,checkAll:false
                 //查询条件
-                ,data:{'userName':$("[name=shortName]").val()
-                	  ,'phone':$("[name=name]").val()}
+                ,data:{'userName':$("[name=userName]").val()
+                	  ,'phone':$("[name=phone]").val()}
                 ,cloumns:[
-					 {name:'属性名称',value:'propertyName'}
-                    ,{name:'所属分类',value:'categoryName'}
-                    ,{name:'所属类型',value:'propertyType'}
+					 {name:'库存地名称',value:'brandName'}
+                    ,{name:'英文名称',value:'brandEnglishName'}
+                    ,{name:'库存地首字母',value:'brandInitial'}
+                    ,{name:'创建时间',value:'createTime'}
                     ,{name:'更新时间',value:'updateTime'}
+                    ,{name:'状态',value:'state',type:"function", fun : function(obj){
+	                    	var html="";
+	                    	if(obj.state == 0){
+	                    		html += "停用";
+	                    	}else if(obj.state==1){
+	                    		html += "开启";
+	                    	}
+	                    	return html;
+                 	}
+                 }
                     ,{name:'操作',value:'id',type:"function", fun : function(obj){
                     	var html="";
+                    		
 	                		html += "  <a href='javascript:void(0)' class='btn-link' onclick='toUpdatePage("+obj.id+")'>编辑</a>"
 	                		html += "  <a href='javascript:void(0)' class='btn-link' onclick='delObj("+obj.id+")'>删除</a>";
-	                		html += "  <a href='javascript:void(0)' class='btn-link' onclick='propertyValObj("+obj.id+")'>属性值维护</a>";
 	                	return html;
                       }
                     }
                 ]
                 ,buttons:buttonsArr
             };
-            // grid(param1,param2);参数1分页数据，参数2table类名如.area_table_content
-            $(".area_table_content").grid(_options,".area_table_content");
+            // grid(param1,param2);参数1分页数据，参数2table类名如.user_table_content
+            $(".user_table_content").grid(_options,".user_table_content");
         }
 		//条件查询
 		$("#searchBtn").click(function(){
@@ -104,7 +107,7 @@
     	callmodalFun('您确认删除该记录吗？',function(){
     		$.ajax({
     			type : "post",
-    			url :_path+"/invoicing/goods/property/page/del",
+    			url :_path+"/invoicing/stock/ground/del",
     			data : {
     				'id':id
     			},
@@ -116,47 +119,32 @@
     				closewait();
     				//若执行成功的话，则隐藏进度条提示
     				if (data.code== 1) {
-    					alert("属性删除成功！")
-    					var url = _path+"/invoicing/goods/property/page/list";
+    					alert("库存地删除成功！")
+    					var url = _path+"/invoicing/stock/ground/page/list";
     					goBackPage(url);
     				} else if (data == 0) {
-    					timedTaskFun(1000,'属性删除失败','','err');
+    					timedTaskFun(1000,'库存地删除失败','','err');
     				} else if(data == -2) {
-    					timedTaskFun(1000,'该属性，已关联其他业务，故无法删除！','','err');
+    					timedTaskFun(1000,'该库存地，已关联其他业务，故无法删除！','','err');
     				}
     				
     			}
     		 });
     	});
     };
-    //属性角色维护
-    function toUserRole(propertyId){
-  	  var url=_path+"/invoicing/goods/property/role?propertyId="+propertyId;
-		$.get(url,function(data){
-			$("#mian_div").html(data);
-		});    	
-    }
     
     //到新增页面
     $("#addBtn").click(function(){
-    	var url=_path+"/invoicing/goods/property/add";
+    	var url=_path+"/invoicing/stock/ground/add";
 		$.get(url,function(data){
 			$("#mian_div").html(data);
 		});    
     });
-    //编辑属性信息
-    function toUpdatePage(propertyId){
-    	 var url=_path+"/invoicing/goods/property/update?propertyId="+propertyId;
+    //编辑库存地信息
+    function toUpdatePage(userId){
+    	 var url=_path+"/invoicing/stock/ground/update?userId="+userId;
 		 //调用跳转方法
 		 goBackPage(url);
     }
-    //属性值维护
-    function propertyValObj(propertyId){
-    	var url=_path+"/invoicing/goods/property/value/page/list?propertyId="+propertyId;
-    	$.get(url,function(data){
-			$("#mian_div").html(data);
-		});    
-    }
-    
     
 </script>

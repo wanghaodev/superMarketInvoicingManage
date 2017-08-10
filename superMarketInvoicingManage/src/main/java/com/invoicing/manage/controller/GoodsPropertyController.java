@@ -74,9 +74,9 @@ public class GoodsPropertyController {
 		pageInfo.setPageNo(brandRequestEntity.getPageNo());
 		pageInfo.setPageSize(brandRequestEntity.getPageSize());
 		Map<String,Object> params=new HashMap<String,Object>();
-		PageInfo<GoodsPropertyEntity> brandList = goodsPropertyService.getList(pageInfo, params);
-		logger.debug("method [getGoodsPropertyEntityList] 查询商品属性列表，返回结果为："+JSON.toJSONString(brandList));
-		return new SuccessResponseEntity(brandList);
+		PageInfo<GoodsPropertyEntity> propertyList = goodsPropertyService.getList(pageInfo, params);
+		logger.debug("method [getGoodsPropertyEntityList] 查询商品属性列表，返回结果为："+JSON.toJSONString(propertyList));
+		return new SuccessResponseEntity(propertyList);
 		
 	}
 	
@@ -88,7 +88,7 @@ public class GoodsPropertyController {
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public ModelAndView goToGoodsPropertyAdd(){
-		String url="/basedate/Role/Role_add";
+		String url="/goods/property/property_add";
 		return new ModelAndView(url);
 	}
 	
@@ -101,10 +101,10 @@ public class GoodsPropertyController {
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity addGoodsProperty(GoodsPropertyEntity brandEntity){
+	public ResponseEntity addGoodsProperty(GoodsPropertyEntity propertyEntity){
 		try {
-			logger.debug("新建商品属性，传入参数为："+JSON.toJSONString(brandEntity));
-			int result = goodsPropertyService.insertSelective(brandEntity);
+			logger.debug("新建商品属性，传入参数为："+JSON.toJSONString(propertyEntity));
+			int result = goodsPropertyService.insertSelective(propertyEntity);
 			logger.debug("新建商品属性，返回结果为："+JSON.toJSONString(result));
 			return new SuccessResponseEntity();
 		} catch (Exception e) {
@@ -124,9 +124,9 @@ public class GoodsPropertyController {
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public ModelAndView goToGoodsPropertyUpdate(@RequestParam Long id,ModelMap modelMap){
 		String url="/goods/property/property_update";
-		GoodsPropertyEntity brandEntity=goodsPropertyService.selectByPrimaryKey(id);
-		if(null!=brandEntity){
-			modelMap.put("brand", brandEntity);
+		GoodsPropertyEntity propertyEntity=goodsPropertyService.selectByPrimaryKey(id);
+		if(null!=propertyEntity){
+			modelMap.put("brand", propertyEntity);
 		}
 		return new ModelAndView(url,modelMap);
 	}
@@ -140,10 +140,10 @@ public class GoodsPropertyController {
 	 */
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity updateGoodsProperty(GoodsPropertyEntity brandEntity){
+	public ResponseEntity updateGoodsProperty(GoodsPropertyEntity propertyEntity){
 		try {
-			logger.debug("编辑商品属性，传入参数为："+JSON.toJSONString(brandEntity));
-			int result = goodsPropertyService.updateByPrimaryKeySelective(brandEntity);
+			logger.debug("编辑商品属性，传入参数为："+JSON.toJSONString(propertyEntity));
+			int result = goodsPropertyService.updateByPrimaryKeySelective(propertyEntity);
 			logger.debug("编辑商品属性，返回结果为："+JSON.toJSONString(result));
 			return new SuccessResponseEntity();
 		} catch (Exception e) {
@@ -165,12 +165,12 @@ public class GoodsPropertyController {
 	public ResponseEntity delGoodsProperty(@RequestParam Long id){
 		try {
 			if(null!=String.valueOf(id)){
-				GoodsPropertyEntity brandEntity=new GoodsPropertyEntity ();
-				brandEntity.setId(id);
-				brandEntity.setIsDelete(1);
-				brandEntity.setUpdateTime(new Date());
-				logger.debug("删除商品属性，传入参数为："+JSON.toJSONString(brandEntity));
-				int result = goodsPropertyService.updateByPrimaryKeySelective(brandEntity);
+				GoodsPropertyEntity propertyEntity=new GoodsPropertyEntity ();
+				propertyEntity.setId(id);
+				propertyEntity.setIsDelete(1);
+				propertyEntity.setUpdateTime(new Date());
+				logger.debug("删除商品属性，传入参数为："+JSON.toJSONString(propertyEntity));
+				int result = goodsPropertyService.updateByPrimaryKeySelective(propertyEntity);
 				logger.debug("删除商品属性，返回结果为："+JSON.toJSONString(result));
 			}
 			return new SuccessResponseEntity();
@@ -187,10 +187,10 @@ public class GoodsPropertyController {
 	@ResponseBody
 	public ResponseEntity getRoleList(){
 		Map<String,Object> queryMap=new HashMap<String,Object>();
-		List<GoodsPropertyEntity> brandList=goodsPropertyService.getList(queryMap);
+		List<GoodsPropertyEntity> propertyList=goodsPropertyService.getList(queryMap);
 		ResponseEntity res=new ResponseEntity();
-		if(brandList.size()>0){
-			res.setData(brandList);
+		if(propertyList.size()>0){
+			res.setData(propertyList);
 			logger.info("method [getRoleList],返回结果：{}",res);
 		}
 		return res;

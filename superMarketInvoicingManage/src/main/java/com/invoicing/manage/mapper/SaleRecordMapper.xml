@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.invoicing.manage.mapper.SaleRecordMapper">
+
+	 <resultMap type="com.invoicing.manage.entity.SaleRecordEntity" id="BaseResultMap">
+    	 <id column="id" property="id" /> 
+		  <id column="memberName" property="memberName" /> 
+		  <id column="payMethod" property="payMethod" /> 
+		  <id column="saleNumber" property="saleNumber" /> 
+		  <id column="salePrice" property="salePrice" /> 
+		  <id column="receivableAmount" property="receivableAmount" /> 
+		  <id column="paidAmount" property="paidAmount" /> 
+		  <id column="changeAmount" property="changeAmount" /> 
+		  <id column="cashierName" property="cashierName" /> 
+		  <id column="isDelete" property="isDelete" /> 
+		  <id column="directlyOrgId" property="directlyOrgId" /> 
+		  <id column="hierarchyId" property="hierarchyId" /> 
+		  <id column="creatorId" property="creatorId" /> 
+		  <id column="creator" property="creator" /> 
+		  <id column="createTime" property="createTime" /> 
+		  <id column="updatorId" property="updatorId" /> 
+		  <id column="updator" property="updator" /> 
+		  <id column="updateTime" property="updateTime" /> 
+		  <id column="remark1" property="remark1" /> 
+		  <id column="remark2" property="remark2" /> 
+		  <id column="remark3" property="remark3" /> 
+		  <id column="remark4" property="remark4" /> 
+  
+    </resultMap>
+    <sql id="Base_Column_List">
+    	 saleRecord.id as id ,
+ 		 saleRecord.member_name as memberName ,
+ 		 saleRecord.pay_method as payMethod ,
+ 		 saleRecord.sale_number as saleNumber ,
+ 		 saleRecord.sale_price as salePrice ,
+ 		 saleRecord.receivable_amount as receivableAmount ,
+ 		 saleRecord.paid_amount as paidAmount ,
+ 		 saleRecord.change_amount as changeAmount ,
+ 		 saleRecord.cashier_name as cashierName ,
+ 		 saleRecord.is_delete as isDelete ,
+ 		 saleRecord.directly_org_id as directlyOrgId ,
+ 		 saleRecord.hierarchy_id as hierarchyId ,
+ 		 saleRecord.creator_id as creatorId ,
+ 		 saleRecord.creator as creator ,
+ 		 saleRecord.create_time as createTime ,
+ 		 saleRecord.updator_id as updatorId ,
+ 		 saleRecord.updator as updator ,
+ 		 saleRecord.update_time as updateTime ,
+ 		 saleRecord.remark1 as remark1 ,
+ 		 saleRecord.remark2 as remark2 ,
+ 		 saleRecord.remark3 as remark3 ,
+ 		 saleRecord.remark4 as remark4
+    </sql>
+    
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		 select 
+ 		  <include refid="Base_Column_List" />
+ 		  from sale_record_tb saleRecord
+ 		  where saleRecord.id = #{ id }
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		 delete 
+ 		  from sale_record_tb
+ 		  where id = #{ id }
+	</delete>
+	
+	<insert id="insertSelective" parameterType="com.invoicing.manage.entity.SaleRecordEntity">
+		 insert into  sale_record_tb
+ 		  <trim prefix="(" suffix=")" suffixOverrides=","> 
+ 			 <if test="id != null">
+ 				 id,
+ 			  </if>
+ 			 <if test="memberName != null">
+ 				 member_name,
+ 			  </if>
+ 			 <if test="payMethod != null">
+ 				 pay_method,
+ 			  </if>
+ 			 <if test="saleNumber != null">
+ 				 sale_number,
+ 			  </if>
+ 			 <if test="salePrice != null">
+ 				 sale_price,
+ 			  </if>
+ 			 <if test="receivableAmount != null">
+ 				 receivable_amount,
+ 			  </if>
+ 			 <if test="paidAmount != null">
+ 				 paid_amount,
+ 			  </if>
+ 			 <if test="changeAmount != null">
+ 				 change_amount,
+ 			  </if>
+ 			 <if test="cashierName != null">
+ 				 cashier_name,
+ 			  </if>
+ 			 <if test="isDelete != null">
+ 				 is_delete,
+ 			  </if>
+ 			 <if test="directlyOrgId != null">
+ 				 directly_org_id,
+ 			  </if>
+ 			 <if test="hierarchyId != null">
+ 				 hierarchy_id,
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 creator_id,
+ 			  </if>
+ 			 <if test="creator != null">
+ 				 creator,
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 create_time,
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 updator_id,
+ 			  </if>
+ 			 <if test="updator != null">
+ 				 updator,
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 update_time,
+ 			  </if>
+ 			 <if test="remark1 != null">
+ 				 remark1,
+ 			  </if>
+ 			 <if test="remark2 != null">
+ 				 remark2,
+ 			  </if>
+ 			 <if test="remark3 != null">
+ 				 remark3,
+ 			  </if>
+ 			 <if test="remark4 != null">
+ 				 remark4,
+ 			  </if>
+ 		  </trim>
+ 		  <trim prefix="values (" suffix=")" suffixOverrides="," >
+ 			 <if test="id != null">
+ 				 #{id},
+ 			  </if>
+ 			 <if test="memberName != null">
+ 				 #{memberName},
+ 			  </if>
+ 			 <if test="payMethod != null">
+ 				 #{payMethod},
+ 			  </if>
+ 			 <if test="saleNumber != null">
+ 				 #{saleNumber},
+ 			  </if>
+ 			 <if test="salePrice != null">
+ 				 #{salePrice},
+ 			  </if>
+ 			 <if test="receivableAmount != null">
+ 				 #{receivableAmount},
+ 			  </if>
+ 			 <if test="paidAmount != null">
+ 				 #{paidAmount},
+ 			  </if>
+ 			 <if test="changeAmount != null">
+ 				 #{changeAmount},
+ 			  </if>
+ 			 <if test="cashierName != null">
+ 				 #{cashierName},
+ 			  </if>
+ 			 <if test="isDelete != null">
+ 				 #{isDelete},
+ 			  </if>
+ 			 <if test="directlyOrgId != null">
+ 				 #{directlyOrgId},
+ 			  </if>
+ 			 <if test="hierarchyId != null">
+ 				 #{hierarchyId},
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 #{creatorId},
+ 			  </if>
+ 			 <if test="creator != null">
+ 				 #{creator},
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 #{createTime},
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 #{updatorId},
+ 			  </if>
+ 			 <if test="updator != null">
+ 				 #{updator},
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 #{updateTime},
+ 			  </if>
+ 			 <if test="remark1 != null">
+ 				 #{remark1},
+ 			  </if>
+ 			 <if test="remark2 != null">
+ 				 #{remark2},
+ 			  </if>
+ 			 <if test="remark3 != null">
+ 				 #{remark3},
+ 			  </if>
+ 			 <if test="remark4 != null">
+ 				 #{remark4},
+ 			  </if>
+ 		  </trim>
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="com.invoicing.manage.entity.SaleRecordEntity">
+		 update   sale_record_tb
+ 		 <set>
+ 			 <if test="memberName != null">
+ 				 member_name = #{memberName},
+ 			  </if>
+ 			 <if test="payMethod != null">
+ 				 pay_method = #{payMethod},
+ 			  </if>
+ 			 <if test="saleNumber != null">
+ 				 sale_number = #{saleNumber},
+ 			  </if>
+ 			 <if test="salePrice != null">
+ 				 sale_price = #{salePrice},
+ 			  </if>
+ 			 <if test="receivableAmount != null">
+ 				 receivable_amount = #{receivableAmount},
+ 			  </if>
+ 			 <if test="paidAmount != null">
+ 				 paid_amount = #{paidAmount},
+ 			  </if>
+ 			 <if test="changeAmount != null">
+ 				 change_amount = #{changeAmount},
+ 			  </if>
+ 			 <if test="cashierName != null">
+ 				 cashier_name = #{cashierName},
+ 			  </if>
+ 			 <if test="isDelete != null">
+ 				 is_delete = #{isDelete},
+ 			  </if>
+ 			 <if test="directlyOrgId != null">
+ 				 directly_org_id = #{directlyOrgId},
+ 			  </if>
+ 			 <if test="hierarchyId != null">
+ 				 hierarchy_id = #{hierarchyId},
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 creator_id = #{creatorId},
+ 			  </if>
+ 			 <if test="creator != null">
+ 				 creator = #{creator},
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 create_time = #{createTime},
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 updator_id = #{updatorId},
+ 			  </if>
+ 			 <if test="updator != null">
+ 				 updator = #{updator},
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 update_time = #{updateTime},
+ 			  </if>
+ 			 <if test="remark1 != null">
+ 				 remark1 = #{remark1},
+ 			  </if>
+ 			 <if test="remark2 != null">
+ 				 remark2 = #{remark2},
+ 			  </if>
+ 			 <if test="remark3 != null">
+ 				 remark3 = #{remark3},
+ 			  </if>
+ 			 <if test="remark4 != null">
+ 				 remark4 = #{remark4},
+ 			  </if>
+ 		 </set>
+     where id = #{id}
+	</update>
+	
+	 <select id="getList" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		 select 
+ 		  <include refid="Base_Column_List" />
+ 		  from sale_record_tb saleRecord
+ 		  where 1=1 
+ 		 <if test="id != null">
+ 			 and saleRecord.id = #{id}
+ 		  </if>
+ 		 <if test="memberName != null">
+ 			 and saleRecord.member_name = #{memberName}
+ 		  </if>
+ 		 <if test="payMethod != null">
+ 			 and saleRecord.pay_method = #{payMethod}
+ 		  </if>
+ 		 <if test="saleNumber != null">
+ 			 and saleRecord.sale_number = #{saleNumber}
+ 		  </if>
+ 		 <if test="salePrice != null">
+ 			 and saleRecord.sale_price = #{salePrice}
+ 		  </if>
+ 		 <if test="receivableAmount != null">
+ 			 and saleRecord.receivable_amount = #{receivableAmount}
+ 		  </if>
+ 		 <if test="paidAmount != null">
+ 			 and saleRecord.paid_amount = #{paidAmount}
+ 		  </if>
+ 		 <if test="changeAmount != null">
+ 			 and saleRecord.change_amount = #{changeAmount}
+ 		  </if>
+ 		 <if test="cashierName != null">
+ 			 and saleRecord.cashier_name = #{cashierName}
+ 		  </if>
+ 		 <if test="isDelete != null">
+ 			 and saleRecord.is_delete = #{isDelete}
+ 		  </if>
+ 		 <if test="directlyOrgId != null">
+ 			 and saleRecord.directly_org_id = #{directlyOrgId}
+ 		  </if>
+ 		 <if test="hierarchyId != null">
+ 			 and saleRecord.hierarchy_id = #{hierarchyId}
+ 		  </if>
+ 		 <if test="creatorId != null">
+ 			 and saleRecord.creator_id = #{creatorId}
+ 		  </if>
+ 		 <if test="creator != null">
+ 			 and saleRecord.creator = #{creator}
+ 		  </if>
+ 		 <if test="createTime != null">
+ 			 and saleRecord.create_time = #{createTime}
+ 		  </if>
+ 		 <if test="updatorId != null">
+ 			 and saleRecord.updator_id = #{updatorId}
+ 		  </if>
+ 		 <if test="updator != null">
+ 			 and saleRecord.updator = #{updator}
+ 		  </if>
+ 		 <if test="updateTime != null">
+ 			 and saleRecord.update_time = #{updateTime}
+ 		  </if>
+ 		 <if test="remark1 != null">
+ 			 and saleRecord.remark1 = #{remark1}
+ 		  </if>
+ 		 <if test="remark2 != null">
+ 			 and saleRecord.remark2 = #{remark2}
+ 		  </if>
+ 		 <if test="remark3 != null">
+ 			 and saleRecord.remark3 = #{remark3}
+ 		  </if>
+ 		 <if test="remark4 != null">
+ 			 and saleRecord.remark4 = #{remark4}
+ 		  </if>
+	</select>
+	 <select id="getListCount" resultType="java.lang.Integer"
+		parameterType="java.util.Map">
+		 select 
+ 		  count(saleRecord.id)
+ 		  from sale_record_tb saleRecord
+ 		  where 1=1 
+ 		 <if test="id != null">
+ 			 and saleRecord.id = #{id}
+ 		  </if>
+ 		 <if test="memberName != null">
+ 			 and saleRecord.member_name = #{memberName}
+ 		  </if>
+ 		 <if test="payMethod != null">
+ 			 and saleRecord.pay_method = #{payMethod}
+ 		  </if>
+ 		 <if test="saleNumber != null">
+ 			 and saleRecord.sale_number = #{saleNumber}
+ 		  </if>
+ 		 <if test="salePrice != null">
+ 			 and saleRecord.sale_price = #{salePrice}
+ 		  </if>
+ 		 <if test="receivableAmount != null">
+ 			 and saleRecord.receivable_amount = #{receivableAmount}
+ 		  </if>
+ 		 <if test="paidAmount != null">
+ 			 and saleRecord.paid_amount = #{paidAmount}
+ 		  </if>
+ 		 <if test="changeAmount != null">
+ 			 and saleRecord.change_amount = #{changeAmount}
+ 		  </if>
+ 		 <if test="cashierName != null">
+ 			 and saleRecord.cashier_name = #{cashierName}
+ 		  </if>
+ 		 <if test="isDelete != null">
+ 			 and saleRecord.is_delete = #{isDelete}
+ 		  </if>
+ 		 <if test="directlyOrgId != null">
+ 			 and saleRecord.directly_org_id = #{directlyOrgId}
+ 		  </if>
+ 		 <if test="hierarchyId != null">
+ 			 and saleRecord.hierarchy_id = #{hierarchyId}
+ 		  </if>
+ 		 <if test="creatorId != null">
+ 			 and saleRecord.creator_id = #{creatorId}
+ 		  </if>
+ 		 <if test="creator != null">
+ 			 and saleRecord.creator = #{creator}
+ 		  </if>
+ 		 <if test="createTime != null">
+ 			 and saleRecord.create_time = #{createTime}
+ 		  </if>
+ 		 <if test="updatorId != null">
+ 			 and saleRecord.updator_id = #{updatorId}
+ 		  </if>
+ 		 <if test="updator != null">
+ 			 and saleRecord.updator = #{updator}
+ 		  </if>
+ 		 <if test="updateTime != null">
+ 			 and saleRecord.update_time = #{updateTime}
+ 		  </if>
+ 		 <if test="remark1 != null">
+ 			 and saleRecord.remark1 = #{remark1}
+ 		  </if>
+ 		 <if test="remark2 != null">
+ 			 and saleRecord.remark2 = #{remark2}
+ 		  </if>
+ 		 <if test="remark3 != null">
+ 			 and saleRecord.remark3 = #{remark3}
+ 		  </if>
+ 		 <if test="remark4 != null">
+ 			 and saleRecord.remark4 = #{remark4}
+ 		  </if>
+	</select>
+</mapper>

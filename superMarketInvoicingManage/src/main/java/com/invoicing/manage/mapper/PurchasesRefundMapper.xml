@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.invoicing.manage.mapper.PurchasesRefundMapper">
+
+	 <resultMap type="com.invoicing.manage.entity.PurchasesRefundEntity" id="BaseResultMap">
+    	 <id column="id" property="id" /> 
+		  <id column="goodsId" property="goodsId" /> 
+		  <id column="purchaseOrderNo" property="purchaseOrderNo" /> 
+		  <id column="purchasePrice" property="purchasePrice" /> 
+		  <id column="purchaseNumber" property="purchaseNumber" /> 
+		  <id column="totalAmount" property="totalAmount" /> 
+		  <id column="supplierId" property="supplierId" /> 
+		  <id column="orderType" property="orderType" /> 
+		  <id column="orderStatus" property="orderStatus" /> 
+		  <id column="hierarchyId" property="hierarchyId" /> 
+		  <id column="directlyOrgId" property="directlyOrgId" /> 
+		  <id column="creatorId" property="creatorId" /> 
+		  <id column="creator" property="creator" /> 
+		  <id column="createTime" property="createTime" /> 
+		  <id column="updatorId" property="updatorId" /> 
+		  <id column="updator" property="updator" /> 
+		  <id column="updateTime" property="updateTime" /> 
+		  <id column="remark1" property="remark1" /> 
+		  <id column="remark2" property="remark2" /> 
+  
+    </resultMap>
+    <sql id="Base_Column_List">
+    	 purchasesRefund.id as id ,
+ 		 purchasesRefund.goods_id as goodsId ,
+ 		 purchasesRefund.purchase_order_no as purchaseOrderNo ,
+ 		 purchasesRefund.purchase_price as purchasePrice ,
+ 		 purchasesRefund.purchase_number as purchaseNumber ,
+ 		 purchasesRefund.total_amount as totalAmount ,
+ 		 purchasesRefund.supplier_id as supplierId ,
+ 		 purchasesRefund.order_type as orderType ,
+ 		 purchasesRefund.order_status as orderStatus ,
+ 		 purchasesRefund.hierarchy_id as hierarchyId ,
+ 		 purchasesRefund.directly_org_id as directlyOrgId ,
+ 		 purchasesRefund.creator_id as creatorId ,
+ 		 purchasesRefund.creator as creator ,
+ 		 purchasesRefund.create_time as createTime ,
+ 		 purchasesRefund.updator_id as updatorId ,
+ 		 purchasesRefund.updator as updator ,
+ 		 purchasesRefund.update_time as updateTime ,
+ 		 purchasesRefund.remark1 as remark1 ,
+ 		 purchasesRefund.remark2 as remark2
+    </sql>
+    
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		 select 
+ 		  <include refid="Base_Column_List" />
+ 		  from purchases_refund_tb purchasesRefund
+ 		  where purchasesRefund.id = #{ id }
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		 delete 
+ 		  from purchases_refund_tb
+ 		  where id = #{ id }
+	</delete>
+	
+	<insert id="insertSelective" parameterType="com.invoicing.manage.entity.PurchasesRefundEntity">
+		 insert into  purchases_refund_tb
+ 		  <trim prefix="(" suffix=")" suffixOverrides=","> 
+ 			 <if test="id != null">
+ 				 id,
+ 			  </if>
+ 			 <if test="goodsId != null">
+ 				 goods_id,
+ 			  </if>
+ 			 <if test="purchaseOrderNo != null">
+ 				 purchase_order_no,
+ 			  </if>
+ 			 <if test="purchasePrice != null">
+ 				 purchase_price,
+ 			  </if>
+ 			 <if test="purchaseNumber != null">
+ 				 purchase_number,
+ 			  </if>
+ 			 <if test="totalAmount != null">
+ 				 total_amount,
+ 			  </if>
+ 			 <if test="supplierId != null">
+ 				 supplier_id,
+ 			  </if>
+ 			 <if test="orderType != null">
+ 				 order_type,
+ 			  </if>
+ 			 <if test="orderStatus != null">
+ 				 order_status,
+ 			  </if>
+ 			 <if test="hierarchyId != null">
+ 				 hierarchy_id,
+ 			  </if>
+ 			 <if test="directlyOrgId != null">
+ 				 directly_org_id,
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 creator_id,
+ 			  </if>
+ 			 <if test="creator != null">
+ 				 creator,
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 create_time,
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 updator_id,
+ 			  </if>
+ 			 <if test="updator != null">
+ 				 updator,
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 update_time,
+ 			  </if>
+ 			 <if test="remark1 != null">
+ 				 remark1,
+ 			  </if>
+ 			 <if test="remark2 != null">
+ 				 remark2,
+ 			  </if>
+ 		  </trim>
+ 		  <trim prefix="values (" suffix=")" suffixOverrides="," >
+ 			 <if test="id != null">
+ 				 #{id},
+ 			  </if>
+ 			 <if test="goodsId != null">
+ 				 #{goodsId},
+ 			  </if>
+ 			 <if test="purchaseOrderNo != null">
+ 				 #{purchaseOrderNo},
+ 			  </if>
+ 			 <if test="purchasePrice != null">
+ 				 #{purchasePrice},
+ 			  </if>
+ 			 <if test="purchaseNumber != null">
+ 				 #{purchaseNumber},
+ 			  </if>
+ 			 <if test="totalAmount != null">
+ 				 #{totalAmount},
+ 			  </if>
+ 			 <if test="supplierId != null">
+ 				 #{supplierId},
+ 			  </if>
+ 			 <if test="orderType != null">
+ 				 #{orderType},
+ 			  </if>
+ 			 <if test="orderStatus != null">
+ 				 #{orderStatus},
+ 			  </if>
+ 			 <if test="hierarchyId != null">
+ 				 #{hierarchyId},
+ 			  </if>
+ 			 <if test="directlyOrgId != null">
+ 				 #{directlyOrgId},
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 #{creatorId},
+ 			  </if>
+ 			 <if test="creator != null">
+ 				 #{creator},
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 #{createTime},
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 #{updatorId},
+ 			  </if>
+ 			 <if test="updator != null">
+ 				 #{updator},
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 #{updateTime},
+ 			  </if>
+ 			 <if test="remark1 != null">
+ 				 #{remark1},
+ 			  </if>
+ 			 <if test="remark2 != null">
+ 				 #{remark2},
+ 			  </if>
+ 		  </trim>
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="com.invoicing.manage.entity.PurchasesRefundEntity">
+		 update   purchases_refund_tb
+ 		 <set>
+ 			 <if test="goodsId != null">
+ 				 goods_id = #{goodsId},
+ 			  </if>
+ 			 <if test="purchaseOrderNo != null">
+ 				 purchase_order_no = #{purchaseOrderNo},
+ 			  </if>
+ 			 <if test="purchasePrice != null">
+ 				 purchase_price = #{purchasePrice},
+ 			  </if>
+ 			 <if test="purchaseNumber != null">
+ 				 purchase_number = #{purchaseNumber},
+ 			  </if>
+ 			 <if test="totalAmount != null">
+ 				 total_amount = #{totalAmount},
+ 			  </if>
+ 			 <if test="supplierId != null">
+ 				 supplier_id = #{supplierId},
+ 			  </if>
+ 			 <if test="orderType != null">
+ 				 order_type = #{orderType},
+ 			  </if>
+ 			 <if test="orderStatus != null">
+ 				 order_status = #{orderStatus},
+ 			  </if>
+ 			 <if test="hierarchyId != null">
+ 				 hierarchy_id = #{hierarchyId},
+ 			  </if>
+ 			 <if test="directlyOrgId != null">
+ 				 directly_org_id = #{directlyOrgId},
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 creator_id = #{creatorId},
+ 			  </if>
+ 			 <if test="creator != null">
+ 				 creator = #{creator},
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 create_time = #{createTime},
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 updator_id = #{updatorId},
+ 			  </if>
+ 			 <if test="updator != null">
+ 				 updator = #{updator},
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 update_time = #{updateTime},
+ 			  </if>
+ 			 <if test="remark1 != null">
+ 				 remark1 = #{remark1},
+ 			  </if>
+ 			 <if test="remark2 != null">
+ 				 remark2 = #{remark2},
+ 			  </if>
+ 		 </set>
+     where id = #{id}
+	</update>
+	
+	 <select id="getList" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		 select 
+ 		  <include refid="Base_Column_List" />
+ 		  from purchases_refund_tb purchasesRefund
+ 		  where 1=1 
+ 		 <if test="id != null">
+ 			 and purchasesRefund.id = #{id}
+ 		  </if>
+ 		 <if test="goodsId != null">
+ 			 and purchasesRefund.goods_id = #{goodsId}
+ 		  </if>
+ 		 <if test="purchaseOrderNo != null">
+ 			 and purchasesRefund.purchase_order_no = #{purchaseOrderNo}
+ 		  </if>
+ 		 <if test="purchasePrice != null">
+ 			 and purchasesRefund.purchase_price = #{purchasePrice}
+ 		  </if>
+ 		 <if test="purchaseNumber != null">
+ 			 and purchasesRefund.purchase_number = #{purchaseNumber}
+ 		  </if>
+ 		 <if test="totalAmount != null">
+ 			 and purchasesRefund.total_amount = #{totalAmount}
+ 		  </if>
+ 		 <if test="supplierId != null">
+ 			 and purchasesRefund.supplier_id = #{supplierId}
+ 		  </if>
+ 		 <if test="orderType != null">
+ 			 and purchasesRefund.order_type = #{orderType}
+ 		  </if>
+ 		 <if test="orderStatus != null">
+ 			 and purchasesRefund.order_status = #{orderStatus}
+ 		  </if>
+ 		 <if test="hierarchyId != null">
+ 			 and purchasesRefund.hierarchy_id = #{hierarchyId}
+ 		  </if>
+ 		 <if test="directlyOrgId != null">
+ 			 and purchasesRefund.directly_org_id = #{directlyOrgId}
+ 		  </if>
+ 		 <if test="creatorId != null">
+ 			 and purchasesRefund.creator_id = #{creatorId}
+ 		  </if>
+ 		 <if test="creator != null">
+ 			 and purchasesRefund.creator = #{creator}
+ 		  </if>
+ 		 <if test="createTime != null">
+ 			 and purchasesRefund.create_time = #{createTime}
+ 		  </if>
+ 		 <if test="updatorId != null">
+ 			 and purchasesRefund.updator_id = #{updatorId}
+ 		  </if>
+ 		 <if test="updator != null">
+ 			 and purchasesRefund.updator = #{updator}
+ 		  </if>
+ 		 <if test="updateTime != null">
+ 			 and purchasesRefund.update_time = #{updateTime}
+ 		  </if>
+ 		 <if test="remark1 != null">
+ 			 and purchasesRefund.remark1 = #{remark1}
+ 		  </if>
+ 		 <if test="remark2 != null">
+ 			 and purchasesRefund.remark2 = #{remark2}
+ 		  </if>
+	</select>
+	 <select id="getListCount" resultType="java.lang.Integer"
+		parameterType="java.util.Map">
+		 select 
+ 		  count(purchasesRefund.id)
+ 		  from purchases_refund_tb purchasesRefund
+ 		  where 1=1 
+ 		 <if test="id != null">
+ 			 and purchasesRefund.id = #{id}
+ 		  </if>
+ 		 <if test="goodsId != null">
+ 			 and purchasesRefund.goods_id = #{goodsId}
+ 		  </if>
+ 		 <if test="purchaseOrderNo != null">
+ 			 and purchasesRefund.purchase_order_no = #{purchaseOrderNo}
+ 		  </if>
+ 		 <if test="purchasePrice != null">
+ 			 and purchasesRefund.purchase_price = #{purchasePrice}
+ 		  </if>
+ 		 <if test="purchaseNumber != null">
+ 			 and purchasesRefund.purchase_number = #{purchaseNumber}
+ 		  </if>
+ 		 <if test="totalAmount != null">
+ 			 and purchasesRefund.total_amount = #{totalAmount}
+ 		  </if>
+ 		 <if test="supplierId != null">
+ 			 and purchasesRefund.supplier_id = #{supplierId}
+ 		  </if>
+ 		 <if test="orderType != null">
+ 			 and purchasesRefund.order_type = #{orderType}
+ 		  </if>
+ 		 <if test="orderStatus != null">
+ 			 and purchasesRefund.order_status = #{orderStatus}
+ 		  </if>
+ 		 <if test="hierarchyId != null">
+ 			 and purchasesRefund.hierarchy_id = #{hierarchyId}
+ 		  </if>
+ 		 <if test="directlyOrgId != null">
+ 			 and purchasesRefund.directly_org_id = #{directlyOrgId}
+ 		  </if>
+ 		 <if test="creatorId != null">
+ 			 and purchasesRefund.creator_id = #{creatorId}
+ 		  </if>
+ 		 <if test="creator != null">
+ 			 and purchasesRefund.creator = #{creator}
+ 		  </if>
+ 		 <if test="createTime != null">
+ 			 and purchasesRefund.create_time = #{createTime}
+ 		  </if>
+ 		 <if test="updatorId != null">
+ 			 and purchasesRefund.updator_id = #{updatorId}
+ 		  </if>
+ 		 <if test="updator != null">
+ 			 and purchasesRefund.updator = #{updator}
+ 		  </if>
+ 		 <if test="updateTime != null">
+ 			 and purchasesRefund.update_time = #{updateTime}
+ 		  </if>
+ 		 <if test="remark1 != null">
+ 			 and purchasesRefund.remark1 = #{remark1}
+ 		  </if>
+ 		 <if test="remark2 != null">
+ 			 and purchasesRefund.remark2 = #{remark2}
+ 		  </if>
+	</select>
+</mapper>

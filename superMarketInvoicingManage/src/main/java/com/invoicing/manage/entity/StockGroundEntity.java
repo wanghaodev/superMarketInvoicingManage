@@ -4,37 +4,40 @@ import com.snailf.platforms.common.entity.BaseEntity;
 import java.util.Date;
 /**
  *
- * @类介绍 商品属性值维护表
- * @time 2017年08月09日 18:58:38
+ * @类介绍 库存地
+ * @time 2017年08月10日 14:45:24
  * @version 1.0
  *
  **/
 
 @SuppressWarnings("serial")
-public class GoodsPropertyValueEntity extends BaseEntity {
+public class StockGroundEntity extends BaseEntity {
   
     
     /**
-     * 
+     * 主键id
      */
     private Long id;
     /**
-     * 属性id
+     * 库存地编号
      */
-    private Long propertyId;
+    private String number;
     /**
-     * 属性值
+     * 库存地名称
      */
-    private String propertyValue;
+    private String name;
     /**
-     * 属性名称
+     * 库存地说明
      */
-    private String propertyName;
-    
+    private String instruction;
     /**
-     * 是否删除(0，否;1，是)
+     * 数据是否初始化，1是，0否
      */
-    private Integer isDelete;
+    private Integer isInitialise;
+    /**
+     * 数据有效性，1有效，0无效
+     */
+    private Integer valid;
     /**
      * 直属机构ID
      */
@@ -48,10 +51,6 @@ public class GoodsPropertyValueEntity extends BaseEntity {
      */
     private Long creatorId;
     /**
-     * 创建人
-     */
-    private String creator;
-    /**
      * 创建时间
      */
     private Date createTime;
@@ -59,10 +58,6 @@ public class GoodsPropertyValueEntity extends BaseEntity {
      * 修改人ID
      */
     private Long updatorId;
-    /**
-     * 修改人
-     */
-    private String updator;
     /**
      * 修改时间
      */
@@ -77,52 +72,76 @@ public class GoodsPropertyValueEntity extends BaseEntity {
     private String remark2;
 
 	/**
-	 * 设置
+	 * 设置主键id
 	 */
     public void setId(Long id) {
         this.id = id;
     }
     /**
-     * 获取
+     * 获取主键id
      */
     public Long getId() {
         return this.id;
     }
 	/**
-	 * 设置属性id
+	 * 设置库存地编号
 	 */
-    public void setPropertyId(Long propertyId) {
-        this.propertyId = propertyId;
+    public void setNumber(String number) {
+        this.number = number;
     }
     /**
-     * 获取属性id
+     * 获取库存地编号
      */
-    public Long getPropertyId() {
-        return this.propertyId;
+    public String getNumber() {
+        return this.number;
     }
 	/**
-	 * 设置属性值
+	 * 设置库存地名称
 	 */
-    public void setPropertyValue(String propertyValue) {
-        this.propertyValue = propertyValue;
+    public void setName(String name) {
+        this.name = name;
     }
     /**
-     * 获取属性值
+     * 获取库存地名称
      */
-    public String getPropertyValue() {
-        return this.propertyValue;
+    public String getName() {
+        return this.name;
     }
 	/**
-	 * 设置是否删除(0，否;1，是)
+	 * 设置库存地说明
 	 */
-    public void setIsDelete(Integer isDelete) {
-        this.isDelete = isDelete;
+    public void setInstruction(String instruction) {
+        this.instruction = instruction;
     }
     /**
-     * 获取是否删除(0，否;1，是)
+     * 获取库存地说明
      */
-    public Integer getIsDelete() {
-        return this.isDelete;
+    public String getInstruction() {
+        return this.instruction;
+    }
+	/**
+	 * 设置数据是否初始化，1是，0否
+	 */
+    public void setIsInitialise(Integer isInitialise) {
+        this.isInitialise = isInitialise;
+    }
+    /**
+     * 获取数据是否初始化，1是，0否
+     */
+    public Integer getIsInitialise() {
+        return this.isInitialise;
+    }
+	/**
+	 * 设置数据有效性，1有效，0无效
+	 */
+    public void setValid(Integer valid) {
+        this.valid = valid;
+    }
+    /**
+     * 获取数据有效性，1有效，0无效
+     */
+    public Integer getValid() {
+        return this.valid;
     }
 	/**
 	 * 设置直属机构ID
@@ -161,18 +180,6 @@ public class GoodsPropertyValueEntity extends BaseEntity {
         return this.creatorId;
     }
 	/**
-	 * 设置创建人
-	 */
-    public void setCreator(String creator) {
-        this.creator = creator;
-    }
-    /**
-     * 获取创建人
-     */
-    public String getCreator() {
-        return this.creator;
-    }
-	/**
 	 * 设置创建时间
 	 */
     public void setCreateTime(Date createTime) {
@@ -195,18 +202,6 @@ public class GoodsPropertyValueEntity extends BaseEntity {
      */
     public Long getUpdatorId() {
         return this.updatorId;
-    }
-	/**
-	 * 设置修改人
-	 */
-    public void setUpdator(String updator) {
-        this.updator = updator;
-    }
-    /**
-     * 获取修改人
-     */
-    public String getUpdator() {
-        return this.updator;
     }
 	/**
 	 * 设置修改时间
@@ -244,13 +239,5 @@ public class GoodsPropertyValueEntity extends BaseEntity {
     public String getRemark2() {
         return this.remark2;
     }
-	public String getPropertyName() {
-		return propertyName;
-	}
-	public void setPropertyName(String propertyName) {
-		this.propertyName = propertyName;
-	}
-    
-    
 
 }

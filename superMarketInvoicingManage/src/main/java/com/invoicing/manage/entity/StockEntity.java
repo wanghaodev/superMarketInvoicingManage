@@ -4,67 +4,66 @@ import com.snailf.platforms.common.entity.BaseEntity;
 import java.util.Date;
 /**
  *
- * @类介绍 商品属性值维护表
- * @time 2017年08月09日 18:58:38
+ * @类介绍 库存表
+ * @time 2017年08月10日 14:44:40
  * @version 1.0
  *
  **/
 
 @SuppressWarnings("serial")
-public class GoodsPropertyValueEntity extends BaseEntity {
+public class StockEntity extends BaseEntity {
   
     
     /**
-     * 
+     * 主键id
      */
     private Long id;
     /**
-     * 属性id
+     * 店铺id
      */
-    private Long propertyId;
+    private Long storeId;
     /**
-     * 属性值
+     * 库存地id
      */
-    private String propertyValue;
+    private Long stockGroundId;
     /**
-     * 属性名称
+     * 商品销售id
      */
-    private String propertyName;
-    
+    private Long goodsSaleId;
     /**
-     * 是否删除(0，否;1，是)
+     * 
      */
-    private Integer isDelete;
+    private Long goodsId;
     /**
-     * 直属机构ID
+     * 库存数量
+     */
+    private Long stockNum;
+    /**
+     * 创建人直属机构id
      */
     private Long directlyOrgId;
     /**
-     * 机构层级ID
+     * 创建人层级id
      */
     private String hierarchyId;
     /**
-     * 创建人ID
+     * 是否删除(0，否;1，是,默认值0)
+     */
+    private Integer isDelete;
+    /**
+     * 创建人id
      */
     private Long creatorId;
-    /**
-     * 创建人
-     */
-    private String creator;
     /**
      * 创建时间
      */
     private Date createTime;
     /**
-     * 修改人ID
+     * 更新人id
      */
     private Long updatorId;
     /**
-     * 修改人
-     */
-    private String updator;
-    /**
-     * 修改时间
+     * 更新时间
      */
     private Date updateTime;
     /**
@@ -77,100 +76,124 @@ public class GoodsPropertyValueEntity extends BaseEntity {
     private String remark2;
 
 	/**
-	 * 设置
+	 * 设置主键id
 	 */
     public void setId(Long id) {
         this.id = id;
     }
     /**
-     * 获取
+     * 获取主键id
      */
     public Long getId() {
         return this.id;
     }
 	/**
-	 * 设置属性id
+	 * 设置店铺id
 	 */
-    public void setPropertyId(Long propertyId) {
-        this.propertyId = propertyId;
+    public void setStoreId(Long storeId) {
+        this.storeId = storeId;
     }
     /**
-     * 获取属性id
+     * 获取店铺id
      */
-    public Long getPropertyId() {
-        return this.propertyId;
+    public Long getStoreId() {
+        return this.storeId;
     }
 	/**
-	 * 设置属性值
+	 * 设置库存地id
 	 */
-    public void setPropertyValue(String propertyValue) {
-        this.propertyValue = propertyValue;
+    public void setStockGroundId(Long stockGroundId) {
+        this.stockGroundId = stockGroundId;
     }
     /**
-     * 获取属性值
+     * 获取库存地id
      */
-    public String getPropertyValue() {
-        return this.propertyValue;
+    public Long getStockGroundId() {
+        return this.stockGroundId;
     }
 	/**
-	 * 设置是否删除(0，否;1，是)
+	 * 设置商品销售id
 	 */
-    public void setIsDelete(Integer isDelete) {
-        this.isDelete = isDelete;
+    public void setGoodsSaleId(Long goodsSaleId) {
+        this.goodsSaleId = goodsSaleId;
     }
     /**
-     * 获取是否删除(0，否;1，是)
+     * 获取商品销售id
      */
-    public Integer getIsDelete() {
-        return this.isDelete;
+    public Long getGoodsSaleId() {
+        return this.goodsSaleId;
     }
 	/**
-	 * 设置直属机构ID
+	 * 设置
+	 */
+    public void setGoodsId(Long goodsId) {
+        this.goodsId = goodsId;
+    }
+    /**
+     * 获取
+     */
+    public Long getGoodsId() {
+        return this.goodsId;
+    }
+	/**
+	 * 设置库存数量
+	 */
+    public void setStockNum(Long stockNum) {
+        this.stockNum = stockNum;
+    }
+    /**
+     * 获取库存数量
+     */
+    public Long getStockNum() {
+        return this.stockNum;
+    }
+	/**
+	 * 设置创建人直属机构id
 	 */
     public void setDirectlyOrgId(Long directlyOrgId) {
         this.directlyOrgId = directlyOrgId;
     }
     /**
-     * 获取直属机构ID
+     * 获取创建人直属机构id
      */
     public Long getDirectlyOrgId() {
         return this.directlyOrgId;
     }
 	/**
-	 * 设置机构层级ID
+	 * 设置创建人层级id
 	 */
     public void setHierarchyId(String hierarchyId) {
         this.hierarchyId = hierarchyId;
     }
     /**
-     * 获取机构层级ID
+     * 获取创建人层级id
      */
     public String getHierarchyId() {
         return this.hierarchyId;
     }
 	/**
-	 * 设置创建人ID
+	 * 设置是否删除(0，否;1，是,默认值0)
+	 */
+    public void setIsDelete(Integer isDelete) {
+        this.isDelete = isDelete;
+    }
+    /**
+     * 获取是否删除(0，否;1，是,默认值0)
+     */
+    public Integer getIsDelete() {
+        return this.isDelete;
+    }
+	/**
+	 * 设置创建人id
 	 */
     public void setCreatorId(Long creatorId) {
         this.creatorId = creatorId;
     }
     /**
-     * 获取创建人ID
+     * 获取创建人id
      */
     public Long getCreatorId() {
         return this.creatorId;
-    }
-	/**
-	 * 设置创建人
-	 */
-    public void setCreator(String creator) {
-        this.creator = creator;
-    }
-    /**
-     * 获取创建人
-     */
-    public String getCreator() {
-        return this.creator;
     }
 	/**
 	 * 设置创建时间
@@ -185,37 +208,25 @@ public class GoodsPropertyValueEntity extends BaseEntity {
         return this.createTime;
     }
 	/**
-	 * 设置修改人ID
+	 * 设置更新人id
 	 */
     public void setUpdatorId(Long updatorId) {
         this.updatorId = updatorId;
     }
     /**
-     * 获取修改人ID
+     * 获取更新人id
      */
     public Long getUpdatorId() {
         return this.updatorId;
     }
 	/**
-	 * 设置修改人
-	 */
-    public void setUpdator(String updator) {
-        this.updator = updator;
-    }
-    /**
-     * 获取修改人
-     */
-    public String getUpdator() {
-        return this.updator;
-    }
-	/**
-	 * 设置修改时间
+	 * 设置更新时间
 	 */
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
     /**
-     * 获取修改时间
+     * 获取更新时间
      */
     public Date getUpdateTime() {
         return this.updateTime;
@@ -244,13 +255,5 @@ public class GoodsPropertyValueEntity extends BaseEntity {
     public String getRemark2() {
         return this.remark2;
     }
-	public String getPropertyName() {
-		return propertyName;
-	}
-	public void setPropertyName(String propertyName) {
-		this.propertyName = propertyName;
-	}
-    
-    
 
 }

@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.invoicing.manage.mapper.StockInDetailMapper">
+
+	 <resultMap type="com.invoicing.manage.entity.StockInDetailEntity" id="BaseResultMap">
+    	 <id column="id" property="id" /> 
+		  <id column="stockInId" property="stockInId" /> 
+		  <id column="goodsSaleId" property="goodsSaleId" /> 
+		  <id column="goodsId" property="goodsId" /> 
+		  <id column="purchasePrice" property="purchasePrice" /> 
+		  <id column="storageNum" property="storageNum" /> 
+		  <id column="totalPurchasePrice" property="totalPurchasePrice" /> 
+		  <id column="unitId" property="unitId" /> 
+		  <id column="goodsDetails" property="goodsDetails" /> 
+		  <id column="directlyOrgId" property="directlyOrgId" /> 
+		  <id column="hierarchyId" property="hierarchyId" /> 
+		  <id column="valid" property="valid" /> 
+		  <id column="creatorId" property="creatorId" /> 
+		  <id column="createTime" property="createTime" /> 
+		  <id column="updatorId" property="updatorId" /> 
+		  <id column="updateTime" property="updateTime" /> 
+		  <id column="remark1" property="remark1" /> 
+		  <id column="remark2" property="remark2" /> 
+  
+    </resultMap>
+    <sql id="Base_Column_List">
+    	 stockInDetail.id as id ,
+ 		 stockInDetail.stock_in_id as stockInId ,
+ 		 stockInDetail.goods_sale_id as goodsSaleId ,
+ 		 stockInDetail.goods_id as goodsId ,
+ 		 stockInDetail.purchase_price as purchasePrice ,
+ 		 stockInDetail.storage_num as storageNum ,
+ 		 stockInDetail.total_purchase_price as totalPurchasePrice ,
+ 		 stockInDetail.unit_id as unitId ,
+ 		 stockInDetail.goods_details as goodsDetails ,
+ 		 stockInDetail.directly_org_id as directlyOrgId ,
+ 		 stockInDetail.hierarchy_id as hierarchyId ,
+ 		 stockInDetail.valid as valid ,
+ 		 stockInDetail.creator_id as creatorId ,
+ 		 stockInDetail.create_time as createTime ,
+ 		 stockInDetail.updator_id as updatorId ,
+ 		 stockInDetail.update_time as updateTime ,
+ 		 stockInDetail.remark1 as remark1 ,
+ 		 stockInDetail.remark2 as remark2
+    </sql>
+    
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		 select 
+ 		  <include refid="Base_Column_List" />
+ 		  from stock_in_detail_tb stockInDetail
+ 		  where stockInDetail.id = #{ id }
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		 delete 
+ 		  from stock_in_detail_tb
+ 		  where id = #{ id }
+	</delete>
+	
+	<insert id="insertSelective" parameterType="com.invoicing.manage.entity.StockInDetailEntity">
+		 insert into  stock_in_detail_tb
+ 		  <trim prefix="(" suffix=")" suffixOverrides=","> 
+ 			 <if test="id != null">
+ 				 id,
+ 			  </if>
+ 			 <if test="stockInId != null">
+ 				 stock_in_id,
+ 			  </if>
+ 			 <if test="goodsSaleId != null">
+ 				 goods_sale_id,
+ 			  </if>
+ 			 <if test="goodsId != null">
+ 				 goods_id,
+ 			  </if>
+ 			 <if test="purchasePrice != null">
+ 				 purchase_price,
+ 			  </if>
+ 			 <if test="storageNum != null">
+ 				 storage_num,
+ 			  </if>
+ 			 <if test="totalPurchasePrice != null">
+ 				 total_purchase_price,
+ 			  </if>
+ 			 <if test="unitId != null">
+ 				 unit_id,
+ 			  </if>
+ 			 <if test="goodsDetails != null">
+ 				 goods_details,
+ 			  </if>
+ 			 <if test="directlyOrgId != null">
+ 				 directly_org_id,
+ 			  </if>
+ 			 <if test="hierarchyId != null">
+ 				 hierarchy_id,
+ 			  </if>
+ 			 <if test="valid != null">
+ 				 valid,
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 creator_id,
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 create_time,
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 updator_id,
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 update_time,
+ 			  </if>
+ 			 <if test="remark1 != null">
+ 				 remark1,
+ 			  </if>
+ 			 <if test="remark2 != null">
+ 				 remark2,
+ 			  </if>
+ 		  </trim>
+ 		  <trim prefix="values (" suffix=")" suffixOverrides="," >
+ 			 <if test="id != null">
+ 				 #{id},
+ 			  </if>
+ 			 <if test="stockInId != null">
+ 				 #{stockInId},
+ 			  </if>
+ 			 <if test="goodsSaleId != null">
+ 				 #{goodsSaleId},
+ 			  </if>
+ 			 <if test="goodsId != null">
+ 				 #{goodsId},
+ 			  </if>
+ 			 <if test="purchasePrice != null">
+ 				 #{purchasePrice},
+ 			  </if>
+ 			 <if test="storageNum != null">
+ 				 #{storageNum},
+ 			  </if>
+ 			 <if test="totalPurchasePrice != null">
+ 				 #{totalPurchasePrice},
+ 			  </if>
+ 			 <if test="unitId != null">
+ 				 #{unitId},
+ 			  </if>
+ 			 <if test="goodsDetails != null">
+ 				 #{goodsDetails},
+ 			  </if>
+ 			 <if test="directlyOrgId != null">
+ 				 #{directlyOrgId},
+ 			  </if>
+ 			 <if test="hierarchyId != null">
+ 				 #{hierarchyId},
+ 			  </if>
+ 			 <if test="valid != null">
+ 				 #{valid},
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 #{creatorId},
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 #{createTime},
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 #{updatorId},
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 #{updateTime},
+ 			  </if>
+ 			 <if test="remark1 != null">
+ 				 #{remark1},
+ 			  </if>
+ 			 <if test="remark2 != null">
+ 				 #{remark2},
+ 			  </if>
+ 		  </trim>
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="com.invoicing.manage.entity.StockInDetailEntity">
+		 update   stock_in_detail_tb
+ 		 <set>
+ 			 <if test="stockInId != null">
+ 				 stock_in_id = #{stockInId},
+ 			  </if>
+ 			 <if test="goodsSaleId != null">
+ 				 goods_sale_id = #{goodsSaleId},
+ 			  </if>
+ 			 <if test="goodsId != null">
+ 				 goods_id = #{goodsId},
+ 			  </if>
+ 			 <if test="purchasePrice != null">
+ 				 purchase_price = #{purchasePrice},
+ 			  </if>
+ 			 <if test="storageNum != null">
+ 				 storage_num = #{storageNum},
+ 			  </if>
+ 			 <if test="totalPurchasePrice != null">
+ 				 total_purchase_price = #{totalPurchasePrice},
+ 			  </if>
+ 			 <if test="unitId != null">
+ 				 unit_id = #{unitId},
+ 			  </if>
+ 			 <if test="goodsDetails != null">
+ 				 goods_details = #{goodsDetails},
+ 			  </if>
+ 			 <if test="directlyOrgId != null">
+ 				 directly_org_id = #{directlyOrgId},
+ 			  </if>
+ 			 <if test="hierarchyId != null">
+ 				 hierarchy_id = #{hierarchyId},
+ 			  </if>
+ 			 <if test="valid != null">
+ 				 valid = #{valid},
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 creator_id = #{creatorId},
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 create_time = #{createTime},
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 updator_id = #{updatorId},
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 update_time = #{updateTime},
+ 			  </if>
+ 			 <if test="remark1 != null">
+ 				 remark1 = #{remark1},
+ 			  </if>
+ 			 <if test="remark2 != null">
+ 				 remark2 = #{remark2},
+ 			  </if>
+ 		 </set>
+     where id = #{id}
+	</update>
+	
+	 <select id="getList" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		 select 
+ 		  <include refid="Base_Column_List" />
+ 		  from stock_in_detail_tb stockInDetail
+ 		  where 1=1 
+ 		 <if test="id != null">
+ 			 and stockInDetail.id = #{id}
+ 		  </if>
+ 		 <if test="stockInId != null">
+ 			 and stockInDetail.stock_in_id = #{stockInId}
+ 		  </if>
+ 		 <if test="goodsSaleId != null">
+ 			 and stockInDetail.goods_sale_id = #{goodsSaleId}
+ 		  </if>
+ 		 <if test="goodsId != null">
+ 			 and stockInDetail.goods_id = #{goodsId}
+ 		  </if>
+ 		 <if test="purchasePrice != null">
+ 			 and stockInDetail.purchase_price = #{purchasePrice}
+ 		  </if>
+ 		 <if test="storageNum != null">
+ 			 and stockInDetail.storage_num = #{storageNum}
+ 		  </if>
+ 		 <if test="totalPurchasePrice != null">
+ 			 and stockInDetail.total_purchase_price = #{totalPurchasePrice}
+ 		  </if>
+ 		 <if test="unitId != null">
+ 			 and stockInDetail.unit_id = #{unitId}
+ 		  </if>
+ 		 <if test="goodsDetails != null">
+ 			 and stockInDetail.goods_details = #{goodsDetails}
+ 		  </if>
+ 		 <if test="directlyOrgId != null">
+ 			 and stockInDetail.directly_org_id = #{directlyOrgId}
+ 		  </if>
+ 		 <if test="hierarchyId != null">
+ 			 and stockInDetail.hierarchy_id = #{hierarchyId}
+ 		  </if>
+ 		 <if test="valid != null">
+ 			 and stockInDetail.valid = #{valid}
+ 		  </if>
+ 		 <if test="creatorId != null">
+ 			 and stockInDetail.creator_id = #{creatorId}
+ 		  </if>
+ 		 <if test="createTime != null">
+ 			 and stockInDetail.create_time = #{createTime}
+ 		  </if>
+ 		 <if test="updatorId != null">
+ 			 and stockInDetail.updator_id = #{updatorId}
+ 		  </if>
+ 		 <if test="updateTime != null">
+ 			 and stockInDetail.update_time = #{updateTime}
+ 		  </if>
+ 		 <if test="remark1 != null">
+ 			 and stockInDetail.remark1 = #{remark1}
+ 		  </if>
+ 		 <if test="remark2 != null">
+ 			 and stockInDetail.remark2 = #{remark2}
+ 		  </if>
+	</select>
+	 <select id="getListCount" resultType="java.lang.Integer"
+		parameterType="java.util.Map">
+		 select 
+ 		  count(stockInDetail.id)
+ 		  from stock_in_detail_tb stockInDetail
+ 		  where 1=1 
+ 		 <if test="id != null">
+ 			 and stockInDetail.id = #{id}
+ 		  </if>
+ 		 <if test="stockInId != null">
+ 			 and stockInDetail.stock_in_id = #{stockInId}
+ 		  </if>
+ 		 <if test="goodsSaleId != null">
+ 			 and stockInDetail.goods_sale_id = #{goodsSaleId}
+ 		  </if>
+ 		 <if test="goodsId != null">
+ 			 and stockInDetail.goods_id = #{goodsId}
+ 		  </if>
+ 		 <if test="purchasePrice != null">
+ 			 and stockInDetail.purchase_price = #{purchasePrice}
+ 		  </if>
+ 		 <if test="storageNum != null">
+ 			 and stockInDetail.storage_num = #{storageNum}
+ 		  </if>
+ 		 <if test="totalPurchasePrice != null">
+ 			 and stockInDetail.total_purchase_price = #{totalPurchasePrice}
+ 		  </if>
+ 		 <if test="unitId != null">
+ 			 and stockInDetail.unit_id = #{unitId}
+ 		  </if>
+ 		 <if test="goodsDetails != null">
+ 			 and stockInDetail.goods_details = #{goodsDetails}
+ 		  </if>
+ 		 <if test="directlyOrgId != null">
+ 			 and stockInDetail.directly_org_id = #{directlyOrgId}
+ 		  </if>
+ 		 <if test="hierarchyId != null">
+ 			 and stockInDetail.hierarchy_id = #{hierarchyId}
+ 		  </if>
+ 		 <if test="valid != null">
+ 			 and stockInDetail.valid = #{valid}
+ 		  </if>
+ 		 <if test="creatorId != null">
+ 			 and stockInDetail.creator_id = #{creatorId}
+ 		  </if>
+ 		 <if test="createTime != null">
+ 			 and stockInDetail.create_time = #{createTime}
+ 		  </if>
+ 		 <if test="updatorId != null">
+ 			 and stockInDetail.updator_id = #{updatorId}
+ 		  </if>
+ 		 <if test="updateTime != null">
+ 			 and stockInDetail.update_time = #{updateTime}
+ 		  </if>
+ 		 <if test="remark1 != null">
+ 			 and stockInDetail.remark1 = #{remark1}
+ 		  </if>
+ 		 <if test="remark2 != null">
+ 			 and stockInDetail.remark2 = #{remark2}
+ 		  </if>
+	</select>
+</mapper>

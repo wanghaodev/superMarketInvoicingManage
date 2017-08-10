@@ -22,6 +22,7 @@ import com.invoicing.manage.comment.entity.ErrorResponseEntity;
 import com.invoicing.manage.comment.entity.ResponseEntity;
 import com.invoicing.manage.comment.entity.SuccessResponseEntity;
 import com.invoicing.manage.entity.GoodsPropertyValueEntity;
+import com.invoicing.manage.request.PropertyValRequestEntity;
 import com.invoicing.manage.service.GoodsPropertyValueService;
 import com.snailf.platforms.common.entity.PageInfo;
 
@@ -69,12 +70,14 @@ public class GoodsPropertyValueController {
 	
 	@RequestMapping(value = "/page/list", method = RequestMethod.POST)
 	@ResponseBody
-	 public ResponseEntity getGoodsPropertyValueList(BaseRequestEntity propertyValue){
+	 public ResponseEntity getGoodsPropertyValueList(PropertyValRequestEntity propertyValue){
 		logger.debug("method [getGoodsPropertyValueEntityList] 查询商品属性值列表，请求参数："+JSON.toJSONString(propertyValue));
 		PageInfo<GoodsPropertyValueEntity> pageInfo=new PageInfo<GoodsPropertyValueEntity>();
 		pageInfo.setPageNo(propertyValue.getPageNo());
 		pageInfo.setPageSize(propertyValue.getPageSize());
 		Map<String,Object> params=new HashMap<String,Object>();
+		params.put("propertyId", propertyValue.getPropertyId());
+		params.put("propertyValue", propertyValue.getPropertyValue());
 		PageInfo<GoodsPropertyValueEntity> areaList = goodsPropertyValueService.getList(pageInfo, params);
 		logger.debug("method [getGoodsPropertyValueEntityList] 查询商品属性值列表，返回结果为："+JSON.toJSONString(areaList));
 		return new SuccessResponseEntity(areaList);

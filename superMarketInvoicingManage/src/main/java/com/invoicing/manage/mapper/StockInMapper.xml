@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.invoicing.manage.mapper.StockInMapper">
+
+	 <resultMap type="com.invoicing.manage.entity.StockInEntity" id="BaseResultMap">
+    	 <id column="id" property="id" /> 
+		  <id column="voucherNum" property="voucherNum" /> 
+		  <id column="voucherType" property="voucherType" /> 
+		  <id column="outUnitId" property="outUnitId" /> 
+		  <id column="outUnit" property="outUnit" /> 
+		  <id column="outStockGroundId" property="outStockGroundId" /> 
+		  <id column="outStockGround" property="outStockGround" /> 
+		  <id column="inUnitId" property="inUnitId" /> 
+		  <id column="inUnit" property="inUnit" /> 
+		  <id column="inStockGroundId" property="inStockGroundId" /> 
+		  <id column="inStockGround" property="inStockGround" /> 
+		  <id column="goodsNums" property="goodsNums" /> 
+		  <id column="goodsAmount" property="goodsAmount" /> 
+		  <id column="goodsSorts" property="goodsSorts" /> 
+		  <id column="directlyOrgId" property="directlyOrgId" /> 
+		  <id column="hierarchyId" property="hierarchyId" /> 
+		  <id column="isDelete" property="isDelete" /> 
+		  <id column="creatorId" property="creatorId" /> 
+		  <id column="createTime" property="createTime" /> 
+		  <id column="updatorId" property="updatorId" /> 
+		  <id column="updateTime" property="updateTime" /> 
+		  <id column="remark1" property="remark1" /> 
+		  <id column="remark2" property="remark2" /> 
+  
+    </resultMap>
+    <sql id="Base_Column_List">
+    	 stockIn.id as id ,
+ 		 stockIn.voucher_num as voucherNum ,
+ 		 stockIn.voucher_type as voucherType ,
+ 		 stockIn.out_unit_id as outUnitId ,
+ 		 stockIn.out_unit as outUnit ,
+ 		 stockIn.out_stock_ground_id as outStockGroundId ,
+ 		 stockIn.out_stock_ground as outStockGround ,
+ 		 stockIn.in_unit_id as inUnitId ,
+ 		 stockIn.in_unit as inUnit ,
+ 		 stockIn.in_stock_ground_id as inStockGroundId ,
+ 		 stockIn.in_stock_ground as inStockGround ,
+ 		 stockIn.goods_nums as goodsNums ,
+ 		 stockIn.goods_amount as goodsAmount ,
+ 		 stockIn.goods_sorts as goodsSorts ,
+ 		 stockIn.directly_org_id as directlyOrgId ,
+ 		 stockIn.hierarchy_id as hierarchyId ,
+ 		 stockIn.is_delete as isDelete ,
+ 		 stockIn.creator_id as creatorId ,
+ 		 stockIn.create_time as createTime ,
+ 		 stockIn.updator_id as updatorId ,
+ 		 stockIn.update_time as updateTime ,
+ 		 stockIn.remark1 as remark1 ,
+ 		 stockIn.remark2 as remark2
+    </sql>
+    
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		 select 
+ 		  <include refid="Base_Column_List" />
+ 		  from stock_in_tb stockIn
+ 		  where stockIn.id = #{ id }
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		 delete 
+ 		  from stock_in_tb
+ 		  where id = #{ id }
+	</delete>
+	
+	<insert id="insertSelective" parameterType="com.invoicing.manage.entity.StockInEntity">
+		 insert into  stock_in_tb
+ 		  <trim prefix="(" suffix=")" suffixOverrides=","> 
+ 			 <if test="id != null">
+ 				 id,
+ 			  </if>
+ 			 <if test="voucherNum != null">
+ 				 voucher_num,
+ 			  </if>
+ 			 <if test="voucherType != null">
+ 				 voucher_type,
+ 			  </if>
+ 			 <if test="outUnitId != null">
+ 				 out_unit_id,
+ 			  </if>
+ 			 <if test="outUnit != null">
+ 				 out_unit,
+ 			  </if>
+ 			 <if test="outStockGroundId != null">
+ 				 out_stock_ground_id,
+ 			  </if>
+ 			 <if test="outStockGround != null">
+ 				 out_stock_ground,
+ 			  </if>
+ 			 <if test="inUnitId != null">
+ 				 in_unit_id,
+ 			  </if>
+ 			 <if test="inUnit != null">
+ 				 in_unit,
+ 			  </if>
+ 			 <if test="inStockGroundId != null">
+ 				 in_stock_ground_id,
+ 			  </if>
+ 			 <if test="inStockGround != null">
+ 				 in_stock_ground,
+ 			  </if>
+ 			 <if test="goodsNums != null">
+ 				 goods_nums,
+ 			  </if>
+ 			 <if test="goodsAmount != null">
+ 				 goods_amount,
+ 			  </if>
+ 			 <if test="goodsSorts != null">
+ 				 goods_sorts,
+ 			  </if>
+ 			 <if test="directlyOrgId != null">
+ 				 directly_org_id,
+ 			  </if>
+ 			 <if test="hierarchyId != null">
+ 				 hierarchy_id,
+ 			  </if>
+ 			 <if test="isDelete != null">
+ 				 is_delete,
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 creator_id,
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 create_time,
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 updator_id,
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 update_time,
+ 			  </if>
+ 			 <if test="remark1 != null">
+ 				 remark1,
+ 			  </if>
+ 			 <if test="remark2 != null">
+ 				 remark2,
+ 			  </if>
+ 		  </trim>
+ 		  <trim prefix="values (" suffix=")" suffixOverrides="," >
+ 			 <if test="id != null">
+ 				 #{id},
+ 			  </if>
+ 			 <if test="voucherNum != null">
+ 				 #{voucherNum},
+ 			  </if>
+ 			 <if test="voucherType != null">
+ 				 #{voucherType},
+ 			  </if>
+ 			 <if test="outUnitId != null">
+ 				 #{outUnitId},
+ 			  </if>
+ 			 <if test="outUnit != null">
+ 				 #{outUnit},
+ 			  </if>
+ 			 <if test="outStockGroundId != null">
+ 				 #{outStockGroundId},
+ 			  </if>
+ 			 <if test="outStockGround != null">
+ 				 #{outStockGround},
+ 			  </if>
+ 			 <if test="inUnitId != null">
+ 				 #{inUnitId},
+ 			  </if>
+ 			 <if test="inUnit != null">
+ 				 #{inUnit},
+ 			  </if>
+ 			 <if test="inStockGroundId != null">
+ 				 #{inStockGroundId},
+ 			  </if>
+ 			 <if test="inStockGround != null">
+ 				 #{inStockGround},
+ 			  </if>
+ 			 <if test="goodsNums != null">
+ 				 #{goodsNums},
+ 			  </if>
+ 			 <if test="goodsAmount != null">
+ 				 #{goodsAmount},
+ 			  </if>
+ 			 <if test="goodsSorts != null">
+ 				 #{goodsSorts},
+ 			  </if>
+ 			 <if test="directlyOrgId != null">
+ 				 #{directlyOrgId},
+ 			  </if>
+ 			 <if test="hierarchyId != null">
+ 				 #{hierarchyId},
+ 			  </if>
+ 			 <if test="isDelete != null">
+ 				 #{isDelete},
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 #{creatorId},
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 #{createTime},
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 #{updatorId},
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 #{updateTime},
+ 			  </if>
+ 			 <if test="remark1 != null">
+ 				 #{remark1},
+ 			  </if>
+ 			 <if test="remark2 != null">
+ 				 #{remark2},
+ 			  </if>
+ 		  </trim>
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="com.invoicing.manage.entity.StockInEntity">
+		 update   stock_in_tb
+ 		 <set>
+ 			 <if test="voucherNum != null">
+ 				 voucher_num = #{voucherNum},
+ 			  </if>
+ 			 <if test="voucherType != null">
+ 				 voucher_type = #{voucherType},
+ 			  </if>
+ 			 <if test="outUnitId != null">
+ 				 out_unit_id = #{outUnitId},
+ 			  </if>
+ 			 <if test="outUnit != null">
+ 				 out_unit = #{outUnit},
+ 			  </if>
+ 			 <if test="outStockGroundId != null">
+ 				 out_stock_ground_id = #{outStockGroundId},
+ 			  </if>
+ 			 <if test="outStockGround != null">
+ 				 out_stock_ground = #{outStockGround},
+ 			  </if>
+ 			 <if test="inUnitId != null">
+ 				 in_unit_id = #{inUnitId},
+ 			  </if>
+ 			 <if test="inUnit != null">
+ 				 in_unit = #{inUnit},
+ 			  </if>
+ 			 <if test="inStockGroundId != null">
+ 				 in_stock_ground_id = #{inStockGroundId},
+ 			  </if>
+ 			 <if test="inStockGround != null">
+ 				 in_stock_ground = #{inStockGround},
+ 			  </if>
+ 			 <if test="goodsNums != null">
+ 				 goods_nums = #{goodsNums},
+ 			  </if>
+ 			 <if test="goodsAmount != null">
+ 				 goods_amount = #{goodsAmount},
+ 			  </if>
+ 			 <if test="goodsSorts != null">
+ 				 goods_sorts = #{goodsSorts},
+ 			  </if>
+ 			 <if test="directlyOrgId != null">
+ 				 directly_org_id = #{directlyOrgId},
+ 			  </if>
+ 			 <if test="hierarchyId != null">
+ 				 hierarchy_id = #{hierarchyId},
+ 			  </if>
+ 			 <if test="isDelete != null">
+ 				 is_delete = #{isDelete},
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 creator_id = #{creatorId},
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 create_time = #{createTime},
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 updator_id = #{updatorId},
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 update_time = #{updateTime},
+ 			  </if>
+ 			 <if test="remark1 != null">
+ 				 remark1 = #{remark1},
+ 			  </if>
+ 			 <if test="remark2 != null">
+ 				 remark2 = #{remark2},
+ 			  </if>
+ 		 </set>
+     where id = #{id}
+	</update>
+	
+	 <select id="getList" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		 select 
+ 		  <include refid="Base_Column_List" />
+ 		  from stock_in_tb stockIn
+ 		  where 1=1 
+ 		 <if test="id != null">
+ 			 and stockIn.id = #{id}
+ 		  </if>
+ 		 <if test="voucherNum != null">
+ 			 and stockIn.voucher_num = #{voucherNum}
+ 		  </if>
+ 		 <if test="voucherType != null">
+ 			 and stockIn.voucher_type = #{voucherType}
+ 		  </if>
+ 		 <if test="outUnitId != null">
+ 			 and stockIn.out_unit_id = #{outUnitId}
+ 		  </if>
+ 		 <if test="outUnit != null">
+ 			 and stockIn.out_unit = #{outUnit}
+ 		  </if>
+ 		 <if test="outStockGroundId != null">
+ 			 and stockIn.out_stock_ground_id = #{outStockGroundId}
+ 		  </if>
+ 		 <if test="outStockGround != null">
+ 			 and stockIn.out_stock_ground = #{outStockGround}
+ 		  </if>
+ 		 <if test="inUnitId != null">
+ 			 and stockIn.in_unit_id = #{inUnitId}
+ 		  </if>
+ 		 <if test="inUnit != null">
+ 			 and stockIn.in_unit = #{inUnit}
+ 		  </if>
+ 		 <if test="inStockGroundId != null">
+ 			 and stockIn.in_stock_ground_id = #{inStockGroundId}
+ 		  </if>
+ 		 <if test="inStockGround != null">
+ 			 and stockIn.in_stock_ground = #{inStockGround}
+ 		  </if>
+ 		 <if test="goodsNums != null">
+ 			 and stockIn.goods_nums = #{goodsNums}
+ 		  </if>
+ 		 <if test="goodsAmount != null">
+ 			 and stockIn.goods_amount = #{goodsAmount}
+ 		  </if>
+ 		 <if test="goodsSorts != null">
+ 			 and stockIn.goods_sorts = #{goodsSorts}
+ 		  </if>
+ 		 <if test="directlyOrgId != null">
+ 			 and stockIn.directly_org_id = #{directlyOrgId}
+ 		  </if>
+ 		 <if test="hierarchyId != null">
+ 			 and stockIn.hierarchy_id = #{hierarchyId}
+ 		  </if>
+ 		 <if test="isDelete != null">
+ 			 and stockIn.is_delete = #{isDelete}
+ 		  </if>
+ 		 <if test="creatorId != null">
+ 			 and stockIn.creator_id = #{creatorId}
+ 		  </if>
+ 		 <if test="createTime != null">
+ 			 and stockIn.create_time = #{createTime}
+ 		  </if>
+ 		 <if test="updatorId != null">
+ 			 and stockIn.updator_id = #{updatorId}
+ 		  </if>
+ 		 <if test="updateTime != null">
+ 			 and stockIn.update_time = #{updateTime}
+ 		  </if>
+ 		 <if test="remark1 != null">
+ 			 and stockIn.remark1 = #{remark1}
+ 		  </if>
+ 		 <if test="remark2 != null">
+ 			 and stockIn.remark2 = #{remark2}
+ 		  </if>
+	</select>
+	 <select id="getListCount" resultType="java.lang.Integer"
+		parameterType="java.util.Map">
+		 select 
+ 		  count(stockIn.id)
+ 		  from stock_in_tb stockIn
+ 		  where 1=1 
+ 		 <if test="id != null">
+ 			 and stockIn.id = #{id}
+ 		  </if>
+ 		 <if test="voucherNum != null">
+ 			 and stockIn.voucher_num = #{voucherNum}
+ 		  </if>
+ 		 <if test="voucherType != null">
+ 			 and stockIn.voucher_type = #{voucherType}
+ 		  </if>
+ 		 <if test="outUnitId != null">
+ 			 and stockIn.out_unit_id = #{outUnitId}
+ 		  </if>
+ 		 <if test="outUnit != null">
+ 			 and stockIn.out_unit = #{outUnit}
+ 		  </if>
+ 		 <if test="outStockGroundId != null">
+ 			 and stockIn.out_stock_ground_id = #{outStockGroundId}
+ 		  </if>
+ 		 <if test="outStockGround != null">
+ 			 and stockIn.out_stock_ground = #{outStockGround}
+ 		  </if>
+ 		 <if test="inUnitId != null">
+ 			 and stockIn.in_unit_id = #{inUnitId}
+ 		  </if>
+ 		 <if test="inUnit != null">
+ 			 and stockIn.in_unit = #{inUnit}
+ 		  </if>
+ 		 <if test="inStockGroundId != null">
+ 			 and stockIn.in_stock_ground_id = #{inStockGroundId}
+ 		  </if>
+ 		 <if test="inStockGround != null">
+ 			 and stockIn.in_stock_ground = #{inStockGround}
+ 		  </if>
+ 		 <if test="goodsNums != null">
+ 			 and stockIn.goods_nums = #{goodsNums}
+ 		  </if>
+ 		 <if test="goodsAmount != null">
+ 			 and stockIn.goods_amount = #{goodsAmount}
+ 		  </if>
+ 		 <if test="goodsSorts != null">
+ 			 and stockIn.goods_sorts = #{goodsSorts}
+ 		  </if>
+ 		 <if test="directlyOrgId != null">
+ 			 and stockIn.directly_org_id = #{directlyOrgId}
+ 		  </if>
+ 		 <if test="hierarchyId != null">
+ 			 and stockIn.hierarchy_id = #{hierarchyId}
+ 		  </if>
+ 		 <if test="isDelete != null">
+ 			 and stockIn.is_delete = #{isDelete}
+ 		  </if>
+ 		 <if test="creatorId != null">
+ 			 and stockIn.creator_id = #{creatorId}
+ 		  </if>
+ 		 <if test="createTime != null">
+ 			 and stockIn.create_time = #{createTime}
+ 		  </if>
+ 		 <if test="updatorId != null">
+ 			 and stockIn.updator_id = #{updatorId}
+ 		  </if>
+ 		 <if test="updateTime != null">
+ 			 and stockIn.update_time = #{updateTime}
+ 		  </if>
+ 		 <if test="remark1 != null">
+ 			 and stockIn.remark1 = #{remark1}
+ 		  </if>
+ 		 <if test="remark2 != null">
+ 			 and stockIn.remark2 = #{remark2}
+ 		  </if>
+	</select>
+</mapper>

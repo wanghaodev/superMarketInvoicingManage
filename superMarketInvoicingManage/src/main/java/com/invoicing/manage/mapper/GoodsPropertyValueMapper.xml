@@ -190,60 +190,33 @@
 	
 	 <select id="getList" resultMap="BaseResultMap"
 		parameterType="java.util.Map">
-		 select 
- 		  <include refid="Base_Column_List" />
- 		  from goods_property_value_tb goodsPropertyValue
- 		  where 1=1 
- 		 <if test="id != null">
- 			 and goodsPropertyValue.id = #{id}
- 		  </if>
- 		 <if test="propertyId != null">
- 			 and goodsPropertyValue.property_id = #{propertyId}
- 		  </if>
- 		 <if test="propertyValue != null">
- 			 and goodsPropertyValue.property_value = #{propertyValue}
- 		  </if>
- 		 <if test="isDelete != null">
- 			 and goodsPropertyValue.is_delete = #{isDelete}
- 		  </if>
- 		 <if test="directlyOrgId != null">
- 			 and goodsPropertyValue.directly_org_id = #{directlyOrgId}
- 		  </if>
- 		 <if test="hierarchyId != null">
- 			 and goodsPropertyValue.hierarchy_id = #{hierarchyId}
- 		  </if>
- 		 <if test="creatorId != null">
- 			 and goodsPropertyValue.creator_id = #{creatorId}
- 		  </if>
- 		 <if test="creator != null">
- 			 and goodsPropertyValue.creator = #{creator}
- 		  </if>
- 		 <if test="createTime != null">
- 			 and goodsPropertyValue.create_time = #{createTime}
- 		  </if>
- 		 <if test="updatorId != null">
- 			 and goodsPropertyValue.updator_id = #{updatorId}
- 		  </if>
- 		 <if test="updator != null">
- 			 and goodsPropertyValue.updator = #{updator}
- 		  </if>
- 		 <if test="updateTime != null">
- 			 and goodsPropertyValue.update_time = #{updateTime}
- 		  </if>
- 		 <if test="remark1 != null">
- 			 and goodsPropertyValue.remark1 = #{remark1}
- 		  </if>
- 		 <if test="remark2 != null">
- 			 and goodsPropertyValue.remark2 = #{remark2}
- 		  </if>
+		SELECT
+			goodsPropertyValue.id id,
+			goodsPropertyValue.property_id propertyId,
+			goodsPropertyValue.property_value propertyValue,
+			goodsProperty.property_name propertyName,
+			goodsPropertyValue.update_time updateTime
+		FROM
+			goods_property_value_tb goodsPropertyValue
+		LEFT JOIN goods_property_tb goodsProperty
+		ON goodsPropertyValue.property_id=goodsProperty.id
+		WHERE 1=1
+ 		 <include refid="whereSQL"/>
 	</select>
 	 <select id="getListCount" resultType="java.lang.Integer"
 		parameterType="java.util.Map">
-		 select 
- 		  count(goodsPropertyValue.id)
- 		  from goods_property_value_tb goodsPropertyValue
- 		  where 1=1 
- 		 <if test="id != null">
+			 SELECT 
+	 		  	count(goodsPropertyValue.id)
+	 		FROM  
+	 		 	goods_property_value_tb goodsPropertyValue
+			LEFT JOIN goods_property_tb goodsProperty
+			ON goodsPropertyValue.property_id=goodsProperty.id
+			WHERE 1=1
+ 		 <include refid="whereSQL"/>
+	</select>
+	
+	<sql id="whereSQL">
+		<if test="id != null">
  			 and goodsPropertyValue.id = #{id}
  		  </if>
  		 <if test="propertyId != null">
@@ -252,38 +225,6 @@
  		 <if test="propertyValue != null">
  			 and goodsPropertyValue.property_value = #{propertyValue}
  		  </if>
- 		 <if test="isDelete != null">
- 			 and goodsPropertyValue.is_delete = #{isDelete}
- 		  </if>
- 		 <if test="directlyOrgId != null">
- 			 and goodsPropertyValue.directly_org_id = #{directlyOrgId}
- 		  </if>
- 		 <if test="hierarchyId != null">
- 			 and goodsPropertyValue.hierarchy_id = #{hierarchyId}
- 		  </if>
- 		 <if test="creatorId != null">
- 			 and goodsPropertyValue.creator_id = #{creatorId}
- 		  </if>
- 		 <if test="creator != null">
- 			 and goodsPropertyValue.creator = #{creator}
- 		  </if>
- 		 <if test="createTime != null">
- 			 and goodsPropertyValue.create_time = #{createTime}
- 		  </if>
- 		 <if test="updatorId != null">
- 			 and goodsPropertyValue.updator_id = #{updatorId}
- 		  </if>
- 		 <if test="updator != null">
- 			 and goodsPropertyValue.updator = #{updator}
- 		  </if>
- 		 <if test="updateTime != null">
- 			 and goodsPropertyValue.update_time = #{updateTime}
- 		  </if>
- 		 <if test="remark1 != null">
- 			 and goodsPropertyValue.remark1 = #{remark1}
- 		  </if>
- 		 <if test="remark2 != null">
- 			 and goodsPropertyValue.remark2 = #{remark2}
- 		  </if>
-	</select>
+ 			 and goodsPropertyValue.is_delete = 0
+	</sql>
 </mapper>

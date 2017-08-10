@@ -234,72 +234,36 @@
 	
 	 <select id="getList" resultMap="BaseResultMap"
 		parameterType="java.util.Map">
-		 select 
- 		  <include refid="Base_Column_List" />
- 		  from goods_property_tb goodsProperty
- 		  where 1=1 
- 		 <if test="id != null">
- 			 and goodsProperty.id = #{id}
- 		  </if>
- 		 <if test="propertyName != null">
- 			 and goodsProperty.property_name = #{propertyName}
- 		  </if>
- 		 <if test="propertyType != null">
- 			 and goodsProperty.property_type = #{propertyType}
- 		  </if>
- 		 <if test="categoryId != null">
- 			 and goodsProperty.category_id = #{categoryId}
- 		  </if>
- 		 <if test="categoryType != null">
- 			 and goodsProperty.category_type = #{categoryType}
- 		  </if>
- 		 <if test="orderNumber != null">
- 			 and goodsProperty.order_number = #{orderNumber}
- 		  </if>
- 		 <if test="status != null">
- 			 and goodsProperty.status = #{status}
- 		  </if>
- 		 <if test="isDelete != null">
- 			 and goodsProperty.is_delete = #{isDelete}
- 		  </if>
- 		 <if test="directlyOrgId != null">
- 			 and goodsProperty.directly_org_id = #{directlyOrgId}
- 		  </if>
- 		 <if test="hierarchyId != null">
- 			 and goodsProperty.hierarchy_id = #{hierarchyId}
- 		  </if>
- 		 <if test="creatorId != null">
- 			 and goodsProperty.creator_id = #{creatorId}
- 		  </if>
- 		 <if test="creator != null">
- 			 and goodsProperty.creator = #{creator}
- 		  </if>
- 		 <if test="createTime != null">
- 			 and goodsProperty.create_time = #{createTime}
- 		  </if>
- 		 <if test="updatorId != null">
- 			 and goodsProperty.updator_id = #{updatorId}
- 		  </if>
- 		 <if test="updator != null">
- 			 and goodsProperty.updator = #{updator}
- 		  </if>
- 		 <if test="updateTime != null">
- 			 and goodsProperty.update_time = #{updateTime}
- 		  </if>
- 		 <if test="remark1 != null">
- 			 and goodsProperty.remark1 = #{remark1}
- 		  </if>
- 		 <if test="remark2 != null">
- 			 and goodsProperty.remark2 = #{remark2}
- 		  </if>
+		 SELECT
+			goodsProperty.id,
+			goodsProperty.category_id categoryId,
+			goodsProperty.property_name propertyName,
+			goodsCategory.category_name categoryName,
+			goodsProperty.category_type categoryType,
+			goodsProperty.property_type propertyType,
+			goodsProperty. STATUS STATUS,
+			goodsProperty.update_time updateTime
+		FROM
+			goods_property_tb goodsProperty
+		LEFT JOIN goods_category_tb goodsCategory ON goodsProperty.category_id = goodsCategory.id
+		WHERE
+			1 = 1
+ 		 <include refid="whereSQL"/>
 	</select>
 	 <select id="getListCount" resultType="java.lang.Integer"
 		parameterType="java.util.Map">
-		 select 
- 		  count(goodsProperty.id)
- 		  from goods_property_tb goodsProperty
- 		  where 1=1 
- 		 <if test="id != null">
+		 SELECT
+		COUNT(goodsProperty.id)
+		FROM
+			goods_property_tb goodsProperty
+		LEFT JOIN goods_category_tb goodsCategory ON goodsProperty.category_id = goodsCategory.id
+		WHERE
+			1 = 1
+ 		 <include refid="whereSQL"/>
+	</select>
+	
+	<sql id="whereSQL">
+		<if test="id != null">
  			 and goodsProperty.id = #{id}
  		  </if>
  		 <if test="propertyName != null">
@@ -317,41 +281,7 @@
  		 <if test="orderNumber != null">
  			 and goodsProperty.order_number = #{orderNumber}
  		  </if>
- 		 <if test="status != null">
- 			 and goodsProperty.status = #{status}
- 		  </if>
- 		 <if test="isDelete != null">
- 			 and goodsProperty.is_delete = #{isDelete}
- 		  </if>
- 		 <if test="directlyOrgId != null">
- 			 and goodsProperty.directly_org_id = #{directlyOrgId}
- 		  </if>
- 		 <if test="hierarchyId != null">
- 			 and goodsProperty.hierarchy_id = #{hierarchyId}
- 		  </if>
- 		 <if test="creatorId != null">
- 			 and goodsProperty.creator_id = #{creatorId}
- 		  </if>
- 		 <if test="creator != null">
- 			 and goodsProperty.creator = #{creator}
- 		  </if>
- 		 <if test="createTime != null">
- 			 and goodsProperty.create_time = #{createTime}
- 		  </if>
- 		 <if test="updatorId != null">
- 			 and goodsProperty.updator_id = #{updatorId}
- 		  </if>
- 		 <if test="updator != null">
- 			 and goodsProperty.updator = #{updator}
- 		  </if>
- 		 <if test="updateTime != null">
- 			 and goodsProperty.update_time = #{updateTime}
- 		  </if>
- 		 <if test="remark1 != null">
- 			 and goodsProperty.remark1 = #{remark1}
- 		  </if>
- 		 <if test="remark2 != null">
- 			 and goodsProperty.remark2 = #{remark2}
- 		  </if>
-	</select>
+ 			 and goodsProperty.status = 1
+ 			 and goodsProperty.is_delete =0
+	</sql>
 </mapper>

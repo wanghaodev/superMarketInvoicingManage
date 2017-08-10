@@ -4,7 +4,7 @@
 
 	 <resultMap type="com.invoicing.manage.entity.SaleRecordEntity" id="BaseResultMap">
     	 <id column="id" property="id" /> 
-		  <id column="memberName" property="memberName" /> 
+		  <id column="goodsId" property="goodsId" /> 
 		  <id column="payMethod" property="payMethod" /> 
 		  <id column="saleNumber" property="saleNumber" /> 
 		  <id column="salePrice" property="salePrice" /> 
@@ -25,11 +25,14 @@
 		  <id column="remark2" property="remark2" /> 
 		  <id column="remark3" property="remark3" /> 
 		  <id column="remark4" property="remark4" /> 
+		  
+		   <id column="goodsName" property="goodsName" /> 
+		   <id column="unitName" property="unitName" /> 
   
     </resultMap>
     <sql id="Base_Column_List">
     	 saleRecord.id as id ,
- 		 saleRecord.member_name as memberName ,
+ 		 saleRecord.goods_id as goodsId ,
  		 saleRecord.pay_method as payMethod ,
  		 saleRecord.sale_number as saleNumber ,
  		 saleRecord.sale_price as salePrice ,
@@ -37,19 +40,8 @@
  		 saleRecord.paid_amount as paidAmount ,
  		 saleRecord.change_amount as changeAmount ,
  		 saleRecord.cashier_name as cashierName ,
- 		 saleRecord.is_delete as isDelete ,
- 		 saleRecord.directly_org_id as directlyOrgId ,
- 		 saleRecord.hierarchy_id as hierarchyId ,
- 		 saleRecord.creator_id as creatorId ,
- 		 saleRecord.creator as creator ,
- 		 saleRecord.create_time as createTime ,
- 		 saleRecord.updator_id as updatorId ,
- 		 saleRecord.updator as updator ,
- 		 saleRecord.update_time as updateTime ,
- 		 saleRecord.remark1 as remark1 ,
- 		 saleRecord.remark2 as remark2 ,
- 		 saleRecord.remark3 as remark3 ,
- 		 saleRecord.remark4 as remark4
+ 		 saleRecord.create_time as createTime,
+ 		 saleRecord.is_delete as isDelete
     </sql>
     
     <select id="selectByPrimaryKey" resultMap="BaseResultMap"
@@ -72,8 +64,8 @@
  			 <if test="id != null">
  				 id,
  			  </if>
- 			 <if test="memberName != null">
- 				 member_name,
+ 			 <if test="goodsId != null">
+ 				 goods_id,
  			  </if>
  			 <if test="payMethod != null">
  				 pay_method,
@@ -140,8 +132,8 @@
  			 <if test="id != null">
  				 #{id},
  			  </if>
- 			 <if test="memberName != null">
- 				 #{memberName},
+ 			 <if test="goodsId != null">
+ 				 #{goodsId},
  			  </if>
  			 <if test="payMethod != null">
  				 #{payMethod},
@@ -209,8 +201,8 @@
 	<update id="updateByPrimaryKeySelective" parameterType="com.invoicing.manage.entity.SaleRecordEntity">
 		 update   sale_record_tb
  		 <set>
- 			 <if test="memberName != null">
- 				 member_name = #{memberName},
+ 			 <if test="goodsId != null">
+ 				 goods_id = #{goodsId},
  			  </if>
  			 <if test="payMethod != null">
  				 pay_method = #{payMethod},
@@ -278,76 +270,16 @@
 	
 	 <select id="getList" resultMap="BaseResultMap"
 		parameterType="java.util.Map">
-		 select 
- 		  <include refid="Base_Column_List" />
- 		  from sale_record_tb saleRecord
+		SELECT
+			<include refid = "Base_Column_List"/>,
+			goods.goods_name goodsName,
+			goods.remark1 unitName
+		FROM
+			sale_record_tb saleRecord
+		LEFT JOIN goods_tb goods 
+		ON saleRecord.goods_id = goods.id
  		  where 1=1 
- 		 <if test="id != null">
- 			 and saleRecord.id = #{id}
- 		  </if>
- 		 <if test="memberName != null">
- 			 and saleRecord.member_name = #{memberName}
- 		  </if>
- 		 <if test="payMethod != null">
- 			 and saleRecord.pay_method = #{payMethod}
- 		  </if>
- 		 <if test="saleNumber != null">
- 			 and saleRecord.sale_number = #{saleNumber}
- 		  </if>
- 		 <if test="salePrice != null">
- 			 and saleRecord.sale_price = #{salePrice}
- 		  </if>
- 		 <if test="receivableAmount != null">
- 			 and saleRecord.receivable_amount = #{receivableAmount}
- 		  </if>
- 		 <if test="paidAmount != null">
- 			 and saleRecord.paid_amount = #{paidAmount}
- 		  </if>
- 		 <if test="changeAmount != null">
- 			 and saleRecord.change_amount = #{changeAmount}
- 		  </if>
- 		 <if test="cashierName != null">
- 			 and saleRecord.cashier_name = #{cashierName}
- 		  </if>
- 		 <if test="isDelete != null">
- 			 and saleRecord.is_delete = #{isDelete}
- 		  </if>
- 		 <if test="directlyOrgId != null">
- 			 and saleRecord.directly_org_id = #{directlyOrgId}
- 		  </if>
- 		 <if test="hierarchyId != null">
- 			 and saleRecord.hierarchy_id = #{hierarchyId}
- 		  </if>
- 		 <if test="creatorId != null">
- 			 and saleRecord.creator_id = #{creatorId}
- 		  </if>
- 		 <if test="creator != null">
- 			 and saleRecord.creator = #{creator}
- 		  </if>
- 		 <if test="createTime != null">
- 			 and saleRecord.create_time = #{createTime}
- 		  </if>
- 		 <if test="updatorId != null">
- 			 and saleRecord.updator_id = #{updatorId}
- 		  </if>
- 		 <if test="updator != null">
- 			 and saleRecord.updator = #{updator}
- 		  </if>
- 		 <if test="updateTime != null">
- 			 and saleRecord.update_time = #{updateTime}
- 		  </if>
- 		 <if test="remark1 != null">
- 			 and saleRecord.remark1 = #{remark1}
- 		  </if>
- 		 <if test="remark2 != null">
- 			 and saleRecord.remark2 = #{remark2}
- 		  </if>
- 		 <if test="remark3 != null">
- 			 and saleRecord.remark3 = #{remark3}
- 		  </if>
- 		 <if test="remark4 != null">
- 			 and saleRecord.remark4 = #{remark4}
- 		  </if>
+ 		 <include refid="whereSQL"/>
 	</select>
 	 <select id="getListCount" resultType="java.lang.Integer"
 		parameterType="java.util.Map">
@@ -355,32 +287,17 @@
  		  count(saleRecord.id)
  		  from sale_record_tb saleRecord
  		  where 1=1 
- 		 <if test="id != null">
+ 		 <include refid="whereSQL"/>
+	</select>
+	<sql id="whereSQL">
+		<if test="id != null">
  			 and saleRecord.id = #{id}
  		  </if>
- 		 <if test="memberName != null">
- 			 and saleRecord.member_name = #{memberName}
+ 		 <if test="goodsId != null">
+ 			 and saleRecord.goods_id = #{goodsId}
  		  </if>
  		 <if test="payMethod != null">
  			 and saleRecord.pay_method = #{payMethod}
- 		  </if>
- 		 <if test="saleNumber != null">
- 			 and saleRecord.sale_number = #{saleNumber}
- 		  </if>
- 		 <if test="salePrice != null">
- 			 and saleRecord.sale_price = #{salePrice}
- 		  </if>
- 		 <if test="receivableAmount != null">
- 			 and saleRecord.receivable_amount = #{receivableAmount}
- 		  </if>
- 		 <if test="paidAmount != null">
- 			 and saleRecord.paid_amount = #{paidAmount}
- 		  </if>
- 		 <if test="changeAmount != null">
- 			 and saleRecord.change_amount = #{changeAmount}
- 		  </if>
- 		 <if test="cashierName != null">
- 			 and saleRecord.cashier_name = #{cashierName}
  		  </if>
  		 <if test="isDelete != null">
  			 and saleRecord.is_delete = #{isDelete}
@@ -409,17 +326,5 @@
  		 <if test="updateTime != null">
  			 and saleRecord.update_time = #{updateTime}
  		  </if>
- 		 <if test="remark1 != null">
- 			 and saleRecord.remark1 = #{remark1}
- 		  </if>
- 		 <if test="remark2 != null">
- 			 and saleRecord.remark2 = #{remark2}
- 		  </if>
- 		 <if test="remark3 != null">
- 			 and saleRecord.remark3 = #{remark3}
- 		  </if>
- 		 <if test="remark4 != null">
- 			 and saleRecord.remark4 = #{remark4}
- 		  </if>
-	</select>
+	</sql>
 </mapper>

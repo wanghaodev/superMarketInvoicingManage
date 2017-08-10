@@ -6,6 +6,7 @@
     	 <id column="id" property="id" /> 
 		  <id column="salePrice" property="salePrice" /> 
 		  <id column="marketPrice" property="marketPrice" /> 
+		  <id column="goodsName" property="goodsName" /> 
 		  <id column="purchasePrice" property="purchasePrice" /> 
 		  <id column="goodsId" property="goodsId" /> 
 		  <id column="goodsSaleId" property="goodsSaleId" /> 
@@ -254,33 +255,7 @@
      where id = #{id}
 	</update>
 	
-	 <select id="getList" resultMap="BaseResultMap"
-		parameterType="java.util.Map">
-		 select 
- 		  <include refid="Base_Column_List" />
- 		  from goods_normal_price_tb goodsNormalPrice
- 		  where 1=1 
- 		 <if test="id != null">
- 			 and goodsNormalPrice.id = #{id}
- 		  </if>
- 		 <if test="salePrice != null">
- 			 and goodsNormalPrice.sale_price = #{salePrice}
- 		  </if>
- 		 <if test="marketPrice != null">
- 			 and goodsNormalPrice.market_price = #{marketPrice}
- 		  </if>
- 		 <if test="purchasePrice != null">
- 			 and goodsNormalPrice.purchase_price = #{purchasePrice}
- 		  </if>
- 		 <if test="goodsId != null">
- 			 and goodsNormalPrice.goods_id = #{goodsId}
- 		  </if>
- 		 <if test="goodsSaleId != null">
- 			 and goodsNormalPrice.goods_sale_id = #{goodsSaleId}
- 		  </if>
- 		 <if test="storeId != null">
- 			 and goodsNormalPrice.store_id = #{storeId}
- 		  </if>
+	<sql id="whereSQL">
  		 <if test="storeType != null">
  			 and goodsNormalPrice.store_type = #{storeType}
  		  </if>
@@ -290,102 +265,34 @@
  		 <if test="goodsState != null">
  			 and goodsNormalPrice.goods_state = #{goodsState}
  		  </if>
- 		 <if test="isDelete != null">
- 			 and goodsNormalPrice.is_delete = #{isDelete}
- 		  </if>
- 		 <if test="directlyOrgId != null">
- 			 and goodsNormalPrice.directly_org_id = #{directlyOrgId}
- 		  </if>
- 		 <if test="hierarchyId != null">
- 			 and goodsNormalPrice.hierarchy_id = #{hierarchyId}
- 		  </if>
- 		 <if test="valid != null">
- 			 and goodsNormalPrice.valid = #{valid}
- 		  </if>
- 		 <if test="creatorId != null">
- 			 and goodsNormalPrice.creator_id = #{creatorId}
- 		  </if>
- 		 <if test="createTime != null">
- 			 and goodsNormalPrice.create_time = #{createTime}
- 		  </if>
- 		 <if test="updatorId != null">
- 			 and goodsNormalPrice.updator_id = #{updatorId}
- 		  </if>
- 		 <if test="updateTime != null">
- 			 and goodsNormalPrice.update_time = #{updateTime}
- 		  </if>
- 		 <if test="remark1 != null">
- 			 and goodsNormalPrice.remark1 = #{remark1}
- 		  </if>
- 		 <if test="remark2 != null">
- 			 and goodsNormalPrice.remark2 = #{remark2}
- 		  </if>
+ 		  and goodsNormalPrice.is_delete =0
+	</sql>
+	 <select id="getList" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		SELECT
+			goodsNormalPrice.id,
+			goodsNormalPrice.goods_id,
+			goodsNormalPrice.market_price marketPrice,
+			goodsNormalPrice.purchase_price  purchasePrice,
+			goodsNormalPrice.sale_price salePrice,
+			goods.goods_name goodsName,
+			goodsNormalPrice.create_time createTime,
+			goodsNormalPrice.update_time updateTime
+		
+		FROM
+			goods_normal_price_tb goodsNormalPrice
+		RIGHT JOIN goods_tb goods 
+		ON goodsNormalPrice.goods_id = goods.id 
+ 		 <include refid="whereSQL"/>
 	</select>
 	 <select id="getListCount" resultType="java.lang.Integer"
 		parameterType="java.util.Map">
-		 select 
+		 SELECT 
  		  count(goodsNormalPrice.id)
- 		  from goods_normal_price_tb goodsNormalPrice
- 		  where 1=1 
- 		 <if test="id != null">
- 			 and goodsNormalPrice.id = #{id}
- 		  </if>
- 		 <if test="salePrice != null">
- 			 and goodsNormalPrice.sale_price = #{salePrice}
- 		  </if>
- 		 <if test="marketPrice != null">
- 			 and goodsNormalPrice.market_price = #{marketPrice}
- 		  </if>
- 		 <if test="purchasePrice != null">
- 			 and goodsNormalPrice.purchase_price = #{purchasePrice}
- 		  </if>
- 		 <if test="goodsId != null">
- 			 and goodsNormalPrice.goods_id = #{goodsId}
- 		  </if>
- 		 <if test="goodsSaleId != null">
- 			 and goodsNormalPrice.goods_sale_id = #{goodsSaleId}
- 		  </if>
- 		 <if test="storeId != null">
- 			 and goodsNormalPrice.store_id = #{storeId}
- 		  </if>
- 		 <if test="storeType != null">
- 			 and goodsNormalPrice.store_type = #{storeType}
- 		  </if>
- 		 <if test="storeName != null">
- 			 and goodsNormalPrice.store_name = #{storeName}
- 		  </if>
- 		 <if test="goodsState != null">
- 			 and goodsNormalPrice.goods_state = #{goodsState}
- 		  </if>
- 		 <if test="isDelete != null">
- 			 and goodsNormalPrice.is_delete = #{isDelete}
- 		  </if>
- 		 <if test="directlyOrgId != null">
- 			 and goodsNormalPrice.directly_org_id = #{directlyOrgId}
- 		  </if>
- 		 <if test="hierarchyId != null">
- 			 and goodsNormalPrice.hierarchy_id = #{hierarchyId}
- 		  </if>
- 		 <if test="valid != null">
- 			 and goodsNormalPrice.valid = #{valid}
- 		  </if>
- 		 <if test="creatorId != null">
- 			 and goodsNormalPrice.creator_id = #{creatorId}
- 		  </if>
- 		 <if test="createTime != null">
- 			 and goodsNormalPrice.create_time = #{createTime}
- 		  </if>
- 		 <if test="updatorId != null">
- 			 and goodsNormalPrice.updator_id = #{updatorId}
- 		  </if>
- 		 <if test="updateTime != null">
- 			 and goodsNormalPrice.update_time = #{updateTime}
- 		  </if>
- 		 <if test="remark1 != null">
- 			 and goodsNormalPrice.remark1 = #{remark1}
- 		  </if>
- 		 <if test="remark2 != null">
- 			 and goodsNormalPrice.remark2 = #{remark2}
- 		  </if>
+ 		  	FROM
+			goods_normal_price_tb goodsNormalPrice
+		RIGHT JOIN goods_tb goods 
+		ON goodsNormalPrice.goods_id = goods.id 
+ 		 <include refid="whereSQL"/>
 	</select>
 </mapper>

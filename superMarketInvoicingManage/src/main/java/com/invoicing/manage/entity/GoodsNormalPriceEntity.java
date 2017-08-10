@@ -12,7 +12,6 @@ import java.util.Date;
 
 @SuppressWarnings("serial")
 public class GoodsNormalPriceEntity extends BaseEntity {
-  
     
     /**
      * 主键
@@ -38,6 +37,11 @@ public class GoodsNormalPriceEntity extends BaseEntity {
      * 商品销售id
      */
     private Long goodsSaleId;
+    
+    /**
+     * 商品名称
+     */
+    private String goodsName;
     /**
      * 门店业务id
      */
@@ -335,5 +339,11 @@ public class GoodsNormalPriceEntity extends BaseEntity {
     public String getRemark2() {
         return this.remark2;
     }
+	public String getGoodsName() {
+		return goodsName;
+	}
+	public void setGoodsName(String goodsName) {
+		this.goodsName = goodsName;
+	}
 
 }

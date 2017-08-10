@@ -21,7 +21,7 @@ public class SaleRecordEntity extends BaseEntity {
     /**
      * 商品ID
      */
-    private Long memberName;
+    private Long goodsId;
     /**
      * 支付方式
      */
@@ -58,6 +58,14 @@ public class SaleRecordEntity extends BaseEntity {
      * 直属机构ID
      */
     private Long directlyOrgId;
+    /**
+     * 包装单位
+     */
+    private String unitName;
+    /**
+     * 商品名称
+     */
+    private String goodsName;
     /**
      * 机构层级ID
      */
@@ -115,18 +123,14 @@ public class SaleRecordEntity extends BaseEntity {
     public Long getId() {
         return this.id;
     }
-	/**
-	 * 设置商品ID
-	 */
-    public void setMemberName(Long memberName) {
-        this.memberName = memberName;
-    }
-    /**
-     * 获取商品ID
-     */
-    public Long getMemberName() {
-        return this.memberName;
-    }
+    
+    
+	public Long getGoodsId() {
+		return goodsId;
+	}
+	public void setGoodsId(Long goodsId) {
+		this.goodsId = goodsId;
+	}
 	/**
 	 * 设置支付方式
 	 */
@@ -367,5 +371,19 @@ public class SaleRecordEntity extends BaseEntity {
     public Long getRemark4() {
         return this.remark4;
     }
+	public String getUnitName() {
+		return unitName;
+	}
+	public void setUnitName(String unitName) {
+		this.unitName = unitName;
+	}
+	public String getGoodsName() {
+		return goodsName;
+	}
+	public void setGoodsName(String goodsName) {
+		this.goodsName = goodsName;
+	}
+    
+    
 
 }

@@ -9,8 +9,8 @@
 <div class="container-fluid">
 	<ol class="breadcrumb">
 		<span>当前位置：</span>
-		<li><a href="/index">基础数据管理</a></li>
-		<li><a href="####">价格管理</a></li>
+		<li><a href="/index">销售管理</a></li>
+		<li><a href="####">销售记录管理</a></li>
 	</ol>
 
 	<!-- 列表：查询条件组装  start -->
@@ -41,50 +41,63 @@
 	<div class="area_table_content cloud_list">
 		<div id="buttonsId" class="row list-title">
 			<div class="col-md-4">
-				<h4>价格列表</h4>
+				<h4>销售记录列表</h4>
 			</div>
 		</div>
 	</div>
 </div>
 	<!-- 列表：查询分页列表 end -->
-	<!-- add by WHao start 引入：价格列表js -->
+	<!-- add by WHao start 引入：销售记录列表js -->
 	<script type="text/javascript">
 	$(document).ready(function(){
         var buttonsArr =[];
         getData();
         function getData(){
             var _options ={
-                url:_path+"/invoicing/goods/price/page/list"
+                url:_path+"/invoicing/sale/record/page/list"
                 ,checkAll:false
                 //查询条件
-                ,data:{'userName':$("[name=goodsName]").val()}
+                ,data:{'payMethod':$("[name=payMethod]").val()}
                 ,cloumns:[
 					 {name:'商品名称',value:'goodsName'}
-                    ,{name:'采购价',value:'purchasePrice',type:"function", fun : function(obj){
-	                	return obj.purchasePrice+".00元";;
-	                    }
-	                  }
-	              	,{name:'市场价',value:'marketPrice',type:"function", fun : function(obj){
-		                	return obj.marketPrice+".00元";;
-	                    }
-	                  }
-	              	,{name:'销售价',value:'salePrice',type:"function", fun : function(obj){
+                    ,{name:'单价',value:'salePrice',type:"function", fun : function(obj){
 	                	return obj.salePrice+".00元";;
 	                    }
 	                  }
-	              	,{name:'单位',value:'unitName',type:"function", fun : function(obj){
-	                	return "kg";
+                    ,{name:'数量',value:'saleNumber'}
+                    ,{name:'应付金额',value:'paidAmount',type:"function", fun : function(obj){
+	                	return obj.paidAmount+".00元";;
 	                    }
 	                  }
-                    ,{name:'创建时间',value:'createTime'}
-                    ,{name:'更新时间',value:'updateTime'}
-                    ,{name:'操作',value:'id',type:"function", fun : function(obj){
-                    	var html="";
-	                		html += "  <a href='javascript:void(0)' class='btn-link' onclick='toUpdatePage("+obj.id+")'>编辑</a>"
-	                		html += "  <a href='javascript:void(0)' class='btn-link' onclick='delObj("+obj.id+")'>删除</a>";
+	              	,{name:'实收金额',value:'receivableAmount',type:"function", fun : function(obj){
+		                	return obj.receivableAmount+".00元";;
+	                    }
+	                  }
+	              	,{name:'找零金额',value:'changeAmount',type:"function", fun : function(obj){
+	                	return obj.changeAmount+".00元";;
+	                    }
+	                  }
+	              	
+	              	,{name:'支付方式',value:'payMethod',type:"function", fun : function(obj){
+	              		var html="";
+		              		if(obj.payMethod==1){
+		              			html+="现金";
+		              		}else if(obj.payMethod==2){
+		              			html+="银行卡";
+		              		}else if(obj.payMethod==3){
+		              			html+="预付卡";
+		              		}else if(obj.payMethod==4){
+		              			html+="微信";
+		              		}else if(obj.payMethod==5){
+		              			html+="支付宝";
+		              		}else{
+		              			html+="其他";
+		              		}
 	                	return html;
-                      }
-                    }
+	                    }
+	                  }
+	              	 ,{name:'收营员',value:'cashierName'}
+                    ,{name:'创建时间',value:'createTime'}
                 ]
                 ,buttons:buttonsArr
             };
@@ -109,7 +122,7 @@
     	callmodalFun('您确认删除该记录吗？',function(){
     		$.ajax({
     			type : "post",
-    			url :_path+"/invoicing/goods/price/del",
+    			url :_path+"/invoicing/sale/record/del",
     			data : {
     				'id':id
     			},
@@ -121,22 +134,22 @@
     				closewait();
     				//若执行成功的话，则隐藏进度条提示
     				if (data.code== 1) {
-    					alert("价格删除成功！")
-    					var url = _path+"/invoicing/goods/price/list";
+    					alert("销售记录删除成功！")
+    					var url = _path+"/invoicing/sale/record/list";
     					goBackPage(url);
     				} else if (data == 0) {
-    					timedTaskFun(1000,'价格删除失败','','err');
+    					timedTaskFun(1000,'销售记录删除失败','','err');
     				} else if(data == -2) {
-    					timedTaskFun(1000,'该价格，已关联其他业务，故无法删除！','','err');
+    					timedTaskFun(1000,'该销售记录，已关联其他业务，故无法删除！','','err');
     				}
     				
     			}
     		 });
     	});
     };
-    //价格角色维护
+    //销售记录角色维护
     function toUserRole(userId){
-  	  var url=_path+"/invoicing/goods/price/role?userId="+userId;
+  	  var url=_path+"/invoicing/sale/record/role?userId="+userId;
 		$.get(url,function(data){
 			$("#mian_div").html(data);
 		});    	
@@ -144,14 +157,14 @@
     
     //到新增页面
     $("#addBtn").click(function(){
-    	var url=_path+"/invoicing/goods/price/add";
+    	var url=_path+"/invoicing/sale/record/add";
 		$.get(url,function(data){
 			$("#mian_div").html(data);
 		});    
     });
-    //编辑价格信息
+    //编辑销售记录信息
     function toUpdatePage(userId){
-    	 var url=_path+"/invoicing/goods/price/update?userId="+userId;
+    	 var url=_path+"/invoicing/sale/record/update?userId="+userId;
 		 //调用跳转方法
 		 goBackPage(url);
     }

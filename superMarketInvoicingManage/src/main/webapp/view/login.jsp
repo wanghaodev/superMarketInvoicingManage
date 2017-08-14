@@ -8,24 +8,24 @@
 	<meta charset="utf-8" />
 	<title>登录页</title>
 </head>
-<body class="login-layout">
-	<div class="main-container">
-		<div class="main-content">
-			<div class="row">
+<body class="">
+	<div class="main-container" style="margin-top: 100px;background-color: #0464b6;">
+		<div class="main-content" >
+			<div class="row" >
 				<div class="col-sm-10 col-sm-offset-1">
-					<div class="login-container">
+					<div class="login-container ">
 						<div class="center">
-							<h1>
-								<i class="icon-leaf green"></i>
-								<span class="red">superMarket</span>
-								<span class="white">InvoicingManageSystem</span>
-							</h1>
+							<h2>
+								 <i class="icon-leaf green"></i>
+								<span class="red">超市货物</span>
+								<span class="white">进销存管理系统</span>
+							</h2>
 						</div>
 
 						<div class="space-6"></div>
 
 						<div class="position-relative">
-							<div id="login-box" class="login-box visible widget-box no-border">
+							<div id="login-box" class="login-box visible widget-box no-border ">
 								<div class="widget-body">
 									<div class="widget-main">
 										<h4 class="header blue lighter bigger">
@@ -56,7 +56,7 @@
 												<div class="clearfix">
 													<label class="inline">
 														<input type="checkbox" class="ace" />
-														<span class="lbl"> Remember Me</span>
+														<span class="lbl"> 记住密码</span>
 													</label>
 
 													<button type="button" id="loginCommit" class="width-35 pull-right btn btn-sm btn-primary">

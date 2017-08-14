@@ -186,7 +186,7 @@ public class AreaController {
 	
 	@RequestMapping(value="/list",method=RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity getRoleList(){
+	public ResponseEntity getRoleList(@RequestParam Long pId){
 		Map<String,Object> queryMap=new HashMap<String,Object>();
 		List<AreaEntity> areaList=areaService.getList(queryMap);
 		ResponseEntity res=new ResponseEntity();

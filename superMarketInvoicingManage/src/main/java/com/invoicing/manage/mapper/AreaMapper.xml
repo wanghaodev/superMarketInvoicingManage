@@ -200,6 +200,9 @@
 	</update>
 	
 	<sql id="wheresql">
+ 		 <if test="pid != null">
+ 			 and AND area.pid = #{pid}
+ 		  </if>
  		 <if test="shortName != null">
  			 and area.short_name = #{shortName}
  		  </if>

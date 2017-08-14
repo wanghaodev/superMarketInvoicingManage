@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Bootstrap表格插件 - Bootstrap后台管理系统模版Ace下载</title>
+    <meta name="keywords" content="Bootstrap模版,Bootstrap模版下载,Bootstrap教程,Bootstrap中文" />
+    <meta name="description" content="站长素材提供Bootstrap模版,Bootstrap教程,Bootstrap中文翻译等相关Bootstrap插件下载" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- basic styles -->
+
+    <link href="static/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="static/css/font-awesome.min.css" />
+
+    <!--[if IE 7]>
+    <link rel="stylesheet" href="static/css/font-awesome-ie7.min.css" />
+    <![endif]-->
+
+    <!-- page specific plugin styles -->
+
+    <!-- fonts -->
+    <!-- ace styles -->
+
+    <link rel="stylesheet" href="static/css/ace.min.css" />
+    <link rel="stylesheet" href="static/css/ace-rtl.min.css" />
+    <link rel="stylesheet" href="static/css/ace-skins.min.css" />
+
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="static/css/ace-ie.min.css" />
+    <![endif]-->
+
+    <!-- inline styles related to this page -->
+
+    <!-- ace settings handler -->
+
+    <script src="static/js/ace-extra.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+    <!--[if lt IE 9]>
+    <script src="static/js/html5shiv.js"></script>
+    <script src="static/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<div class="row">
+    <div class="col-sm-6">
+        <div>
+            <h3 class="header smaller lighter purple">
+                Bootstrap Modals
+                <small>(Bootbox.js)</small>
+            </h3>
+
+            <p>
+                <button class="btn" id="bootbox-regular">Regular Dialog</button>
+                <button class="btn btn-info" id="bootbox-confirm">Confirm</button>
+                <button class="btn btn-success" id="bootbox-options">More Options</button>
+            </p>
+        </div><!-- /row -->
+
+        <div class="space-24"></div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <h3 class="header smaller lighter grey">
+                    <i class="icon-spinner icon-spin orange bigger-125"></i>
+                    Imageless Spinner
+                    <small>(spin.js)</small>
+                </h3>
+            </div>
+        </div><!-- /row -->
+    </div>
+</div>
+<!-- /.main-container -->
+<!-- basic scripts -->
+<!--[if !IE]> -->
+<!-- <![endif]-->
+<!--[if IE]>
+<![endif]-->
+<!--[if !IE]> -->
+<script type="text/javascript">
+    window.jQuery || document.write("<script src='static/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+</script>
+<!-- <![endif]-->
+
+<script type="text/javascript">
+    window.jQuery || document.write("<script src='static/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+</script>
+<![endif]-->
+<script type="text/javascript">
+    if("ontouchend" in document) document.write("<script src='static/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+</script>
+<script src="static/js/bootstrap.min.js"></script>
+<script src="static/js/typeahead-bs2.min.js"></script>
+<!-- page specific plugin scripts -->
+<script src="static/js/jquery.dataTables.min.js"></script>
+<script src="static/js/jquery.dataTables.bootstrap.js"></script>
+<!-- ace scripts -->
+<script src="static/js/ace-elements.min.js"></script>
+<script src="static/js/ace.min.js"></script>
+<script src="static/js/bootbox.min.js"></script>
+<!-- inline scripts related to this page -->
+<script type="text/javascript">
+    jQuery(function($) {
+        $("#bootbox-regular").on(ace.click_event, function() {
+            bootbox.prompt("What is your name?", function(result) {
+                if (result === null) {
+                    //Example.show("Prompt dismissed");
+                } else {
+                    //Example.show("Hi <b>"+result+"</b>");
+                }
+            });
+        });
+
+        $("#bootbox-confirm").on(ace.click_event, function() {
+            bootbox.confirm("Are you sure?", function(result) {
+                if(result) {
+                    //
+                }
+            });
+        });
+    });
+
+    $("#bootbox-options").on(ace.click_event, function() {
+        bootbox.dialog({
+            message: "<span class='bigger-110'>I am a custom dialog with smaller buttons</span>",
+            buttons:
+            {
+                "success" :
+                {
+                    "label" : "<i class='icon-ok'></i> Success!",
+                    "className" : "btn-sm btn-success",
+                    "callback": function() {
+                        //Example.show("great success");
+                    }
+                },
+                "danger" :
+                {
+                    "label" : "Danger!",
+                    "className" : "btn-sm btn-danger",
+                    "callback": function() {
+                        //Example.show("uh oh, look out!");
+                    }
+                },
+                "click" :
+                {
+                    "label" : "Click ME!",
+                    "className" : "btn-sm btn-primary",
+                    "callback": function() {
+                        //Example.show("Primary button");
+                    }
+                },
+                "button" :
+                {
+                    "label" : "Just a button...",
+                    "className" : "btn-sm"
+                }
+            }
+        });
+    });
+    $('#spinner-opts small').css({display:'inline-block', width:'60px'});
+</script>
+</body>
+</html>

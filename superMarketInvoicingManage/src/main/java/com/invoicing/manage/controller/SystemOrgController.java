@@ -2,6 +2,7 @@ package com.invoicing.manage.controller;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -40,7 +41,7 @@ public class SystemOrgController {
 	private static Logger logger=LoggerFactory.getLogger(SystemOrgController.class);
 	
 	@Autowired
-	private SystemOrgService systemAuthorityService;
+	private SystemOrgService systemOrgService;
 	
 	
 	/**
@@ -71,7 +72,7 @@ public class SystemOrgController {
 		pageInfo.setPageNo(orgRequestEntity.getPageNo());
 		pageInfo.setPageSize(orgRequestEntity.getPageSize());
 		Map<String,Object> params=new HashMap<String,Object>();
-		PageInfo<SystemOrgEntity> authorityList = systemAuthorityService.getList(pageInfo, params);
+		PageInfo<SystemOrgEntity> authorityList = systemOrgService.getList(pageInfo, params);
 		logger.debug("method [getSystemOrgEntityList] 查询机构列表，返回结果为："+JSON.toJSONString(authorityList));
 		return new SuccessResponseEntity(authorityList);
 		
@@ -91,7 +92,7 @@ public class SystemOrgController {
 	public ResponseEntity addSystemOrg(SystemOrgEntity systemAuthorityEntity){
 		try {
 			logger.debug("新建机构，传入参数为："+JSON.toJSONString(systemAuthorityEntity));
-			int insertRest=systemAuthorityService.insertSelective(systemAuthorityEntity);
+			int insertRest=systemOrgService.insertSelective(systemAuthorityEntity);
 			logger.debug("新建机构，返回结果为："+JSON.toJSONString(insertRest));
 			return new SuccessResponseEntity();
 		} catch (Exception e) {
@@ -114,7 +115,7 @@ public class SystemOrgController {
 	public ResponseEntity updateSystemOrg(SystemOrgEntity systemAuthorityEntity){
 		try {
 			logger.debug("编辑菜单，传入参数为："+JSON.toJSONString(systemAuthorityEntity));
-			int insertRest=systemAuthorityService.updateByPrimaryKeySelective(systemAuthorityEntity);
+			int insertRest=systemOrgService.updateByPrimaryKeySelective(systemAuthorityEntity);
 			logger.debug("编辑菜单，返回结果为："+JSON.toJSONString(insertRest));
 			return new SuccessResponseEntity();
 		} catch (Exception e) {
@@ -140,7 +141,7 @@ public class SystemOrgController {
 			systemAuthorityEntity.setValid(0);
 			systemAuthorityEntity.setUpdateTime(new Date());
 			logger.debug("删除菜单，传入参数为："+JSON.toJSONString(systemAuthorityEntity));
-			int insertRest=systemAuthorityService.updateByPrimaryKeySelective(systemAuthorityEntity);
+			int insertRest=systemOrgService.updateByPrimaryKeySelective(systemAuthorityEntity);
 			logger.debug("删除菜单，返回结果为："+JSON.toJSONString(insertRest));
 			return new SuccessResponseEntity();
 		} catch (Exception e) {
@@ -149,6 +150,14 @@ public class SystemOrgController {
 		}
 	}
 	
+	@RequestMapping(value = "/tree", method = RequestMethod.POST)
+	@ResponseBody
+	public Object getOrgList(){
+		Map<String,Object>  queryMap=new HashMap<String,Object>();
+		List<SystemOrgEntity> getList=systemOrgService.getList(queryMap);
+		return getList;
+		
+	}
 	
 	
 	

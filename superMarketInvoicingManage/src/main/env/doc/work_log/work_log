@@ -11,3 +11,31 @@
 /invoicing/goods/info/page/list
  /invoicing/goods/price/page/list
 /invoicing/goods/property/page/list
+
+新增数据：（属性表，属性值表）
+
+属性列表
+-- list 
+SELECT
+	goodsProperty.id,
+	goodsProperty.category_id categoryId,
+	goodsProperty.property_name propertyName,
+	goodsCategory.category_name categoryName,
+	goodsProperty.category_type categoryType,
+	goodsProperty.property_type propertyType,
+	goodsProperty. STATUS STATUS,
+	goodsProperty.update_time
+FROM
+	goods_property_tb goodsProperty
+LEFT JOIN goods_category_tb goodsCategory ON goodsProperty.category_id = goodsCategory.id
+WHERE
+	1 = 1
+	
+-- count
+SELECT
+COUNT(1)
+FROM
+	goods_property_tb goodsProperty
+LEFT JOIN goods_category_tb goodsCategory ON goodsProperty.category_id = goodsCategory.id
+WHERE
+	1 = 1

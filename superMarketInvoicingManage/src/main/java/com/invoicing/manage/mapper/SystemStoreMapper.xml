@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.invoicing.manage.mapper.SystemStoreMapper">
+
+	 <resultMap type="com.invoicing.manage.entity.SystemStoreEntity" id="BaseResultMap">
+    	 <id column="id" property="id" /> 
+		  <id column="storeName" property="storeName" /> 
+		  <id column="storeAbbreviation" property="storeAbbreviation" /> 
+		  <id column="type" property="type" /> 
+		  <id column="formatType" property="formatType" /> 
+		  <id column="status" property="status" /> 
+		  <id column="orgId" property="orgId" /> 
+		  <id column="hierarchyId" property="hierarchyId" /> 
+		  <id column="userName" property="userName" /> 
+		  <id column="contactName" property="contactName" /> 
+		  <id column="contactPhone" property="contactPhone" /> 
+		  <id column="province" property="province" /> 
+		  <id column="city" property="city" /> 
+		  <id column="district" property="district" /> 
+		  <id column="address" property="address" /> 
+		  <id column="remark" property="remark" /> 
+		  <id column="valid" property="valid" /> 
+		  <id column="creatorId" property="creatorId" /> 
+		  <id column="createTime" property="createTime" /> 
+		  <id column="updatorId" property="updatorId" /> 
+		  <id column="updateTime" property="updateTime" /> 
+		  <id column="remark1" property="remark1" /> 
+		  <id column="remark2" property="remark2" /> 
+  
+    </resultMap>
+    <!-- 显示部分字段 -->
+    <sql id="Part_Column_List">
+    	systemStore.id as id ,
+		systemStore.store_name as storeName ,
+		systemStore.type as type ,
+		systemStore.format_type as formatType ,
+		systemStore.org_id as orgId
+    </sql>
+    
+    <sql id="Base_Column_List">
+    	 systemStore.id as id ,
+ 		 systemStore.store_name as storeName ,
+ 		 systemStore.store_abbreviation as storeAbbreviation ,
+ 		 systemStore.type as type ,
+ 		 systemStore.format_type as formatType ,
+ 		 systemStore.status as status ,
+ 		 systemStore.org_id as orgId ,
+ 		 systemStore.hierarchy_id as hierarchyId ,
+ 		 systemStore.user_name as userName ,
+ 		 systemStore.contact_name as contactName ,
+ 		 systemStore.contact_phone as contactPhone ,
+ 		 systemStore.province as province ,
+ 		 systemStore.city as city ,
+ 		 systemStore.district as district ,
+ 		 systemStore.address as address ,
+ 		 systemStore.remark as remark ,
+ 		 systemStore.valid as valid ,
+ 		 systemStore.creator_id as creatorId ,
+ 		 systemStore.create_time as createTime ,
+ 		 systemStore.updator_id as updatorId ,
+ 		 systemStore.update_time as updateTime ,
+ 		 systemStore.remark1 as remark1 ,
+ 		 systemStore.remark2 as remark2
+    </sql>
+    
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		 select 
+ 		  <include refid="Base_Column_List" />
+ 		  from system_store_tb systemStore
+ 		  where systemStore.id = #{ id }
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		 delete 
+ 		  from system_store_tb
+ 		  where id = #{ id }
+	</delete>
+	
+	<insert id="insertSelective" parameterType="com.invoicing.manage.entity.SystemStoreEntity">
+		 insert into  system_store_tb
+ 		  <trim prefix="(" suffix=")" suffixOverrides=","> 
+ 			 <if test="id != null">
+ 				 id,
+ 			  </if>
+ 			 <if test="storeName != null">
+ 				 store_name,
+ 			  </if>
+ 			 <if test="storeAbbreviation != null">
+ 				 store_abbreviation,
+ 			  </if>
+ 			 <if test="type != null">
+ 				 type,
+ 			  </if>
+ 			 <if test="formatType != null">
+ 				 format_type,
+ 			  </if>
+ 			 <if test="status != null">
+ 				 status,
+ 			  </if>
+ 			 <if test="orgId != null">
+ 				 org_id,
+ 			  </if>
+ 			 <if test="hierarchyId != null">
+ 				 hierarchy_id,
+ 			  </if>
+ 			 <if test="userName != null">
+ 				 user_name,
+ 			  </if>
+ 			 <if test="contactName != null">
+ 				 contact_name,
+ 			  </if>
+ 			 <if test="contactPhone != null">
+ 				 contact_phone,
+ 			  </if>
+ 			 <if test="province != null">
+ 				 province,
+ 			  </if>
+ 			 <if test="city != null">
+ 				 city,
+ 			  </if>
+ 			 <if test="district != null">
+ 				 district,
+ 			  </if>
+ 			 <if test="address != null">
+ 				 address,
+ 			  </if>
+ 			 <if test="remark != null">
+ 				 remark,
+ 			  </if>
+ 			 <if test="valid != null">
+ 				 valid,
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 creator_id,
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 create_time,
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 updator_id,
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 update_time,
+ 			  </if>
+ 			 <if test="remark1 != null">
+ 				 remark1,
+ 			  </if>
+ 			 <if test="remark2 != null">
+ 				 remark2,
+ 			  </if>
+ 		  </trim>
+ 		  <trim prefix="values (" suffix=")" suffixOverrides="," >
+ 			 <if test="id != null">
+ 				 #{id},
+ 			  </if>
+ 			 <if test="storeName != null">
+ 				 #{storeName},
+ 			  </if>
+ 			 <if test="storeAbbreviation != null">
+ 				 #{storeAbbreviation},
+ 			  </if>
+ 			 <if test="type != null">
+ 				 #{type},
+ 			  </if>
+ 			 <if test="formatType != null">
+ 				 #{formatType},
+ 			  </if>
+ 			 <if test="status != null">
+ 				 #{status},
+ 			  </if>
+ 			 <if test="orgId != null">
+ 				 #{orgId},
+ 			  </if>
+ 			 <if test="hierarchyId != null">
+ 				 #{hierarchyId},
+ 			  </if>
+ 			 <if test="userName != null">
+ 				 #{userName},
+ 			  </if>
+ 			 <if test="contactName != null">
+ 				 #{contactName},
+ 			  </if>
+ 			 <if test="contactPhone != null">
+ 				 #{contactPhone},
+ 			  </if>
+ 			 <if test="province != null">
+ 				 #{province},
+ 			  </if>
+ 			 <if test="city != null">
+ 				 #{city},
+ 			  </if>
+ 			 <if test="district != null">
+ 				 #{district},
+ 			  </if>
+ 			 <if test="address != null">
+ 				 #{address},
+ 			  </if>
+ 			 <if test="remark != null">
+ 				 #{remark},
+ 			  </if>
+ 			 <if test="valid != null">
+ 				 #{valid},
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 #{creatorId},
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 #{createTime},
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 #{updatorId},
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 #{updateTime},
+ 			  </if>
+ 			 <if test="remark1 != null">
+ 				 #{remark1},
+ 			  </if>
+ 			 <if test="remark2 != null">
+ 				 #{remark2},
+ 			  </if>
+ 		  </trim>
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="com.invoicing.manage.entity.SystemStoreEntity">
+		 update   system_store_tb
+ 		 <set>
+ 			 <if test="storeName != null">
+ 				 store_name = #{storeName},
+ 			  </if>
+ 			 <if test="storeAbbreviation != null">
+ 				 store_abbreviation = #{storeAbbreviation},
+ 			  </if>
+ 			 <if test="type != null">
+ 				 type = #{type},
+ 			  </if>
+ 			 <if test="formatType != null">
+ 				 format_type = #{formatType},
+ 			  </if>
+ 			 <if test="status != null">
+ 				 status = #{status},
+ 			  </if>
+ 			 <if test="orgId != null">
+ 				 org_id = #{orgId},
+ 			  </if>
+ 			 <if test="hierarchyId != null">
+ 				 hierarchy_id = #{hierarchyId},
+ 			  </if>
+ 			 <if test="userName != null">
+ 				 user_name = #{userName},
+ 			  </if>
+ 			 <if test="contactName != null">
+ 				 contact_name = #{contactName},
+ 			  </if>
+ 			 <if test="contactPhone != null">
+ 				 contact_phone = #{contactPhone},
+ 			  </if>
+ 			 <if test="province != null">
+ 				 province = #{province},
+ 			  </if>
+ 			 <if test="city != null">
+ 				 city = #{city},
+ 			  </if>
+ 			 <if test="district != null">
+ 				 district = #{district},
+ 			  </if>
+ 			 <if test="address != null">
+ 				 address = #{address},
+ 			  </if>
+ 			 <if test="remark != null">
+ 				 remark = #{remark},
+ 			  </if>
+ 			 <if test="valid != null">
+ 				 valid = #{valid},
+ 			  </if>
+ 			 <if test="creatorId != null">
+ 				 creator_id = #{creatorId},
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 create_time = #{createTime},
+ 			  </if>
+ 			 <if test="updatorId != null">
+ 				 updator_id = #{updatorId},
+ 			  </if>
+ 			 <if test="updateTime != null">
+ 				 update_time = #{updateTime},
+ 			  </if>
+ 			 <if test="remark1 != null">
+ 				 remark1 = #{remark1},
+ 			  </if>
+ 			 <if test="remark2 != null">
+ 				 remark2 = #{remark2},
+ 			  </if>
+ 		 </set>
+     where id = #{id}
+	</update>
+	
+	<!-- 查询条件 -->
+	<sql id="whereSQL">
+		<if test="id != null">
+ 			 and systemStore.id = #{id}
+ 		  </if>
+ 		 <if test="storeName != null">
+ 			 and systemStore.store_name = #{storeName}
+ 		  </if>
+ 		 <if test="storeAbbreviation != null">
+ 			 and systemStore.store_abbreviation = #{storeAbbreviation}
+ 		  </if>
+ 		 <if test="type != null">
+ 			 and systemStore.type = #{type}
+ 		  </if>
+ 		 <if test="formatType != null">
+ 			 and systemStore.format_type = #{formatType}
+ 		  </if>
+ 		 <if test="status != null">
+ 			 and systemStore.status = #{status}
+ 		  </if>
+ 		 <if test="orgId != null">
+ 			 and systemStore.org_id = #{orgId}
+ 		  </if>
+ 		 <if test="hierarchyId != null">
+ 			 and systemStore.hierarchy_id = #{hierarchyId}
+ 		  </if>
+ 		 <if test="userName != null">
+ 			 and systemStore.user_name = #{userName}
+ 		  </if>
+ 		 <if test="contactName != null">
+ 			 and systemStore.contact_name = #{contactName}
+ 		  </if>
+ 		 <if test="contactPhone != null">
+ 			 and systemStore.contact_phone = #{contactPhone}
+ 		  </if>
+ 		 <if test="address != null">
+ 			 and systemStore.address = #{address}
+ 		  </if>
+	</sql>	  
+	
+	<select id="getList" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		 select 
+ 		  <include refid="Part_Column_List" />
+ 		  from system_store_tb systemStore
+ 		  where 1=1 
+ 		  <include refid="whereSQL"/>
+	</select>
+	
+	 <select id="getPageList" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		SELECT
+				<include refid="Base_Column_List"/>
+				,systemOrg.org_name as orgName
+		FROM
+			system_store_tb systemStore
+		LEFT JOIN system_org_tb systemOrg 
+		ON systemOrg.id = systemStore.org_id
+ 		  where 1=1 
+ 		  <include refid="whereSQL"/>
+	</select>
+	 <select id="getListCount" resultType="java.lang.Integer"
+		parameterType="java.util.Map">
+		 SELECT
+			count(1)
+		FROM
+			system_store_tb systemStore
+		LEFT JOIN system_org_tb systemOrg 
+		ON systemOrg.id = systemStore.org_id
+ 		  where 1=1 
+ 		<include refid="whereSQL"/>
+	</select>
+</mapper>

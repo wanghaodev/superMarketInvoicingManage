@@ -9,7 +9,7 @@
 	<title>登录页</title>
 </head>
 <body class="">
-	<div class="main-container" style="margin-top: 100px;background-color: #0464b6;">
+	<div class="main-container" style="margin-top: 100px;background-color: #3074c1;">
 		<div class="main-content" >
 			<div class="row" >
 				<div class="col-sm-10 col-sm-offset-1">
@@ -17,8 +17,7 @@
 						<div class="center">
 							<h2>
 								 <i class="icon-leaf green"></i>
-								<span class="red">超市货物</span>
-								<span class="white">进销存管理系统</span>
+								<span class="white">超市货物进销存管理系统</span>
 							</h2>
 						</div>
 
@@ -28,10 +27,10 @@
 							<div id="login-box" class="login-box visible widget-box no-border ">
 								<div class="widget-body">
 									<div class="widget-main">
-										<h4 class="header blue lighter bigger">
+										<h3 class="header blue lighter bigger">
 											<i class="icon-coffee green"></i>
 											系统登录
-										</h4>
+										</h3>
 
 										<div class="space-6"></div>
 
@@ -39,15 +38,15 @@
 											<fieldset>
 												<label class="block clearfix">
 													<span class="block input-icon input-icon-right">
-														<input type="text" name="loginName" class="form-control" placeholder="Username" />
-														<i class="icon-user"></i>
+														<input type="text" name="loginName" class="form-control" placeholder="Username" style="height: 45px;"/>
+														<i class="icon-user" style="padding: 7px 3px;"></i>
 													</span>
 												</label>
 
 												<label class="block clearfix">
 													<span class="block input-icon input-icon-right">
-														<input type="password" name="password" class="form-control" placeholder="Password" />
-														<i class="icon-lock"></i>
+														<input type="password" name="password" class="form-control" placeholder="Password" style="height: 45px;"/>
+														<i class="icon-lock" style="padding: 7px 3px;"></i>
 													</span>
 												</label>
 
@@ -59,9 +58,9 @@
 														<span class="lbl"> 记住密码</span>
 													</label> -->
 
-													<button type="button" id="loginCommit" class="width-35 pull-right btn btn-sm btn-primary">
-														<i class="icon-key"></i>
-														登录
+													<button type="button" id="loginCommit" class="width-100 pull-right btn btn-sm btn-primary" style="text-align: center;height: 45px;font-size: 16px;font-weight: 700;">
+														<!-- <i class="icon-key"></i> -->
+														登&nbsp;&nbsp;&nbsp;&nbsp;录
 													</button>
 												</div>
 
@@ -87,7 +86,7 @@ function show_box(id) {
 
 //绑定敲回车事件
 //用户名：敲回车触发事件
-/* 	$('[name=loginName]').bind('keypress',function(event){
+ $('[name=loginName]').bind('keypress',function(event){
   if(event.keyCode == "13") {
   	//密码获取焦点
   	$("[name=password]").focus();
@@ -95,12 +94,12 @@ function show_box(id) {
 });
 
 //密码：敲回车触发事件
-	$('[name=password]').bind('keypress',function(event){
+$('[name=password]').bind('keypress',function(event){
   if(event.keyCode == "13") {
   	//校验表单信息
   	$("#loginCommit").trigger("click");
    }
-}); */
+}); 
 //登录校验
 $("#loginCommit").click(function(){
 	var isOK=true;

@@ -115,6 +115,17 @@ public class IndexController {
 		
 	}
 	
+	/**
+	 * 加载main.jsp页面
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/main", method = RequestMethod.GET)
+	public ModelAndView loadMainPage() {
+		logger.info("记载主页面...");
+		return new ModelAndView("/login");
+	}
+	
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	 public ModelAndView logOut(UserRequestEntity userRequestEntity,HttpSession session){
 		logger.info("method [logOut],退出系统，并将当前用户信息从session中删除。");

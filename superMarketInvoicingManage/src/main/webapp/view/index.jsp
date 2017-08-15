@@ -43,7 +43,7 @@
 
 						<ul
 							class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-							<li><a href="#"> <i class="icon-cog"></i> 设置
+							<li><a href="#"> <i class="icon-cog"></i> 修改密码
 							</a></li>
 
 							<li><a href="#"> <i class="icon-user"></i> 个人资料
@@ -112,11 +112,13 @@
 					<script type="text/javascript">
 							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
 						</script>
-
-					<ul class="breadcrumb">
+						<!-- <span style="margin-left: 15px;font-size: 14px;" id="welcome_span">
+							<span style="color: red; font-weight: 600;">欢迎光临！</span>超市货物进销存管理系统
+						</span> -->
+						<span style="margin-left: 15px;font-size: 14px;">北京时间：</span><span id="time"></span>
+					<!-- <ul class="breadcrumb">
 						<li><i class="icon-home home-icon"></i> <a href="#">首页</a></li>
-						<li class="active">控制台</li>
-					</ul>
+					</ul> -->
 					<!-- .breadcrumb -->
 
 					<!--<div class="nav-search" id="nav-search">
@@ -130,10 +132,19 @@
 				</div>
 
 				<div class="page-content">
-					<div class="page-header" id="mian_div"></div>
+					<div class="page-header" id="mian_div">
+											
+					</div>
 					<!-- /.page-header -->
 					<!--add other page-->
-					<div class="row"></div>
+					<div class="row" id="main_page_div">
+						<div id="main_page_top_div" style="width: 100%;">
+							<img alt="" style="height: 150px;margin: 0 auto;float: left;margin-left: 18%;" src="<%=request.getContextPath()%>/static/images/j_x_c_1.png" >
+						</div>
+						<div id="main_page_bottom_div" style="float: right;text-align: center;">
+							<img alt="" style="height: 400px;" src="<%=request.getContextPath()%>/static/images/jxc_main_bg.png" >
+						</div>
+					</div>
 				</div>
 				<!-- /.page-content -->
 			</div>
@@ -202,6 +213,22 @@
 	
 
 	<!-- inline scripts related to this page -->
+	<!-- 加载当前登录时间 -->
+<script type="text/javascript">
+		function currentTime() {
+			var d = new Date(), str = '';
+			str += d.getFullYear() + '年';
+			str += d.getMonth() + 1 + '月';
+			str += d.getDate() + '日';
+			str += d.getHours() + '时';
+			str += d.getMinutes() + '分';
+			str += d.getSeconds() + '秒';
+			return str;
+		}
+		setInterval(function() {
+			$('#time').html(currentTime)
+		}, 1000);
+	</script>
 	<script type="text/javascript">
 			jQuery(function($) {
 				$('.easy-pie-chart.percentage').each(function(){
@@ -337,15 +364,26 @@ $(document).ready(function(){
 	//加载菜单树...
 	loadTree();	
 });
+
+//加载主页...
+function loadMainPage(){
+	var url=_path+"/invoicing/main";
+	$.get(url,function(data){
+		console.log(data);
+		$("#mian_div").html(data);
+	});
+}
 //菜单跳转（div+js实现ifream框架内页面跳转）
 		$(function(){
 			$('.menu_li').click(function(){//点击li加载界面
+				//影藏主内容
+				$("#main_page_div").hide();
 				var current = $(this),
 				target = current.find('a').attr('target'); // 找到链接a中的targer的值
 				//移除当前的a标签属性
 				//current.removeAttr('href');
 				$.get(target,function(data){
-					console.log(target);
+					//console.log(target);
 					$("#mian_div").html(data);
 				});
 			});

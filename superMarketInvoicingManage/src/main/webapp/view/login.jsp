@@ -54,10 +54,10 @@
 												<div class="space"></div>
 
 												<div class="clearfix">
-													<label class="inline">
+													<!-- <label class="inline">
 														<input type="checkbox" class="ace" />
 														<span class="lbl"> 记住密码</span>
-													</label>
+													</label> -->
 
 													<button type="button" id="loginCommit" class="width-35 pull-right btn btn-sm btn-primary">
 														<i class="icon-key"></i>
@@ -84,6 +84,23 @@ function show_box(id) {
 	 jQuery('.widget-box.visible').removeClass('visible');
 	 jQuery('#'+id).addClass('visible');
 }
+
+//绑定敲回车事件
+//用户名：敲回车触发事件
+/* 	$('[name=loginName]').bind('keypress',function(event){
+  if(event.keyCode == "13") {
+  	//密码获取焦点
+  	$("[name=password]").focus();
+   }
+});
+
+//密码：敲回车触发事件
+	$('[name=password]').bind('keypress',function(event){
+  if(event.keyCode == "13") {
+  	//校验表单信息
+  	$("#loginCommit").trigger("click");
+   }
+}); */
 //登录校验
 $("#loginCommit").click(function(){
 	var isOK=true;

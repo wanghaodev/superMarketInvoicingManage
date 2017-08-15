@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,10 +9,8 @@
 <title>门店添加页</title>
 <!--日历--> 
 <link href="<%=request.getContextPath() %>/static/css/bootstrap-datetimepicker.css" rel="stylesheet">
-
 <!--校验-->
 <link href="<%=request.getContextPath() %>/static/css/bootstrapValidator.min.css" rel="stylesheet">
-
 <style type="text/css">
 		/**数据框后面的button按钮**/
 	.input-btn{
@@ -38,7 +38,7 @@
 	                    <td>
 	                    	<div class="input-group">
 	                            <input type="text" class="form-control " aria-label="Amount (to the nearest dollar)" name="managerOrg" value="${org.orgName }" readonly="readonly" />
-	                            <input type="hidden" name="orgId" value="${org.id }"/>
+	                            <%-- <input type="hidden" name="orgId" value="${org.id }"/> --%>
 	                            <span class="input-group-btn">
 	                                <button class="btn btn-primary distribution input-btn" name="orgCheck" type="button">选择</button> 
 	                            </span>
@@ -79,13 +79,6 @@
 				                </select>
 			                </div>
 	                    </td>
-	                    <!-- <th><span class="required">*</span>用户名(默认密码123456)：</th>
-	                    <td>
-	                    	<div class="form-group ">
-	                    		<input type="text" class="form-control"  placeholder="英文或与数字组合，最多可输入25个字符" name="userName" value="">
-	                    		<input type="hidden" name="initPwd" value="123456">
-	                    	</div>
-	                    </td> -->
 	                </tr>
 	                
 	                <tr>
@@ -112,7 +105,7 @@
 	                    	<div class="form-group ">
 		                    	<!-- 首先加载：省份 -->
 		                        <select class="form-control" name="province">
-		                            <c:forEach items="${proList}" var="obj">
+		                            <c:forEach items="${areaList}" var="obj">
 		                    			<option id="${obj.id}" value="${obj.name}">${obj.name} </option>
 		                    		</c:forEach>
 		                        </select>
@@ -140,6 +133,7 @@
 				                <input size="16" type="text" value="${tradeTime }"  class="form-control" name="startTime" id="startDate">
 				                <span class="add-on "><i class="icon-th glyphicon glyphicon-th-large"></i></span>
 			                </div>
+			                
 			            	<label  style="min-width:0px;"> 至  </label>
 			            	<div style="display: inline-block;width: 45%;" class="input-append date form_datetime" id="datetimepicker1" data-date="" data-date-format="dd-mm-yyyy">
 				                <input size="16" type="text" value="${tradeTime }"  class="form-control" name="endTime" id="endDate">
@@ -193,6 +187,8 @@
 		//加载父门店
 		loadOrgTree();
 	});
+	
+	
 	$("#addBtn").click(function (){
 	     $.ajax({
  			type : "post",
@@ -246,6 +242,6 @@
 <!-- 校验框架 -->
 <script type="text/javascript" src="<%=request.getContextPath() %>/static/js/bootstrapValidator.min.js"></script>
 
-<script type="text/javascript" src="<%=request.getContextPath() %>/view/system/store/js/storeAdd.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/view/system/store/js/store_add.js"></script>
 </body>
 </html>

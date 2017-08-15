@@ -20,8 +20,10 @@ import com.alibaba.fastjson.JSON;
 import com.invoicing.manage.comment.entity.ErrorResponseEntity;
 import com.invoicing.manage.comment.entity.ResponseEntity;
 import com.invoicing.manage.comment.entity.SuccessResponseEntity;
+import com.invoicing.manage.entity.AreaEntity;
 import com.invoicing.manage.entity.SystemStoreEntity;
 import com.invoicing.manage.request.StoreRequestEntity;
+import com.invoicing.manage.service.AreaService;
 import com.invoicing.manage.service.SystemStoreService;
 import com.snailf.platforms.common.entity.PageInfo;
 
@@ -44,6 +46,9 @@ public class SystemStoreController {
 	
 	@Autowired
 	private SystemStoreService systemStoreService;
+	
+	@Autowired
+	private AreaService areaService;
 	
 	
 	
@@ -88,9 +93,19 @@ public class SystemStoreController {
 	 * @since JDK 1.7
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public ModelAndView goToSystemStoreAdd(){
+	@ResponseBody
+	public ModelAndView goToSystemStoreAdd(ModelMap modelMap){
 		String url="/system/store/store_add";
-		return new ModelAndView(url);
+		
+		//获取省份
+		Map<String,Object> queryMap=new HashMap<String,Object>();
+		queryMap.put("pid",1);
+		List<AreaEntity> areaList = areaService.getList(queryMap);
+		logger.info("areaList:"+JSON.toJSONString(areaList));
+		if (areaList.size()>0) {
+			modelMap.put("areaList",areaList);
+		}
+		return new ModelAndView(url,modelMap);
 	}
 	
 	/**
@@ -183,5 +198,25 @@ public class SystemStoreController {
 		
 	}
 	
+	/**
+	 * @fun 加载：省市区
+	 * @param modelMap
+	 * @param pid
+	 * @return
+	 */
+	@RequestMapping(value = "/get/city/list", method = RequestMethod.POST)
+	@ResponseBody
+	public Object loadAreaList(ModelMap modelMap,String pid) {
+		//获取省份
+				Map<String,Object> queryMap=new HashMap<String,Object>();
+				queryMap.put("pid",pid);
+		List<AreaEntity> areaList = areaService.getList(queryMap);
+		logger.info("加载区县："+JSON.toJSONString(areaList));
+		//获取：子集省市区
+		if (areaList.size()>0) {
+			return new SuccessResponseEntity(areaList);
+		}
+		return null;
+	}
 
 }

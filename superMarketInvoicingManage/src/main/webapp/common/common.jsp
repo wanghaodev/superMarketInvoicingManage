@@ -5,7 +5,7 @@
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="expires" content="0">
  <!-- GLOBAL STYLES -->
-<link href="<%=request.getContextPath()%>/static/css/bootstrap.min.css" rel="stylesheet" />
+<link href="<%=request.getContextPath()%>/static/css/bootstrap.css" rel="stylesheet" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/static/css/font-awesome.min.css" />
 <!--[if IE 7]>
   <link rel="stylesheet" href="<%=request.getContextPath()%>/static/css/font-awesome-ie7.min.css" />

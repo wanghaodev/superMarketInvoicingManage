@@ -879,19 +879,6 @@ a.disabled {
     float: left;
 }
 
-/*右侧图标  大小,行内元素,显示在input里面 , 左边柿, 间距*/
-.form_datetime .add-on {
-    font-size: 18px;
-    display: inline-block;
-    margin-left: -32px;
-    border-left: 1px solid #e5e5e5;
-    padding-left: 7px;
-    padding-bottom: 1px;
-    padding-top: 9px;
-}
-.form_datetime .add-on .icon-th{
-    top:-4px;
-}
 /*加载䶿*/
 .waitload {
     position: fixed;
@@ -1430,3 +1417,25 @@ a.disabled {
 		right: 0;
 		top:40%;
 	}
+/*日历控件*/
+.form_datetime .form-control {
+    float: left;
+    background-color: #fff;
+    margin-top:0;
+    margin-right: 0;
+}
+
+/*右侧图标  大小,行内元素,显示在input里面 , 左边柿, 间距*/
+.form_datetime .add-on {
+    font-size: 18px;
+    display: inline-block;
+    margin-left: -32px;
+    border-left: 1px solid #e5e5e5;
+    padding-left: 7px;
+    padding-bottom: 1px;
+    padding-top: 9px;
+}
+.form_datetime .add-on .icon-th{
+    top:-4px;
+}
+

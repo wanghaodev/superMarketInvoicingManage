@@ -71,7 +71,6 @@ public class IndexController {
 	@ResponseBody
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView loginPost(HttpServletRequest request, HttpSession session,ModelMap modelMap) {
-		String defaultLoginName="admin";
 		String defaultPassWord="1";
 		String loginName=request.getParameter("loginName");
 		String password=request.getParameter("password");

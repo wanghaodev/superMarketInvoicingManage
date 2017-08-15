@@ -1,6 +1,6 @@
 
 /*日期*/
-$(".form_datetime").datetimepicker({
+/*$(".form_datetime").datetimepicker({
     format: 'hh:ii:00',
     linked:true,
     weekStart: 1,
@@ -11,8 +11,19 @@ $(".form_datetime").datetimepicker({
     language: 'zh-CN',
     todayBtn: true,
     pickerPosition: "bottom-left"
-});
+});*/
 
+$('.form_datetime').datetimepicker({
+    //language:  'fr',
+    todayBtn:  true,
+	autoclose: true,
+	todayHighlight:true,
+	startView: 2,
+	forceParse: 1,
+    language: 'zh-CN',
+	format: 'yyyy-mm-dd',
+	pickerPosition: "bottom-left"
+});
 var setting2 = {
 	async: {
 		enable: true,
@@ -73,7 +84,7 @@ $("[name=province]").change(function() {
 	var id = $(this).find("option:selected").attr("id");
 	$.ajax({
 	type : "POST",
-	url : _path+"/merge/store/get/city/list",
+	url : _path+"/invoicing/system/store/get/city/list",
 	data : {
 		'pid' : id
 	},

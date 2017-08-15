@@ -19,12 +19,12 @@
 			<input type="hidden" name="roleId" value="${role.id}" />
 			<input type="hidden" name="authIds" value="" />
 			<div class="panel panel-default">
-				<div class="panel-heading">职位管理</div>
+				<div class="panel-heading">给<span style="color: red;">${role.roleName}</span>分配权限</th></div>
 				<div class="panel-body table_add">
 					<table class="table half-table">
 						<tbody>
-							<tr>
-								<th>职位名称</th>
+							<%-- <tr>
+								<th>给<span style="color: red;">${role.roleName}</span>分配权限</th>
 								<td>
 									<div class="form-group ">
 										<input type="text" class="form-control" placeholder=""
@@ -40,7 +40,7 @@
 											disabled="disabled" />
 									</div>
 								</td>
-							</tr>
+							</tr> --%>
 							<tr>
 								<th class="rolelabel">分配权限</th>
 								<td colspan="3">

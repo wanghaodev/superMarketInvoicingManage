@@ -22,7 +22,10 @@
 		<div class="navbar-container" id="navbar-container">
 			<div class="navbar-header pull-left">
 				<a href="#" class="navbar-brand"> <small> <i
-						class="icon-leaf"></i> 超市货物进销存管理系统
+						class="icon-leaf"></i> 
+						<span style="font-weight: 800px;">
+							超市货物进销存管理系统
+						</span>
 				</small>
 				</a>
 				<!-- /.brand -->

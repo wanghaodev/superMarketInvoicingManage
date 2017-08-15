@@ -17,8 +17,8 @@
 	<div class="panel panel-default form-search">
 		<div class="panel-body">
 			<div class="conditions_team">
-				<input type="text" name="userName" class="form-control"placeholder="库存地姓名"> 
-				<input type="text" name="phone"class="form-control" placeholder="手机号码">
+				<input type="text" name="userName" class="form-control"placeholder="库存地编号"> 
+				<input type="text" name="phone"class="form-control" placeholder="库存地名称">
 			</div>
 		</div>
 		<div class="panel-footer">
@@ -60,21 +60,11 @@
                 ,data:{'userName':$("[name=userName]").val()
                 	  ,'phone':$("[name=phone]").val()}
                 ,cloumns:[
-					 {name:'库存地名称',value:'brandName'}
-                    ,{name:'英文名称',value:'brandEnglishName'}
-                    ,{name:'库存地首字母',value:'brandInitial'}
+					 {name:'库存地编号',value:'number'}
+                    ,{name:'库存地名称',value:'name'}
+                    ,{name:'库存地址',value:'instruction'}
                     ,{name:'创建时间',value:'createTime'}
                     ,{name:'更新时间',value:'updateTime'}
-                    ,{name:'状态',value:'state',type:"function", fun : function(obj){
-	                    	var html="";
-	                    	if(obj.state == 0){
-	                    		html += "停用";
-	                    	}else if(obj.state==1){
-	                    		html += "开启";
-	                    	}
-	                    	return html;
-                 	}
-                 }
                     ,{name:'操作',value:'id',type:"function", fun : function(obj){
                     	var html="";
                     		

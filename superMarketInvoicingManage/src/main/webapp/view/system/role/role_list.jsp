@@ -17,8 +17,7 @@
 	<div class="panel panel-default form-search">
 		<div class="panel-body">
 			<div class="conditions_team">
-				<input type="text" name="userName" class="form-control"placeholder="角色姓名"> 
-				<input type="text" name="phone"class="form-control" placeholder="手机号码">
+				<input type="text" name="userName" class="form-control"placeholder="角色名称"> 
 			</div>
 		</div>
 		<div class="panel-footer">

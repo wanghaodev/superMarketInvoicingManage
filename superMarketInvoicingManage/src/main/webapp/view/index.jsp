@@ -7,7 +7,6 @@
 <meta charset="utf-8" />
 <title>商品管理</title>
 <style type="text/css">
-/**设置鼠标为手状**/
 .menu_li {
 	cursor: pointer;
 }
@@ -24,6 +23,7 @@
 	background-image:url('../static/images/jxc_main_bg.png');
 	background-repeat: no-repeat;
 	background-position: right bottom;
+	dis
 }	
 </style>
 </head>
@@ -224,22 +224,34 @@
 		</a>
 	</div>
 	
-
-	<!-- inline scripts related to this page -->
 <!-- 加载主页js文件 -->
 <script src="<%=request.getContextPath()%>/static/js/index.js"></script>
-<!--加载其他页面-->
+<!-- inline scripts related to this page -->
+	<!-- 加载当前登录时间 -->
 <script type="text/javascript">
-$(document).ready(function(){
-	//加载菜单树...
+$(function(){
+//加载菜单树...
 	loadTree();	
-	//main页面自适应高度设置
+//main页面自适应高度设置
     autoHeight();
     window.onresize=autoHeight();
 //日期设置
 	setInterval( function() {
 		$('#time').html(currentTime)
 	}, 1000);
+//菜单跳转（div+js实现ifream框架内页面跳转）	
+	$('.menu_li').click(function(){//点击li加载界面
+		//影藏主内容
+		$("#main_page_div").hide();
+		var current = $(this),
+		target = current.find('a').attr('target'); // 找到链接a中的targer的值
+		//移除当前的a标签属性
+		//current.removeAttr('href');
+		$.get(target,function(data){
+			//console.log(target);
+			$("#mian_div").html(data);
+		});
+	});
 });
 </script>
 </body>

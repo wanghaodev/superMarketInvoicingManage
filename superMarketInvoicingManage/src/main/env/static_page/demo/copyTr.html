@@ -1,0 +1,155 @@
+<!doctype html>
+
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title></title>
+    <script src='../static/js/jquery-1.10.2.min.js'></script>
+
+</head>
+<body>
+
+<table id="tb" style="width: 100%; " border="1">
+
+    <tr>
+        <th>
+            <input type="checkbox" id="checkall" onclick="checkAll1(this)"/>
+        </th>
+        <th>姓名</th>
+        <th>性别</th>
+        <th>密码</th>
+        <th>地址</th>
+        <th>操作</th>
+    </tr>
+    <tr>
+        <td>
+            <input type="checkbox" id="Checkbox1" />
+        </td>
+        <td>张三</td>
+        <td>男</td>
+        <td>zhangsan</td>
+        <td>上海</td>
+        <td><input type="button" name="add_tr_btn" value="增加"></td>
+
+    </tr>
+    <tr>
+        <td>
+            <input type="checkbox" id="Checkbox2" />
+        </td>
+        <td>李四</td>
+        <td>男</td>
+        <td>lisi</td>
+        <td>安庆</td>
+        <td><input type="button" name="del" value="删除"></td>
+    </tr>
+    <tr>
+        <td>
+            <input type="checkbox" id="Checkbox3" />
+        </td>
+        <td>王五</td>
+        <td>男</td>
+        <td>beijing</td>
+        <td>北京</td>
+        <td><input type="button" name="del" value="删除"></td>
+    </tr>
+    <tr>
+        <td>
+            <input type="checkbox" id="Checkbox4" />
+        </td>
+        <td>无名氏</td>
+        <td>女</td>
+        <td>wumingshi</td>
+        <td>上海</td>
+        <td><input type="button" name="del" value="删除"></td>
+    </tr>
+    <tr>
+        <td>
+            <input type="checkbox" id="Checkbox5" />
+        </td>
+        <td>赵老师</td>
+        <td>男</td>
+        <td>zhaolaoshi</td>
+        <td>浙江</td>
+        <td><input type="button" name="del" value="删除"></td>
+    </tr>
+
+</table>
+
+<div><input type="button" name="btn" id="btn" value="点我" /></div>
+
+<script type="text/javascript">
+
+
+
+    $(document).ready(function(){
+
+/*        $("#tb tr").each(function(){
+            $(this).bind("click",function(){
+                var $tr = $("#tb tr:eq("+$(this).index()+")").clone(true);
+                //tr.appendTo("#tb tr").eq($(this).index());
+                $tr.insertAfter($("#tb tr:eq("+$(this).index()+")"));
+                //var evenTrId = $('#tb tr:even').attr("id");
+
+                //$('#tb tr:even').attr("id","hidden_"+evenTrId);
+
+            });
+
+        });*/
+
+   /*     $("#tb tr").click(function (){
+            var currentTr=$(this);
+            var currentTd=currentTr.find("td");
+            console.log(currentTr);
+            currentTr.remove();
+
+        });*/
+        $("input[name=del]").click(function(){
+
+          var tr= $(this).closest("tr").remove();
+            alert("删除成功"+tr);
+            console.log(tr);
+        });
+    });
+
+   /* function cli(){
+
+        alert($('#tb tr:odd').length);
+
+        $('#tb tr:odd').each(function(){
+
+            alert($(this).attr("id"));
+
+            $(this).remove();
+
+        });
+
+
+
+        $("#tb tr").each(function(){
+
+            var $tr = $("#tb tr:eq("+$(this).index()+")").clone(true);
+
+            $tr.insertAfter($("#tb tr:eq("+$(this).index()+")"));
+
+        });
+
+
+
+        var evenTrId = $('#tb tr:odd').attr("id")
+
+        evenTrId = evenTrId.replace("show","hidden");
+
+        $('#tb tr:odd').attr("id",evenTrId);
+
+        $('#tb tr:odd').hide();
+
+    }*/
+
+</script>
+
+</body>
+
+</html>

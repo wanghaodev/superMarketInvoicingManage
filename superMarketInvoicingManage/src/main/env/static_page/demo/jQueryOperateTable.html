@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>jquery操作table</title>
+    <script src='../static/js/jquery-1.10.2.min.js'></script>
+    <style type="text/css">
+        .hover
+        {
+            background-color:red;
+        }
+        .table1{
+            width: 100%;;
+        }
+    </style>
+
+    <script type="text/javascript">
+    $(function (){
+
+        //增加行
+        $("input[name=add_tr_btn]").click(function(){
+            var add_tr="";
+
+        });
+        //删除当前行
+        /*$("#table1 tr").click(function (){
+            var currentTr=$(this);
+            var currentTd=currentTr.find("td");
+            console.log(currentTr);
+            currentTr.remove();
+
+        });*/
+
+        //拷贝当前行自动添加到下一行
+/*        $("#table1 tr").each(function(){
+            $(this).bind("click",function(){
+                var $tr = $("#tb tr:eq("+$(this).index()+")").clone(true);
+                //tr.appendTo("#tb tr").eq($(this).index());
+                $tr.insertAfter($("#tb tr:eq("+$(this).index()+")"));
+                //var evenTrId = $('#tb tr:even').attr("id");
+                //$('#tb tr:even').attr("id","hidden_"+evenTrId);
+            });
+
+        });*/
+    });
+
+
+    </script>
+</head>
+<body>
+<table id="table1" class="table1" border="1" cellpadding="0" cellspacing="0">
+    <tr>
+        <th>
+            <input type="checkbox" id="checkall" onclick="checkAll1(this)"/>
+        </th>
+        <th>姓名</th>
+        <th>性别</th>
+        <th>密码</th>
+        <th>地址</th>
+        <th>操作</th>
+    </tr>
+    <tr>
+        <td>
+            <input type="checkbox" id="Checkbox1" />
+        </td>
+        <td>张三</td>
+        <td>男</td>
+        <td>zhangsan</td>
+        <td>上海</td>
+        <td><input type="button" name="add_tr_btn" value="增加"></td>
+
+    </tr>
+    <tr>
+        <td>
+            <input type="checkbox" id="Checkbox2" />
+        </td>
+        <td>李四</td>
+        <td>男</td>
+        <td>lisi</td>
+        <td>安庆</td>
+        <td><input type="button" name="del" value="删除"></td>
+    </tr>
+    <tr>
+        <td>
+            <input type="checkbox" id="Checkbox3" />
+        </td>
+        <td>王五</td>
+        <td>男</td>
+        <td>beijing</td>
+        <td>北京</td>
+        <td><input type="button" name="del" value="删除"></td>
+    </tr>
+    <tr>
+        <td>
+            <input type="checkbox" id="Checkbox4" />
+        </td>
+        <td>无名氏</td>
+        <td>女</td>
+        <td>wumingshi</td>
+        <td>上海</td>
+        <td><input type="button" name="del" value="删除"></td>
+    </tr>
+    <tr>
+        <td>
+            <input type="checkbox" id="Checkbox5" />
+        </td>
+        <td>赵老师</td>
+        <td>男</td>
+        <td>zhaolaoshi</td>
+        <td>浙江</td>
+        <td><input type="button" name="del" value="删除"></td>
+    </tr>
+    <tr>
+        <td colspan="5" align="center">
+          <!--  <input type="button" id="btnAdd" runat="server" value="新增" onclick="btnAddRow()" />
+            <input type="button" id="btnDelete" runat="server" value="删除" onclick="btnDeleteRow()" />
+            <input type="button" id="btnSave" runat="server" value="保存" onclick="btnSaveClick()" />-->
+        </td>
+    </tr>
+</table>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#table1 tr").each(function(){
+            $(this).bind("click",function(){
+                var $tr = $("#tb tr:eq("+$(this).index()+")").clone(true);
+                //tr.appendTo("#tb tr").eq($(this).index());
+                $tr.insertAfter($("#tb tr:eq("+$(this).index()+")"));
+                //var evenTrId = $('#tb tr:even').attr("id");
+
+                //$('#tb tr:even').attr("id","hidden_"+evenTrId);
+
+            });
+
+        });
+
+    });
+
+</script>
+</body>
+</html>

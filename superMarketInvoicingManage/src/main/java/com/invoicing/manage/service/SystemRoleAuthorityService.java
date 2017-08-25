@@ -5,7 +5,7 @@ import com.invoicing.manage.entity.SystemRoleAuthorityEntity;
 import java.util.Map;
 import java.util.List;
 
-import com.snailf.platforms.common.entity.PageInfo;
+import com.invoicing.manage.comment.entity.PageInfo;
 /**
  *
  * @time 2017年08月08日 00:19:07

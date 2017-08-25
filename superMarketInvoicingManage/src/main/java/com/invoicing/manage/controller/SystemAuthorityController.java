@@ -23,7 +23,7 @@ import com.invoicing.manage.comment.entity.SuccessResponseEntity;
 import com.invoicing.manage.entity.SystemAuthorityEntity;
 import com.invoicing.manage.request.UserRequestEntity;
 import com.invoicing.manage.service.SystemAuthorityService;
-import com.snailf.platforms.common.entity.PageInfo;
+import com.invoicing.manage.comment.entity.PageInfo;
  
 /** 
  * 类名: SystemAuthorityController   

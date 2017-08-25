@@ -18,12 +18,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
 import com.invoicing.manage.comment.entity.ErrorResponseEntity;
+import com.invoicing.manage.comment.entity.PageInfo;
 import com.invoicing.manage.comment.entity.ResponseEntity;
 import com.invoicing.manage.comment.entity.SuccessResponseEntity;
 import com.invoicing.manage.entity.AreaEntity;
 import com.invoicing.manage.request.AreaRequestEntity;
 import com.invoicing.manage.service.AreaService;
-import com.snailf.platforms.common.entity.PageInfo;
+import com.invoicing.manage.service.impl.AreaServiceImpl;
 
  
 /** 

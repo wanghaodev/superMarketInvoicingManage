@@ -5,7 +5,7 @@ import com.invoicing.manage.service.StockInService;
 import com.invoicing.manage.mapper.StockInMapper;
 import java.util.Map;
 import java.util.List;
-import com.snailf.platforms.common.entity.PageInfo;
+import com.invoicing.manage.comment.entity.PageInfo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -24,7 +24,7 @@ import com.invoicing.manage.comment.entity.SuccessResponseEntity;
 import com.invoicing.manage.entity.GoodsPropertyValueEntity;
 import com.invoicing.manage.request.PropertyValRequestEntity;
 import com.invoicing.manage.service.GoodsPropertyValueService;
-import com.snailf.platforms.common.entity.PageInfo;
+import com.invoicing.manage.comment.entity.PageInfo;
 
  
 /** 

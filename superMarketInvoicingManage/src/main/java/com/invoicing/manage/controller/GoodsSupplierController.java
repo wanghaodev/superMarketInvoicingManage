@@ -23,7 +23,7 @@ import com.invoicing.manage.comment.entity.SuccessResponseEntity;
 import com.invoicing.manage.entity.GoodsSupplierEntity;
 import com.invoicing.manage.request.GoodsSupplierRequestEntity;
 import com.invoicing.manage.service.GoodsSupplierService;
-import com.snailf.platforms.common.entity.PageInfo;
+import com.invoicing.manage.comment.entity.PageInfo;
  
 /** 
  * 类名: GoodsSupplierController   

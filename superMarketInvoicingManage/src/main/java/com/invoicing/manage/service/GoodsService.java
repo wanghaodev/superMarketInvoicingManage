@@ -3,7 +3,7 @@ package com.invoicing.manage.service;
 import com.invoicing.manage.entity.GoodsEntity;
 import java.util.Map;
 import java.util.List;
-import com.snailf.platforms.common.entity.PageInfo;
+import com.invoicing.manage.comment.entity.PageInfo;
 /**
  *
  * @time 2017年07月30日 18:14:37

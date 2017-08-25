@@ -23,7 +23,7 @@ import com.invoicing.manage.comment.entity.SuccessResponseEntity;
 import com.invoicing.manage.entity.SaleRecordEntity;
 import com.invoicing.manage.request.SaleRecordRequestEntity;
 import com.invoicing.manage.service.SaleRecordService;
-import com.snailf.platforms.common.entity.PageInfo;
+import com.invoicing.manage.comment.entity.PageInfo;
  
 /** 
  * 类名: SaleRecordController   

@@ -23,7 +23,7 @@ import com.invoicing.manage.comment.entity.SuccessResponseEntity;
 import com.invoicing.manage.entity.GoodsNormalPriceEntity;
 import com.invoicing.manage.request.GoodsNormalPriceRequestEntity;
 import com.invoicing.manage.service.GoodsNormalPriceService;
-import com.snailf.platforms.common.entity.PageInfo;
+import com.invoicing.manage.comment.entity.PageInfo;
 
  
 /** 

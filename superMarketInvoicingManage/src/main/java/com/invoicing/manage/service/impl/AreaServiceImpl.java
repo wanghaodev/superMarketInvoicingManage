@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.invoicing.manage.comment.entity.PageInfo;
 import com.invoicing.manage.entity.AreaEntity;
 import com.invoicing.manage.mapper.AreaMapper;
 import com.invoicing.manage.service.AreaService;
-import com.snailf.platforms.common.entity.PageInfo;
 /**
  *
  * @time 2017年07月27日 19:41:57

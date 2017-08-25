@@ -25,7 +25,7 @@ import com.invoicing.manage.entity.SystemStoreEntity;
 import com.invoicing.manage.request.StoreRequestEntity;
 import com.invoicing.manage.service.AreaService;
 import com.invoicing.manage.service.SystemStoreService;
-import com.snailf.platforms.common.entity.PageInfo;
+import com.invoicing.manage.comment.entity.PageInfo;
 
  
 /** 

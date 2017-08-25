@@ -18,12 +18,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
 import com.invoicing.manage.comment.entity.ErrorResponseEntity;
+import com.invoicing.manage.comment.entity.PageInfo;
 import com.invoicing.manage.comment.entity.ResponseEntity;
 import com.invoicing.manage.comment.entity.SuccessResponseEntity;
 import com.invoicing.manage.entity.GoodsBrandEntity;
 import com.invoicing.manage.request.GoodsBrandRequestEntity;
 import com.invoicing.manage.service.GoodsBrandService;
-import com.snailf.platforms.common.entity.PageInfo;
  
 /** 
  * 类名: GoodsBrandController   

@@ -32,7 +32,7 @@ import com.invoicing.manage.service.SystemAuthorityService;
 import com.invoicing.manage.service.SystemRoleAuthorityService;
 import com.invoicing.manage.service.SystemRoleService;
 import com.invoicing.manage.util.StringUtil;
-import com.snailf.platforms.common.entity.PageInfo;
+import com.invoicing.manage.comment.entity.PageInfo;
  
 /** 
  * 类名: SystemRoleController   

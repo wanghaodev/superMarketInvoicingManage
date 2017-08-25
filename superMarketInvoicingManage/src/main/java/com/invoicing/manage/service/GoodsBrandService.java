@@ -1,9 +1,10 @@
 package com.invoicing.manage.service;
 
+import com.invoicing.manage.comment.entity.PageInfo;
 import com.invoicing.manage.entity.GoodsBrandEntity;
+
 import java.util.Map;
 import java.util.List;
-import com.snailf.platforms.common.entity.PageInfo;
 /**
  *
  * @time 2017年08月09日 01:13:02

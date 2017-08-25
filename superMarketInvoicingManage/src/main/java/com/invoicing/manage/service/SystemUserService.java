@@ -6,7 +6,7 @@ import com.invoicing.manage.respose.UserResponse;
 import java.util.Map;
 import java.util.List;
 
-import com.snailf.platforms.common.entity.PageInfo;
+import com.invoicing.manage.comment.entity.PageInfo;
 /**
  *
  * @time 2017年07月27日 20:19:33

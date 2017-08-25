@@ -23,7 +23,7 @@ import com.invoicing.manage.comment.entity.ResponseEntity;
 import com.invoicing.manage.comment.entity.SuccessResponseEntity;
 import com.invoicing.manage.entity.StockGroundEntity;
 import com.invoicing.manage.service.StockGroundService;
-import com.snailf.platforms.common.entity.PageInfo;
+import com.invoicing.manage.comment.entity.PageInfo;
  
 /** 
  * 类名: StockGroundController   

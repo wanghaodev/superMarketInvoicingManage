@@ -28,7 +28,7 @@ import com.invoicing.manage.request.UserRequestEntity;
 import com.invoicing.manage.service.SystemUserRoleService;
 import com.invoicing.manage.service.SystemUserService;
 import com.invoicing.manage.util.StringUtil;
-import com.snailf.platforms.common.entity.PageInfo;
+import com.invoicing.manage.comment.entity.PageInfo;
  
 /** 
  * 类名: SystemUserController   

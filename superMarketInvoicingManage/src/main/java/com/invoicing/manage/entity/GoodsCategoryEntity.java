@@ -1,6 +1,6 @@
 package com.invoicing.manage.entity;
 
-import com.snailf.platforms.common.entity.BaseEntity;
+import com.invoicing.manage.comment.entity.BaseEntity;
 import java.util.Date;
 import java.math.BigDecimal;
 /**

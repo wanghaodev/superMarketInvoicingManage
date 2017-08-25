@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.Map;
 import java.util.List;
 
-import com.snailf.platforms.common.entity.PageInfo;
+import com.invoicing.manage.comment.entity.PageInfo;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

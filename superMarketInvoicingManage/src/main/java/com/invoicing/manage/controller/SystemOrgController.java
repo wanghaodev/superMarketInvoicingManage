@@ -22,7 +22,7 @@ import com.invoicing.manage.comment.entity.SuccessResponseEntity;
 import com.invoicing.manage.entity.SystemOrgEntity;
 import com.invoicing.manage.request.OrgRequestEntity;
 import com.invoicing.manage.service.SystemOrgService;
-import com.snailf.platforms.common.entity.PageInfo;
+import com.invoicing.manage.comment.entity.PageInfo;
  
 /** 
  * 类名: SystemOrgController   

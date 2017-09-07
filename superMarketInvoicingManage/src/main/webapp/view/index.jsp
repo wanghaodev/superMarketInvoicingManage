@@ -243,11 +243,12 @@ $(function(){
 	$('.menu_li').click(function(){//点击li加载界面
 		//影藏主内容
 		$("#main_page_div").hide();
+		var _path="/superMarketInvoicingManage";
 		var current = $(this),
 		target = current.find('a').attr('target'); // 找到链接a中的targer的值
 		//移除当前的a标签属性
 		//current.removeAttr('href');
-		$.get(target,function(data){
+		$.get(_path+target,function(data){
 			//console.log(target);
 			$("#mian_div").html(data);
 		});

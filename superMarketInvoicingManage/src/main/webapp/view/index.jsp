@@ -248,7 +248,7 @@ $(function(){
 		target = current.find('a').attr('target'); // 找到链接a中的targer的值
 		//移除当前的a标签属性
 		//current.removeAttr('href');
-		$.get(_path+target,function(data){
+		$.get(target,function(data){
 			//console.log(target);
 			$("#mian_div").html(data);
 		});
